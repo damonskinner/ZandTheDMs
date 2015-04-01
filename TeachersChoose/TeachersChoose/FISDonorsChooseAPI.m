@@ -79,7 +79,7 @@
 
 +(void)getSearchResultsWithParams:(NSDictionary *) params andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@&APIKEY=%@",DonorsChooseBaseURL,DonorsChooseAPIKey];
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?&APIKEY=%@",DonorsChooseBaseURL,DonorsChooseAPIKey];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];

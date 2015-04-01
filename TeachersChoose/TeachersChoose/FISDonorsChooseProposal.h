@@ -38,7 +38,7 @@
 @property (nonatomic, strong) NSString *state;
 @property (nonatomic, strong) NSString *stateFullName;
 @property (nonatomic, strong) NSDictionary *subject;
-@property (nonatomic, strong) NSNumber *teacherId;
+@property (nonatomic, strong) NSString *teacherId;
 @property (nonatomic, strong) NSString *teacherName;
 @property (nonatomic, strong) NSArray *teacherTypes;
 @property (nonatomic, strong) NSString *thumbImageURL;

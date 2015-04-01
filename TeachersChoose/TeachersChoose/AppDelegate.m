@@ -25,33 +25,24 @@
     
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
     
-//    [self.datastore getSearchResultsWithLocation:@"Brooklyn" andCompletion:^(BOOL completion) {
-//        for (FISDonorsChooseProposal *eachProposal in self.datastore.donorsChooseSearchResults)
-//        {
-//            NSLog(@"%@",eachProposal.title);
-//            NSLog(@"%@",eachProposal.teacherId);
-//        }
-//        
-//        NSLog(@"%ld",[self.datastore.donorsChooseSearchResults count]);
-//    }];
-//    
-//
-//    
-//    [self.datastore getTeacherProfileWithTeacherId:@"58164" andCompletion:^(BOOL completion) {
-//        NSLog(@"%@",self.datastore.currentTeacher.name);
-//
-//
-//        
-//    }];
-    [self.datastore getSearchResultsWithTeacherId:@"2800005" andCompletion:^(BOOL completion) {
-        
-        FISDonorsChooseProposal *currentProposalTest = self.datastore.currentTeacherProposals[0];
-        NSLog(@"%@",currentProposalTest.title);
-        NSLog(@"%@",currentProposalTest.teacherName);
-        NSLog(@"%@",currentProposalTest.shortDescription);
-        NSLog(@"%@",currentProposalTest.totalPrice);
-        
+    NSDictionary *params = @{@"location":@"New York",@"max":@"50"};
+    
+    [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
+        NSUInteger r = arc4random_uniform(50);
+        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
+        [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
+            
+            
+            FISDonorsChooseProposal *currentProposalTest = self.datastore.currentTeacherProposals[0];
+            NSLog(@"%@",currentProposalTest.title);
+            NSLog(@"%@",currentProposalTest.teacherName);
+            NSLog(@"%@",currentProposalTest.shortDescription);
+            NSLog(@"%@",currentProposalTest.totalPrice);
+            
+        }];
     }];
+    
+    
     
     return YES;
 }
