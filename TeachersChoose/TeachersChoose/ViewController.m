@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
+#import <Parse/Parse.h>
 
 @interface ViewController ()
+- (IBAction)pushTapped:(id)sender;
 
 @end
 
@@ -24,4 +26,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)pushTapped:(id)sender {
+    
+    // Create our Installation query
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"deviceType" equalTo:@"ios"];
+    
+    // Send push notification to query
+    [PFPush sendPushMessageToQueryInBackground:pushQuery
+                                   withMessage:@"You hit the push notification button !"];
+}
 @end
