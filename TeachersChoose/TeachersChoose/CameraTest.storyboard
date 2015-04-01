@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="e3u-Yu-3pz">
+            <objects>
+                <viewController id="3Ev-KH-Ouz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hwA-Ej-iHE"/>
+                        <viewControllerLayoutGuide type="bottom" id="am8-WR-uhS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e9Y-BL-HQg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wpn-Bx-XbM" userLabel="SubView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HC-2y-rDd">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="8HC-2y-rDd" secondAttribute="centerY" id="Tq0-g6-wVI"/>
+                                    <constraint firstItem="8HC-2y-rDd" firstAttribute="height" secondItem="Wpn-Bx-XbM" secondAttribute="height" id="Y8B-7r-NB3"/>
+                                    <constraint firstItem="8HC-2y-rDd" firstAttribute="width" secondItem="Wpn-Bx-XbM" secondAttribute="width" id="ag4-sA-Y3v"/>
+                                    <constraint firstAttribute="centerX" secondItem="8HC-2y-rDd" secondAttribute="centerX" id="tJ8-XK-4vD"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1qt-Mt-HkV">
+                                <rect key="frame" x="150" y="330" width="300" height="240"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wpn-Bx-XbM" firstAttribute="height" secondItem="e9Y-BL-HQg" secondAttribute="height" multiplier="0.5" id="8cn-cg-Kuy"/>
+                            <constraint firstItem="1qt-Mt-HkV" firstAttribute="centerX" secondItem="e9Y-BL-HQg" secondAttribute="centerX" id="99j-gv-imq"/>
+                            <constraint firstItem="1qt-Mt-HkV" firstAttribute="width" secondItem="e9Y-BL-HQg" secondAttribute="width" multiplier="0.5" id="9bC-Tt-ceC"/>
+                            <constraint firstItem="Wpn-Bx-XbM" firstAttribute="centerX" secondItem="e9Y-BL-HQg" secondAttribute="centerX" id="AcU-Kt-x6r"/>
+                            <constraint firstItem="1qt-Mt-HkV" firstAttribute="height" secondItem="e9Y-BL-HQg" secondAttribute="height" multiplier="0.4" id="C15-yc-mGr"/>
+                            <constraint firstItem="Wpn-Bx-XbM" firstAttribute="width" secondItem="e9Y-BL-HQg" secondAttribute="width" id="OgG-ZO-3Fl"/>
+                            <constraint firstItem="Wpn-Bx-XbM" firstAttribute="centerY" secondItem="e9Y-BL-HQg" secondAttribute="centerY" multiplier="0.5" id="jqs-rW-eS0"/>
+                            <constraint firstItem="1qt-Mt-HkV" firstAttribute="centerY" secondItem="e9Y-BL-HQg" secondAttribute="centerY" multiplier="1.5" id="nQq-Uj-yu1"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gvz-qz-eBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="472" y="404"/>
+        </scene>
+    </scenes>
+</document>
