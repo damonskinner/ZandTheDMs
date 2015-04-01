@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		360394FA1ACCA70500114853 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
+		360394FB1ACCA70500114853 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
 		3617DEF91ACC376E0078F4E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEF81ACC376E0078F4E3 /* main.m */; };
 		3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */; };
 		3617DEFF1ACC376E0078F4E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* ViewController.m */; };
@@ -33,6 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		360394F61ACCA70500114853 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = TeachersChoose/LogInViewController.h; sourceTree = "<group>"; };
+		360394F71ACCA70500114853 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = TeachersChoose/LogInViewController.m; sourceTree = "<group>"; };
+		360394F81ACCA70500114853 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = TeachersChoose/SignUpViewController.h; sourceTree = "<group>"; };
+		360394F91ACCA70500114853 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = TeachersChoose/SignUpViewController.m; sourceTree = "<group>"; };
 		3617DEF31ACC376E0078F4E3 /* TeachersChoose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeachersChoose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3617DEF71ACC376E0078F4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3617DEF81ACC376E0078F4E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,6 +89,10 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
+				360394F61ACCA70500114853 /* LogInViewController.h */,
+				360394F71ACCA70500114853 /* LogInViewController.m */,
+				360394F81ACCA70500114853 /* SignUpViewController.h */,
+				360394F91ACCA70500114853 /* SignUpViewController.m */,
 				369388491ACC435200E7A2E6 /* Database Classes */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
 				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
@@ -316,6 +326,8 @@
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				3617DEFF1ACC376E0078F4E3 /* ViewController.m in Sources */,
 				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
+				360394FA1ACCA70500114853 /* LogInViewController.m in Sources */,
+				360394FB1ACCA70500114853 /* SignUpViewController.m in Sources */,
 				369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseDatastore.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 
 
 @end
