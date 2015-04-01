@@ -11,8 +11,6 @@
 
 @interface CameraViewController ()
 
-@property (weak, nonatomic) IBOutlet UIView *frameForCapture;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureDevice *captureDevice;
 
@@ -23,10 +21,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupSession];
+    
+    if (self.captureDevice)
+    {
+        [self beginSession];
+    }
+}
+
+-(void) setupSession
+{
     self.captureSession = [[AVCaptureSession alloc] init];
     
-    self.captureSession.sessionPreset = AVCaptureSessionPresetLow;
-
+    self.captureSession.sessionPreset = AVCaptureSessionPresetHigh;
+    
     NSArray *devices = AVCaptureDevice.devices;
     
     if (devices)
@@ -45,18 +53,11 @@
             }
         }
     }
-    if (self.captureDevice)
-    {
-        [self beginSession];
-    }
-}
-
--(void) viewWillAppear
-{
 }
 
 -(void) beginSession
 {
+//    [self configureDevice];
     // make an input from the device
     NSError *error;
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:&error];
@@ -80,7 +81,19 @@
     
     //start the capture session!
     [self.captureSession startRunning];
-    
+}
+
+-(void) configureDevice
+{
+    // this was originally written to allow us to lock the focus mode
+    // and then use a slider to change the focus...
+    // definitely not necessary lol 
+    if (self.captureDevice)
+    {
+        [self.captureDevice lockForConfiguration:nil];
+        [self.captureDevice setFocusMode: AVCaptureFocusModeLocked];
+        [self.captureDevice unlockForConfiguration];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

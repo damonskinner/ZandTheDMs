@@ -16,6 +16,7 @@
 		3617DF131ACC376E0078F4E3 /* TeachersChooseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DF121ACC376E0078F4E3 /* TeachersChooseTests.m */; };
 		E24A3E361ACC3BA5001B19C3 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E24A3E351ACC3BA5001B19C3 /* CameraTest.storyboard */; };
 		E24A3E391ACC3BC6001B19C3 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24A3E381ACC3BC6001B19C3 /* CameraViewController.m */; };
+		E24A3E3D1ACC73D1001B19C3 /* APPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24A3E3C1ACC73D1001B19C3 /* APPViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		E24A3E351ACC3BA5001B19C3 /* CameraTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CameraTest.storyboard; sourceTree = "<group>"; };
 		E24A3E371ACC3BC6001B19C3 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		E24A3E381ACC3BC6001B19C3 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		E24A3E3B1ACC73D1001B19C3 /* APPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APPViewController.h; path = ../../../../Desktop/APPViewController.h; sourceTree = "<group>"; };
+		E24A3E3C1ACC73D1001B19C3 /* APPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APPViewController.m; path = ../../../../Desktop/APPViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 		E24A3E3A1ACC3BCF001B19C3 /* Camera Experiments */ = {
 			isa = PBXGroup;
 			children = (
+				E24A3E3B1ACC73D1001B19C3 /* APPViewController.h */,
+				E24A3E3C1ACC73D1001B19C3 /* APPViewController.m */,
 				E24A3E351ACC3BA5001B19C3 /* CameraTest.storyboard */,
 				E24A3E371ACC3BC6001B19C3 /* CameraViewController.h */,
 				E24A3E381ACC3BC6001B19C3 /* CameraViewController.m */,
@@ -238,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3617DEFF1ACC376E0078F4E3 /* ViewController.m in Sources */,
+				E24A3E3D1ACC73D1001B19C3 /* APPViewController.m in Sources */,
 				E24A3E391ACC3BC6001B19C3 /* CameraViewController.m in Sources */,
 				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
