@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FISDonorsChooseTeacher.h"
 
 @interface FISDonorsChooseDatastore : NSObject
 
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
+@property (nonatomic, strong) FISDonorsChooseTeacher *currentTeacher;
+@property (nonatomic, strong) NSMutableArray *currentTeacherProposals;
 
 + (instancetype)sharedDataStore;
 
 -(void)getSearchResultsWithKeyword: (NSString *) keyword andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getSearchResultsWithLocation: (NSString *) location andCompletion:(void (^)(BOOL))completionBlock;
+-(void)getSearchResultsWithParams: (NSDictionary *) params andCompletion:(void (^)(BOOL))completionBlock;
+-(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
+-(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 
 @end

@@ -18,6 +18,7 @@
 		369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */; };
 		369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */; };
 		369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
+		3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseProposal.m; path = TeachersChoose/FISDonorsChooseProposal.m; sourceTree = "<group>"; };
 		369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseDatastore.h; path = TeachersChoose/FISDonorsChooseDatastore.h; sourceTree = "<group>"; };
 		369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseDatastore.m; path = TeachersChoose/FISDonorsChooseDatastore.m; sourceTree = "<group>"; };
+		3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseTeacher.h; path = TeachersChoose/FISDonorsChooseTeacher.h; sourceTree = "<group>"; };
+		3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseTeacher.m; path = TeachersChoose/FISDonorsChooseTeacher.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 		369388491ACC435200E7A2E6 /* Database Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
+				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
 				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
 				3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */,
@@ -313,6 +318,7 @@
 				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
 				369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
+				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

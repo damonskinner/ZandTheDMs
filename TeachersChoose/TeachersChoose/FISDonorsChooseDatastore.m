@@ -9,6 +9,7 @@
 #import "FISDonorsChooseDatastore.h"
 #import "FISDonorsChooseAPI.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonorsChooseTeacher.h"
 
 @implementation FISDonorsChooseDatastore
 
@@ -60,5 +61,27 @@
         completionBlock(YES);
     }];
 }
+
+-(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
+{
+    [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
+        for (NSDictionary *proposalDict in proposalDictionaries) {
+            [self.currentTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+        }
+        completionBlock(YES);
+    }];
+}
+
+-(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
+{
+    [FISDonorsChooseAPI getTeacherProfileWithTeacherId:teacherId andCompletionBlock:^(NSDictionary *teacherDictionary) {
+        
+        self.currentTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
+        
+        completionBlock(YES);
+    }];
+}
+
+
 
 @end

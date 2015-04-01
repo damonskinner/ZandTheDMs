@@ -14,7 +14,7 @@
 
 +(void)getSearchResultsWithKeyword:(NSString *) keyword andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@",DonorsChooseBaseURL];
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
     
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -35,7 +35,7 @@
 
 +(void)getSearchResultsWithLocation:(NSString *) location andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@",DonorsChooseBaseURL];
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
     
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -55,14 +55,14 @@
     }];
 }
 
-+(void)getSearchResultsWithParams:(NSDictionary *) params andCompletionBlock:(void (^)(NSArray *))completionBlock
++(void)getSearchResultsWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@&APIKEY=%@",DonorsChooseBaseURL,DonorsChooseAPIKey];
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
     
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-
+    NSDictionary *params = @{@"teacher":teacherId,@"APIKEY":DonorsChooseAPIKey};
     
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
@@ -76,5 +76,42 @@
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
 }
+
++(void)getSearchResultsWithParams:(NSDictionary *) params andCompletionBlock:(void (^)(NSArray *))completionBlock
+{
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@&APIKEY=%@",DonorsChooseBaseURL,DonorsChooseAPIKey];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        
+        completionBlock(rawResults[@"proposals"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
+
++(void)getTeacherProfileWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock
+{
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json-teacher.html?&APIKEY=%@&teacher=%@",DonorsChooseBaseURL,DonorsChooseAPIKey,teacherId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    
+    [manager GET:donorsChooseURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        
+        completionBlock(rawResults);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
+
 
 @end

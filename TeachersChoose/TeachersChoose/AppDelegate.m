@@ -24,17 +24,29 @@
     
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
     
-    [self.datastore getSearchResultsWithLocation:@"Brooklyn" andCompletion:^(BOOL completion) {
-        for (FISDonorsChooseProposal *eachProposal in self.datastore.donorsChooseSearchResults)
-        {
-            NSLog(@"%@",eachProposal.title);
-            NSLog(@"%@",eachProposal.imageURL);
-            NSLog(@"%@\n\n",eachProposal.shortDescription);
-        }
+//    [self.datastore getSearchResultsWithLocation:@"Brooklyn" andCompletion:^(BOOL completion) {
+//        for (FISDonorsChooseProposal *eachProposal in self.datastore.donorsChooseSearchResults)
+//        {
+//            NSLog(@"%@",eachProposal.title);
+//            NSLog(@"%@",eachProposal.teacherId);
+//        }
+//        
+//        NSLog(@"%ld",[self.datastore.donorsChooseSearchResults count]);
+//    }];
+//    
+//
+//    
+//    [self.datastore getTeacherProfileWithTeacherId:@"58164" andCompletion:^(BOOL completion) {
+//        NSLog(@"%@",self.datastore.currentTeacher.name);
+//
+//
+//        
+//    }];
+    [self.datastore getSearchResultsWithTeacherId:@"2800005" andCompletion:^(BOOL completion) {
         
-        NSLog(@"%ld",[self.datastore.donorsChooseSearchResults count]);
+        NSLog(@"%@",self.datastore.currentTeacherProposals);
+        
     }];
-    
     
     return YES;
 }

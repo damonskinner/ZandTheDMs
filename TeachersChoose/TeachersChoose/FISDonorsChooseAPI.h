@@ -14,5 +14,9 @@
 +(void)getSearchResultsWithKeyword:(NSString *) keyword andCompletionBlock:(void (^)(NSArray *))completionBlock;
 +(void)getSearchResultsWithLocation:(NSString *) keyword andCompletionBlock:(void (^)(NSArray *))completionBlock;
 +(void)getSearchResultsWithParams:(NSDictionary *) params andCompletionBlock:(void (^)(NSArray *))completionBlock;
++(void)getSearchResultsWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSArray *))completionBlock;
++(void)getTeacherProfileWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
+
 
 @end
