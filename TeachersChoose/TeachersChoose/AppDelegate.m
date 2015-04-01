@@ -7,13 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "FISDonorsChooseDatastore.h"
-#import "FISDonorsChooseProposal.h"
-
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
-
-@property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 
 @end
 
@@ -21,29 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
+                  clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
+
     // Override point for customization after application launch.
-    
-    self.datastore = [FISDonorsChooseDatastore sharedDataStore];
-    
-    NSDictionary *params = @{@"location":@"New York",@"max":@"50"};
-    
-    [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
-        NSUInteger r = arc4random_uniform(50);
-        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
-        [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
-            
-            
-            FISDonorsChooseProposal *currentProposalTest = self.datastore.currentTeacherProposals[0];
-            NSLog(@"%@",currentProposalTest.title);
-            NSLog(@"%@",currentProposalTest.teacherName);
-            NSLog(@"%@",currentProposalTest.shortDescription);
-            NSLog(@"%@",currentProposalTest.totalPrice);
-            
-        }];
-    }];
-    
-    
-    
     return YES;
 }
 
