@@ -45,8 +45,11 @@
 //    }];
     [self.datastore getSearchResultsWithTeacherId:@"2800005" andCompletion:^(BOOL completion) {
         
-        
-        NSLog(@"%@",self.datastore.currentTeacherProposals);
+        FISDonorsChooseProposal *currentProposalTest = self.datastore.currentTeacherProposals[0];
+        NSLog(@"%@",currentProposalTest.title);
+        NSLog(@"%@",currentProposalTest.teacherName);
+        NSLog(@"%@",currentProposalTest.shortDescription);
+        NSLog(@"%@",currentProposalTest.totalPrice);
         
     }];
     
