@@ -27,18 +27,60 @@
     
     self.captureSession.sessionPreset = AVCaptureSessionPresetLow;
 
-    // if there are devices, make self.captureDevice the first one (back camera, i think)
-    if (AVCaptureDevice.devices)
-    {
-        self.captureDevice = AVCaptureDevice.devices[0];
-        NSLog(@"%@", AVCaptureDevice.devices);
-        NSLog(@"captureDevice: %@", self.captureDevice);
-    }
+    NSArray *devices = AVCaptureDevice.devices;
     
+    if (devices)
+    {
+        // loop through all capture devices on this phone
+        for (AVCaptureDevice *device in AVCaptureDevice.devices)
+        {
+            // make sure this particular device supports video
+            if ([device hasMediaType: AVMediaTypeVideo])
+            {
+                // confirm that its the back camera
+                if(device.position == AVCaptureDevicePositionBack)
+                {
+                    self.captureDevice = device;
+                }
+            }
+        }
+    }
+    if (self.captureDevice)
+    {
+        [self beginSession];
+    }
 }
 
 -(void) viewWillAppear
 {
+}
+
+-(void) beginSession
+{
+    // make an input from the device
+    NSError *error;
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:self.captureDevice error:&error];
+
+    // add the input to our capture session
+    [self.captureSession addInput:input];
+
+    if (error)
+    {
+        NSLog(@"AVCaptureDeviceInput Error: %@", error);
+    }
+    
+    // make a preview layer
+    AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+
+    // add it to our main view
+    [self.view.layer addSublayer: previewLayer];
+    
+    // make preview layer frame the same as our views frame
+    previewLayer.frame = self.view.layer.frame;
+    
+    //start the capture session!
+    [self.captureSession startRunning];
+    
 }
 
 - (void)didReceiveMemoryWarning {
