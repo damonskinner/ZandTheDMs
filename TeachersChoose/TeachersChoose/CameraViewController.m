@@ -7,8 +7,14 @@
 //
 
 #import "CameraViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface CameraViewController ()
+
+@property (weak, nonatomic) IBOutlet UIView *frameForCapture;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) AVCaptureSession *captureSession;
+@property (strong, nonatomic) AVCaptureDevice *captureDevice;
 
 @end
 
@@ -16,6 +22,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.captureSession = [[AVCaptureSession alloc] init];
+    
+    self.captureSession.sessionPreset = AVCaptureSessionPresetLow;
+
+    // if there are devices, make self.captureDevice the first one (back camera, i think)
+    if (AVCaptureDevice.devices)
+    {
+        self.captureDevice = AVCaptureDevice.devices[0];
+        NSLog(@"%@", AVCaptureDevice.devices);
+        NSLog(@"captureDevice: %@", self.captureDevice);
+    }
+    
+}
+
+-(void) viewWillAppear
+{
 }
 
 - (void)didReceiveMemoryWarning {
@@ -23,14 +46,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// invisible button is tapped to take a picture
+- (IBAction)invisibleButtonTapped:(id)sender
+{
+    NSLog(@"invisible button tapped");
 }
-*/
+
 
 @end
