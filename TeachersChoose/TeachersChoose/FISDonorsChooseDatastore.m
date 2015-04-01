@@ -28,6 +28,8 @@
     self = [super init];
     if (self) {
         _donorsChooseSearchResults=[NSMutableArray new];
+        _currentTeacherProposals=[NSMutableArray new];
+        _currentTeacher=[FISDonorsChooseTeacher new];
     }
     return self;
 }

@@ -10,6 +10,7 @@
 #import "FISDonorsChooseDatastore.h"
 #import "FISDonorsChooseProposal.h"
 
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
@@ -43,6 +44,7 @@
 //        
 //    }];
     [self.datastore getSearchResultsWithTeacherId:@"2800005" andCompletion:^(BOOL completion) {
+        
         
         NSLog(@"%@",self.datastore.currentTeacherProposals);
         
