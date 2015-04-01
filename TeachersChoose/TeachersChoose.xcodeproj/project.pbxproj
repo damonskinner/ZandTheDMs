@@ -80,14 +80,11 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
+				369388491ACC435200E7A2E6 /* Database Classes */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
 				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
-				3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */,
-				369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */,
 				369388371ACC3CD200E7A2E6 /* FISConstants.h */,
 				369388381ACC3CD200E7A2E6 /* FISConstants.m */,
-				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
-				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
 				3617DEF51ACC376E0078F4E3 /* TeachersChoose */,
 				3617DF0F1ACC376E0078F4E3 /* TeachersChooseTests */,
 				3617DEF41ACC376E0078F4E3 /* Products */,
@@ -144,6 +141,17 @@
 				3617DF111ACC376E0078F4E3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		369388491ACC435200E7A2E6 /* Database Classes */ = {
+			isa = PBXGroup;
+			children = (
+				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
+				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
+				3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */,
+				369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */,
+			);
+			name = "Database Classes";
 			sourceTree = "<group>";
 		};
 		BA2FA31B23C2AA3604D52389 /* Frameworks */ = {

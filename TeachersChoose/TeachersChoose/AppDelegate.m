@@ -7,8 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "FISDonorsChooseDatastore.h"
+#import "FISDonorsChooseProposal.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 
 @end
 
@@ -17,6 +21,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+    
+    [self.datastore getSearchResultsWithLocation:@"Brooklyn" andCompletion:^(BOOL completion) {
+        for (FISDonorsChooseProposal *eachProposal in self.datastore.donorsChooseSearchResults)
+        {
+            NSLog(@"%@",eachProposal.title);
+            NSLog(@"%@",eachProposal.imageURL);
+            NSLog(@"%@\n\n",eachProposal.shortDescription);
+        }
+        
+        NSLog(@"%ld",[self.datastore.donorsChooseSearchResults count]);
+    }];
+    
+    
     return YES;
 }
 
