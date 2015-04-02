@@ -10,6 +10,9 @@
 #import <Parse/Parse.h>
 #import "LogInViewController.h"
 #import "SignUpViewController.h"
+#import "FISDonorsChooseProposal.h"
+#import <AFNetworking.h>
+
 
 @interface ViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -19,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.datastore=[FISDonorsChooseDatastore sharedDataStore];
+    
     
     [self.view removeConstraints:self.view.constraints];
 }
@@ -59,9 +64,17 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    
+    PFUser *currentUser = user;
+
+    [self.datastore getSearchResultsWithParams:nil andCompletion:^(BOOL completion) {
+
+        NSString *currentTeacherId = currentUser[@"teacherId"];
+        NSLog(@"%@", currentTeacherId);
+
+    }];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
@@ -100,6 +113,51 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    PFUser *currentUser = user;
+    NSDictionary *params = @{@"location":@"NY",@"max":@"50"};
+    [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
+        
+        NSUInteger r=arc4random_uniform(50);
+        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
+        
+        [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
+            
+            FISDonorsChooseProposal *sampleProposalFromRandomTeacher = self.datastore.loggedInTeacherProposals[0];
+            
+            NSLog(@"%@",sampleProposalFromRandomTeacher.teacherId);
+            
+            
+            NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/users/%@",currentUser.objectId];
+            
+            
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            
+            NSDictionary *params = @{@"teacherId":sampleProposalFromRandomTeacher.teacherId};
+            
+            
+            manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+            
+            [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+            [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+            
+            [manager.requestSerializer setValue:currentUser.sessionToken forHTTPHeaderField:@"X-Parse-Session-Token"];
+            
+            
+            manager.securityPolicy.allowInvalidCertificates = YES;
+            
+            [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+                
+                
+                //        completionBlock(responseObject[@"results"]);
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                NSLog(@"Fail: %@",error.localizedDescription);
+            }];
+            
+            
+            
+        }];
+    }];
+    
     [self dismissModalViewControllerAnimated:YES]; // Dismiss the PFSignUpViewController
 }
 

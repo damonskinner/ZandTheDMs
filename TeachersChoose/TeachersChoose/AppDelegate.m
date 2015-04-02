@@ -22,36 +22,36 @@
     [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
     
-    self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-    
-    NSDictionary *params = @{@"location":@"NY",@"max":@"50"};
-    
-    [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
-        
-        NSUInteger r=arc4random_uniform(50);
-        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
-        
-        [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
-            
-            FISDonorsChooseProposal *firstProposalTest = self.datastore.loggedInTeacherProposals[0];
-//            NSLog(@"%@",firstProposalTest.title);
-//            NSLog(@"%@",firstProposalTest.shortDescription);
-            NSLog(@"%@",firstProposalTest.teacherName);
-            
-            NSLog(@"%ld",[self.datastore.loggedInTeacherProposals count]);
-            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
-                NSLog(@"%@",eachProposal.title);
-                NSLog(@"%@",eachProposal.imageURL);
-                NSLog(@"%@",eachProposal.thumbImageURL);
-                
-            }
-            
-            [self.datastore getTeacherProfileWithTeacherId:firstProposalTest.teacherId andCompletion:^(BOOL completion) {
-                
-                NSLog(@"Teacher Photo: %@",self.datastore.loggedInTeacher.photoURL);
-            }];
-        }];
-    }];
+//    self.datastore=[FISDonorsChooseDatastore sharedDataStore];
+//    
+//    NSDictionary *params = @{@"location":@"NY",@"max":@"50"};
+//    
+//    [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
+//        
+//        NSUInteger r=arc4random_uniform(50);
+//        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
+//        
+//        [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
+//            
+//            FISDonorsChooseProposal *firstProposalTest = self.datastore.loggedInTeacherProposals[0];
+////            NSLog(@"%@",firstProposalTest.title);
+////            NSLog(@"%@",firstProposalTest.shortDescription);
+//            NSLog(@"%@",firstProposalTest.teacherName);
+//            
+//            NSLog(@"%ld",[self.datastore.loggedInTeacherProposals count]);
+//            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
+//                NSLog(@"%@",eachProposal.title);
+//                NSLog(@"%@",eachProposal.imageURL);
+//                NSLog(@"%@",eachProposal.thumbImageURL);
+//                
+//            }
+//            
+//            [self.datastore getTeacherProfileWithTeacherId:firstProposalTest.teacherId andCompletion:^(BOOL completion) {
+//                
+//                NSLog(@"Teacher Photo: %@",self.datastore.loggedInTeacher.photoURL);
+//            }];
+//        }];
+//    }];
 
     // Override point for customization after application launch.
     return YES;
