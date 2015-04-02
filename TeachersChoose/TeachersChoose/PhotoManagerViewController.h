@@ -10,4 +10,6 @@
 
 @interface PhotoManagerViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *completionPictures;
+
 @end

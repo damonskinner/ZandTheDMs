@@ -7,10 +7,14 @@
 //
 
 #import "PhotoManagerViewController.h"
+#import "CompletionImageCollectionViewCell.h"
 
-@interface PhotoManagerViewController ()
+@interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic) NSInteger selectedItem; // for updating cells in collection
 
 @end
 
@@ -18,22 +22,99 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initialSetup];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) initialSetup
+{
+    // make sure we dont break the collection view
+    if (self.completionPictures == nil)
+    {
+        self.completionPictures = [[NSMutableArray alloc] init];
+    }
+    
+    // fill the collection view with any necessary placeholders
+    while ([self.completionPictures count] < 6)
+    {
+        [self.completionPictures addObject: [UIImage imageNamed:@"tapHereIcon"]];
+    }
+    
+    // setup collectionView
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UICollectionView Delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return [self.completionPictures count];
 }
-*/
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CompletionImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
+    
+    // assign the corresponding picture
+    cell.imageView.image = self.completionPictures[indexPath.row];
+    
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected item: %ld", indexPath.row);
+    self.selectedItem = indexPath.row;
+    [self presentPhotoActionSheet];
+}
+
+
+#pragma mark - UIImagePickerController Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSLog(@"image Chosen");
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.completionPictures[self.selectedItem] = chosenImage;
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self.collectionView reloadData];
+    }];
+}
+
+#pragma mark - AlertController (action sheet)
+
+-(void) presentPhotoActionSheet
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add Photos" message:@"Select photos that you'd like to share on DonorsChoose.org upon completion of your project." preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+    UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"take photo chosen");
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *choosePhoto = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"choose photo chosen");
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    }];
+    
+    [alertController addAction: cancel];
+    [alertController addAction: takePhoto];
+    [alertController addAction: choosePhoto];
+
+    [self presentViewController: alertController animated: YES completion:nil];
+}
+
 
 @end
