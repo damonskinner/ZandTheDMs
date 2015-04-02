@@ -33,11 +33,23 @@
         
         [self.datastore getSearchResultsWithTeacherId:randomProposal.teacherId andCompletion:^(BOOL completion) {
             
-            FISDonorsChooseProposal *firstProposalTest = self.datastore.currentTeacherProposals[0];
-            NSLog(@"%@",firstProposalTest.title);
-            NSLog(@"%@",firstProposalTest.shortDescription);
+            FISDonorsChooseProposal *firstProposalTest = self.datastore.loggedInTeacherProposals[0];
+//            NSLog(@"%@",firstProposalTest.title);
+//            NSLog(@"%@",firstProposalTest.shortDescription);
             NSLog(@"%@",firstProposalTest.teacherName);
             
+            NSLog(@"%ld",[self.datastore.loggedInTeacherProposals count]);
+            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
+                NSLog(@"%@",eachProposal.title);
+                NSLog(@"%@",eachProposal.imageURL);
+                NSLog(@"%@",eachProposal.thumbImageURL);
+                
+            }
+            
+            [self.datastore getTeacherProfileWithTeacherId:firstProposalTest.teacherId andCompletion:^(BOOL completion) {
+                
+                NSLog(@"Teacher Photo: %@",self.datastore.loggedInTeacher.photoURL);
+            }];
         }];
     }];
 
