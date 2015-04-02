@@ -12,8 +12,8 @@
 @interface FISDonorsChooseDatastore : NSObject
 
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
-@property (nonatomic, strong) FISDonorsChooseTeacher *currentTeacher;
-@property (nonatomic, strong) NSMutableArray *currentTeacherProposals;
+@property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
+@property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
 
 + (instancetype)sharedDataStore;
 

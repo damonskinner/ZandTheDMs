@@ -28,8 +28,8 @@
     self = [super init];
     if (self) {
         _donorsChooseSearchResults=[NSMutableArray new];
-        _currentTeacherProposals=[NSMutableArray new];
-        _currentTeacher=[FISDonorsChooseTeacher new];
+        _loggedInTeacherProposals=[NSMutableArray new];
+        _loggedInTeacher=[FISDonorsChooseTeacher new];
     }
     return self;
 }
@@ -68,7 +68,7 @@
 {
     [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
         for (NSDictionary *proposalDict in proposalDictionaries) {
-            [self.currentTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+            [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
         }
         completionBlock(YES);
     }];
@@ -78,7 +78,7 @@
 {
     [FISDonorsChooseAPI getTeacherProfileWithTeacherId:teacherId andCompletionBlock:^(NSDictionary *teacherDictionary) {
         
-        self.currentTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
+        self.loggedInTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
         
         completionBlock(YES);
     }];
