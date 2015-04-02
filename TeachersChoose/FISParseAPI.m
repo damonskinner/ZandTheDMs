@@ -36,7 +36,7 @@
     [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
-        //        completionBlock(responseObject[@"results"]);
+        completionBlock();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];

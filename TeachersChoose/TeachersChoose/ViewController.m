@@ -69,7 +69,15 @@
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
     
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+        
+        for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+            NSLog(@"%@",eachProposal.title);
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -120,14 +128,17 @@
         NSString *currentUserSessionToken = currentUser.sessionToken;
         
         [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
-           
-
-
+           [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
+               for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                   NSLog(@"%@",eachProposal.title);
+               }
+               [self dismissViewControllerAnimated:YES completion:nil];
+           }];
             
         }];
 
     }];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 
 }
 
