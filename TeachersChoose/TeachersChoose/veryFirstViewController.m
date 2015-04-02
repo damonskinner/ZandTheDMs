@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "veryFirstViewController.h"
 #import <Parse/Parse.h>
 #import "LogInViewController.h"
 #import "SignUpViewController.h"
@@ -15,11 +15,11 @@
 #import "FISParseAPI.h"
 
 
-@interface ViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
 
-@implementation ViewController
+@implementation veryFirstViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,11 +27,13 @@
     
     
     [self.view removeConstraints:self.view.constraints];
+    
+    NSLog(@"login viewdidload");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    NSLog(@"login viewdidAppear");
     if (![PFUser currentUser]) { // No user logged in
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
@@ -44,8 +46,15 @@
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
         
-        // Present the log in view controller
+        // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
+    else
+    {
+        NSLog(@"presenting from login viewDidAppear");
+//        [self dismissViewControllerAnimated:YES completion:nil];
+        
+                [self transitionToHomePage];
     }
 }
 
@@ -66,6 +75,7 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
     
+
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
     
@@ -78,6 +88,11 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 
+    NSLog(@"presenting from login didLoginUser");
+    [self transitionToHomePage];
+}
+
+
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -87,6 +102,7 @@
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+    NSLog(@"popping from didCancelLogin");
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -117,6 +133,7 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+
     PFUser *currentUser = user;
     NSDictionary *params = @{@"location":@"NY",@"max":@"50"};
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
@@ -140,6 +157,10 @@
     }];
     
 
+
+    
+    [self transitionToHomePage];
+
 }
 
 // Sent to the delegate when the sign up attempt fails.
@@ -150,6 +171,17 @@
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
+}
+
+-(void) transitionToHomePage
+{
+    [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the PFSignUpViewController
+
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
+    
+    [self presentViewController:homePageVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,7 +10,7 @@
 #import "FISDonorsChooseDatastore.h"
 
 
-@interface ViewController : UIViewController
+@interface veryFirstViewController : UIViewController
 
 @property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 
