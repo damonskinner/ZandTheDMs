@@ -33,6 +33,8 @@
 		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */; };
 		E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */; };
+		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
+		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,10 @@
 		E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoManagerView.xib; sourceTree = "<group>"; };
 		E25D84BD1ACEE13B00D98118 /* PhotoManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManagerView.h; sourceTree = "<group>"; };
 		E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManagerView.m; sourceTree = "<group>"; };
+		E25D84C11ACEFFB700D98118 /* DonorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonorsTableViewController.h; sourceTree = "<group>"; };
+		E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonorsTableViewController.m; sourceTree = "<group>"; };
+		E25D84C51ACF013600D98118 /* StatDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatDetailsViewController.h; sourceTree = "<group>"; };
+		E25D84C61ACF013600D98118 /* StatDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailsViewController.m; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,8 +223,10 @@
 				E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */,
 				E25D84B81ACEDE1000D98118 /* DetailsTabBarController.h */,
 				E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */,
-				E25D84B21ACED9B700D98118 /* Camera */,
+				E25D84C81ACF013A00D98118 /* Stats */,
 				E25D84C01ACEFEF100D98118 /* Comments */,
+				E25D84C41ACEFFC100D98118 /* Donors */,
+				E25D84B21ACED9B700D98118 /* Camera */,
 			);
 			name = "Detail Flow";
 			sourceTree = "<group>";
@@ -246,6 +254,24 @@
 				E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */,
 			);
 			name = Comments;
+			sourceTree = "<group>";
+		};
+		E25D84C41ACEFFC100D98118 /* Donors */ = {
+			isa = PBXGroup;
+			children = (
+				E25D84C11ACEFFB700D98118 /* DonorsTableViewController.h */,
+				E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */,
+			);
+			name = Donors;
+			sourceTree = "<group>";
+		};
+		E25D84C81ACF013A00D98118 /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				E25D84C51ACF013600D98118 /* StatDetailsViewController.h */,
+				E25D84C61ACF013600D98118 /* StatDetailsViewController.m */,
+			);
+			name = Stats;
 			sourceTree = "<group>";
 		};
 		EC9D2303EC39AADA6631DC7E /* Pods */ = {
@@ -400,6 +426,8 @@
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */,
 				3617DEFF1ACC376E0078F4E3 /* ViewController.m in Sources */,
+				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
+				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
 				360394FA1ACCA70500114853 /* LogInViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,

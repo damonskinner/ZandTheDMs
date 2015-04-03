@@ -9,8 +9,11 @@
 #import "DetailsTabBarController.h"
 
 // child VCs
+#import "StatDetailsViewController.h"
 #import "CommentsTableViewController.h"
+#import "DonorsTableViewController.h"
 #import "PhotoManagerViewController.h"
+
 
 
 @interface DetailsTabBarController ()
@@ -23,17 +26,20 @@
     [super viewDidLoad];
     
     // make child view controllers
-    CommentsTableViewController *commentsTVC = [[CommentsTableViewController alloc] init];
+    StatDetailsViewController *statsVC         = [[StatDetailsViewController alloc] init];
+    CommentsTableViewController *commentsTVC   = [[CommentsTableViewController alloc] init];
+    DonorsTableViewController *donorsTVC       = [[DonorsTableViewController alloc] init];
     PhotoManagerViewController *photoManagerVC = [[UIStoryboard storyboardWithName:@"CameraTest" bundle:nil] instantiateViewControllerWithIdentifier:@"photoManager"];
-    
-//    PhotoManagerViewController *photoManagerVC = [[PhotoManagerViewController alloc] init];
-    
+// ^^^^^^ currently using storyboard version, STAY AWARE OF THIS ************
+
     // make tab bar items
-    commentsTVC.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:0];
-    photoManagerVC.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemDownloads tag:1];
+    statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemSearch tag:0];
+    commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemContacts tag:1];
+    donorsTVC.tabBarItem      = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemContacts tag:2];
+    photoManagerVC.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemDownloads tag:3];
     
     // add them to self.viewControllers
-    self.viewControllers = @[commentsTVC, photoManagerVC];
+    self.viewControllers = @[statsVC, commentsTVC, donorsTVC, photoManagerVC];
 }
 
 - (void)didReceiveMemoryWarning {

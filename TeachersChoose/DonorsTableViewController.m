@@ -1,49 +1,39 @@
 //
-//  CommentsTableViewController.m
+//  DonorsTableViewController.m
 //  TeachersChoose
 //
-//  Created by Tom OMalley on 4/2/15.
+//  Created by Tom OMalley on 4/3/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "CommentsTableViewController.h"
+#import "DonorsTableViewController.h"
 
-@interface CommentsTableViewController ()
+@interface DonorsTableViewController ()
 
 @end
 
-@implementation CommentsTableViewController
+@implementation DonorsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    /* setup public property (self.comments)
-     and segmented control in tableHeaderView all / awaiting reply.
-     awaiting data models to do more */
+    self.tableView.backgroundColor = [UIColor purpleColor];
     
-    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Awaiting Reply"]];
-    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    // set the title (DOESNT WORK)
-    self.navigationController.navigationItem.title = @"Comments";
+    /* setup public property (self.donors)
+       awaiting data models to do more */
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    return [self.donors count];
 }
 
 /*

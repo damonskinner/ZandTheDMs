@@ -49,8 +49,10 @@
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     
     
-    // present it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
-    [self.navigationController pushViewController:tabBarController animated:YES];
+    // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
+    [self.navigationController showViewController: tabBarController sender:nil];
+//    [self.navigationController pushViewController:tabBarController animated:YES];
+    
 }
 
 

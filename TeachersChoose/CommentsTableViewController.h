@@ -10,4 +10,6 @@
 
 @interface CommentsTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *comments;
+
 @end
