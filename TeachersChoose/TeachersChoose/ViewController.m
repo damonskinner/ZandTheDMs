@@ -68,12 +68,18 @@
     
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
+    NSString *currentUserObjectId = currentUser.objectId;
+    NSString *currentUserSessionToken = currentUser.sessionToken;
     
     [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-        
+        NSMutableArray *proposalIds = [[NSMutableArray alloc] init];
         for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-            NSLog(@"%@",eachProposal.title);
+            [proposalIds addObject:eachProposal.proposalId];
         }
+        
+//        [FISParseAPI addProposalIds:proposalIds withObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^{
+//            
+//        }];
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -126,16 +132,27 @@
         NSString *randomTeacherId = randomProposal.teacherId;
         NSString *currentUserObjectId = currentUser.objectId;
         NSString *currentUserSessionToken = currentUser.sessionToken;
-        
-        [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
-           [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-               for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-                   NSLog(@"%@",eachProposal.title);
-               }
-               [self dismissViewControllerAnimated:YES completion:nil];
-           }];
+        [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
             
+            [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
+                
+            }];
+
+            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                
+                [FISParseAPI createProposalWithId:eachProposal.proposalId withTeacherId:randomTeacherId andCompletionBlock:^(NSDictionary *responseObject){
+                    NSString *newProposalObjectId = responseObject[@"objectId"];
+                    
+                    [FISParseAPI addProposalObjectId:newProposalObjectId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^{
+                        
+                    }];
+                    
+                }];
+                
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
+        
 
     }];
     

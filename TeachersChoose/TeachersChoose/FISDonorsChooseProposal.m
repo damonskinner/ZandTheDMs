@@ -54,5 +54,10 @@
     return proposal;
 }
 
-
+-(NSDictionary *)dictionaryFromProposal:(FISDonorsChooseProposal *)proposal{
+    NSDictionary *proposalDictionary = @{@"title":proposal.title, @"teacherId":proposal.teacherId};
+    
+    
+    return proposalDictionary;
+}
 @end
