@@ -8,10 +8,11 @@
 
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
+#import "PhotoManagerView.h"
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-
+@property (strong, nonatomic) PhotoManagerView *photoManagerView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic) NSInteger selectedItem; // for updating cells in collection
@@ -22,7 +23,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // make a new photomanagerview and add it as a subview
+//    self.photoManagerView = [[PhotoManagerView alloc] init];
+//    [self.view addSubview: self.photoManagerView];
+//    
+//    // remove constraint
+//    self.photoManagerView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.view removeConstraints: self.view.constraints];
+//    
+//    // constrain photomanagerView to self.view
+//    NSDictionary *views = @{@"pmv": self.photoManagerView};
+//
+//    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-44-[pmv]-44-|" options:0 metrics:nil views: views];
+//    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pmv]|" options:0 metrics:nil views:views];
+//    
+//    [self.view addConstraints: verticalConstraints];
+//    [self.view addConstraints: horizontalConstraints];
+//    [self.view layoutIfNeeded];
+    
     [self initialSetup];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 -(void) initialSetup
