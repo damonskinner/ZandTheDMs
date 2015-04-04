@@ -22,6 +22,8 @@
 		3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */; };
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
+		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
+		3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F12C71ACEEB2F0038C31B /* Proposal.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,10 @@
 		3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseTeacher.m; path = TeachersChoose/FISDonorsChooseTeacher.m; sourceTree = "<group>"; };
 		36B124111ACDAF8E009866EB /* FISParseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISParseAPI.h; sourceTree = "<group>"; };
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
+		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
+		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
+		3D7F12C61ACEEB2F0038C31B /* Proposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposal.h; sourceTree = "<group>"; };
+		3D7F12C71ACEEB2F0038C31B /* Proposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposal.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewViewController.h; sourceTree = "<group>"; };
@@ -131,10 +137,14 @@
 				3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */,
 				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
 				3617DF001ACC376E0078F4E3 /* Main.storyboard */,
+				3D7F12C61ACEEB2F0038C31B /* Proposal.h */,
+				3D7F12C71ACEEB2F0038C31B /* Proposal.m */,
 				3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */,
 				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
-				3617DF031ACC376E0078F4E3 /* Images.xcassets */,
 				3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */,
+				3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */,
+				3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */,
+				3617DF031ACC376E0078F4E3 /* Images.xcassets */,
 				3617DEF61ACC376E0078F4E3 /* Supporting Files */,
 			);
 			path = TeachersChoose;
@@ -336,9 +346,11 @@
 				3617DEFF1ACC376E0078F4E3 /* veryFirstViewController.m in Sources */,
 				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
 				360394FA1ACCA70500114853 /* LogInViewController.m in Sources */,
+				3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */,
 				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,
 				360394FB1ACCA70500114853 /* SignUpViewController.m in Sources */,
 				369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */,
+				3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */,
 				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,

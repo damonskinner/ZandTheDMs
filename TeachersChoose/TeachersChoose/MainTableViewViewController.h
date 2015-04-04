@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseDatastore.h"
 
 @interface MainTableViewViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 
 @end

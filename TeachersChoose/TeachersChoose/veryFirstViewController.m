@@ -23,18 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     
-    
     [self.view removeConstraints:self.view.constraints];
-    
-    NSLog(@"login viewdidload");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"login viewdidAppear");
+    
     if (![PFUser currentUser]) { // No user logged in
+ 
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
@@ -49,9 +48,9 @@
         // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+
     else
     {
-        NSLog(@"presenting from login viewDidAppear");
 //        [self dismissViewControllerAnimated:YES completion:nil];
         
                 [self transitionToHomePage];
@@ -74,7 +73,6 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    
 
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
@@ -86,14 +84,12 @@
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
+        [self transitionToHomePage];
     }];
 
-    NSLog(@"presenting from login didLoginUser");
-    [self transitionToHomePage];
-}
-
 
 }
+
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
@@ -102,7 +98,6 @@
 
 // Sent to the delegate when the log in screen is dismissed.
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
-    NSLog(@"popping from didCancelLogin");
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -112,6 +107,7 @@
     
     // loop through all of the submitted data
     for (id key in info) {
+        
         NSString *field = [info objectForKey:key];
         if (!field || field.length == 0) { // check completion
             informationComplete = NO;
@@ -150,16 +146,11 @@
                    NSLog(@"%@",eachProposal.title);
                }
                [self dismissViewControllerAnimated:YES completion:nil];
+               [self transitionToHomePage];
            }];
-            
         }];
-
     }];
     
-
-
-    
-    [self transitionToHomePage];
 
 }
 
@@ -175,7 +166,7 @@
 
 -(void) transitionToHomePage
 {
-    [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the PFSignUpViewController
+//    [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the PFSignUpViewController
 
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     

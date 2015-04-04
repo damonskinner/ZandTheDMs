@@ -7,6 +7,10 @@
 //
 
 #import "MainTableViewViewController.h"
+#import "FISDonorsChooseProposal.h"
+#import "ProposalTableViewCell.h"
+#import "Proposal.h"
+
 
 @interface MainTableViewViewController ()
 
@@ -20,13 +24,45 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+    
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     [self.mainTableView removeConstraints:self.mainTableView.constraints];
     self.mainTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.proposalsArray = [NSMutableArray arrayWithObjects:@"proposal1",@"proposal2",@"proposal3",@"proposal4", nil];
+    FISDonorsChooseProposal *firstProposal=self.datastore.loggedInTeacherProposals[0];
+
+//    FISDonorsChooseProposal *secondProposal=self.datastore.loggedInTeacherProposals[1];
+//    FISDonorsChooseProposal *thirdProposal=self.datastore.loggedInTeacherProposals[2];
+//    self.proposalsArray = [NSMutableArray arrayWithObjects:firstProposal.title, nil];
+    
+//    Proposal *proposal0 = [[Proposal alloc]]
+    
+    Proposal *proposal1 = [[Proposal alloc]initWithProposalTitle:firstProposal.title
+                                          proposalExpirationDate:firstProposal.expirationDate
+                                             proposalNeedMessage:firstProposal.fulfillmentTrailer];
+    
+    Proposal *proposal2 = [[Proposal alloc]initWithProposalTitle:@"We Need a Science Lab!"                      proposalExpirationDate:@"May 13, 2015"
+                                             proposalNeedMessage:@"My students need an area designed for science experiments. With six tables and 32 chairs, I can create a science lab ideal for group work and experiments."];
+    
+    Proposal *proposal3 = [[Proposal alloc]initWithProposalTitle:@"We Need A Chair Upgrade!" proposalExpirationDate:@"Jun 17, 2015"
+                                             proposalNeedMessage:@"My students need 25 Thera-Band Exercise Balls upon which to sit!!"];
+    
+    Proposal *proposal4 = [[Proposal alloc]initWithProposalTitle:@"Igniting Imagination" proposalExpirationDate:@"Apr 03, 2015"
+                                             proposalNeedMessage:@"My students need a CD player with headphones and audio books such as Tale of a Fourth Grade Nothing and Ramona's World in order to build a classroom listening center!"];
+    
+    Proposal *proposal5 = [[Proposal alloc]initWithProposalTitle:@"Fulfill Our Dream of a Document Camera!" proposalExpirationDate:@"Jun 14, 2015"
+                                             proposalNeedMessage:@"My students need a document camera to make class time more efficient."];
+    
+    Proposal *proposal6 = [[Proposal alloc]initWithProposalTitle:@"Bookshelves, Bookshelves, Please!" proposalExpirationDate:@"Jun 23, 2015"
+                                             proposalNeedMessage:@"My students need these bookshelves to easily find books during the class day. These bookshelves will show title to book and it has easy access for my students."];
+    
+    Proposal *proposal7 = [[Proposal alloc]initWithProposalTitle:@"Robotics in the Classroom" proposalExpirationDate:@"May 13, 2015"
+                                             proposalNeedMessage:@"My students need five EV3 robotics kits and resource book, five sets of repair tools, and five storage containers to continue their studies in design, engineering and   programming."];
+
+    self.proposalsArray = [NSMutableArray arrayWithObjects:proposal1,proposal2,proposal3, proposal4,proposal5,proposal6,proposal7,nil];
     
     NSLayoutConstraint *mainTableViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.mainTableView
@@ -35,7 +71,7 @@
                                     toItem:self.view
                                  attribute:NSLayoutAttributeTop
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:50];
     
     [self.view addConstraint:mainTableViewTopConstraint];
     
@@ -84,13 +120,13 @@
     
     [self.view addConstraint:mainTableViewCenteringXConstraint];
 //     Do any additional setup after loading the view.
-    NSLog(@"main TVVC view did load");
+    [self.mainTableView reloadData];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    NSLog(@"main TVVC view did appear");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -110,10 +146,25 @@
 //}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
-    cell.textLabel.text = [self.proposalsArray objectAtIndex:indexPath.row];
+    ProposalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
+    cell.proposal = [self.proposalsArray objectAtIndex:indexPath.row];
+    //I'm a cell, I have a proposal (see ProposalTableViewCell.h's proposal property for reference, and I want it to be SET to the proposal in my array
+    
     return cell;
 }
+
+//
+//- (void)setSubtitleForCell:(RWBasicCell *)cell item:(RSSItem *)item {
+//    NSString *subtitle = item.mediaText ?: item.mediaDescription;
+//    
+//    // Some subtitles can be really long, so only display the
+//    // first 200 characters
+//    if (subtitle.length > 200) {
+//        subtitle = [NSString stringWithFormat:@"%@...", [subtitle substringToIndex:200]];
+//    }
+//    
+//    [cell.subtitleLabel setText:subtitle];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
