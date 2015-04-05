@@ -10,6 +10,7 @@
 #import "FISDonorsChooseAPI.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseTeacher.h"
+#import "FISParseAPI.h"
 
 @implementation FISDonorsChooseDatastore
 
@@ -67,10 +68,15 @@
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
 {
     [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
-        for (NSDictionary *proposalDict in proposalDictionaries) {
-            [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+        if ([proposalDictionaries count]>0) {
+            for (NSDictionary *proposalDict in proposalDictionaries) {
+                [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+                
+            }
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
         }
-        completionBlock(YES);
     }];
 }
 

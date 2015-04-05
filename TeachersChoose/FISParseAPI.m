@@ -75,64 +75,68 @@
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
     
-    
-    
 }
 
-//+(void)addProposals: (NSArray *) proposals withObjectId:(NSString *) currentUserObjectId currentUserSessionToken: (NSString *) currentUserSessionToken  andCompletionBlock:(void (^)(void))completionBlock {
-//    
-//    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/users/%@",currentUserObjectId];
-//    
-//    
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    
-//    NSDictionary *params = @{@"proposals":proposals};
-//    
-//    
-//    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
-//    
-//    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
-////    [manager.requestSerializer setValue:ParseClientKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
-//    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
-//    [manager.requestSerializer setValue:currentUserSessionToken forHTTPHeaderField:@"X-Parse-Session-Token"];
-//    
-//    
-//    manager.securityPolicy.allowInvalidCertificates = YES;
-//    
-//    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-//        
-//        
-//        completionBlock();
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"Adding ProposalIDs to User Fail: %@",error.localizedDescription);
-//    }];
-//}
-
-
-+(void)createProposalWithId:(NSString *) proposalId withTeacherId: (NSString *)teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
++(void)createProposalWithId:(NSString *) proposalId withTeacherObjectId: (NSString *)teacherObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
     
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/"];
     
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSDictionary *params = @{@"proposalId":proposalId,@"teacherId":teacherId};
-    
+    NSDictionary *params = @{@"proposalId":proposalId,@"teacherId": @{@"__type":@"Pointer",
+                                                                      @"className":@"_User",
+                                                                      @"objectId": teacherObjectId}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
-    
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
-//    [manager.requestSerializer setValue:ParseClientKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
-//    [manager.requestSerializer setValue:currentUserSessionToken forHTTPHeaderField:@"X-Parse-Session-Token"];
-    
-    
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
+    }];
+}
+
++(void) getDonationsListForProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(NSArray *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"proposalId":proposalObjectId};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
+    }];
+}
+
++(void) getProposalObjectIdForProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSString *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"proposalId":proposalId};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject[@"objectId"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
     }];

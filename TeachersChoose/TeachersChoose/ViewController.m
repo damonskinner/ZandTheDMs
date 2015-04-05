@@ -26,6 +26,8 @@
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     
     
+    
+    
     [self.view removeConstraints:self.view.constraints];
 }
 
@@ -68,18 +70,16 @@
     
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
-    NSString *currentUserObjectId = currentUser.objectId;
-    NSString *currentUserSessionToken = currentUser.sessionToken;
     
     [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-        NSMutableArray *proposalIds = [[NSMutableArray alloc] init];
-        for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-            [proposalIds addObject:eachProposal.proposalId];
-        }
         
-//        [FISParseAPI addProposalIds:proposalIds withObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^{
-//            
-//        }];
+        //May need to insert API stuff here to update proposals on parse
+        if(completion) {
+            
+            
+        } else {
+            NSLog(@"No active proposals");
+        }
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
@@ -124,39 +124,33 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     PFUser *currentUser = user;
-    NSDictionary *params = @{@"location":@"NY",@"max":@"50"};
+    NSInteger maxSearchResults=100;
+    NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
         
         NSUInteger r=arc4random_uniform(50);
         FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
         NSString *randomTeacherId = randomProposal.teacherId;
-        NSString *currentUserObjectId = currentUser.objectId;
-        NSString *currentUserSessionToken = currentUser.sessionToken;
+
         [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
             
-            [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
-                
+            [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
 
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 
-                [FISParseAPI createProposalWithId:eachProposal.proposalId withTeacherId:randomTeacherId andCompletionBlock:^(NSDictionary *responseObject){
-                    NSString *newProposalObjectId = responseObject[@"objectId"];
+                [FISParseAPI createProposalWithId:eachProposal.proposalId withTeacherObjectId:currentUser.objectId andCompletionBlock:^(NSDictionary *responseObject){
+
+                    eachProposal.parseObjectId=responseObject[@"objectId"];
                     
-                    [FISParseAPI addProposalObjectId:newProposalObjectId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^{
-                        
+                    [FISParseAPI addProposalObjectId:eachProposal.parseObjectId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^{
                     }];
                     
                 }];
-                
             }
             [self dismissViewControllerAnimated:YES completion:nil];
         }];
-        
-
     }];
-    
-
 }
 
 // Sent to the delegate when the sign up attempt fails.

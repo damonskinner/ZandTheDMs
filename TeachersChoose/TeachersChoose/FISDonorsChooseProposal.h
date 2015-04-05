@@ -47,10 +47,11 @@
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSDictionary *zone;
 
-
+@property (nonatomic, strong) NSMutableArray *donations;
+@property (nonatomic, strong) NSString *parseObjectId;
 
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
--(NSDictionary *)dictionaryFromProposal:(FISDonorsChooseProposal *)proposal;
+
 
 
 @end
