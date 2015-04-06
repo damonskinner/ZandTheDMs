@@ -11,7 +11,7 @@
 		360394FB1ACCA70500114853 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
 		3617DEF91ACC376E0078F4E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEF81ACC376E0078F4E3 /* main.m */; };
 		3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */; };
-		3617DEFF1ACC376E0078F4E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* ViewController.m */; };
+		3617DEFF1ACC376E0078F4E3 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
 		3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF001ACC376E0078F4E3 /* Main.storyboard */; };
 		3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF031ACC376E0078F4E3 /* Images.xcassets */; };
 		3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */; };
@@ -35,6 +35,10 @@
 		E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */; };
 		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
+		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
+		3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F12C71ACEEB2F0038C31B /* Proposal.m */; };
+		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
+		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +61,8 @@
 		3617DEF81ACC376E0078F4E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3617DEFA1ACC376E0078F4E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3617DEFD1ACC376E0078F4E3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3617DEFE1ACC376E0078F4E3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = veryFirstViewController.h; sourceTree = "<group>"; };
+		3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = veryFirstViewController.m; sourceTree = "<group>"; };
 		3617DF011ACC376E0078F4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3617DF031ACC376E0078F4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3617DF061ACC376E0078F4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -77,6 +81,14 @@
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
 		36B124141AD18670009866EB /* FISDonation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDonation.h; sourceTree = "<group>"; };
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
+		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
+		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
+		3D7F12C61ACEEB2F0038C31B /* Proposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposal.h; sourceTree = "<group>"; };
+		3D7F12C71ACEEB2F0038C31B /* Proposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposal.m; sourceTree = "<group>"; };
+		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
+		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
+		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewViewController.h; sourceTree = "<group>"; };
+		3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewViewController.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E25D849D1ACDE18200D98118 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
@@ -139,6 +151,9 @@
 				369388491ACC435200E7A2E6 /* Database Classes */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
 				E25D84A01ACDE1A800D98118 /* Detail Flow */,
+				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
+				3DAB19BD1ACD8DF800623967 /* FISConstants.h */,
+				3DAB19BE1ACD8DF800623967 /* FISConstants.m */,
 				3617DEF51ACC376E0078F4E3 /* TeachersChoose */,
 				3617DF0F1ACC376E0078F4E3 /* TeachersChooseTests */,
 				3617DEF41ACC376E0078F4E3 /* Products */,
@@ -161,11 +176,17 @@
 			children = (
 				3617DEFA1ACC376E0078F4E3 /* AppDelegate.h */,
 				3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */,
-				3617DEFD1ACC376E0078F4E3 /* ViewController.h */,
-				3617DEFE1ACC376E0078F4E3 /* ViewController.m */,
+				3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */,
+				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
 				3617DF001ACC376E0078F4E3 /* Main.storyboard */,
-				3617DF031ACC376E0078F4E3 /* Images.xcassets */,
+				3D7F12C61ACEEB2F0038C31B /* Proposal.h */,
+				3D7F12C71ACEEB2F0038C31B /* Proposal.m */,
+				3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */,
+				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
 				3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */,
+				3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */,
+				3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */,
+				3617DF031ACC376E0078F4E3 /* Images.xcassets */,
 				3617DEF61ACC376E0078F4E3 /* Supporting Files */,
 			);
 			path = TeachersChoose;
@@ -438,6 +459,15 @@
 				369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */,
 				E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */,
 				E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */,
+				3617DEFF1ACC376E0078F4E3 /* veryFirstViewController.m in Sources */,
+				3617DEFC1ACC376E0078F4E3 /* AppDelegate.m in Sources */,
+				360394FA1ACCA70500114853 /* LogInViewController.m in Sources */,
+				3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */,
+				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,
+				360394FB1ACCA70500114853 /* SignUpViewController.m in Sources */,
+				369388451ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m in Sources */,
+				3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */,
+				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
 				E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */,
 				E25D849F1ACDE18200D98118 /* FISConstants.m in Sources */,

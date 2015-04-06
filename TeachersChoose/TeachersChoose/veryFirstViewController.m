@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "veryFirstViewController.h"
 #import <Parse/Parse.h>
 #import "LogInViewController.h"
 #import "SignUpViewController.h"
@@ -16,19 +16,18 @@
 #import "FISDonation.h"
 
 
-@interface ViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
 
-@implementation ViewController
+@implementation veryFirstViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     
-    
-    
-    
+
     [self.view removeConstraints:self.view.constraints];
 }
 
@@ -36,6 +35,7 @@
     [super viewDidAppear:animated];
     
     if (![PFUser currentUser]) { // No user logged in
+ 
         // Create the log in view controller
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
@@ -47,9 +47,11 @@
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:signUpViewController];
         
-        // Present the log in view controller
+        // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+
+    //DAMON
 //    } else {
 //        PFUser *loggedInUser = [PFUser currentUser];
 //        NSString *currentTeacherId = loggedInUser[@"teacherId"];
@@ -80,9 +82,22 @@
 //        
 //    }
 //    
-    
-    
-    
+    // COOPER/TOM
+//     else
+//     {
+// //        [self dismissViewControllerAnimated:YES completion:nil];
+        
+//         // tell the datastore to grab the current users proposals
+//         [self.datastore getSearchResultsWithTeacherId:[PFUser currentUser][@"teacherId"] andCompletion:^(BOOL completion) {
+            
+//             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+//                 NSLog(@"%@",eachProposal.title);
+//             }
+//             [self dismissViewControllerAnimated:YES completion:nil];
+//             [self transitionToHomePage];
+//         }];
+        
+//     }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -101,7 +116,7 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    
+
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
     
@@ -131,13 +146,14 @@
         } else {
             NSLog(@"No active proposals");
         }
+        //DAMON
+        // [self dismissViewControllerAnimated:YES completion:nil];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        // FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
         
-        FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
-        
+        // COOPER
+        // [self transitionToHomePage];
     }];
-
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -156,6 +172,7 @@
     
     // loop through all of the submitted data
     for (id key in info) {
+        
         NSString *field = [info objectForKey:key];
         if (!field || field.length == 0) { // check completion
             informationComplete = NO;
@@ -177,6 +194,7 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+
     PFUser *currentUser = user;
     NSInteger maxSearchResults=50;
     NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
@@ -213,6 +231,18 @@
                 }];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
+// COOPER
+        // NSString *currentUserObjectId = currentUser.objectId;
+        // NSString *currentUserSessionToken = currentUser.sessionToken;
+        
+        // [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
+        //    [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
+        //        for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+        //            NSLog(@"%@",eachProposal.title);
+        //        }
+        //        [self dismissViewControllerAnimated:YES completion:nil];
+        //        [self transitionToHomePage];
+        //    }];
         }];
     }];
 }
@@ -225,6 +255,12 @@
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
+}
+
+-(void) transitionToHomePage {
+    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
+    
+    [self presentViewController:homePageVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
