@@ -21,7 +21,7 @@
      and segmented control in tableHeaderView all / awaiting reply.
      awaiting data models to do more */
     
-    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Awaiting Reply"]];
+    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
     ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
 }
 

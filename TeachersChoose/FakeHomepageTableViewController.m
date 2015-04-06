@@ -40,7 +40,9 @@
     {
         cell = [[UITableViewCell alloc] init];
     }
-    cell.textLabel.text = @"I am a cell";
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = @"The Power of Print";
     
     return cell;
 }
@@ -52,8 +54,11 @@
     // make the tab bar controller
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     
+    
+    tabBarController.navigationItem.title = @"The Power of Print";
     // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
     [self.navigationController showViewController: tabBarController sender:nil];
+    
 //    [self.navigationController pushViewController:tabBarController animated:YES];
     
 }

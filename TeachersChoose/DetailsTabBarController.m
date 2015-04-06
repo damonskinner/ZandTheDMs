@@ -7,6 +7,7 @@
 //
 
 #import "DetailsTabBarController.h"
+#import <FAKIonIcons.h>
 
 // child VCs
 #import "StatDetailsViewController.h"
@@ -35,12 +36,19 @@
     PhotoManagerViewController *photoManagerVC = [[UIStoryboard storyboardWithName:@"CameraTest" bundle:nil] instantiateViewControllerWithIdentifier:@"photoManager"];
 // ^^^^^^ currently using storyboard version, STAY AWARE OF THIS ************
 
-    // make tab bar items
-    fakeHome.tabBarItem       = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemSearch tag: 0];
-    statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemSearch tag:0];
-    commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemContacts tag:1];
-    donorsTVC.tabBarItem      = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemMore tag:2];
-    photoManagerVC.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemDownloads tag:3];
+    // make icons / tabBarItems
+//    fakeHome.tabBarItem       = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemSearch tag: 0];
+    UIImage *statsImage = [[FAKIonIcons iosPulseStrongIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTitle:@"Stats" image:statsImage  tag:0];
+    
+    UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
+    
+    UIImage *donorsImage = [[FAKIonIcons cashIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
+    donorsTVC.tabBarItem      = [[UITabBarItem alloc] initWithTitle:@"Donors" image:donorsImage tag:2];
+    
+    UIImage *photosImage = [[FAKIonIcons imagesIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
+    photoManagerVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Photos" image:photosImage tag:3];
     
     // make nav controllers
     UINavigationController *statsNav    = [[UINavigationController alloc] init];
@@ -63,15 +71,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
