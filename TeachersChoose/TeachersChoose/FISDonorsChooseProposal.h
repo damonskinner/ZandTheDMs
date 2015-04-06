@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSString *fundURL;
 @property (nonatomic, strong) NSString *fundingStatus;
 @property (nonatomic, strong) NSDictionary *gradeLevel;
-@property (nonatomic, strong) NSNumber *proposalId;
+@property (nonatomic, strong) NSString *proposalId;
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *latitude;
 @property (nonatomic, strong) NSString *longitude;
@@ -47,8 +47,11 @@
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSDictionary *zone;
 
-
+@property (nonatomic, strong) NSMutableArray *donations;
+@property (nonatomic, strong) NSString *parseObjectId;
 
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
+
+
 
 @end
