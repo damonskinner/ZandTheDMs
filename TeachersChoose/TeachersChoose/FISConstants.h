@@ -12,5 +12,10 @@
 
 extern NSString *const DonorsChooseAPIKey;
 extern NSString *const DonorsChooseBaseURL;
+extern NSString *const ParseApplicationId;
+extern NSString *const ParseClientKey;
+extern NSString *const ParseRestAPIKey;
+
+extern NSString *const ParseDonationsPointersArray;
 
 @end

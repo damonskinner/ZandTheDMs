@@ -10,8 +10,10 @@
 
 @implementation FISConstants
 
-NSString *const DonorsChooseAPIKey=@"DONORSCHOOSE";
-NSString *const DonorsChooseBaseURL=@"http://api.donorschoose.org/common/json_feed.html?";
-
+NSString *const DonorsChooseAPIKey=@"goxf28putrbn";
+NSString *const DonorsChooseBaseURL=@"http://api.donorschoose.org/common";
+NSString *const ParseApplicationId=@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj";
+NSString *const ParseClientKey=@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK";
+NSString *const ParseRestAPIKey=@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un";
 
 @end
