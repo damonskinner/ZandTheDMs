@@ -14,6 +14,7 @@
 #import <AFNetworking.h>
 #import "FISParseAPI.h"
 #import "FISDonation.h"
+#import "DetailsTabBarController.h"
 
 
 @interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
@@ -49,7 +50,21 @@
         
         // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+    } else {
+        //        [self dismissViewControllerAnimated:YES completion:nil];
+        
+        // tell the datastore to grab the current users proposals
+        [self.datastore getSearchResultsWithTeacherId:[PFUser currentUser][@"teacherId"] andCompletion:^(BOOL completion) {
+            
+            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                NSLog(@"%@",eachProposal.title);
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
+        }];
+        
     }
+
 
     //DAMON
 //    } else {
@@ -83,21 +98,6 @@
 //    }
 //    
     // COOPER/TOM
-//     else
-//     {
-// //        [self dismissViewControllerAnimated:YES completion:nil];
-        
-//         // tell the datastore to grab the current users proposals
-//         [self.datastore getSearchResultsWithTeacherId:[PFUser currentUser][@"teacherId"] andCompletion:^(BOOL completion) {
-            
-//             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-//                 NSLog(@"%@",eachProposal.title);
-//             }
-//             [self dismissViewControllerAnimated:YES completion:nil];
-//             [self transitionToHomePage];
-//         }];
-        
-//     }
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -147,12 +147,12 @@
             NSLog(@"No active proposals");
         }
         //DAMON
-        // [self dismissViewControllerAnimated:YES completion:nil];
+         [self dismissViewControllerAnimated:YES completion:nil];
         
         // FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
         
         // COOPER
-        // [self transitionToHomePage];
+         [self transitionToHomePage];
     }];
 }
 
@@ -231,18 +231,7 @@
                 }];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
-// COOPER
-        // NSString *currentUserObjectId = currentUser.objectId;
-        // NSString *currentUserSessionToken = currentUser.sessionToken;
-        
-        // [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUserObjectId currentUserSessionToken:currentUserSessionToken andCompletionBlock:^(void) {
-        //    [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-        //        for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-        //            NSLog(@"%@",eachProposal.title);
-        //        }
-        //        [self dismissViewControllerAnimated:YES completion:nil];
-        //        [self transitionToHomePage];
-        //    }];
+
         }];
     }];
 }
@@ -262,6 +251,25 @@
     
     [self presentViewController:homePageVC animated:YES completion:nil];
 }
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected row: %ld", indexPath.row);
+    
+    // make the tab bar controller
+    DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
+    
+    //static for now
+    tabBarController.navigationItem.title = @"The Power of Print";
+    // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
+    [self.navigationController showViewController: tabBarController sender:nil];
+    
+    //    [self.navigationController pushViewController:tabBarController animated:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
