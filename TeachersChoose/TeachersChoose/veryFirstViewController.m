@@ -53,7 +53,16 @@
     {
 //        [self dismissViewControllerAnimated:YES completion:nil];
         
-                [self transitionToHomePage];
+        // tell the datastore to grab the current users proposals
+        [self.datastore getSearchResultsWithTeacherId:[PFUser currentUser][@"teacherId"] andCompletion:^(BOOL completion) {
+            
+            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                NSLog(@"%@",eachProposal.title);
+            }
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
+        }];
+        
     }
 }
 
@@ -86,10 +95,7 @@
         [self dismissViewControllerAnimated:YES completion:nil];
         [self transitionToHomePage];
     }];
-
-
 }
-
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
@@ -150,8 +156,6 @@
            }];
         }];
     }];
-    
-
 }
 
 // Sent to the delegate when the sign up attempt fails.
@@ -164,12 +168,7 @@
     NSLog(@"User dismissed the signUpViewController");
 }
 
--(void) transitionToHomePage
-{
-//    [self dismissViewControllerAnimated:YES completion:nil]; // Dismiss the PFSignUpViewController
-
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
+-(void) transitionToHomePage {
     veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
     
     [self presentViewController:homePageVC animated:YES completion:nil];

@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *expirationDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *needLabel;
+@property (weak, nonatomic) IBOutlet UILabel *percentFundedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *costToCompleteLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numDonorsLabel;
 
 @property (strong,nonatomic) Proposal *proposal;
 
