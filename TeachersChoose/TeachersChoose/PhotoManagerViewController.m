@@ -9,6 +9,7 @@
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
 #import "PhotoManagerView.h"
+#import <FAKIonIcons.h>
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic) NSInteger selectedItem; // for updating cells in collection
+@property (nonatomic) UIImage *cameraImage;
 
 @end
 
@@ -42,6 +44,7 @@
 //    [self.view addConstraints: horizontalConstraints];
 //    [self.view layoutIfNeeded];
     
+    
     [self initialSetup];
 }
 
@@ -58,10 +61,12 @@
         self.completionPictures = [[NSMutableArray alloc] init];
     }
     
+    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];;
+    
     // fill the collection view with any necessary placeholders
     while ([self.completionPictures count] < 6)
     {
-        [self.completionPictures addObject: [UIImage imageNamed:@"tapHereIcon"]];
+        [self.completionPictures addObject: self.cameraImage];
     }
     
     // setup collectionView
@@ -82,6 +87,12 @@
     
     // assign the corresponding picture
     cell.imageView.image = self.completionPictures[indexPath.row];
+    
+    // check whether to hide the label or not
+    if (cell.imageView.image != self.cameraImage)
+    {
+        cell.tapMeLabel.hidden = YES;
+    }
     
     return cell;
 }

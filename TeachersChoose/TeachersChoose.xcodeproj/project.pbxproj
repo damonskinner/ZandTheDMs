@@ -26,7 +26,6 @@
 		E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
-		E25D84AF1ACED68A00D98118 /* tapHereIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E25D84AC1ACED68A00D98118 /* tapHereIcon.png */; };
 		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
 		E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */; };
 		E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */; };
@@ -85,7 +84,6 @@
 		E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompletionImageCollectionViewCell.m; path = TeachersChoose/CompletionImageCollectionViewCell.m; sourceTree = "<group>"; };
 		E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagerViewController.h; path = TeachersChoose/PhotoManagerViewController.h; sourceTree = "<group>"; };
 		E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagerViewController.m; path = TeachersChoose/PhotoManagerViewController.m; sourceTree = "<group>"; };
-		E25D84AC1ACED68A00D98118 /* tapHereIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tapHereIcon.png; path = TeachersChoose/tapHereIcon.png; sourceTree = "<group>"; };
 		E25D84B01ACED69600D98118 /* CameraTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CameraTest.storyboard; path = TeachersChoose/CameraTest.storyboard; sourceTree = "<group>"; };
 		E25D84B31ACEDBDF00D98118 /* FakeHomepageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeHomepageTableViewController.h; sourceTree = "<group>"; };
 		E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeHomepageTableViewController.m; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 				E25D84B01ACED69600D98118 /* CameraTest.storyboard */,
 				E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */,
 				E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */,
-				E25D84AC1ACED68A00D98118 /* tapHereIcon.png */,
 				E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */,
 				E25D84BD1ACEE13B00D98118 /* PhotoManagerView.h */,
 				E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */,
@@ -367,7 +364,6 @@
 			files = (
 				3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */,
 				3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */,
-				E25D84AF1ACED68A00D98118 /* tapHereIcon.png in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
 				E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,

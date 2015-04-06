@@ -25,7 +25,6 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.tabBarController.title
 }
 
 - (void)didReceiveMemoryWarning {

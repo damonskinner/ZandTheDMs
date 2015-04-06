@@ -34,8 +34,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] init];
+    }
     cell.textLabel.text = @"I am a cell";
     
     return cell;
@@ -47,7 +51,6 @@
     
     // make the tab bar controller
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
-    
     
     // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
     [self.navigationController showViewController: tabBarController sender:nil];
