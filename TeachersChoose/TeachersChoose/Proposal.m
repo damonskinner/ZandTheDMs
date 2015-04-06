@@ -12,21 +12,17 @@
 
 -(id)initWithProposalTitle: (NSString *)proposalTitle
     proposalExpirationDate: (NSString *)proposalExpirationDate
-       proposalNeedMessage: (NSString *)proposalNeedMessage
-     proposalPercentFunded: (NSNumber *)proposalPercentFunded
-    proposalCostToComplete:(NSString *)proposalCostToComplete
-         proposalNumDonors:(NSNumber *)proposalNumDonors;
+    proposalCostToComplete:(NSString *)proposalCostToComplete;
 {
     self = [super init];
     if (self) {
         _proposalTitle = [proposalTitle  copy];
         _proposalExpirationDate = [proposalExpirationDate copy];
-        _proposalNeed = [proposalNeedMessage copy];
-        _proposalPercentFunded = proposalPercentFunded;
         _proposalCostToComplete = [proposalCostToComplete copy];
-        _proposalNumDonors = proposalNumDonors;
     }
     return self;
 }
 
 @end
+
+

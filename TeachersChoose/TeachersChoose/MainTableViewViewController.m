@@ -37,11 +37,11 @@
     self.proposalsArray = [[NSMutableArray alloc] init];
     
     for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-        Proposal *newLocalProposal = [[Proposal alloc] initWithProposalTitle:eachProposal.title proposalExpirationDate:eachProposal.expirationDate proposalNeedMessage:eachProposal.fulfillmentTrailer proposalPercentFunded:eachProposal.percentFunded proposalCostToComplete:eachProposal.costToComplete proposalNumDonors:eachProposal.numDonors];
+        Proposal *newLocalProposal = [[Proposal alloc] initWithProposalTitle:eachProposal.title proposalExpirationDate:eachProposal.expirationDate proposalCostToComplete:eachProposal.costToComplete];
         [self.proposalsArray addObject:newLocalProposal];
         
     }
-    
+
     NSLayoutConstraint *mainTableViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.mainTableView
                                  attribute:NSLayoutAttributeTop

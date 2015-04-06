@@ -17,9 +17,6 @@
 @property (strong, nonatomic) NSString *proposalCostToComplete;
 @property (strong, nonatomic) NSNumber *proposalNumDonors;
 
--(id)initWithProposalTitle: (NSString *)proposalTitle proposalExpirationDate: (NSString *)proposalExpirationDate proposalNeedMessage: (NSString *)proposalNeedMessage
-    proposalPercentFunded: (NSNumber *)proposalPercentFunded
-    proposalCostToComplete:(NSString *)proposalCostToComplete
-    proposalNumDonors:(NSNumber *)proposalNumDonors;
+-(id)initWithProposalTitle: (NSString *)proposalTitle proposalExpirationDate: (NSString *)proposalExpirationDate proposalCostToComplete:(NSString *)proposalCostToComplete;
 
 @end
