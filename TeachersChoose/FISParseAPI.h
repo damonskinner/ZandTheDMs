@@ -21,4 +21,8 @@
 
 +(void) getDonationsListForProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(NSArray *))completionBlock;
 
++(void) getProposalObjectIdForProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSString *))completionBlock;
+
++(void) getDonationforDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
 @end

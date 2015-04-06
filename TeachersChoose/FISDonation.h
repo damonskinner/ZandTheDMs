@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSString *proposalId;
 @property (nonatomic, strong) NSDate *donationDate;
 
+@property (nonatomic, strong) NSString *donationObjectId;
 
+
++(FISDonation *)donationFromDictionary:(NSDictionary *)donationDictionary;
 
 @end

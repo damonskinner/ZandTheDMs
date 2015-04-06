@@ -22,6 +22,8 @@
     donation.responseMessage=donationDictionary[@"responseMessage"];
     donation.proposalId=donationDictionary[@"proposalId"];
     
+    
+    
     return donation;
 }
 

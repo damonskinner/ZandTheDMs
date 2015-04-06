@@ -11,6 +11,7 @@
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseTeacher.h"
 #import "FISParseAPI.h"
+#import "FISDonation.h"
 
 @implementation FISDonorsChooseDatastore
 
@@ -73,6 +74,8 @@
                 [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
                 
             }
+            
+            
             completionBlock(YES);
         } else {
             completionBlock(NO);
@@ -90,6 +93,20 @@
     }];
 }
 
+
+-(void) getDonationObjectsWithDonationIDList: (NSArray *) donationIdList forEachProposal: (FISDonorsChooseProposal *) eachProposal andCompletion:(void (^)(BOOL))completionBlock {
+    
+    for (NSDictionary *eachDonationObject in donationIdList) {
+        
+        [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
+            FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
+            newDonation.donationObjectId = eachDonationObject[@"objectId"];
+            [eachProposal.donations addObject:newDonation];
+            
+        }];
+        
+    }
+}
 
 
 @end

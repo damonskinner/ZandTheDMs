@@ -13,6 +13,7 @@
 #import "FISDonorsChooseProposal.h"
 #import <AFNetworking.h>
 #import "FISParseAPI.h"
+#import "FISDonation.h"
 
 
 @interface ViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
@@ -49,6 +50,39 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
+//    } else {
+//        PFUser *loggedInUser = [PFUser currentUser];
+//        NSString *currentTeacherId = loggedInUser[@"teacherId"];
+//        
+//        [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+//            
+//            //May need to insert API stuff here to update proposals on parse
+//            if(completion) {
+//                
+//                for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
+//                    [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *objId) {
+//                        eachProposal.parseObjectId=objId;
+//                        [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsList) {
+//                            eachProposal.donations=[parseDonationsList mutableCopy];
+//                            
+//                        }];
+//                        
+//                        
+//                    }];
+//                    
+//                }
+//                
+//            } else {
+//                NSLog(@"No active proposals");
+//            }
+//        }];
+//        
+//        
+//    }
+//    
+    
+    
+    
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -72,16 +106,36 @@
     NSString *currentTeacherId = currentUser[@"teacherId"];
     
     [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-        
+
         //May need to insert API stuff here to update proposals on parse
         if(completion) {
             
+            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
+                [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *objId) {
+                    eachProposal.parseObjectId=objId;
+                    [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsObjectIdList) {
+                        for (NSDictionary *eachDonationObject in parseDonationsObjectIdList) {
+                            
+                            [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
+                                FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
+                                newDonation.donationObjectId = eachDonationObject[@"objectId"];
+                                [eachProposal.donations addObject:newDonation];
+                                
+                            }];
+                        }
+                    }];
+                }];
+                
+            }
             
         } else {
             NSLog(@"No active proposals");
         }
         
         [self dismissViewControllerAnimated:YES completion:nil];
+        
+        FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
+        
     }];
 
 }
@@ -124,7 +178,7 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     PFUser *currentUser = user;
-    NSInteger maxSearchResults=100;
+    NSInteger maxSearchResults=50;
     NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
         
@@ -145,7 +199,17 @@
                     
                     [FISParseAPI addProposalObjectId:eachProposal.parseObjectId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^{
                     }];
+                    [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsObjectIdList) {
+                        for (NSDictionary *eachDonationObject in parseDonationsObjectIdList) {
+                            
+                            [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
                     
+                                FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
+                                newDonation.donationObjectId = eachDonationObject[@"objectId"];
+                                [eachProposal.donations addObject:newDonation];
+                            }];
+                        }
+                    }];
                 }];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
