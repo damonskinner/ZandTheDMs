@@ -25,10 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-
+    self.view.backgroundColor=[UIColor DonorsChooseOrange];
 
     [self.view removeConstraints:self.view.constraints];
 }

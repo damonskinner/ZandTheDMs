@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 
 @implementation FISDonorsChooseAPI
-
+//not used
 +(void)getSearchResultsWithKeyword:(NSString *) keyword andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
@@ -32,7 +32,7 @@
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
 }
-
+//not used
 +(void)getSearchResultsWithLocation:(NSString *) location andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];

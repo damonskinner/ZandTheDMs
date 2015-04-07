@@ -7,21 +7,23 @@
 //
 
 #import "ProposalTableViewCell.h"
-#import "Proposal.h"
+//#import "Proposal.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "NSDate+DateConvenienceMethods.h"
 
 @implementation ProposalTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     
-    self.backgroundColor=[UIColor colorWithRed:0.957 green:0.98 blue:0.992 alpha:1]; /*#f4fafd*/
+    self.backgroundColor=[UIColor DonorsChooseBlueLight];
     
     [self.contentView removeConstraints:self.contentView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
     [self.costToCompleteLabel removeConstraints:self.costToCompleteLabel.constraints];
     
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -44,7 +46,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1.0
-                                  constant:8];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelLeftConstraint];
     
@@ -55,53 +57,20 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1.0
-                                  constant:-20];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelRightConstraint];
     
-    NSLayoutConstraint *titleLabelBottomConstraint =
-    [NSLayoutConstraint constraintWithItem:self.titleLabel
-                                 attribute:NSLayoutAttributeBottom
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.costToCompleteLabel
-                                 attribute:NSLayoutAttributeTop
-                                multiplier:1.0
-                                  constant:-50];
-    
-    [self.contentView addConstraint:titleLabelBottomConstraint];
-    
-    NSLayoutConstraint *expirationDateLabelTopConstraint =
+    NSLayoutConstraint *expirationDateLabelRightConstraint =
     [NSLayoutConstraint constraintWithItem:self.expirationDateLabel
-                                 attribute:NSLayoutAttributeTop
+                                 attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.costToCompleteLabel
-                                 attribute:NSLayoutAttributeTop
+                                    toItem:self.titleLabel
+                                 attribute:NSLayoutAttributeRight
                                 multiplier:1.0
                                   constant:0];
     
-    [self.contentView addConstraint:expirationDateLabelTopConstraint];
-    
-    NSLayoutConstraint *expirationDateLabelLeftConstraint =
-    [NSLayoutConstraint constraintWithItem:self.expirationDateLabel
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
-                                 attribute:NSLayoutAttributeRight
-                                multiplier:1.0
-                                  constant:-70];
-    
-    [self.contentView addConstraint:expirationDateLabelLeftConstraint];
-    
-//    NSLayoutConstraint *expirationDateLabelRightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.expirationDateLabel
-//                                 attribute:NSLayoutAttributeRight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.contentView
-//                                 attribute:NSLayoutAttributeRight
-//                                multiplier:1.0
-//                                  constant:-8];
-//    
-//    [self.contentView addConstraint:expirationDateLabelRightConstraint];
+    [self.contentView addConstraint:expirationDateLabelRightConstraint];
     
     NSLayoutConstraint *expirationDateLabelBottomConstraint =
     [NSLayoutConstraint constraintWithItem:self.expirationDateLabel
@@ -118,25 +87,53 @@
     [NSLayoutConstraint constraintWithItem:self.costToCompleteLabel
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
+                                    toItem:self.titleLabel
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1.0
-                                  constant:8];
+                                  constant:0];
     
     [self.contentView addConstraint:costToCompleteLabelLeftConstraint];
     
-    NSLayoutConstraint *costToCompleteLabelBottomConstraint =
+    NSLayoutConstraint *costToCompleteLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.costToCompleteLabel
                                  attribute:NSLayoutAttributeBottom
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
+                                    toItem:self.titleLabel
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
-                                  constant:-5];
+                                  constant:40];
     
-    [self.contentView addConstraint:costToCompleteLabelBottomConstraint];
+    [self.contentView addConstraint:costToCompleteLabelTopConstraint];
+    
+    
     
     [self layoutIfNeeded];
+}
+
+-(void) settingFontAttributes {
+    
+    self.titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:25];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    self.expirationDateLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:30];
+    self.expirationDateLabel.backgroundColor = [UIColor clearColor];
+    
+    
+    
+    self.costToCompleteLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:20];
+    self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
+    
+    
+    if ([self.expirationDateLabel.text integerValue]<=30) {
+        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
+    } else {
+        self.expirationDateLabel.textColor=[UIColor clearColor];
+    }
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -145,13 +142,22 @@
     // Configure the view for the selected state
 }
 
--(void)setProposal:(Proposal *)proposal {
-    _proposal = proposal;
-    self.titleLabel.text = _proposal.proposalTitle;
-    self.expirationDateLabel.text = _proposal.proposalExpirationDate;
-    self.costToCompleteLabel.text = [NSString stringWithFormat:@"%@",_proposal.proposalCostToComplete];
+-(void)setProposal:(FISDonorsChooseProposal *)proposal {
     
+    
+    _proposal = proposal;
+    self.titleLabel.text = _proposal.title;
+    
+    self.costToCompleteLabel.text = [NSString stringWithFormat:@"$ %@ To Go!",_proposal.costToComplete];
+    
+    NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
+    
+    self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
+    
+    [self settingFontAttributes];
 }
+
+
 
 
 @end
