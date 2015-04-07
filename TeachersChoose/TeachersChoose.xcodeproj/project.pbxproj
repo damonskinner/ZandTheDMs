@@ -15,6 +15,7 @@
 		369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */; };
 		369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */; };
 		3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */; };
+		36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */; };
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36B124161AD18670009866EB /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
@@ -74,6 +75,8 @@
 		369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseDatastore.m; path = TeachersChoose/FISDonorsChooseDatastore.m; sourceTree = "<group>"; };
 		3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseTeacher.h; path = TeachersChoose/FISDonorsChooseTeacher.h; sourceTree = "<group>"; };
 		3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseTeacher.m; path = TeachersChoose/FISDonorsChooseTeacher.m; sourceTree = "<group>"; };
+		36AE94461AD45F5800F32AD5 /* UIColor+DonorsChooseColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+DonorsChooseColors.h"; sourceTree = "<group>"; };
+		36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DonorsChooseColors.m"; sourceTree = "<group>"; };
 		36B124111ACDAF8E009866EB /* FISParseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISParseAPI.h; sourceTree = "<group>"; };
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
 		36B124141AD18670009866EB /* FISDonation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDonation.h; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
+				36AE94461AD45F5800F32AD5 /* UIColor+DonorsChooseColors.h */,
+				36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */,
 				36B124141AD18670009866EB /* FISDonation.h */,
 				36B124151AD18670009866EB /* FISDonation.m */,
 				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
@@ -445,6 +450,7 @@
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
+				36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */,
 				E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */,
 				36B124161AD18670009866EB /* FISDonation.m in Sources */,
 				E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */,
