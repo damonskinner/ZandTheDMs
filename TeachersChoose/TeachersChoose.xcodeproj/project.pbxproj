@@ -138,10 +138,6 @@
 				36AE94511AD490E500F32AD5 /* Login Flow */,
 				36AE94501AD490AF00F32AD5 /* APIs */,
 				36AE944F1AD4907B00F32AD5 /* Support Classes */,
-				360394F61ACCA70500114853 /* LogInViewController.h */,
-				360394F71ACCA70500114853 /* LogInViewController.m */,
-				360394F81ACCA70500114853 /* SignUpViewController.h */,
-				360394F91ACCA70500114853 /* SignUpViewController.m */,
 				369388491ACC435200E7A2E6 /* Database Classes */,
 				E25D84A01ACDE1A800D98118 /* Detail Flow */,
 				3617DEF51ACC376E0078F4E3 /* TeachersChoose */,
@@ -248,6 +244,10 @@
 				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
 				3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */,
 				3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */,
+				360394F61ACCA70500114853 /* LogInViewController.h */,
+				360394F71ACCA70500114853 /* LogInViewController.m */,
+				360394F81ACCA70500114853 /* SignUpViewController.h */,
+				360394F91ACCA70500114853 /* SignUpViewController.m */,
 			);
 			name = "Login Flow";
 			sourceTree = "<group>";
