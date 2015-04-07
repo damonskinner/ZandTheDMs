@@ -14,6 +14,8 @@
 - (void)awakeFromNib {
     // Initialization code
     
+    self.backgroundColor=[UIColor colorWithRed:0.957 green:0.98 blue:0.992 alpha:1]; /*#f4fafd*/
+    
     [self.contentView removeConstraints:self.contentView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
