@@ -145,7 +145,7 @@
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
     
-    tabBarController.navigationItem.title = selectedProposal.title;
+    tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
     // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
 //    [self.navigationController showViewController: tabBarController sender:nil];
