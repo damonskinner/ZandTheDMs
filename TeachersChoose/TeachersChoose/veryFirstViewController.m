@@ -202,27 +202,17 @@
 
 -(void) transitionToHomePage {
     veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
+    UINavigationController *newNavController = [[UINavigationController alloc]init];
     
-    [self presentViewController:homePageVC animated:YES completion:nil];
+    [newNavController addChildViewController:homePageVC];
+    
+    
+    [self presentViewController:newNavController animated:YES completion:nil];
 }
 
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"selected row: %ld", indexPath.row);
-    
-    // make the tab bar controller
-    DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
-    
-    //static for now
-    tabBarController.navigationItem.title = @"The Power of Print";
-    // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
-    [self.navigationController showViewController: tabBarController sender:nil];
-    
-    //    [self.navigationController pushViewController:tabBarController animated:YES];
-    
-}
+
 
 
 - (void)didReceiveMemoryWarning {

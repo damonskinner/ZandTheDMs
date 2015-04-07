@@ -7,6 +7,7 @@
 //
 
 #import "StatDetailsViewController.h"
+#import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
 
 @interface StatDetailsViewController ()
@@ -17,19 +18,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     [self.view removeConstraints:self.view.constraints];
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
 
     self.view.backgroundColor = [UIColor clearColor];
     
-    //Create Title
-    UILabel *title = [[UILabel alloc] init];
+
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
+    self.view.backgroundColor = [UIColor greenColor];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

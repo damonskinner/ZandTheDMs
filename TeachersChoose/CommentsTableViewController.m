@@ -7,8 +7,12 @@
 //
 
 #import "CommentsTableViewController.h"
+#import "FISDonorsChooseProposal.h"
+#import "DetailsTabBarController.h"
+
 
 @interface CommentsTableViewController ()
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end
 
@@ -16,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     /* setup public property (self.comments)
      and segmented control in tableHeaderView all / awaiting reply.
      awaiting data models to do more */
