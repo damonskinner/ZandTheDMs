@@ -15,7 +15,7 @@
 #import "FISParseAPI.h"
 #import "FISDonation.h"
 #import "DetailsTabBarController.h"
-
+#import "UIColor+DonorsChooseColors.h"
 
 @interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-    
+
 
     [self.view removeConstraints:self.view.constraints];
 }

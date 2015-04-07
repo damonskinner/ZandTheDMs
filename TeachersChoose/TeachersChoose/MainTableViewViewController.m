@@ -11,6 +11,7 @@
 #import "ProposalTableViewCell.h"
 #import "Proposal.h"
 #import "DetailsTabBarController.h"
+#import "UIColor+DonorsChooseColors.h"
 
 
 @interface MainTableViewViewController ()
@@ -30,6 +31,7 @@
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
+
 
     [self.mainTableView removeConstraints:self.mainTableView.constraints];
 
