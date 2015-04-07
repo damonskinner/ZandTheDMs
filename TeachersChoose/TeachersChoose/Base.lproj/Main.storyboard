@@ -74,7 +74,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.034002027939999999" green="1" blue="0.082009653289999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="mainTableView" destination="IDj-ts-Uly" id="pTk-Xt-Dq3"/>

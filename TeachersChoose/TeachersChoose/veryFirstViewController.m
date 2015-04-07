@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor colorWithRed:0.937 green:0.373 blue:0.235 alpha:1]; /*#ef5f3c*/
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     
@@ -65,8 +66,11 @@
                             
                         }];
                     }
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self transitionToHomePage];
+                    [self.datastore getTeacherProfileWithTeacherId:teacherId andCompletion:^(BOOL completion) {
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [self transitionToHomePage];
+                    }];
+                    
                 }];
             }];
             
@@ -108,13 +112,10 @@
         } else {
             NSLog(@"No active proposals");
         }
-        //DAMON
-         [self dismissViewControllerAnimated:YES completion:nil];
-        
-        // FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
-        
-        // COOPER
-         [self transitionToHomePage];
+        [self.datastore getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
+        }];
     }];
 }
 
@@ -184,8 +185,10 @@
                     }];
                 }];
             }
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self transitionToHomePage];
+            [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self transitionToHomePage];
+            }];
         }];
     }];
 }

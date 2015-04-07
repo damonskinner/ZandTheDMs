@@ -26,6 +26,8 @@
     [super viewDidLoad];
     
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+    self.title = self.datastore.loggedInTeacher.name;
+    
     
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
