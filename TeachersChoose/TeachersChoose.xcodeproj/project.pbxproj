@@ -21,7 +21,6 @@
 		36B124161AD18670009866EB /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
 		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
-		3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F12C71ACEEB2F0038C31B /* Proposal.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 		E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */; };
@@ -60,8 +59,8 @@
 		3617DEF81ACC376E0078F4E3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3617DEFA1ACC376E0078F4E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = veryFirstViewController.h; sourceTree = "<group>"; };
-		3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = veryFirstViewController.m; sourceTree = "<group>"; };
+		3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = veryFirstViewController.h; path = TeachersChoose/veryFirstViewController.h; sourceTree = "<group>"; };
+		3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = veryFirstViewController.m; path = TeachersChoose/veryFirstViewController.m; sourceTree = "<group>"; };
 		3617DF011ACC376E0078F4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3617DF031ACC376E0078F4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3617DF061ACC376E0078F4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -84,14 +83,12 @@
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
 		36B124141AD18670009866EB /* FISDonation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDonation.h; sourceTree = "<group>"; };
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
-		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
-		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
-		3D7F12C61ACEEB2F0038C31B /* Proposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposal.h; sourceTree = "<group>"; };
-		3D7F12C71ACEEB2F0038C31B /* Proposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposal.m; sourceTree = "<group>"; };
+		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposalTableViewCell.h; path = TeachersChoose/ProposalTableViewCell.h; sourceTree = "<group>"; };
+		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposalTableViewCell.m; path = TeachersChoose/ProposalTableViewCell.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
-		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewViewController.h; sourceTree = "<group>"; };
-		3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewViewController.m; sourceTree = "<group>"; };
+		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewViewController.h; path = TeachersChoose/MainTableViewViewController.h; sourceTree = "<group>"; };
+		3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTableViewViewController.m; path = TeachersChoose/MainTableViewViewController.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E25D84A31ACDE1FB00D98118 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
@@ -138,24 +135,15 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
-				36AE944C1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.h */,
-				36AE944D1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.m */,
-				36AE94461AD45F5800F32AD5 /* UIColor+DonorsChooseColors.h */,
-				36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */,
-				36B124141AD18670009866EB /* FISDonation.h */,
-				36B124151AD18670009866EB /* FISDonation.m */,
-				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
-				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
+				36AE94511AD490E500F32AD5 /* Login Flow */,
+				36AE94501AD490AF00F32AD5 /* APIs */,
+				36AE944F1AD4907B00F32AD5 /* Support Classes */,
 				360394F61ACCA70500114853 /* LogInViewController.h */,
 				360394F71ACCA70500114853 /* LogInViewController.m */,
 				360394F81ACCA70500114853 /* SignUpViewController.h */,
 				360394F91ACCA70500114853 /* SignUpViewController.m */,
 				369388491ACC435200E7A2E6 /* Database Classes */,
 				E25D84A01ACDE1A800D98118 /* Detail Flow */,
-				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
-				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
-				3DAB19BD1ACD8DF800623967 /* FISConstants.h */,
-				3DAB19BE1ACD8DF800623967 /* FISConstants.m */,
 				3617DEF51ACC376E0078F4E3 /* TeachersChoose */,
 				3617DF0F1ACC376E0078F4E3 /* TeachersChooseTests */,
 				3617DEF41ACC376E0078F4E3 /* Products */,
@@ -178,16 +166,7 @@
 			children = (
 				3617DEFA1ACC376E0078F4E3 /* AppDelegate.h */,
 				3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */,
-				3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */,
-				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
-				3617DF001ACC376E0078F4E3 /* Main.storyboard */,
-				3D7F12C61ACEEB2F0038C31B /* Proposal.h */,
-				3D7F12C71ACEEB2F0038C31B /* Proposal.m */,
-				3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */,
-				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
 				3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */,
-				3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */,
-				3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */,
 				3617DF031ACC376E0078F4E3 /* Images.xcassets */,
 				3617DEF61ACC376E0078F4E3 /* Supporting Files */,
 			);
@@ -223,14 +202,54 @@
 		369388491ACC435200E7A2E6 /* Database Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
-				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
 				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
+				36B124141AD18670009866EB /* FISDonation.h */,
+				36B124151AD18670009866EB /* FISDonation.m */,
+				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
+				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */,
 				369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */,
 			);
 			name = "Database Classes";
+			sourceTree = "<group>";
+		};
+		36AE944F1AD4907B00F32AD5 /* Support Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3DAB19BD1ACD8DF800623967 /* FISConstants.h */,
+				3DAB19BE1ACD8DF800623967 /* FISConstants.m */,
+				36AE944C1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.h */,
+				36AE944D1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.m */,
+				36AE94461AD45F5800F32AD5 /* UIColor+DonorsChooseColors.h */,
+				36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */,
+			);
+			name = "Support Classes";
+			sourceTree = "<group>";
+		};
+		36AE94501AD490AF00F32AD5 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
+				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
+				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
+				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
+		36AE94511AD490E500F32AD5 /* Login Flow */ = {
+			isa = PBXGroup;
+			children = (
+				3617DF001ACC376E0078F4E3 /* Main.storyboard */,
+				3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */,
+				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
+				3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */,
+				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
+				3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */,
+				3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */,
+			);
+			name = "Login Flow";
 			sourceTree = "<group>";
 		};
 		BA2FA31B23C2AA3604D52389 /* Frameworks */ = {
@@ -461,7 +480,6 @@
 				36B124161AD18670009866EB /* FISDonation.m in Sources */,
 				E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */,
 				E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */,
-				3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */,
 				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,
 				3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */,
 				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
@@ -497,6 +515,7 @@
 				3617DF011ACC376E0078F4E3 /* Base */,
 			);
 			name = Main.storyboard;
+			path = TeachersChoose;
 			sourceTree = "<group>";
 		};
 		3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */ = {
