@@ -94,18 +94,19 @@
 }
 
 
--(void) getDonationObjectsWithDonationIDList: (NSArray *) donationIdList forEachProposal: (FISDonorsChooseProposal *) eachProposal andCompletion:(void (^)(BOOL))completionBlock {
-    
-    for (NSDictionary *eachDonationObject in donationIdList) {
+-(void) getDonationsListForProposalId: (NSString *) proposalId andCompletion:(void (^)(BOOL))completionBlock {
+    [FISParseAPI getDonationsListForProposalWithId:proposalId andCompletionBlock:^(NSArray *donations) {
+        for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals){
+            if ([eachProposal.proposalId isEqualToString:proposalId]) {
+                for (NSDictionary *donationDict in donations){
+                    [eachProposal.donations addObject:[FISDonation donationFromDictionary:donationDict]];
+                    
+                }
+            }
+        }
+//        FISDonorsChooseProposal *testProposal = self.loggedInTeacherProposals[0];
         
-        [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
-            FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
-            newDonation.donationObjectId = eachDonationObject[@"objectId"];
-            [eachProposal.donations addObject:newDonation];
-            
-        }];
-        
-    }
+    }];
 }
 
 

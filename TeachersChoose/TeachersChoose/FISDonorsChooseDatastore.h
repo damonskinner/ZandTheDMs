@@ -22,5 +22,6 @@
 -(void)getSearchResultsWithParams: (NSDictionary *) params andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
+-(void) getDonationsListForProposalId: (NSString *) proposalObjectId andCompletion:(void (^)(BOOL))completionBlock;
 
 @end
