@@ -10,6 +10,7 @@
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
 #import "Proposal.h"
+#import "StatDetailsViewController.h"
 
 
 @interface MainTableViewViewController ()
@@ -119,6 +120,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     ProposalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
     cell.proposal = [self.proposalsArray objectAtIndex:indexPath.row];
@@ -128,6 +130,14 @@
     
     return cell;
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    StatDetailsViewController *statsVC = [segue destinationViewController];
+
+    FISDonorsChooseProposal *selectedCell = sender;
+    statsVC.proposal = selectedCell;
 }
 
 - (void)didReceiveMemoryWarning {

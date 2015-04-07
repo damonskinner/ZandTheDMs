@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseProposal.h"
 
 @interface StatDetailsViewController : UIViewController
 
-// set public property to recieve data
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
 
 @end

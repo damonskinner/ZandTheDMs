@@ -7,6 +7,7 @@
 //
 
 #import "StatDetailsViewController.h"
+#import "FISDonorsChooseProposal.h"
 
 @interface StatDetailsViewController ()
 
@@ -16,11 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = [UIColor greenColor];
     
-    /* awaiting data model to do more
-        think about layout in the meantime */
+    [self.view removeConstraints:self.view.constraints];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    //Create Title
+    UILabel *title = [[UILabel alloc] init];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -31,7 +36,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 /*
