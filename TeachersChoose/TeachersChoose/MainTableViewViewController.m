@@ -137,11 +137,16 @@
     
     // make the tab bar controller
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
+
     
     //static for now
-    tabBarController.navigationItem.title = @"The Power of Print";
+    FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
+    
+    
+    tabBarController.navigationItem.title = selectedProposal.title;
+    tabBarController.selectedProposal=selectedProposal;
     // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
-    [self.navigationController showViewController: tabBarController sender:nil];
+//    [self.navigationController showViewController: tabBarController sender:nil];
     
     [self.navigationController pushViewController:tabBarController animated:YES];
     
