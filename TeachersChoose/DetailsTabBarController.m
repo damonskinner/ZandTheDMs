@@ -29,15 +29,12 @@
     [super viewDidLoad];
     
     // make child view controllers
-    FakeHomepageTableViewController *fakeHome  = [[FakeHomepageTableViewController alloc] init];
     StatDetailsViewController *statsVC         = [[StatDetailsViewController alloc] init];
     CommentsTableViewController *commentsTVC   = [[CommentsTableViewController alloc] init];
     DonorsTableViewController *donorsTVC       = [[DonorsTableViewController alloc] init];
-    PhotoManagerViewController *photoManagerVC = [[UIStoryboard storyboardWithName:@"CameraTest" bundle:nil] instantiateViewControllerWithIdentifier:@"photoManager"];
-// ^^^^^^ currently using storyboard version, STAY AWARE OF THIS ************
 
     // make icons / tabBarItems
-//    fakeHome.tabBarItem       = [[UITabBarItem alloc] initWithTabBarSystemItem: UITabBarSystemItemSearch tag: 0];
+
     UIImage *statsImage = [[FAKIonIcons iosPulseStrongIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTitle:@"Stats" image:statsImage  tag:0];
     
@@ -47,24 +44,19 @@
     UIImage *donorsImage = [[FAKIonIcons cashIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
     donorsTVC.tabBarItem      = [[UITabBarItem alloc] initWithTitle:@"Donors" image:donorsImage tag:2];
     
-    UIImage *photosImage = [[FAKIonIcons imagesIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-    photoManagerVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Photos" image:photosImage tag:3];
-    
     // make nav controllers
     UINavigationController *statsNav    = [[UINavigationController alloc] init];
     UINavigationController *commentsNav = [[UINavigationController alloc] init];
     UINavigationController *donorsNav   = [[UINavigationController alloc] init];
-    UINavigationController *photoNav    = [[UINavigationController alloc] init];
     
     // add their respective children
     [statsNav addChildViewController: statsVC];
     [commentsNav addChildViewController: commentsTVC];
     [donorsNav addChildViewController: donorsTVC];
-    [photoNav addChildViewController: photoManagerVC];
     
     // add them to self.viewControllers
-//    self.viewControllers = @[statsVC, commentsTVC, donorsTVC, photoManagerVC];
-    self.viewControllers = @[statsNav, commentsNav, donorsNav, photoNav];
+//    self.viewControllers = @[statsVC, commentsTVC, donorsTVC];
+    self.viewControllers = @[statsNav, commentsNav, donorsNav];
 }
 
 - (void)didReceiveMemoryWarning {
