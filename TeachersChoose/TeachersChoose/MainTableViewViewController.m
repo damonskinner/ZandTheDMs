@@ -11,6 +11,7 @@
 #import "ProposalTableViewCell.h"
 #import "Proposal.h"
 #import "StatDetailsViewController.h"
+#import "DetailsTabBarController.h"
 
 
 @interface MainTableViewViewController ()
@@ -132,12 +133,25 @@
     
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected row: %ld", (long)indexPath.row);
     
-    StatDetailsViewController *statsVC = [segue destinationViewController];
+    // make the tab bar controller
+    DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
 
-    FISDonorsChooseProposal *selectedCell = sender;
-    statsVC.proposal = selectedCell;
+    
+    //static for now
+    FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
+    
+    
+    tabBarController.navigationItem.title = selectedProposal.title;
+    tabBarController.selectedProposal=selectedProposal;
+    // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
+//    [self.navigationController showViewController: tabBarController sender:nil];
+    
+    [self.navigationController pushViewController:tabBarController animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

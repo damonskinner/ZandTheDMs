@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseProposal.h"
+
 
 @interface DetailsTabBarController : UITabBarController
+
+@property (nonatomic, strong) FISDonorsChooseProposal *selectedProposal;
 
 @end
