@@ -51,53 +51,27 @@
         // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else {
-        //        [self dismissViewControllerAnimated:YES completion:nil];
+
         
         // tell the datastore to grab the current users proposals
-        [self.datastore getSearchResultsWithTeacherId:[PFUser currentUser][@"teacherId"] andCompletion:^(BOOL completion) {
+        if([self.datastore.loggedInTeacherProposals count]<1){
+            PFUser *loggedInUser = [PFUser currentUser];
+            [FISParseAPI getTeacherIdForObjectId:loggedInUser.objectId andCompletionBlock:^(NSString *teacherId) {
+                
+                [self.datastore getSearchResultsWithTeacherId:teacherId andCompletion:^(BOOL completion) {
+                    
+                    for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                        [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
+                            
+                        }];
+                    }
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self transitionToHomePage];
+                }];
+            }];
             
-            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-                NSLog(@"%@",eachProposal.title);
-            }
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self transitionToHomePage];
-        }];
-        
+        }
     }
-
-
-    //DAMON
-//    } else {
-//        PFUser *loggedInUser = [PFUser currentUser];
-//        NSString *currentTeacherId = loggedInUser[@"teacherId"];
-//        
-//        [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-//            
-//            //May need to insert API stuff here to update proposals on parse
-//            if(completion) {
-//                
-//                for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
-//                    [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *objId) {
-//                        eachProposal.parseObjectId=objId;
-//                        [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsList) {
-//                            eachProposal.donations=[parseDonationsList mutableCopy];
-//                            
-//                        }];
-//                        
-//                        
-//                    }];
-//                    
-//                }
-//                
-//            } else {
-//                NSLog(@"No active proposals");
-//            }
-//        }];
-//        
-//        
-//    }
-//    
-    // COOPER/TOM
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -126,21 +100,9 @@
         if(completion) {
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
-                [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *objId) {
-                    eachProposal.parseObjectId=objId;
-                    [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsObjectIdList) {
-                        for (NSDictionary *eachDonationObject in parseDonationsObjectIdList) {
-                            
-                            [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
-                                FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
-                                newDonation.donationObjectId = eachDonationObject[@"objectId"];
-                                [eachProposal.donations addObject:newDonation];
-                                
-                            }];
-                        }
-                    }];
+                [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
+                    
                 }];
-                
             }
             
         } else {
@@ -200,7 +162,7 @@
     NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
         
-        NSUInteger r=arc4random_uniform(50);
+        NSUInteger r=arc4random_uniform([self.datastore.donorsChooseSearchResults count]);
         FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
         NSString *randomTeacherId = randomProposal.teacherId;
 
@@ -217,21 +179,13 @@
                     
                     [FISParseAPI addProposalObjectId:eachProposal.parseObjectId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^{
                     }];
-                    [FISParseAPI getDonationsListForProposalWithObjectId:eachProposal.parseObjectId  andCompletionBlock:^(NSArray *parseDonationsObjectIdList) {
-                        for (NSDictionary *eachDonationObject in parseDonationsObjectIdList) {
-                            
-                            [FISParseAPI getDonationforDonationWithObjectId:eachDonationObject[@"objectId"] andCompletionBlock:^(NSDictionary * donationDict) {
-                    
-                                FISDonation *newDonation = [FISDonation donationFromDictionary:donationDict];
-                                newDonation.donationObjectId = eachDonationObject[@"objectId"];
-                                [eachProposal.donations addObject:newDonation];
-                            }];
-                        }
+                    [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
+                        
                     }];
                 }];
             }
             [self dismissViewControllerAnimated:YES completion:nil];
-
+            [self transitionToHomePage];
         }];
     }];
 }
