@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor=[UIColor colorWithRed:0.937 green:0.373 blue:0.235 alpha:1]; /*#ef5f3c*/
+    
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
 

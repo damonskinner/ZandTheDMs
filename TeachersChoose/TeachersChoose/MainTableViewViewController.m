@@ -30,8 +30,7 @@
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.937 green:0.373 blue:0.235 alpha:1]; /*#ef5f3c*/
     
     self.title = self.datastore.loggedInTeacher.name;
-    [self.mainTableView setSeparatorColor:[UIColor colorWithRed:0.898 green:0.922 blue:0.933 alpha:1]]; /*#e5ebee*/
-    
+    [self.mainTableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
     
     
     [self.view removeConstraints:self.view.constraints];
