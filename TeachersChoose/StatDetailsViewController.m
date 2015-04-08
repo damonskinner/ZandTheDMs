@@ -9,6 +9,7 @@
 #import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
+#import "UIFont+DonorsChooseFonts.h"
 
 @interface StatDetailsViewController ()<UIActivityItemSource>
 
@@ -57,10 +58,10 @@
 	self.titleLabel.numberOfLines = 0;
 	self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	self.titleLabel.text = self.proposal.title;
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseFont size:24];
 	[self.titleLabel sizeToFit];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 //self.titleLabel.backgroundColor = [UIColor redColor];
-	[self.titleLabel setFont:[UIFont systemFontOfSize:24]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[title]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[title(60)]" options:0 metrics:nil views:views]];
 
