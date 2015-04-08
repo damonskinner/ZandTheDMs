@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *responseMessage;
 @property (nonatomic, strong) NSString *proposalId;
 @property (nonatomic, strong) NSDate *donationDate;
+@property (nonatomic, strong) NSString *donationAmount;
 
 @property (nonatomic, strong) NSString *donationObjectId;
 

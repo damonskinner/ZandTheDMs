@@ -10,8 +10,8 @@
 
 @interface UIFont (DonorsChooseFonts)
 
-extern NSString *const DonorsChooseFont;
-
-
+extern NSString *const DonorsChooseCSSFont;
+extern NSString *const DonorsChooseBasicFont;
+extern NSString *const DonorsChooseBoldFont;
 
 @end
