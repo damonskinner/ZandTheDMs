@@ -165,7 +165,6 @@
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
             [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-                
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self transitionToHomePage];
             }];

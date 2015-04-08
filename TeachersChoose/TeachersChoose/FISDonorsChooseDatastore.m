@@ -143,7 +143,7 @@
                     if(completion) {
                         NSLog(@"%@",eachProposal.donations);
                     } else {
-                        NSLog(@"Donations array not populated.  Check parse datastore and manually link if needed.");
+                        NSLog(@"Donations array not populated.  Check parse database and manually link if needed.");
                     }
                     
                 }];

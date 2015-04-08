@@ -12,6 +12,8 @@
 #import "NSDate+DateConvenienceMethods.h"
 
 
+//needs more work on cell constraints, i.e., height
+
 @implementation ProposalTableViewCell
 
 //-(id)initWithCoder:(NSCoder *) aDecoder
