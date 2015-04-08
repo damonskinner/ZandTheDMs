@@ -17,10 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkbox1;
 @property (weak, nonatomic) IBOutlet UIButton *checkbox2;
 @property (weak, nonatomic) IBOutlet UIButton *checkbox3;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 -(void) setupCheckboxes;
 -(void) setupUIButtonCheckbox: (UIButton *) checkbox;
 -(void) toggleCheckbox:(id)sender;
+-(void) evaluateCheckboxes;
 
 @end
 
@@ -43,6 +45,7 @@
     [self setupUIButtonCheckbox: self.checkbox1];
     [self setupUIButtonCheckbox: self.checkbox2];
     [self setupUIButtonCheckbox: self.checkbox3];
+    
 }
 
 -(void) setupUIButtonCheckbox: (UIButton *) checkbox
@@ -56,15 +59,24 @@
 {
     UIButton *thisButton = sender;
     thisButton.selected = !thisButton.selected;
+    [self evaluateCheckboxes];
 }
 
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) evaluateCheckboxes
+{
+    BOOL allBoxesChecked = ([self.checkbox1 isSelected] && [self.checkbox2 isSelected] && [self.checkbox3 isSelected]);
+    
+    if (allBoxesChecked)
+    {
+        self.nextButton.enabled = YES;
+        self.nextButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
+    }
+    else
+    {
+        self.nextButton.enabled = NO;
+        self.nextButton.backgroundColor = [UIColor lightGrayColor];
+    }
 }
-
 
 
 @end

@@ -13,44 +13,27 @@
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 @property (nonatomic) NSInteger selectedRow;
 @property (nonatomic) UIImage *cameraImage;
+
+-(void) setupCompletionPicturesArray;
+-(void) presentPhotoActionSheet;
 
 @end
 
 @implementation PhotoManagerViewController
 
+#pragma mark - View LifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initialSetup];
-}
 
--(void) viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
--(void) initialSetup
-{
-    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];;
-    
-    // make sure we dont break the collection view with an empty array
-    if (self.completionPictures == nil)
-    {
-        self.completionPictures = [[NSMutableArray alloc] init];
-    }
-    
-    // fill the collection view with any necessary placeholders
-    while ([self.completionPictures count] < 6)
-    {
-        [self.completionPictures addObject: self.cameraImage];
-    }
-    
-    // setup collectionView
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    
+    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];
+    
+    [self setupCompletionPicturesArray];
 }
 
 #pragma mark - UICollectionView Delegate
@@ -68,13 +51,13 @@
     cell.imageView.image = self.completionPictures[indexPath.row];
     
     // check whether to hide the label or not
-    if (cell.imageView.image != self.cameraImage)
+    if (cell.imageView.image == self.cameraImage)
     {
-        cell.tapMeLabel.hidden = YES;
+        cell.tapMeLabel.hidden = NO;
     }
     else
     {
-        cell.tapMeLabel.hidden = NO;
+        cell.tapMeLabel.hidden = YES;
     }
     
     return cell;
@@ -91,8 +74,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"image chosen");
-    NSLog(@"%@", info);
+    NSLog(@"image chosen, info: %@", info);
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.completionPictures[self.selectedRow] = chosenImage;
     [picker dismissViewControllerAnimated:YES completion:^{
@@ -100,7 +82,21 @@
     }];
 }
 
-#pragma mark - AlertController (action sheet)
+#pragma mark - Helpers
+
+-(void) setupCompletionPicturesArray
+{
+    if (self.completionPictures == nil)
+    {
+        self.completionPictures = [[NSMutableArray alloc] init];
+    }
+    
+    // fill the collection view with any necessary placeholders
+    while ([self.completionPictures count] < 6)
+    {
+        [self.completionPictures addObject: self.cameraImage];
+    }
+}
 
 -(void) presentPhotoActionSheet
 {
