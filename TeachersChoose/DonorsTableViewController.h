@@ -10,6 +10,4 @@
 
 @interface DonorsTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *donors;
-
 @end
