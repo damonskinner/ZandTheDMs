@@ -10,11 +10,14 @@
 
 @interface Comments : NSObject
 
-@property (strong, nonatomic) NSString *commentNameFromLocationCopy;
-@property (strong, nonatomic) NSString *commentDonationGivenDate;
-@property (strong, nonatomic) NSString *commentDonorMessageCopy;
+@property (strong, nonatomic) NSString *donorName;
+@property (nonatomic, strong) NSString *donorLocation;
+@property (strong, nonatomic) NSDate *donationGivenDate;
+@property (strong, nonatomic) NSString *donorMessageCopy;
 
--(id)initWithCommentNameFromLocationCopy:(NSString *)commentNameFromLocationCopy
-                commentDonationGivenDate: (NSString *)commentDonationGivenDate
-                 commentDonorMessageCopy: (NSString *)commentDonorMessageCopy;
+-(id)initWithDonorName:(NSString *)donorName
+         donorLocation: (NSString *) donorLocation
+                donationGivenDate: (NSDate *)donationGivenDate
+                 donorMessageCopy: (NSString *)donorMessageCopy;
+
 @end

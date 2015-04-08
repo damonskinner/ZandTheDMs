@@ -10,15 +10,17 @@
 
 @implementation Comments
 
--(id)initWithCommentNameFromLocationCopy:(NSString *)commentNameFromLocationCopy
-                commentDonationGivenDate: (NSString *)commentDonationGivenDate
-                 commentDonorMessageCopy: (NSString *)commentDonorMessageCopy;
+-(id)initWithDonorName:(NSString *)donorName
+         donorLocation:(NSString *)donorLocation
+     donationGivenDate:(NSDate *)donationGivenDate
+donorMessageCopy:(NSString *)donorMessageCopy
 {
     self = [super init];
     if (self) {
-        _commentNameFromLocationCopy = [commentNameFromLocationCopy  copy];
-        _commentDonationGivenDate = [commentDonationGivenDate copy];
-        _commentDonorMessageCopy = [commentDonorMessageCopy copy];
+        _donorName = [donorName copy];
+        _donorLocation = [donorLocation copy];
+        _donationGivenDate = donationGivenDate;
+        _donorMessageCopy = [donorMessageCopy copy];
     }
     return self;
 }

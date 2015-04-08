@@ -8,6 +8,7 @@
 
 #import "CommentCell.h"
 #import "Comments.h"
+#import "CommentsTableView.h"
 
 @implementation CommentCell
 
@@ -15,17 +16,21 @@
     // Initialization code
 
     [self removeConstraints:self.constraints];
-    [self.donorNameFromLocationLabel removeConstraints:self.donorNameFromLocationLabel.constraints];
+    [self.donorNameLabel removeConstraints:self.donorNameLabel.constraints];
+    [self.donorLocationLabel removeConstraints:self.donorLocationLabel.constraints];
     [self.donationGivenDateLabel removeConstraints:self.donationGivenDateLabel.constraints];
-    [self.donorCommentLabel removeConstraints:self.donorCommentLabel.constraints];
-
+    [self.donorMessageCopyLabel removeConstraints:self.donorMessageCopyLabel.constraints];
+    
+    
     self.translatesAutoresizingMaskIntoConstraints = NO;
-    self.donorNameFromLocationLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.donorLocationLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.donorNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.donationGivenDateLabel.translatesAutoresizingMaskIntoConstraints= NO;
-    self.donorCommentLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.donorMessageCopyLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
-    NSLayoutConstraint *donorNameFromLocationLabelTopConstraint =
-    [NSLayoutConstraint constraintWithItem:self.donorNameFromLocationLabel
+
+    NSLayoutConstraint *donorNameLabelTopConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorNameLabel
                                  attribute:NSLayoutAttributeTop
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
@@ -33,10 +38,10 @@
                                 multiplier:1.0
                                   constant:8];
     
-    [self addConstraint:donorNameFromLocationLabelTopConstraint];
+    [self addConstraint:donorNameLabelTopConstraint];
     
-    NSLayoutConstraint *donorNameFromLocationLabelLeftConstraint =
-    [NSLayoutConstraint constraintWithItem:self.donorNameFromLocationLabel
+    NSLayoutConstraint *donorNameLabelLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorNameLabel
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
@@ -44,13 +49,35 @@
                                 multiplier:1.0
                                   constant:8];
     
-    [self addConstraint:donorNameFromLocationLabelLeftConstraint];
+    [self addConstraint:donorNameLabelLeftConstraint];
+    
+    NSLayoutConstraint *donorLocationLabelTopConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorLocationLabel
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.donorNameLabel
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self addConstraint:donorLocationLabelTopConstraint];
+    
+    NSLayoutConstraint *donorLocationLabelLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorLocationLabel
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.donorNameLabel
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self addConstraint:donorLocationLabelLeftConstraint];
     
     NSLayoutConstraint *donationGivenDateLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.donationGivenDateLabel
                                  attribute:NSLayoutAttributeTop
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.donorNameFromLocationLabel
+                                    toItem:self.donorNameLabel
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
                                   constant:4];
@@ -68,8 +95,8 @@
     
     [self addConstraint:donationGivenDateLabelLeftConstraint];
     
-    NSLayoutConstraint *donorCommentLabelTopConstraint =
-    [NSLayoutConstraint constraintWithItem:self.donorCommentLabel
+    NSLayoutConstraint *donorMessageCopyLabelTopConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorMessageCopyLabel
                                  attribute:NSLayoutAttributeTop
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.donationGivenDateLabel
@@ -77,10 +104,10 @@
                                 multiplier:1.0
                                   constant:4];
     
-    [self addConstraint:donorCommentLabelTopConstraint];
+    [self addConstraint:donorMessageCopyLabelTopConstraint];
     
-    NSLayoutConstraint *donorCommentLabelLeftConstraint =
-    [NSLayoutConstraint constraintWithItem:self.donorCommentLabel
+    NSLayoutConstraint *donorMessageCopyLabelLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorMessageCopyLabel
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self
@@ -88,7 +115,7 @@
                                 multiplier:1.0
                                   constant:8];
     
-    [self addConstraint:donorCommentLabelLeftConstraint];
+    [self addConstraint:donorMessageCopyLabelLeftConstraint];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -106,6 +133,19 @@
     }
     
     return self;
+}
+
+-(void)setComments:(Comments *)comments{
+
+    NSDateFormatter *formatterForDonationGivenDateLabel = [[NSDateFormatter alloc]init];
+    [formatterForDonationGivenDateLabel setDateFormat:@"LLLL d YYYY"];
+    NSString *stringRenderingOfDonationGivenDate = [formatterForDonationGivenDateLabel stringFromDate:comments.donationGivenDate];
+
+    _comments = comments;
+    self.donorNameLabel.text = comments.donorName;
+    self.donorLocationLabel.text = comments.donorLocation;
+    self.donationGivenDateLabel.text = stringRenderingOfDonationGivenDate;
+    self.donorMessageCopyLabel.text = comments.donorMessageCopy;
 }
 
 @end

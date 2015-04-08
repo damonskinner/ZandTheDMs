@@ -12,9 +12,10 @@
 
 @interface CommentCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *donorNameFromLocationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *donorNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *donorLocationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *donationGivenDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *donorCommentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *donorMessageCopyLabel;
 
 @property (strong,nonatomic) Comments *comments;
 

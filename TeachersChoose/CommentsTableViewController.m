@@ -12,6 +12,7 @@
 #import "Comments.h"
 #import "FISDonorsChooseProposal.h"
 #import "DetailsTabBarController.h"
+#import "FISDonation.h"
 
 
 @interface CommentsTableViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -19,7 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *commentsArray;
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
-
 
 @end
 
@@ -39,12 +39,12 @@
      and segmented control in tableHeaderView all / awaiting reply.
      awaiting data models to do more */
 
-    
+//    for (FISDonation *eachDonation in self.proposal.donations) {
 
-//    Comments *newComment = [[Comments alloc]initWithCommentNameFromLocationCopy:<#(NSString *)#> commentDonationGivenDate:<#(NSString *)#> commentDonorMessageCopy:<#(NSString *)#>];
-
+    Comments *newComment = [[Comments alloc]initWithDonorName:@"Anish Kumar" donorLocation:@"from NYC" donationGivenDate:[NSDate date] donorMessageCopy:@"We are proud of what you have accomplished and everything you are trying to do for your classroom. We hope this helps to meet your goals. Your children are very lucky to have such a carrying and passionate teacher!"];
+   
+    [self.commentsArray addObject:newComment];
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
