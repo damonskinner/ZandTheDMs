@@ -114,7 +114,7 @@
                                     toItem:self.titleLabel
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
-                                  constant:60];
+                                  constant:40];
     
     [self.contentView addConstraint:costToCompleteLabelTopConstraint];
     
@@ -139,13 +139,11 @@
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
-//    if ([self.expirationDateLabel.text integerValue]<=30) {
-//        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
-//    } else {
-//        self.expirationDateLabel.textColor=[UIColor clearColor];
-//    }
-    self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
-    
+    if ([self.expirationDateLabel.text integerValue]<=30) {
+        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
+    } else {
+        self.expirationDateLabel.textColor=[UIColor clearColor];
+    }
     
 }
 
