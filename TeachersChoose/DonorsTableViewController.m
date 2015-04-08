@@ -24,7 +24,6 @@
     
     /* setup public property (self.donors)
        awaiting data models to do more */
-    
 }
 
 - (void)didReceiveMemoryWarning {

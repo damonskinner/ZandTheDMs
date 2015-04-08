@@ -21,6 +21,7 @@
     donation.hasResponded=donationDictionary[@"hasResponded"];
     donation.responseMessage=donationDictionary[@"responseMessage"];
     donation.proposalId=donationDictionary[@"proposalId"];
+    donation.donationAmount=donationDictionary[@"donationAmount"];
     
     
     
