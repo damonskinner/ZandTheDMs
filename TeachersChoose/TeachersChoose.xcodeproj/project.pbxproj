@@ -18,11 +18,16 @@
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36B124161AD18670009866EB /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
+		3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41887D1AD45F9C00D405EC /* CommentCell.xib */; };
+		3D4188811AD45FB900D405EC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4188801AD45FB900D405EC /* CommentCell.m */; };
 		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
 		3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F12C71ACEEB2F0038C31B /* Proposal.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
-		E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */; };
+		3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */; };
+		3DD567AC1AD57EF50052DD95 /* CommentsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */; };
+		3DD567AF1AD5857E0052DD95 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567AE1AD5857E0052DD95 /* Comments.m */; };
+		3DFEC35D1AD577E200004DD5 /* CommentsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
 		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
@@ -78,6 +83,9 @@
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
 		36B124141AD18670009866EB /* FISDonation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDonation.h; sourceTree = "<group>"; };
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
+		3D41887D1AD45F9C00D405EC /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		3D41887F1AD45FB900D405EC /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		3D4188801AD45FB900D405EC /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalTableViewCell.h; sourceTree = "<group>"; };
 		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalTableViewCell.m; sourceTree = "<group>"; };
 		3D7F12C61ACEEB2F0038C31B /* Proposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposal.h; sourceTree = "<group>"; };
@@ -86,10 +94,15 @@
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewViewController.h; sourceTree = "<group>"; };
 		3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewViewController.m; sourceTree = "<group>"; };
+		3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
+		3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
+		3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsTableViewController.xib; sourceTree = "<group>"; };
+		3DD567AD1AD5857E0052DD95 /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
+		3DD567AE1AD5857E0052DD95 /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
+		3DFEC35B1AD577E200004DD5 /* CommentsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableView.h; sourceTree = "<group>"; };
+		3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableView.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E25D84A31ACDE1FB00D98118 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
-		E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
 		E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletionImageCollectionViewCell.h; path = TeachersChoose/CompletionImageCollectionViewCell.h; sourceTree = "<group>"; };
 		E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompletionImageCollectionViewCell.m; path = TeachersChoose/CompletionImageCollectionViewCell.m; sourceTree = "<group>"; };
 		E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagerViewController.h; path = TeachersChoose/PhotoManagerViewController.h; sourceTree = "<group>"; };
@@ -265,8 +278,16 @@
 		E25D84C01ACEFEF100D98118 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				E25D84A31ACDE1FB00D98118 /* CommentsTableViewController.h */,
-				E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */,
+				3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */,
+				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
+				3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */,
+				3DFEC35B1AD577E200004DD5 /* CommentsTableView.h */,
+				3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */,
+				3DD567AD1AD5857E0052DD95 /* Comments.h */,
+				3DD567AE1AD5857E0052DD95 /* Comments.m */,
+				3D41887D1AD45F9C00D405EC /* CommentCell.xib */,
+				3D41887F1AD45FB900D405EC /* CommentCell.h */,
+				3D4188801AD45FB900D405EC /* CommentCell.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -381,11 +402,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */,
+				3DD567AC1AD57EF50052DD95 /* CommentsTableViewController.xib in Resources */,
 				3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
 				E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
 				E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */,
+				3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,20 +462,23 @@
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
+				3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */,
 				369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */,
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
-				E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */,
 				36B124161AD18670009866EB /* FISDonation.m in Sources */,
+				3D4188811AD45FB900D405EC /* CommentCell.m in Sources */,
 				E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */,
 				E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */,
+				3DFEC35D1AD577E200004DD5 /* CommentsTableView.m in Sources */,
 				3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */,
 				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,
 				3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */,
 				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
+				3DD567AF1AD5857E0052DD95 /* Comments.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
 				E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,

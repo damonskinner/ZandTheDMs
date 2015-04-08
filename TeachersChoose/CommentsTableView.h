@@ -1,5 +1,5 @@
 //
-//  CommentsTableViewController.h
+//  CommentsTableView.h
 //  TeachersChoose
 //
 //  Created by Cooper Veysey on 4/8/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CommentsTableView : UITableView
 
 @end
