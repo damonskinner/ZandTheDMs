@@ -15,7 +15,7 @@
 #import "FISParseAPI.h"
 #import "FISDonation.h"
 #import "DetailsTabBarController.h"
-
+#import "UIColor+DonorsChooseColors.h"
 
 @interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-    
+    self.view.backgroundColor=[UIColor DonorsChooseOrange];
 
     [self.view removeConstraints:self.view.constraints];
 }
@@ -65,8 +65,11 @@
                             
                         }];
                     }
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self transitionToHomePage];
+                    [self.datastore getTeacherProfileWithTeacherId:teacherId andCompletion:^(BOOL completion) {
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        [self transitionToHomePage];
+                    }];
+                    
                 }];
             }];
             
@@ -108,13 +111,10 @@
         } else {
             NSLog(@"No active proposals");
         }
-        //DAMON
-         [self dismissViewControllerAnimated:YES completion:nil];
-        
-        // FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
-        
-        // COOPER
-         [self transitionToHomePage];
+        [self.datastore getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
+        }];
     }];
 }
 
@@ -184,8 +184,10 @@
                     }];
                 }];
             }
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self transitionToHomePage];
+            [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self transitionToHomePage];
+            }];
         }];
     }];
 }

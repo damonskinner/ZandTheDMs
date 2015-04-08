@@ -11,7 +11,7 @@
 #import <AFNetworking.h>
 
 @implementation FISDonorsChooseAPI
-
+//not used
 +(void)getSearchResultsWithKeyword:(NSString *) keyword andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
@@ -32,7 +32,7 @@
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
 }
-
+//not used
 +(void)getSearchResultsWithLocation:(NSString *) location andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
@@ -63,6 +63,28 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSDictionary *params = @{@"teacher":teacherId,@"APIKEY":DonorsChooseAPIKey};
+    
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        
+        completionBlock(rawResults[@"proposals"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
+
++(void)getHistoricalSearchResultsWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSArray *))completionBlock
+{
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"teacher":teacherId,@"historical":@"true",@"APIKEY":DonorsChooseAPIKey};
     
     manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
     
