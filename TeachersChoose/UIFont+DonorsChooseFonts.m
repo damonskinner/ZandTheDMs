@@ -10,7 +10,7 @@
 
 @implementation UIFont (DonorsChooseFonts)
 
-NSString *const DonorsChooseFont=@"ss-junior";
+NSString *const DonorsChooseFont=@"SSJunior";
 
 
 @end

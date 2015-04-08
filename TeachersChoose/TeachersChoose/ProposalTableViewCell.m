@@ -23,7 +23,7 @@
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
     [self.costToCompleteLabel removeConstraints:self.costToCompleteLabel.constraints];
     
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -128,7 +128,7 @@
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:30];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:50];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     
@@ -137,12 +137,12 @@
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
-    if ([self.expirationDateLabel.text integerValue]<=30) {
-        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
-    } else {
-        self.expirationDateLabel.textColor=[UIColor clearColor];
-    }
-    
+//    if ([self.expirationDateLabel.text integerValue]<=30) {
+//        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
+//    } else {
+//        self.expirationDateLabel.textColor=[UIColor clearColor];
+//    }
+    self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
     
     
 }
