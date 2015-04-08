@@ -2,7 +2,7 @@
 //  ProposalTableViewCell.m
 //  TeachersChoose
 //
-//  Created by Cooper Veysey on 4/2/15.
+//  Created by Damon Skinner on 4/8/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
@@ -11,7 +11,36 @@
 #import "UIColor+DonorsChooseColors.h"
 #import "NSDate+DateConvenienceMethods.h"
 
+
 @implementation ProposalTableViewCell
+
+//-(id)initWithCoder:(NSCoder *) aDecoder
+//{
+//    self=[super initWithCoder:aDecoder];
+//    if(!self) {
+//        return nil;
+//    }
+//    
+//    [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner: self options: nil];
+//    
+//    [self addSubview:self.contentView];
+//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    NSDictionary *views = @{@"self":self,
+//                            @"subView":self.contentView};
+//    
+//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[subView]|"
+//                                                                   options:0
+//                                                                   metrics:nil
+//                                                                     views:views];
+//    [self addConstraints:constraints];
+//    
+//    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subView]|" options:0 metrics:nil views:views];
+//    [self addConstraints:constraints];
+//    
+//    return self;
+//}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,7 +52,7 @@
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
     [self.costToCompleteLabel removeConstraints:self.costToCompleteLabel.constraints];
     
-//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    //    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -38,7 +67,7 @@
                                  attribute:NSLayoutAttributeWidth
                                 multiplier:1.0
                                   constant:-16];
-
+    
     [self.contentView addConstraint:titleLabelWidthConstraint];
     
     NSLayoutConstraint *titleLabelTopConstraint =
@@ -149,7 +178,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -167,8 +196,5 @@
     
     [self settingFontAttributes];
 }
-
-
-
 
 @end
