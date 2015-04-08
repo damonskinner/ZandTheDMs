@@ -28,6 +28,8 @@
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
+
+    
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
                                  attribute:NSLayoutAttributeWidth
@@ -36,7 +38,7 @@
                                  attribute:NSLayoutAttributeWidth
                                 multiplier:1.0
                                   constant:-16];
-    
+
     [self.contentView addConstraint:titleLabelWidthConstraint];
     
     NSLayoutConstraint *titleLabelTopConstraint =
@@ -55,9 +57,9 @@
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeLeft
+                                 attribute:NSLayoutAttributeLeftMargin
                                 multiplier:1.0
-                                  constant:8];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelLeftConstraint];
     
@@ -66,9 +68,9 @@
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeRight
+                                 attribute:NSLayoutAttributeRightMargin
                                 multiplier:1.0
-                                  constant:-8];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelRightConstraint];
     
@@ -112,7 +114,7 @@
                                     toItem:self.titleLabel
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
-                                  constant:40];
+                                  constant:60];
     
     [self.contentView addConstraint:costToCompleteLabelTopConstraint];
     
@@ -128,7 +130,7 @@
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:50];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:30];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     

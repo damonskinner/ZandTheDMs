@@ -61,6 +61,7 @@
                 [self.datastore getSearchResultsWithTeacherId:teacherId andCompletion:^(BOOL completion) {
                     
                     for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                        
                         [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
                             
                         }];
