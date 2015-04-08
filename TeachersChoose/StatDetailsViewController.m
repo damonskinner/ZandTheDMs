@@ -7,8 +7,12 @@
 //
 
 #import "StatDetailsViewController.h"
+#import "DetailsTabBarController.h"
+#import "FISDonorsChooseProposal.h"
 
 @interface StatDetailsViewController ()
+
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end
 
@@ -16,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.view.backgroundColor = [UIColor greenColor];
     
     /* awaiting data model to do more
@@ -25,6 +29,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

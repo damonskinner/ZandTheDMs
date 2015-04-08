@@ -10,12 +10,16 @@
 #import "CommentCell.h"
 #import "CommentsTableView.h"
 #import "Comments.h"
+#import "FISDonorsChooseProposal.h"
+#import "DetailsTabBarController.h"
 
 
 @interface CommentsTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *commentsArray;
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
+
 
 @end
 
@@ -23,13 +27,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
 [self.tableView registerNib:[UINib nibWithNibName:@"CommentCell" bundle:nil ] forCellReuseIdentifier:@"basicCell"];
 
     self.commentsArray = [[NSMutableArray alloc]init];
+
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
+    /* setup public property (self.comments)
+     and segmented control in tableHeaderView all / awaiting reply.
+     awaiting data models to do more */
+
     
 
 //    Comments *newComment = [[Comments alloc]initWithCommentNameFromLocationCopy:<#(NSString *)#> commentDonationGivenDate:<#(NSString *)#> commentDonorMessageCopy:<#(NSString *)#>];

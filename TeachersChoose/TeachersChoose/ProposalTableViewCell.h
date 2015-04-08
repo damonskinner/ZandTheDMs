@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseProposal.h"
 
-@class Proposal;
+//@class Proposal;
 
 @interface ProposalTableViewCell : UITableViewCell
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *expirationDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *costToCompleteLabel;
 
-@property (strong,nonatomic) Proposal *proposal;
+//@property (strong,nonatomic) Proposal *proposal;
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end

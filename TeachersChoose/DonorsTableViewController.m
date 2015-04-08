@@ -7,8 +7,11 @@
 //
 
 #import "DonorsTableViewController.h"
+#import "DetailsTabBarController.h"
+#import "FISDonorsChooseProposal.h"
 
 @interface DonorsTableViewController ()
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end
 
@@ -16,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.tableView.backgroundColor = [UIColor purpleColor];
     
     /* setup public property (self.donors)

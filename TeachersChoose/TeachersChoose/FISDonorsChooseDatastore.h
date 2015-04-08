@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
+@property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
 
 + (instancetype)sharedDataStore;
 
@@ -22,5 +23,6 @@
 -(void)getSearchResultsWithParams: (NSDictionary *) params andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
+-(void) getDonationsListForProposalId: (NSString *) proposalObjectId andCompletion:(void (^)(BOOL))completionBlock;
 
 @end
