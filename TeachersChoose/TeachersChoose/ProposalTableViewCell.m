@@ -7,7 +7,7 @@
 //
 
 #import "ProposalTableViewCell.h"
-//#import "Proposal.h"
+#import "UIFont+DonorsChooseFonts.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "NSDate+DateConvenienceMethods.h"
 
@@ -112,17 +112,17 @@
 
 -(void) settingFontAttributes {
     
-    self.titleLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:25];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseFont size:25];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:30];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:30];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.costToCompleteLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldMT" size:20];
+    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseFont size:20];
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
