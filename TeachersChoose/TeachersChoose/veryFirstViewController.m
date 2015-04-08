@@ -162,7 +162,7 @@
     NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
         
-        NSUInteger r=arc4random_uniform([self.datastore.donorsChooseSearchResults count]);
+        NSUInteger r=arc4random_uniform((u_int32_t)[self.datastore.donorsChooseSearchResults count]);
         FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
         NSString *randomTeacherId = randomProposal.teacherId;
 

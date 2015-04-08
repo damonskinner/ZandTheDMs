@@ -28,7 +28,6 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     return 1; // magic number, just want to be able to select a cell
 }
 

@@ -8,15 +8,13 @@
 
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
-#import "PhotoManagerView.h"
 #import <FAKIonIcons.h>
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) PhotoManagerView *photoManagerView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (nonatomic) NSInteger selectedItem; // for updating cells in collection
+@property (nonatomic) NSInteger selectedRow;
 @property (nonatomic) UIImage *cameraImage;
 
 @end
@@ -25,25 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // make a new photomanagerview and add it as a subview
-//    self.photoManagerView = [[PhotoManagerView alloc] init];
-//    [self.view addSubview: self.photoManagerView];
-//    
-//    // remove constraint
-//    self.photoManagerView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.view removeConstraints: self.view.constraints];
-//    
-//    // constrain photomanagerView to self.view
-//    NSDictionary *views = @{@"pmv": self.photoManagerView};
-//
-//    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-44-[pmv]-44-|" options:0 metrics:nil views: views];
-//    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[pmv]|" options:0 metrics:nil views:views];
-//    
-//    [self.view addConstraints: verticalConstraints];
-//    [self.view addConstraints: horizontalConstraints];
-//    [self.view layoutIfNeeded];
-    
     
     [self initialSetup];
 }
@@ -55,13 +34,13 @@
 
 -(void) initialSetup
 {
-    // make sure we dont break the collection view
+    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];;
+    
+    // make sure we dont break the collection view with an empty array
     if (self.completionPictures == nil)
     {
         self.completionPictures = [[NSMutableArray alloc] init];
     }
-    
-    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];;
     
     // fill the collection view with any necessary placeholders
     while ([self.completionPictures count] < 6)
@@ -93,6 +72,10 @@
     {
         cell.tapMeLabel.hidden = YES;
     }
+    else
+    {
+        cell.tapMeLabel.hidden = NO;
+    }
     
     return cell;
 }
@@ -100,18 +83,18 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected item: %ld", indexPath.row);
-    self.selectedItem = indexPath.row;
+    self.selectedRow = indexPath.row;
     [self presentPhotoActionSheet];
 }
-
 
 #pragma mark - UIImagePickerController Delegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSLog(@"image Chosen");
+    NSLog(@"image chosen");
+    NSLog(@"%@", info);
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.completionPictures[self.selectedItem] = chosenImage;
+    self.completionPictures[self.selectedRow] = chosenImage;
     [picker dismissViewControllerAnimated:YES completion:^{
         [self.collectionView reloadData];
     }];
@@ -121,34 +104,43 @@
 
 -(void) presentPhotoActionSheet
 {
+    // setup picker first
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add Photos" message:@"Select photos that you'd like to share on DonorsChoose.org upon completion of your project." preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
-    UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+    {
         NSLog(@"take photo chosen");
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        
         [self presentViewController:picker animated:YES completion:nil];
     }];
     
-    UIAlertAction *choosePhoto = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    UIAlertAction *choosePhoto = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
+    {
         NSLog(@"choose photo chosen");
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        
         [self presentViewController:picker animated:YES completion:nil];
     }];
     
-    [alertController addAction: cancel];
+    UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
+    {
+        NSLog(@"remove photo chosen");
+        [self.completionPictures removeObjectAtIndex: self.selectedRow];
+        [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
+        [self.collectionView reloadData];
+    }];
+    
+    
     [alertController addAction: takePhoto];
     [alertController addAction: choosePhoto];
-
+    [alertController addAction: removePhoto];
+    [alertController addAction: cancel];
+    
     [self presentViewController: alertController animated: YES completion:nil];
 }
 
