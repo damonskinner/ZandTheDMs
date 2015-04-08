@@ -10,7 +10,7 @@
 #import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
 
-@interface StatDetailsViewController ()
+@interface StatDetailsViewController ()<UIActivityItemSource>
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *expirationDate;
@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UILabel *numberOfDonations;
 @property (strong, nonatomic) UILabel *location;
 
+@property (strong, nonatomic) UIButton *shareButton;
+
 @end
 
 @implementation StatDetailsViewController
@@ -28,8 +30,8 @@
 	[super viewDidLoad];
 
 	[self createAndAddSubviews];
-
 	[self.view removeConstraints:[self.view constraints]];
+    
 	for (UIView *view in self.view.subviews) {
 		[view removeConstraints:[view constraints]];
 		[view setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -46,7 +48,8 @@
 		                     @"location" : self.location,
 		                     @"fundingStatus" : self.fundingStatus,
 		                     @"costToCompleteOfTotalWithPercent" : self.costToCompleteOfTotalWithPercent,
-		                     @"numberOfDonations" : self.numberOfDonations };
+		                     @"numberOfDonations" : self.numberOfDonations,
+                             @"shareButton": self.shareButton};
 
 
 
@@ -54,7 +57,7 @@
 	self.titleLabel.numberOfLines = 0;
 	self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	self.titleLabel.text = self.proposal.title;
-	[self.titleLabel sizeToFit]; \
+	[self.titleLabel sizeToFit];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 //self.titleLabel.backgroundColor = [UIColor redColor];
 	[self.titleLabel setFont:[UIFont systemFontOfSize:24]];
@@ -81,8 +84,6 @@
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[location]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[schoolName]-[location(20)]" options:0 metrics:nil views:views]];
 
-
-
 	self.fundingStatus.text = [NSString stringWithFormat:@"Funding Status: %@", self.proposal.fundingStatus];
 //self.fundingStatus.backgroundColor = [UIColor brownColor];
 	[self.fundingStatus setFont:[UIFont systemFontOfSize:14]];
@@ -103,9 +104,15 @@
 	[self.numberOfDonations setFont:[UIFont systemFontOfSize:14]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[numberOfDonations]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[numberOfDonations(30)]" options:0 metrics:nil views:views]];
+    
+    //[self.shareButton setTitle:@"Share Button" forState:UIControlStateNormal];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[shareButton]-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[numberOfDonations]-50-[shareButton]" options:0 metrics:nil views:views]];
+    
 }
 
 - (void)createAndAddSubviews {
+    
 	self.titleLabel = [[UILabel alloc] init];
 	[self.view addSubview:self.titleLabel];
 
@@ -126,16 +133,40 @@
 
 	self.numberOfDonations = [[UILabel alloc] init];
 	[self.view addSubview:self.numberOfDonations];
+    
+    self.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.shareButton addTarget:self action:@selector(shareTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareButton setTitle:@"Share Button" forState:UIControlStateNormal];
+    self.shareButton.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+    [self.view addSubview:self.shareButton];
+
 }
 
-/*
-   #pragma mark - Navigation
+- (void)shareTapped {
+    NSString *proposalTitle = self.proposal.title;
+    NSString *proposalShortDescip = self.proposal.shortDescription;
+    NSString *proposalURL = self.proposal.fundURL;
+    NSArray *itemsToShare = @[proposalTitle, proposalShortDescip];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:itemsToShare applicationActivities:nil];
+    for (NSString *itemToShare in itemsToShare) {
+        [self activityViewController:activityVC itemForActivityType:itemToShare];
+    }
+    activityVC.excludedActivityTypes = @[];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
 
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-   // Get the new view controller using [segue destinationViewController].
-   // Pass the selected object to the new view controller.
-   }
- */
+- (id)activityViewController:(UIActivityViewController *)activityViewController
+         itemForActivityType:(NSString *)activityType
+{
+    if ([activityType isEqualToString:UIActivityTypePostToFacebook]) {
+        return @"facebook";
+    } else if ([activityType isEqualToString:UIActivityTypePostToTwitter]) {
+        return @"twitter";
+    } else {
+        return nil;
+    }
+}
+
 
 @end

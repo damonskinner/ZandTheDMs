@@ -9,7 +9,6 @@
 #import "MainTableViewViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
-#import "Proposal.h"
 #import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
