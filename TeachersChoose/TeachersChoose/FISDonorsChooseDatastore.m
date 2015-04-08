@@ -12,6 +12,7 @@
 #import "FISDonorsChooseTeacher.h"
 #import "FISParseAPI.h"
 #import "FISDonation.h"
+#import "ImagesAPI.h"
 
 @implementation FISDonorsChooseDatastore
 
@@ -107,8 +108,10 @@
     [FISDonorsChooseAPI getTeacherProfileWithTeacherId:teacherId andCompletionBlock:^(NSDictionary *teacherDictionary) {
         
         self.loggedInTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
-        
-        completionBlock(YES);
+        [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+            self.loggedInTeacher.image=teacherImage;
+            completionBlock(YES);
+        }];
     }];
 }
 
@@ -150,8 +153,10 @@
             NSLog(@"No active proposals");
         }
         [self getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-            
+            [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+                self.loggedInTeacher.image=teacherImage;
             completionBlock();
+            }];
         }];
     }];
 }

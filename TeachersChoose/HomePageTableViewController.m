@@ -120,6 +120,8 @@
     
 }
 
+
+
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -157,6 +159,11 @@
     
     return cell;
     
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
