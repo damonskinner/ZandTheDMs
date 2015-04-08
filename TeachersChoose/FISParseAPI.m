@@ -116,8 +116,10 @@
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"results"] count]!=0) {
+            completionBlock(responseObject[@"results"][0][@"donationsList"]);
+        }
         
-        completionBlock(responseObject[@"results"][0][@"donationsList"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
     }];
@@ -155,7 +157,6 @@
     
     
     NSDictionary *params = @{@"where": @{@"proposalId":proposalId}};
-//    NSDictionary *params = @{@"proposalId":proposalId};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];

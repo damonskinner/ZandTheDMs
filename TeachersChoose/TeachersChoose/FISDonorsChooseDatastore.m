@@ -83,6 +83,25 @@
     }];
 }
 
+-(void)getAllSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
+{
+    [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
+        
+        for (NSDictionary *proposalDict in proposalDictionaries) {
+            [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+            
+        }
+        
+        
+        
+        if ([proposalDictionaries count]>0) {
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
+        }
+    }];
+}
+
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
 {
     [FISDonorsChooseAPI getTeacherProfileWithTeacherId:teacherId andCompletionBlock:^(NSDictionary *teacherDictionary) {

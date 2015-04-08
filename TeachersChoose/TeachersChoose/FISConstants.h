@@ -16,6 +16,6 @@ extern NSString *const ParseApplicationId;
 extern NSString *const ParseClientKey;
 extern NSString *const ParseRestAPIKey;
 
-extern NSString *const ParseDonationsPointersArray;
+
 
 @end
