@@ -35,8 +35,6 @@
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
 		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
-		E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */; };
-		E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */; };
 		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */; };
 		E25D84BF1ACEE13B00D98118 /* PhotoManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */; };
@@ -116,9 +114,6 @@
 		E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagerViewController.h; path = TeachersChoose/PhotoManagerViewController.h; sourceTree = "<group>"; };
 		E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagerViewController.m; path = TeachersChoose/PhotoManagerViewController.m; sourceTree = "<group>"; };
 		E25D84B01ACED69600D98118 /* CameraTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CameraTest.storyboard; path = TeachersChoose/CameraTest.storyboard; sourceTree = "<group>"; };
-		E25D84B31ACEDBDF00D98118 /* FakeHomepageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeHomepageTableViewController.h; sourceTree = "<group>"; };
-		E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeHomepageTableViewController.m; sourceTree = "<group>"; };
-		E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FakeMainStoryboard.storyboard; sourceTree = "<group>"; };
 		E25D84B81ACEDE1000D98118 /* DetailsTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTabBarController.h; sourceTree = "<group>"; };
 		E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTabBarController.m; sourceTree = "<group>"; };
 		E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoManagerView.xib; sourceTree = "<group>"; };
@@ -299,9 +294,6 @@
 		E25D84A01ACDE1A800D98118 /* Detail Flow */ = {
 			isa = PBXGroup;
 			children = (
-				E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */,
-				E25D84B31ACEDBDF00D98118 /* FakeHomepageTableViewController.h */,
-				E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */,
 				E25D84B81ACEDE1000D98118 /* DetailsTabBarController.h */,
 				E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */,
 				E25D84C81ACF013A00D98118 /* Stats */,
@@ -456,7 +448,6 @@
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
-				E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +503,6 @@
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
 				369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */,
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
-				E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,

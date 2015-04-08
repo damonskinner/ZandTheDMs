@@ -125,17 +125,17 @@
 
 -(void) settingFontAttributes {
     
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseFont size:25];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseCSSFont size:25];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:30];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:30];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseFont size:20];
+    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBasicFont size:20];
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
