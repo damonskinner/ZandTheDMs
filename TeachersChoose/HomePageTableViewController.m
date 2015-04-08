@@ -31,7 +31,7 @@
     
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseGreyVeryLight];
     
-    self.title = self.datastore.loggedInTeacher.name;
+    self.title = @"Home";
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]}];
     [self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
