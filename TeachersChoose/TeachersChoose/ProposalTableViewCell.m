@@ -23,10 +23,21 @@
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
     [self.costToCompleteLabel removeConstraints:self.costToCompleteLabel.constraints];
     
-//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *titleLabelWidthConstraint =
+    [NSLayoutConstraint constraintWithItem:self.titleLabel
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeWidth
+                                multiplier:1.0
+                                  constant:-16];
+    
+    [self.contentView addConstraint:titleLabelWidthConstraint];
     
     NSLayoutConstraint *titleLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -46,7 +57,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeLeft
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:8];
     
     [self.contentView addConstraint:titleLabelLeftConstraint];
     
@@ -57,7 +68,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:-8];
     
     [self.contentView addConstraint:titleLabelRightConstraint];
     
@@ -148,7 +159,7 @@
     _proposal = proposal;
     self.titleLabel.text = _proposal.title;
     
-    self.costToCompleteLabel.text = [NSString stringWithFormat:@"$ %@ To Go!",_proposal.costToComplete];
+    self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@ To Go!",_proposal.costToComplete];
     
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     

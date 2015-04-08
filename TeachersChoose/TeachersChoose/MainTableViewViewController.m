@@ -11,6 +11,7 @@
 #import "ProposalTableViewCell.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import <FAKIonIcons.h>
 
 
 
@@ -44,6 +45,13 @@
 
     self.mainTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
+    UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
+    
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGrey];
+    
+
 
     NSLayoutConstraint *mainTableViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.mainTableView
@@ -103,6 +111,10 @@
 
     //     Do any additional setup after loading the view.
     [self.mainTableView reloadData];
+    
+}
+
+-(void) segueToSettingsPage {
     
 }
 

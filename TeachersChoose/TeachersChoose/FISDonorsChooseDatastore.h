@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
+@property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
 
 + (instancetype)sharedDataStore;
 
