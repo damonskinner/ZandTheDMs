@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FISDonorsChooseTeacher.h"
+#import "FISDonorsChooseProposal.h"
 
 @interface FISDonorsChooseDatastore : NSObject
 
@@ -23,6 +24,10 @@
 -(void)getSearchResultsWithParams: (NSDictionary *) params andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
--(void) getDonationsListForProposalId: (NSString *) proposalObjectId andCompletion:(void (^)(BOOL))completionBlock;
+-(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
+
+
+-(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock;
+
 
 @end
