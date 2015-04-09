@@ -36,9 +36,12 @@
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight]}];
-    [self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseBoldFont size:25]}];
+    self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
+    
+    [self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+
     
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
@@ -204,7 +207,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+//    NSLog(@"selected row: %ld", indexPath.row);
     
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     

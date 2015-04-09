@@ -33,7 +33,7 @@
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
     NSDate *capturedExpirationDate = [dateFormatter dateFromString:dateString];
-    NSLog(@"Captured Date %@", [capturedExpirationDate description]);
+//    NSLog(@"Captured Date %@", [capturedExpirationDate description]);
 
     
     return capturedExpirationDate;

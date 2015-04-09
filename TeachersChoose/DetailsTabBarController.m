@@ -12,6 +12,8 @@
 // child VCs
 #import "StatDetailsViewController.h"
 #import "CommentsTableViewController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 
 @interface DetailsTabBarController ()
 
@@ -36,6 +38,7 @@
     
     // make nav controllers
     UINavigationController *statsNav    = [[UINavigationController alloc] init];
+    
     UINavigationController *commentsNav = [[UINavigationController alloc] init];
     
     // add their respective children

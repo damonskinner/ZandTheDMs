@@ -129,7 +129,7 @@
             for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals) {
                 [self getDonationsListForProposal:eachProposal andCompletion:^(BOOL completion) {
                     if(completion) {
-                        NSLog(@"%@",eachProposal.donations);
+//                        NSLog(@"%@",eachProposal.donations);
                     } else {
                         NSLog(@"Donations array not populated.  Check parse database and manually link if needed.");
                     }
