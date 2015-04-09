@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.nextButton.layer.cornerRadius = 10;
     [self setupCheckboxes];
 }
 
