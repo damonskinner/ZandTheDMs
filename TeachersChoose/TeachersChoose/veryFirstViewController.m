@@ -16,6 +16,9 @@
 #import "FISDonation.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "HomePageTableViewController.h"
+
+
 
 @interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
@@ -64,8 +67,8 @@
     [FISParseAPI getTeacherIdForObjectId:loggedInTeacherParseObjectId andCompletionBlock:^(NSString *teacherId) {
         
         [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:teacherId andCompletionBlock:^{
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self transitionToHomePage];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self transitionToHomePage];
         }];
     }];
 }
@@ -91,8 +94,9 @@
     NSString *currentTeacherId = currentUser[@"teacherId"];
 
     [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:currentTeacherId andCompletionBlock:^{
-        [self dismissViewControllerAnimated:YES completion:nil];
-        [self transitionToHomePage];
+        
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
     }];
 
 }
@@ -161,8 +165,8 @@
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
             [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self transitionToHomePage];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self transitionToHomePage];
             }];
         }];
     }];
@@ -196,10 +200,12 @@
 }
 
 -(void) transitionToHomePage {
-    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
     UINavigationController *newNavController = [[UINavigationController alloc]init];
+//    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
+//    [newNavController addChildViewController:homePageVC];
     
-    [newNavController addChildViewController:homePageVC];
+    HomePageTableViewController *newHomePageVC =[[HomePageTableViewController alloc] init];
+    [newNavController addChildViewController:newHomePageVC];
     
     
     [self presentViewController:newNavController animated:YES completion:nil];
