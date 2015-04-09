@@ -31,7 +31,11 @@
     // make icons / tabBarItems
 
     UIImage *statsImage = [[FAKIonIcons iosPulseStrongIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    
     statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTitle:@"Stats" image:statsImage  tag:0];
+    
+    [statsVC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]} forState:UIControlStateSelected];
+    self.tabBar.tintColor=[UIColor DonorsChooseOrange];
     
     UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
