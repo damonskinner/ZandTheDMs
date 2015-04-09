@@ -40,7 +40,8 @@
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
     
-    [self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+    [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
+
 
     
     [self.view removeConstraints:self.view.constraints];
@@ -198,6 +199,12 @@
     }
     headerLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:20];
     headerLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
+    view.layer.borderColor=[UIColor DonorsChooseGreyLight].CGColor;
+    view.layer.borderWidth=1;
+    view.layer.shadowOpacity=0.6;
+    view.layer.shadowRadius=10;
+    view.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
+    view.layer.shadowOffset=CGSizeMake(2, 2);
     
     [view addSubview:headerLabel];
     view.backgroundColor = [UIColor DonorsChooseOrange];

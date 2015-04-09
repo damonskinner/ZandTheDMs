@@ -149,8 +149,8 @@
     self.shareButton.layer.borderWidth=1.0f;
     self.shareButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
     self.shareButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
-    self.shareButton.layer.shadowOpacity=0.6;
-    self.shareButton.layer.shadowRadius=12;
+    self.shareButton.layer.shadowOpacity=0.3;
+    self.shareButton.layer.shadowRadius=7;
     self.shareButton.layer.shadowOffset=CGSizeMake(2, 2);
     
 
@@ -167,8 +167,8 @@
     self.donorsListButton.layer.borderWidth=1.0f;
     self.donorsListButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
     self.donorsListButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
-    self.donorsListButton.layer.shadowOpacity=0.6;
-    self.donorsListButton.layer.shadowRadius=12;
+    self.donorsListButton.layer.shadowOpacity=0.3;
+    self.donorsListButton.layer.shadowRadius=7;
     self.donorsListButton.layer.shadowOffset=CGSizeMake(2, 2);
     
     [self.view addSubview:self.donorsListButton];
