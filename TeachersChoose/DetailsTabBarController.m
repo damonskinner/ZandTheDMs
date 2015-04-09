@@ -12,12 +12,6 @@
 // child VCs
 #import "StatDetailsViewController.h"
 #import "CommentsTableViewController.h"
-#import "DonorsTableViewController.h"
-#import "PhotoManagerViewController.h"
-
-
-
-
 
 @interface DetailsTabBarController ()
 
@@ -31,7 +25,6 @@
     // make child view controllers
     StatDetailsViewController *statsVC         = [[StatDetailsViewController alloc] init];
     CommentsTableViewController *commentsTVC   = [[CommentsTableViewController alloc] init];
-    DonorsTableViewController *donorsTVC       = [[DonorsTableViewController alloc] init];
 
     // make icons / tabBarItems
 
@@ -41,22 +34,16 @@
     UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
     
-    UIImage *donorsImage = [[FAKIonIcons cashIconWithSize:35] imageWithSize:CGSizeMake(35, 35)];
-    donorsTVC.tabBarItem      = [[UITabBarItem alloc] initWithTitle:@"Donors" image:donorsImage tag:2];
-    
     // make nav controllers
     UINavigationController *statsNav    = [[UINavigationController alloc] init];
     UINavigationController *commentsNav = [[UINavigationController alloc] init];
-    UINavigationController *donorsNav   = [[UINavigationController alloc] init];
     
     // add their respective children
     [statsNav addChildViewController: statsVC];
     [commentsNav addChildViewController: commentsTVC];
-    [donorsNav addChildViewController: donorsTVC];
     
     // add them to self.viewControllers
-//    self.viewControllers = @[statsVC, commentsTVC, donorsTVC];
-    self.viewControllers = @[statsNav, commentsNav, donorsNav];
+    self.viewControllers = @[statsNav, commentsNav];
 }
 
 - (void)didReceiveMemoryWarning {
