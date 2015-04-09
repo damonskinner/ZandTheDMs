@@ -32,8 +32,6 @@
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
 		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
-		3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41887D1AD45F9C00D405EC /* CommentCell.xib */; };
-		3D4188811AD45FB900D405EC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4188801AD45FB900D405EC /* CommentCell.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 		3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */; };
@@ -115,9 +113,6 @@
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
 		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
 		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
-		3D41887D1AD45F9C00D405EC /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
-		3D41887F1AD45FB900D405EC /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
-		3D4188801AD45FB900D405EC /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewViewController.h; path = TeachersChoose/MainTableViewViewController.h; sourceTree = "<group>"; };
@@ -352,9 +347,6 @@
 				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
 				3DD567AD1AD5857E0052DD95 /* ProposalComment.h */,
 				3DD567AE1AD5857E0052DD95 /* ProposalComment.m */,
-				3D41887D1AD45F9C00D405EC /* CommentCell.xib */,
-				3D41887F1AD45FB900D405EC /* CommentCell.h */,
-				3D4188801AD45FB900D405EC /* CommentCell.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -480,7 +472,6 @@
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
 				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
-				3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,7 +535,6 @@
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
-				3D4188811AD45FB900D405EC /* CommentCell.m in Sources */,
 				36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */,
 				36AE945A1AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m in Sources */,
 				36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "CommentsTableViewController.h"
-#import "CommentCell.h"
 #import "ProposalComment.h"
 #import "FISDonorsChooseProposal.h"
 #import "DetailsTabBarController.h"
@@ -16,8 +15,9 @@
 
 @interface CommentsTableViewController ()
 
-@property (strong,nonatomic) NSMutableArray *commentsArray;
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
+@property (strong, nonatomic) NSMutableArray *donorsWhoCommented;
+@property (strong, nonatomic) NSMutableDictionary *donorsAndComments;
 
 @end
 
@@ -26,61 +26,65 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"CommentCell" bundle:nil ] forCellReuseIdentifier:@"basicCell"];
-
-    self.commentsArray = [[NSMutableArray alloc]init];
+    self.donorsAndComments = [[NSMutableDictionary alloc] init];
 
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
-
+    
+    self.donorsWhoCommented = [[NSMutableArray alloc] init];
    
     [self populateCommentsArray];
     
-//    [self.commentsArray addObject:newComment]
-
 }
 
 -(void) populateCommentsArray
 {
     for(FISDonation *eachDonation in self.proposal.donations)
     {
-        ProposalComment *newComment = [ProposalComment initWithDonation: eachDonation];
-        [self.commentsArray addObject:newComment];
+        //ProposalComment *newComment = [ProposalComment initWithDonation: eachDonation];
+        //[self.commentsArray addObject:newComment];
+        
+        if ([eachDonation.donorMessage isEqualToString:@""]) {
+            NSLog(@"nil message");
+        } else {
+            [self.donorsWhoCommented addObject:eachDonation.donorName];
+            [self.donorsAndComments setObject:@[eachDonation.donorMessage] forKey:eachDonation.donorName];
+        }
     }
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40.0;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //TODO: hook up sections by person
-    return 1;
+    return [self.donorsWhoCommented count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //TODO: hook up rows by comments per donation / section
-    return [self.commentsArray count];
+    NSString *donorName = self.donorsWhoCommented[section];
+    NSArray *thisDonorsComments = self.donorsAndComments[donorName];
+    return [thisDonorsComments count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
-    cell.comments = [self.commentsArray objectAtIndex:indexPath.row];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
+    }
     
-//        if (cell == nil)
-//            {
-//                cell = [CommentCell alloc] init];
-//    //    }
-    //
-    //    FISDonation *thisDonation = self.comments[indexPath.row];
-    //
-    //    cell.commenterName.text = thisDonation.donor;
-    //    cell.messageBody.text = thisDonation.donorMessage;
+    NSString *donorName = self.donorsWhoCommented[indexPath.section];
+    NSArray *thisDonorsComments = self.donorsAndComments[donorName];
+    
+    cell.textLabel.text = thisDonorsComments[indexPath.row];
     
     return cell;
 }
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [NSString stringWithFormat:@"%@", self.donorsWhoCommented[section]];
+}
+
 
 
 
