@@ -8,16 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Comments : NSObject
+@class FISDonation;
+@interface ProposalComment : NSObject
 
 @property (strong, nonatomic) NSString *donorName;
 @property (nonatomic, strong) NSString *donorLocation;
 @property (strong, nonatomic) NSDate *donationGivenDate;
 @property (strong, nonatomic) NSString *donorMessageCopy;
 
--(id)initWithDonorName:(NSString *)donorName
-         donorLocation: (NSString *) donorLocation
-                donationGivenDate: (NSDate *)donationGivenDate
-                 donorMessageCopy: (NSString *)donorMessageCopy;
++(ProposalComment*) initWithDonation:(FISDonation*) donation;
 
 @end

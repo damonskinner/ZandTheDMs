@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CommentsTableViewController : UITableViewController 
 
 @end

@@ -31,24 +31,19 @@
 		36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */; };
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
+		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
 		3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41887D1AD45F9C00D405EC /* CommentCell.xib */; };
 		3D4188811AD45FB900D405EC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4188801AD45FB900D405EC /* CommentCell.m */; };
-		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
-		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 		3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */; };
-		3DD567AC1AD57EF50052DD95 /* CommentsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */; };
-		3DD567AF1AD5857E0052DD95 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567AE1AD5857E0052DD95 /* Comments.m */; };
+		3DD567AF1AD5857E0052DD95 /* ProposalComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567AE1AD5857E0052DD95 /* ProposalComment.m */; };
 		3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
-		3DFEC35D1AD577E200004DD5 /* CommentsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
 		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
-		E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */; };
-		E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */; };
-		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
+		E25D84B71ACEDCCB00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */; };
 		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
@@ -118,24 +113,19 @@
 		36B124121ACDAF8E009866EB /* FISParseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISParseAPI.m; sourceTree = "<group>"; };
 		36B124141AD18670009866EB /* FISDonation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDonation.h; sourceTree = "<group>"; };
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
+		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
+		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
 		3D41887D1AD45F9C00D405EC /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		3D41887F1AD45FB900D405EC /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		3D4188801AD45FB900D405EC /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
-		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
-		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
-		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposalTableViewCell.h; path = TeachersChoose/ProposalTableViewCell.h; sourceTree = "<group>"; };
-		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposalTableViewCell.m; path = TeachersChoose/ProposalTableViewCell.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewViewController.h; path = TeachersChoose/MainTableViewViewController.h; sourceTree = "<group>"; };
 		3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTableViewViewController.m; path = TeachersChoose/MainTableViewViewController.m; sourceTree = "<group>"; };
 		3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableViewController.h; sourceTree = "<group>"; };
 		3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableViewController.m; sourceTree = "<group>"; };
-		3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsTableViewController.xib; sourceTree = "<group>"; };
-		3DD567AD1AD5857E0052DD95 /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
-		3DD567AE1AD5857E0052DD95 /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
-		3DFEC35B1AD577E200004DD5 /* CommentsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableView.h; sourceTree = "<group>"; };
-		3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableView.m; sourceTree = "<group>"; };
+		3DD567AD1AD5857E0052DD95 /* ProposalComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposalComment.h; sourceTree = "<group>"; };
+		3DD567AE1AD5857E0052DD95 /* ProposalComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposalComment.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletionImageCollectionViewCell.h; path = TeachersChoose/CompletionImageCollectionViewCell.h; sourceTree = "<group>"; };
@@ -360,11 +350,8 @@
 			children = (
 				3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */,
 				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
-				3DD567AA1AD57EF50052DD95 /* CommentsTableViewController.xib */,
-				3DFEC35B1AD577E200004DD5 /* CommentsTableView.h */,
-				3DFEC35C1AD577E200004DD5 /* CommentsTableView.m */,
-				3DD567AD1AD5857E0052DD95 /* Comments.h */,
-				3DD567AE1AD5857E0052DD95 /* Comments.m */,
+				3DD567AD1AD5857E0052DD95 /* ProposalComment.h */,
+				3DD567AE1AD5857E0052DD95 /* ProposalComment.m */,
 				3D41887D1AD45F9C00D405EC /* CommentCell.xib */,
 				3D41887F1AD45FB900D405EC /* CommentCell.h */,
 				3D4188801AD45FB900D405EC /* CommentCell.m */,
@@ -484,7 +471,6 @@
 				36AE94661AD586A400F32AD5 /* ss-junior.ttf in Resources */,
 				36AE94741AD5D2E400F32AD5 /* ProposalTableViewCell.xib in Resources */,
 				3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */,
-				3DD567AC1AD57EF50052DD95 /* CommentsTableViewController.xib in Resources */,
 				3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
 				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
@@ -493,7 +479,7 @@
 				36AE94651AD586A400F32AD5 /* ss-junior.svg in Resources */,
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
-				E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */,
+				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
 				3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
 			);
@@ -559,7 +545,6 @@
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
 				3D4188811AD45FB900D405EC /* CommentCell.m in Sources */,
-				3DFEC35D1AD577E200004DD5 /* CommentsTableView.m in Sources */,
 				36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */,
 				36AE945A1AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m in Sources */,
 				36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */,
@@ -567,7 +552,7 @@
 				36AE94571AD564F100F32AD5 /* UIFont+DonorsChooseFonts.m in Sources */,
 				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,
 				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
-				3DD567AF1AD5857E0052DD95 /* Comments.m in Sources */,
+				3DD567AF1AD5857E0052DD95 /* ProposalComment.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
 				E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */,
 				36AE946D1AD5C81C00F32AD5 /* HomePageTableViewController.m in Sources */,

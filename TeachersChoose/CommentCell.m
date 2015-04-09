@@ -7,8 +7,7 @@
 //
 
 #import "CommentCell.h"
-#import "Comments.h"
-#import "CommentsTableView.h"
+#import "ProposalComment.h"
 
 @implementation CommentCell
 
@@ -192,7 +191,7 @@ NSString *fromString = @"from";
     return self;
 }
 
--(void)setComments:(Comments *)comments{
+-(void)setComments:(ProposalComment *)comments{
 
     NSDateFormatter *formatterForDonationGivenDateLabel = [[NSDateFormatter alloc]init];
     [formatterForDonationGivenDateLabel setDateFormat:@"LLLL d YYYY"];
