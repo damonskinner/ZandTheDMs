@@ -9,7 +9,6 @@
 #import "MainTableViewViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
-#import "Proposal.h"
 #import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
@@ -158,7 +157,7 @@
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
     
-    tabBarController.navigationItem.title = selectedProposal.title;
+    tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
     
     [self.navigationController pushViewController:tabBarController animated:YES];

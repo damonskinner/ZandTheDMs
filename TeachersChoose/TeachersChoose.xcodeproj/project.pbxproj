@@ -33,6 +33,7 @@
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
 		3D41887E1AD45F9C00D405EC /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D41887D1AD45F9C00D405EC /* CommentCell.xib */; };
 		3D4188811AD45FB900D405EC /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4188801AD45FB900D405EC /* CommentCell.m */; };
+		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
 		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
@@ -120,6 +121,8 @@
 		3D41887D1AD45F9C00D405EC /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		3D41887F1AD45FB900D405EC /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		3D4188801AD45FB900D405EC /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
+		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
 		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposalTableViewCell.h; path = TeachersChoose/ProposalTableViewCell.h; sourceTree = "<group>"; };
 		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposalTableViewCell.m; path = TeachersChoose/ProposalTableViewCell.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 				36AE944D1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.m */,
 				36AE94461AD45F5800F32AD5 /* UIColor+DonorsChooseColors.h */,
 				36AE94471AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m */,
+				3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */,
+				3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */,
 			);
 			name = "Support Classes";
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
 				3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */,
 				369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */,
+				3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */,
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,

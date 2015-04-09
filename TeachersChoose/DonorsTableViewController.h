@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISDonorsChooseProposal;
+
 @interface DonorsTableViewController : UITableViewController
+
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end
