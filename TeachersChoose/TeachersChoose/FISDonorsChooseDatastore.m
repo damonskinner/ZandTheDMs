@@ -11,7 +11,7 @@
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseTeacher.h"
 #import "FISParseAPI.h"
-#import "FISDonation.h"
+
 #import "ImagesAPI.h"
 
 @implementation FISDonorsChooseDatastore
@@ -161,5 +161,13 @@
     }];
 }
 
+//TODO: Create sample donations function
+//FIXME:
+-(NSArray *) sampleDonations {
+
+    
+    
+    return _sampleDonations;
+}
 
 @end

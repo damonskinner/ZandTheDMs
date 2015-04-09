@@ -39,6 +39,23 @@
     return capturedExpirationDate;
 }
 
-
+- (NSDate *)randomDateInYearOfDate {
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [currentCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self];
+    
+    [comps setMonth:arc4random_uniform(12)];
+    
+    NSRange range = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[currentCalendar dateFromComponents:comps]];
+    
+    [comps setDay:arc4random_uniform(range.length)];
+    
+    // Normalise the time portion
+    [comps setHour:0];
+    [comps setMinute:0];
+    [comps setSecond:0];
+    [comps setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    
+    return [currentCalendar dateFromComponents:comps];
+}
 
 @end
