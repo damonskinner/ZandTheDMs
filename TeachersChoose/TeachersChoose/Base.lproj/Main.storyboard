@@ -65,11 +65,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="costToCompleteLabel" destination="gkD-Pl-42q" id="pNI-hp-peX"/>
-                                            <outlet property="expirationDateLabel" destination="MxA-c9-tWC" id="8Qi-Ba-BlH"/>
-                                            <outlet property="titleLabel" destination="Cfh-uo-UdD" id="5YL-BD-Wru"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
