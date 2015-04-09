@@ -50,6 +50,28 @@ NSString *fromString = @"from";
     
     [self.contentView addConstraint:donorNameAndLocationLabelLeftConstraint];
     
+    NSLayoutConstraint *donorNameAndLocationLabelRightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorNameAndLocationLabel
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:-8];
+    
+    [self.contentView addConstraint:donorNameAndLocationLabelRightConstraint];
+    
+    NSLayoutConstraint *donorNameAndLocationLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorNameAndLocationLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.donationGivenDateLabel
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1.0
+                                  constant:-4];
+    
+    [self.contentView addConstraint:donorNameAndLocationLabelBottomConstraint];
+    
     NSLayoutConstraint *donationGivenDateLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.donationGivenDateLabel
                                  attribute:NSLayoutAttributeTop
@@ -71,6 +93,28 @@ NSString *fromString = @"from";
                                   constant:32];
     
     [self.contentView addConstraint:donationGivenDateLabelLeftConstraint];
+
+    NSLayoutConstraint *donationGivenDateLabelRightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donationGivenDateLabel
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:-8];
+    
+    [self.contentView addConstraint:donationGivenDateLabelRightConstraint];
+
+    NSLayoutConstraint *donationGivenDateLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donationGivenDateLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.donorMessageCopyLabel
+                                 attribute:NSLayoutAttributeTop
+                                multiplier:1.0
+                                  constant:-4];
+    
+    [self.contentView addConstraint:donationGivenDateLabelBottomConstraint];
     
     NSLayoutConstraint *donorMessageCopyLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.donorMessageCopyLabel
@@ -104,6 +148,28 @@ NSString *fromString = @"from";
                                   constant:-2];
     
     [self addConstraint:donorMessageCopyLabelRightConstraint];
+    
+    NSLayoutConstraint *donorMessageCopyLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorMessageCopyLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:-10];
+    
+    [self addConstraint:donorMessageCopyLabelBottomConstraint];
+//    
+//    NSLayoutConstraint *donorMessageCopyLabelWidthConstraint =
+//    [NSLayoutConstraint constraintWithItem:self.donorMessageCopyLabel
+//                                 attribute:NSLayoutAttributeWidth
+//                                 relatedBy:NSLayoutRelationEqual
+//                                    toItem:self.contentView
+//                                 attribute:NSLayoutAttributeWidth
+//                                multiplier:.8
+//                                  constant:0];
+//    
+//    [self addConstraint:donorMessageCopyLabelWidthConstraint];
     
 //    self.donorMessageCopyLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 //    self.donorMessageCopyLabel.numberOfLines = 0;

@@ -30,6 +30,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100.0;
+    
 [self.tableView registerNib:[UINib nibWithNibName:@"CommentCell" bundle:nil ] forCellReuseIdentifier:@"basicCell"];
 
     self.commentsArray = [[NSMutableArray alloc]init];
@@ -50,10 +53,12 @@
     }
     
 
-//    [self.commentsArray addObject:newComment];
+//    [self.commentsArray addObject:newComment]
 
-    self.tableView.estimatedRowHeight = 150.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40.0;
 }
 
 
