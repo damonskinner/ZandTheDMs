@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 4
 
+// FXBlurView
+#define COCOAPODS_POD_AVAILABLE_FXBlurView
+#define COCOAPODS_VERSION_MAJOR_FXBlurView 1
+#define COCOAPODS_VERSION_MINOR_FXBlurView 6
+#define COCOAPODS_VERSION_PATCH_FXBlurView 3
+
 // FontAwesomeKit
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 2
@@ -89,6 +95,12 @@
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 0
+
+// ParallaxBlur
+#define COCOAPODS_POD_AVAILABLE_ParallaxBlur
+#define COCOAPODS_VERSION_MAJOR_ParallaxBlur 0
+#define COCOAPODS_VERSION_MINOR_ParallaxBlur 1
+#define COCOAPODS_VERSION_PATCH_ParallaxBlur 4
 
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse

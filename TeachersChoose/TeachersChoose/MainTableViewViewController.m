@@ -9,6 +9,8 @@
 #import "MainTableViewViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
+#import "Proposal.h"
+#import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
@@ -50,6 +52,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGrey];
+    
     
 
 
@@ -134,6 +137,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     ProposalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
     cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
@@ -147,7 +151,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+    NSLog(@"selected row: %ld", (long)indexPath.row);
     
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
 

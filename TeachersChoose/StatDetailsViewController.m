@@ -12,19 +12,23 @@
 
 @interface StatDetailsViewController ()
 
-@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
-
 @end
 
 @implementation StatDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    
+    [self.view removeConstraints:self.view.constraints];
+    self.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+    self.view.backgroundColor = [UIColor clearColor];
+    
+
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.view.backgroundColor = [UIColor greenColor];
     
-    /* awaiting data model to do more
-        think about layout in the meantime */
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -37,7 +41,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 /*

@@ -113,6 +113,7 @@
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
     [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -195,6 +196,7 @@
         NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
     }];
 }
+
 
 
 @end

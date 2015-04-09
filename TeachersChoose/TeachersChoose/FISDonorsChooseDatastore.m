@@ -12,6 +12,7 @@
 #import "FISDonorsChooseTeacher.h"
 #import "FISParseAPI.h"
 #import "FISDonation.h"
+#import "ImagesAPI.h"
 
 @implementation FISDonorsChooseDatastore
 
@@ -107,24 +108,56 @@
     [FISDonorsChooseAPI getTeacherProfileWithTeacherId:teacherId andCompletionBlock:^(NSDictionary *teacherDictionary) {
         
         self.loggedInTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
-        
-        completionBlock(YES);
+        [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+            self.loggedInTeacher.image=teacherImage;
+            completionBlock(YES);
+        }];
     }];
 }
 
 
--(void) getDonationsListForProposalId: (NSString *) proposalId andCompletion:(void (^)(BOOL))completionBlock {
-    [FISParseAPI getDonationsListForProposalWithId:proposalId andCompletionBlock:^(NSArray *donations) {
-        for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals){
-            if ([eachProposal.proposalId isEqualToString:proposalId]) {
-                for (NSDictionary *donationDict in donations){
-                    [eachProposal.donations addObject:[FISDonation donationFromDictionary:donationDict]];
-                    
-                }
-            }
+-(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock {
+    [FISParseAPI getDonationsListForProposalWithId:proposal.proposalId andCompletionBlock:^(NSArray *donations) {
+        for (NSDictionary *donationDict in donations){
+            [proposal.donations addObject:[FISDonation donationFromDictionary:donationDict]];
         }
-//        FISDonorsChooseProposal *testProposal = self.loggedInTeacherProposals[0];
+        if([proposal.donations count]>0){
+            completionBlock(YES);
+        } else {
+            completionBlock(NO);
+        }
+    }];
+}
+
+
+
+
+-(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock {
+    [self getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
         
+        //May need to insert more API stuff here to update any new proposals on parse
+        if(completion) {
+            
+            for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals) {
+                [self getDonationsListForProposal:eachProposal andCompletion:^(BOOL completion) {
+                    if(completion) {
+                        NSLog(@"%@",eachProposal.donations);
+                    } else {
+                        NSLog(@"Donations array not populated.  Check parse database and manually link if needed.");
+                    }
+                    
+                }];
+            }
+            
+        } else {
+            NSLog(@"No active proposals");
+        }
+        [self getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+            [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+                self.loggedInTeacher.image=teacherImage;
+            completionBlock();
+            }];
+        }];
     }];
 }
 

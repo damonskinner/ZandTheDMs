@@ -2,7 +2,7 @@
 //  ProposalTableViewCell.m
 //  TeachersChoose
 //
-//  Created by Cooper Veysey on 4/2/15.
+//  Created by Damon Skinner on 4/8/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
@@ -11,7 +11,38 @@
 #import "UIColor+DonorsChooseColors.h"
 #import "NSDate+DateConvenienceMethods.h"
 
+
+//needs more work on cell constraints, i.e., height
+
 @implementation ProposalTableViewCell
+
+//-(id)initWithCoder:(NSCoder *) aDecoder
+//{
+//    self=[super initWithCoder:aDecoder];
+//    if(!self) {
+//        return nil;
+//    }
+//    
+//    [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner: self options: nil];
+//    
+//    [self addSubview:self.contentView];
+//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    NSDictionary *views = @{@"self":self,
+//                            @"subView":self.contentView};
+//    
+//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[subView]|"
+//                                                                   options:0
+//                                                                   metrics:nil
+//                                                                     views:views];
+//    [self addConstraints:constraints];
+//    
+//    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subView]|" options:0 metrics:nil views:views];
+//    [self addConstraints:constraints];
+//    
+//    return self;
+//}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -23,10 +54,12 @@
     [self.expirationDateLabel removeConstraints:self.expirationDateLabel.constraints];
     [self.costToCompleteLabel removeConstraints:self.costToCompleteLabel.constraints];
     
-    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    //    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+
     
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -55,9 +88,9 @@
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeLeft
+                                 attribute:NSLayoutAttributeLeftMargin
                                 multiplier:1.0
-                                  constant:8];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelLeftConstraint];
     
@@ -66,9 +99,9 @@
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeRight
+                                 attribute:NSLayoutAttributeRightMargin
                                 multiplier:1.0
-                                  constant:-8];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelRightConstraint];
     
@@ -123,17 +156,17 @@
 
 -(void) settingFontAttributes {
     
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseFont size:25];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseCSSFont size:25];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseFont size:30];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:30];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseFont size:20];
+    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBasicFont size:20];
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
@@ -143,13 +176,11 @@
         self.expirationDateLabel.textColor=[UIColor clearColor];
     }
     
-    
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -167,8 +198,5 @@
     
     [self settingFontAttributes];
 }
-
-
-
 
 @end
