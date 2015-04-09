@@ -41,10 +41,26 @@
 
 //    for (FISDonation *eachDonation in self.proposal.donations) {
 
-    Comments *newComment = [[Comments alloc]initWithDonorName:@"Anish Kumar" donorLocation:@"from NYC" donationGivenDate:[NSDate date] donorMessageCopy:@"We are proud of what you have accomplished and everything you are trying to do for your classroom. We hope this helps to meet your goals. Your children are very lucky to have such a carrying and passionate teacher!"];
+//    Comments *newComment = [[Comments alloc]initWithDonorName:@"Anish Kumar" donorLocation:@"from NYC" donationGivenDate:[NSDate date] donorMessageCopy:@"We are proud of what you have accomplished and everything you are trying to do for your classroom. We hope this helps to meet your goals. Your children are very lucky to have such a carrying and passionate teacher!"];
    
-    [self.commentsArray addObject:newComment];
+    
+    for(FISDonation *eachDonation in self.proposal.donations) {
+        Comments *newComment = [[Comments alloc] initWithDonorName:eachDonation.donorName donorLocation:eachDonation.donorLocation donationGivenDate:eachDonation.donationDate donorMessageCopy:eachDonation.donorMessage];
+        [self.commentsArray addObject:newComment];
+    }
+    
+
+//    [self.commentsArray addObject:newComment];
+
+    self.tableView.estimatedRowHeight = 150.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
+
+
+//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
+//    
+//    return 150.0;
+//}
 
 -(void)viewDidAppear:(BOOL)animated
 {
