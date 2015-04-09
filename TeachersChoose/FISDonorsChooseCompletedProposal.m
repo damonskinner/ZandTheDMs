@@ -61,14 +61,7 @@
     return proposal;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _donations = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
+
 
 
 @end

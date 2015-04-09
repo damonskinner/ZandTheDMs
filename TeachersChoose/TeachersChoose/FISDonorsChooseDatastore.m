@@ -9,6 +9,7 @@
 #import "FISDonorsChooseDatastore.h"
 #import "FISDonorsChooseAPI.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonorsChooseCompletedProposal.h"
 #import "FISDonorsChooseTeacher.h"
 #import "FISParseAPI.h"
 
@@ -32,6 +33,7 @@
     if (self) {
         _donorsChooseSearchResults=[NSMutableArray new];
         _loggedInTeacherProposals=[NSMutableArray new];
+        _loggedInTeacherCompletedProposals=[NSMutableArray new];
         _loggedInTeacher=[FISDonorsChooseTeacher new];
     }
     return self;
@@ -70,36 +72,22 @@
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
 {
     [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
-        if ([proposalDictionaries count]>0) {
+        
             for (NSDictionary *proposalDict in proposalDictionaries) {
                 [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+            }
+        [FISDonorsChooseAPI getHistoricalSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *completedProposalDictionaries) {
+            for(NSDictionary *completedProposalDictionary in completedProposalDictionaries) {
+                [self.loggedInTeacherCompletedProposals addObject:[FISDonorsChooseCompletedProposal proposalFromDictionary:completedProposalDictionary]];
                 
             }
+            if([self.loggedInTeacherProposals count]>0 || self.loggedInTeacherCompletedProposals >0) {
+                completionBlock(YES);
+            } else {
+                completionBlock(NO);
+            }
             
-            
-            completionBlock(YES);
-        } else {
-            completionBlock(NO);
-        }
-    }];
-}
-
--(void)getAllSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock
-{
-    [FISDonorsChooseAPI getSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *proposalDictionaries) {
-        
-        for (NSDictionary *proposalDict in proposalDictionaries) {
-            [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
-            
-        }
-        
-        
-        
-        if ([proposalDictionaries count]>0) {
-            completionBlock(YES);
-        } else {
-            completionBlock(NO);
-        }
+        }];
     }];
 }
 
