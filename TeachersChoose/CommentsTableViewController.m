@@ -26,6 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
+    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
+    
     self.donorsAndComments = [[NSMutableDictionary alloc] init];
 
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
@@ -33,6 +37,7 @@
     self.donorsWhoCommented = [[NSMutableArray alloc] init];
    
     [self populateCommentsArray];
+    
     
 }
 
@@ -71,6 +76,9 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
+        cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.numberOfLines = 0;
     }
     
     NSString *donorName = self.donorsWhoCommented[indexPath.section];
