@@ -36,7 +36,7 @@
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseBoldFont size:25]}];
+                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseBoldFont size:25]}];
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
     
@@ -226,12 +226,13 @@
     
     if (indexPath.section ==0) {
         FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
-        tabBarController.navigationItem.title = selectedProposal.title;
+        tabBarController.navigationItem.title = @"Project";
         tabBarController.selectedProposal=selectedProposal;
+
         
     } else {
         FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
-        tabBarController.navigationItem.title = selectedProposal.title;
+        tabBarController.navigationItem.title = @"Project";
         tabBarController.selectedProposal=selectedProposal;
         
     }

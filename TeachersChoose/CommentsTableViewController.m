@@ -8,6 +8,8 @@
 
 #import "CommentsTableViewController.h"
 #import "FISDonorsChooseProposal.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 #import "DetailsTabBarController.h"
 
 
@@ -26,6 +28,12 @@
      awaiting data models to do more */
     
     self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    
+    self.tableView.tableHeaderView.layer.borderWidth=1;
+    self.tableView.tableHeaderView.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
+    self.tableView.tableHeaderView.tintColor=[UIColor DonorsChooseOrange];
+
+    
     ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
 }
 

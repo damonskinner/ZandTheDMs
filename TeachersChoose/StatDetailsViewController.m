@@ -183,7 +183,12 @@
 - (void)donorsListButtonTapped {
     DonorsTableViewController *donorsTable = [[DonorsTableViewController alloc] init];
     donorsTable.proposal = self.proposal;
+    
+
+//    [self.navigationController addChildViewController:donorsTable];
     [self.navigationController presentViewController:donorsTable animated:YES completion:nil];
+    
+
 }
 
 @end

@@ -156,7 +156,7 @@
 
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
-    
+
     tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
     
