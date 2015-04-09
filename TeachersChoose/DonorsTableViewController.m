@@ -7,20 +7,18 @@
 //
 
 #import "DonorsTableViewController.h"
-#import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonation.h"
 #import "UIColor+DonorsChooseColors.h"
 
 @interface DonorsTableViewController ()
-@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
+
 @end
 
 @implementation DonorsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     
     [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
     [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];

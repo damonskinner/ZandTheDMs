@@ -9,6 +9,7 @@
 #import "MainTableViewViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
+#import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
@@ -135,6 +136,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     ProposalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
     cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
@@ -148,14 +150,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+    NSLog(@"selected row: %ld", (long)indexPath.row);
     
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
 
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
     
-    tabBarController.navigationItem.title = selectedProposal.title;
+    tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
     
     [self.navigationController pushViewController:tabBarController animated:YES];

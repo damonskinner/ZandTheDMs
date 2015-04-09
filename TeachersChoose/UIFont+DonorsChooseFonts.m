@@ -12,6 +12,6 @@
 
 NSString *const DonorsChooseCSSFont=@"SSJunior";
 NSString *const DonorsChooseBasicFont = @"CourierNewPSMT";
-NSString *const DonorsChooseBoldFont = @"CourierNewPS-BoldMT";
+NSString *const DonorsChooseBoldFont = @"Courier-Bold";
 
 @end
