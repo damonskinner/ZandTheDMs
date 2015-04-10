@@ -35,6 +35,7 @@
 		E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
 		E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */; };
+		E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		E25D84C61ACF013600D98118 /* StatDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailsViewController.m; sourceTree = "<group>"; };
 		E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialConfirmationViewController.h; sourceTree = "<group>"; };
 		E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialConfirmationViewController.m; sourceTree = "<group>"; };
+		E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressConfirmationViewController.h; sourceTree = "<group>"; };
+		E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressConfirmationViewController.m; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,11 +290,29 @@
 			isa = PBXGroup;
 			children = (
 				E25D84B01ACED69600D98118 /* CompletionFlow.storyboard */,
-				E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */,
-				E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */,
+				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
+				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
 				E25D84B21ACED9B700D98118 /* Camera */,
 			);
 			name = "Completion Flow";
+			sourceTree = "<group>";
+		};
+		E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */,
+				E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */,
+			);
+			name = "Initial Confirmation";
+			sourceTree = "<group>";
+		};
+		E26AD5F11AD6F31000BACAE8 /* Address Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */,
+				E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */,
+			);
+			name = "Address Confirmation";
 			sourceTree = "<group>";
 		};
 		EC9D2303EC39AADA6631DC7E /* Pods */ = {
@@ -448,6 +469,7 @@
 				E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
+				E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
 				E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */,
 				36B124161AD18670009866EB /* FISDonation.m in Sources */,
