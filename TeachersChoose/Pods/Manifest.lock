@@ -37,6 +37,16 @@ PODS:
   - FontAwesomeKit/Zocial (2.2.0):
     - FontAwesomeKit/Core
   - FXBlurView (1.6.3)
+  - MBProgressHUD (0.9.1)
+  - MWFeedParser (1.0.1):
+    - MWFeedParser/FeedParser (= 1.0.1)
+    - MWFeedParser/NSDate+InternetDateTime (= 1.0.1)
+    - MWFeedParser/NSString+HTML (= 1.0.1)
+  - MWFeedParser/FeedParser (1.0.1):
+    - MWFeedParser/NSDate+InternetDateTime
+    - MWFeedParser/NSString+HTML
+  - MWFeedParser/NSDate+InternetDateTime (1.0.1)
+  - MWFeedParser/NSString+HTML (1.0.1)
   - ParallaxBlur (0.1.4):
     - FXBlurView (~> 1.6.2)
   - Parse (1.7.1):
@@ -47,6 +57,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - FontAwesomeKit
+  - MBProgressHUD (~> 0.8)
+  - MWFeedParser
   - ParallaxBlur
   - parseUI
 
@@ -55,6 +67,8 @@ SPEC CHECKSUMS:
   Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   FXBlurView: c6d23f3d35af2c6282296a2930f61c6e2c788d01
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
   ParallaxBlur: 352a49c2319b41f3b334456815089afb1220b799
   Parse: fa8ec29de6d82035635986c11946299fb1b38316
   ParseUI: 1a68e9cebc3bd458eed9605ce7b33d7cc082f473

@@ -2,3 +2,5 @@ pod "AFNetworking", "~> 2.0"
 pod 'parseUI'
 pod 'FontAwesomeKit'
 pod 'ParallaxBlur'
+pod 'MWFeedParser'
+pod 'MBProgressHUD', '~> 0.8'

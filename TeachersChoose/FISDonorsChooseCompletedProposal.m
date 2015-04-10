@@ -7,6 +7,8 @@
 //
 
 #import "FISDonorsChooseCompletedProposal.h"
+#import <NSString+HTML.h>
+
 
 @implementation FISDonorsChooseCompletedProposal
 
@@ -45,7 +47,8 @@
     proposal.teacherName=proposalDictionary[@"teacherName"];
     proposal.teacherTypes=proposalDictionary[@"teacherTypes"];
     proposal.thumbImageURL=proposalDictionary[@"thumbImageURL"];
-    proposal.title=proposalDictionary[@"title"];
+    NSString *encodedTitleString=proposalDictionary[@"title"];
+    proposal.title=[encodedTitleString stringByDecodingHTMLEntities];
     proposal.totalPrice=proposalDictionary[@"totalPrice"];
     proposal.zip=proposalDictionary[@"zip"];
     proposal.zone=proposalDictionary[@"zone"];

@@ -75,11 +75,12 @@
         
             for (NSDictionary *proposalDict in proposalDictionaries) {
                 [self.loggedInTeacherProposals addObject:[FISDonorsChooseProposal proposalFromDictionary:proposalDict]];
+                self.loggedInTeacherProposals = [self sortArray:self.loggedInTeacherProposals];
             }
         [FISDonorsChooseAPI getHistoricalSearchResultsWithTeacherId:teacherId andCompletionBlock:^(NSArray *completedProposalDictionaries) {
             for(NSDictionary *completedProposalDictionary in completedProposalDictionaries) {
                 [self.loggedInTeacherCompletedProposals addObject:[FISDonorsChooseCompletedProposal proposalFromDictionary:completedProposalDictionary]];
-                
+                self.loggedInTeacherCompletedProposals = [self sortArray:self.loggedInTeacherCompletedProposals];
             }
             if([self.loggedInTeacherProposals count]>0 || self.loggedInTeacherCompletedProposals >0) {
                 completionBlock(YES);
@@ -97,6 +98,10 @@
         
         self.loggedInTeacher = [FISDonorsChooseTeacher teacherFromDictionary:teacherDictionary];
         [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+//            CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+//            gradientLayer.bounds=teacherImage.imageView
+            
+
             self.loggedInTeacher.image=teacherImage;
             completionBlock(YES);
         }];
@@ -156,6 +161,16 @@
     
     
     return _sampleDonations;
+}
+
+-(NSMutableArray *) sortArray: (NSMutableArray *) proposals {
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"daysLeft"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray;
+    sortedArray = [proposals sortedArrayUsingDescriptors:sortDescriptors];
+    return [sortedArray mutableCopy];
 }
 
 @end

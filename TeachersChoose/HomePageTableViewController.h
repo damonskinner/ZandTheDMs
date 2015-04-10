@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "JPBFloatingTextViewController.h"
+#import <JPBFloatingTextViewController.h>
 #import "FISDonorsChooseDatastore.h"
 
 @interface HomePageTableViewController : JPBFloatingTextViewController
