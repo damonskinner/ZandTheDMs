@@ -92,7 +92,7 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    [logInController dismissViewControllerAnimated:YES completion:nil];
+
 
     
     PFUser *currentUser = user;
