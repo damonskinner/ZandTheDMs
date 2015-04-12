@@ -18,7 +18,6 @@
 
 @implementation FISInputCommentCell
 
-
 #pragma mark - Cell LifeCycle
 
 -(void)setPlaceholder:(NSString *)placeholder
@@ -28,6 +27,18 @@
 
     [self constrainTextView: self.myTextView];
     [self formatCellWithPlaceholder: placeholder];
+}
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    if(selected)
+    {
+        [self.myTextView becomeFirstResponder];
+    } else
+    {
+        [self.myTextView resignFirstResponder];
+    }
 }
 
 #pragma mark - Formatting
@@ -58,7 +69,6 @@
 
 #pragma mark - Helpers
 
-
 -(void) constrainTextView:(UITextView *) textView
 {
     [self.contentView addSubview: textView];
@@ -70,20 +80,5 @@
     NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
     [self.contentView addConstraints:vertical];
 }
--(void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    
-    if(selected)
-    {
-        [self.myTextView becomeFirstResponder];
-    }else
-    {
-        [self.myTextView resignFirstResponder];
-    }
-}
-
-
-
 
 @end

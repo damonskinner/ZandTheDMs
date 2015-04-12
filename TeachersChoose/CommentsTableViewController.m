@@ -19,13 +19,24 @@
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 @property (strong, nonatomic) NSMutableDictionary *commentsDictionary;
 @property (strong, nonatomic) NSMutableArray *orderedListOfDonors;
-@end
 
-@implementation CommentsTableViewController
+-(void) setupSegmentedControl;
+-(void) prepareTableViewForResizingCells;
+-(void) populateCommentsDictionary;
+-(FISComment*) createDonorCommentFromDonation: (FISDonation*) donation;
+-(FISComment*) createTeacherCommentFromDonation: (FISDonation*) donation;
+
+-(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment;
 
 NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply";
 NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
 NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
+
+@end
+
+@implementation CommentsTableViewController
+
+#pragma mark - View LifeCycle
 
 - (void)viewDidLoad
 {
@@ -44,6 +55,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         [donations addObject: donation];
         if (i == 4)
         {
+            donation.donorMessage = @"";
             donation.responseMessage = @"Worrrrd checking if teacher responses also display correctly";
         }
     }
@@ -58,82 +70,21 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
 }
-#pragma mark - Helpers
-
--(void) setupSegmentedControl
-{
-    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
-    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
-}
-
-
--(void) populateCommentsDictionary
-{
-    self.commentsDictionary = [[NSMutableDictionary alloc] init];
-    
-    // work over each donation
-    for(FISDonation *donation in self.proposal.donations)
-    {
-        // declare for further modification
-        FISComment *donorComment;
-        FISComment *teacherResponse;
-        
-        // make the appropriate donor comment whether they have it or not
-        if (![donation.donorMessage isEqualToString: @""] || donation.donorMessage
-            )
-        {
-            // if the comment exists, add it
-            donorComment = [[FISComment alloc] initWithDonorComment:donation.donorMessage];
-        }
-        else
-        {
-            NSString *automatedComment = [NSString stringWithFormat:@"%@ donated $%@.", donation.donorName, donation.donationAmount];
-            NSLog(@"automatedComment:%@", automatedComment);
-            donorComment = [[FISComment alloc] initWithDonorComment: automatedComment];
-        }
-        
-        // make the appropriate teacher comment whether they have it or not
-        if (donation.responseMessage)
-        {
-            teacherResponse = [[FISComment alloc] initWithTeacherComment:donation.responseMessage];
-        }
-        else
-        {
-            NSString *tapMeText = INPUT_CELL_PLACEHOLDER;
-            teacherResponse = [[FISComment alloc] initWithTeacherComment:tapMeText];
-        }
-        
-        // make an entry in the dictionary with both of these comments in an array
-        [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
-    }
-    
-    NSLog(@"dictionary %@", self.commentsDictionary);
-    [self.tableView reloadData];
-}
-
--(void) prepareTableViewForResizingCells
-{
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    // this line is needed to cell`s textview change cause resize the tableview`s cell
-    self.tableView.estimatedRowHeight = 50.0;
-}
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    //TODO: hook up sections by person
     return [[self.commentsDictionary allKeys] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //TODO: hook up rows by comments per donation / section
     NSString *donorName = [self.commentsDictionary allKeys][section];
     NSArray *thisDonorsComments = self.commentsDictionary[donorName];
     return [thisDonorsComments count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
     NSArray *thisSetOfComments = self.commentsDictionary[donorName];
     FISComment *thisComment = thisSetOfComments[indexPath.row];
@@ -155,7 +106,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
         }
         [self formatCellForBasicDisplay: cell withComment: thisComment];
-        NSLog(@"basic cell");
         return cell;
     }
 }
@@ -165,7 +115,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"%@", [self.commentsDictionary allKeys][section]];
 }
-#pragma mark - Helpers
+
+#pragma mark - Formatting Helpers
 
 -(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment
 {
@@ -176,5 +127,64 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+#pragma mark - Initialization Helpers
+
+-(void) setupSegmentedControl
+{
+    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
+}
+
+-(void) prepareTableViewForResizingCells
+{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    // this line is needed to cell`s textview change cause resize the tableview`s cell
+    self.tableView.estimatedRowHeight = 50.0;
+}
+
+-(void) populateCommentsDictionary
+{
+    self.commentsDictionary = [[NSMutableDictionary alloc] init];
+    
+    for(FISDonation *donation in self.proposal.donations)
+    {
+        FISComment *donorComment = [self createDonorCommentFromDonation: (FISDonation*) donation];
+        FISComment *teacherResponse = [self createTeacherCommentFromDonation: (FISDonation*) donation];
+        [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
+    }
+    NSLog(@"dictionary %@", self.commentsDictionary);
+    [self.tableView reloadData];
+}
+
+-(FISComment*) createDonorCommentFromDonation: (FISDonation*) donation
+{
+    FISComment *donorComment;
+    if (!donation.donorMessage || [donation.donorMessage isEqualToString:@""])
+    {
+        NSString *automatedComment = [NSString stringWithFormat:@"%@ donated $%@.", donation.donorName, donation.donationAmount];
+        NSLog(@"automatedComment:%@", automatedComment);
+        donorComment = [[FISComment alloc] initWithDonorComment: automatedComment];
+    }
+    else
+    {
+        donorComment = [[FISComment alloc] initWithDonorComment:donation.donorMessage];
+    }
+    return donorComment;
+}
+
+-(FISComment*) createTeacherCommentFromDonation: (FISDonation*) donation
+{
+    FISComment *teacherResponse;
+    if (!donation.responseMessage || [donation.responseMessage isEqualToString:@""])
+    {
+        NSString *tapMeText = INPUT_CELL_PLACEHOLDER;
+        teacherResponse = [[FISComment alloc] initWithTeacherComment:tapMeText];
+    }
+    else
+    {
+        teacherResponse = [[FISComment alloc] initWithTeacherComment:donation.responseMessage];
+    }
+    return teacherResponse;
+}
 
 @end
