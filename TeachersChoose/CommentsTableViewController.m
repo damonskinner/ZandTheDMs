@@ -11,6 +11,7 @@
 #import "DetailsTabBarController.h"
 #import "FISDonation.h"
 #import "FISComment.h"
+#import "FISCommentCell.h"
 
 
 @interface CommentsTableViewController () <UITextViewDelegate>
@@ -38,14 +39,22 @@
     FISDonation *donation = [[FISDonation alloc] init];
     donation.donorName = @"Edward Billingsworth III";
     donation.donorMessage = @"i love school sah much";
-    proposal.donations = (NSMutableArray*)@[donation];
+    
+    FISDonation *donation2 = [[FISDonation alloc] init];
+    donation2.donorName = @"Mary Poppins";
+    donation2.donorMessage = @"i love school sah much";
+    
+    proposal.donations = (NSMutableArray*)@[donation, donation2];
     self.proposal = proposal;
     
     // END FOR TEST PURPOSES ONLY!!!!
     
     self.commentsDictionary = [[NSMutableDictionary alloc] init];
     [self populateCommentsDictionary];
+    
+    [self prepareTableViewForResizingCells];
 }
+#pragma mark - Helpers
 
 -(void) populateCommentsDictionary
 {
@@ -89,7 +98,14 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - Table view data source
+-(void) prepareTableViewForResizingCells
+{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    // this line is needed to cell`s textview change cause resize the tableview`s cell
+    self.tableView.estimatedRowHeight = 50.0;
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //TODO: hook up sections by person
@@ -104,43 +120,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
+    FISCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
+        cell = [[FISCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
+        cell.parentTableView = tableView;
     }
 
     NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
     NSArray *thisSetOfComments = self.commentsDictionary[donorName];
     FISComment *thisComment = thisSetOfComments[indexPath.row];
     
-    if(thisComment.commentType == CommentFromDonor)
-    {
-        cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.textLabel.numberOfLines = 0;
-        cell.textLabel.text = thisComment.commentBody;
-    }
-    else
-    {
-        // make a textview
-        UITextView *myTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-        myTextView.textAlignment = NSTextAlignmentCenter;
-        myTextView.font = cell.textLabel.font;
-        myTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        myTextView.text = thisComment.commentBody;
-        myTextView.textColor = [UIColor lightGrayColor];
-        
-        // add it to the cell
-        [cell addSubview: myTextView];
-    }
+    cell.comment = thisComment;
     
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"%@", [self.commentsDictionary allKeys][section]];
 }
+
 
 
 @end
