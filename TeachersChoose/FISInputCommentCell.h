@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class FISComment;
-@interface FISCommentCell : UITableViewCell
+@interface FISInputCommentCell : UITableViewCell
 
-@property (strong, nonatomic) FISComment *comment;
+@property (strong, nonatomic) NSString *placeholder;
 @property (strong, nonatomic) UITableView *parentTableView;
 
 @end

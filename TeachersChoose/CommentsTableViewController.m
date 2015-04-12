@@ -11,7 +11,7 @@
 #import "DetailsTabBarController.h"
 #import "FISDonation.h"
 #import "FISComment.h"
-#import "FISCommentCell.h"
+#import "FISInputCommentCell.h"
 
 
 @interface CommentsTableViewController () <UITextViewDelegate>
@@ -23,41 +23,54 @@
 
 @implementation CommentsTableViewController
 
+NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply";
+NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
+NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
-    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
-    
-//    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     
     // START FOR TEST PURPOSES ONLY!!!!
     
     FISDonorsChooseProposal *proposal = [[FISDonorsChooseProposal alloc] init];
     
-    FISDonation *donation = [[FISDonation alloc] init];
-    donation.donorName = @"Edward Billingsworth III";
-    donation.donorMessage = @"i love school sah much";
+    NSMutableArray *donations = [[NSMutableArray alloc] init];
     
-    FISDonation *donation2 = [[FISDonation alloc] init];
-    donation2.donorName = @"Mary Poppins";
-    donation2.donorMessage = @"i love school sah much";
+    for (NSInteger i = 0; i < 6; i++) {
+        FISDonation *donation = [[FISDonation alloc] init];
+        donation.donorName = [NSString stringWithFormat: @"Test User 00%ld", i];
+        donation.donorMessage = @"i love school sah much. Also this is gonna be longer so we test out the multiline capability of the donor formatted cells.";
+        [donations addObject: donation];
+        if (i == 4)
+        {
+            donation.responseMessage = @"Worrrrd checking if teacher responses also display correctly";
+        }
+    }
     
-    proposal.donations = (NSMutableArray*)@[donation, donation2];
+    proposal.donations = donations;
     self.proposal = proposal;
     
     // END FOR TEST PURPOSES ONLY!!!!
     
-    self.commentsDictionary = [[NSMutableDictionary alloc] init];
+    //    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
+    [self setupSegmentedControl];
     [self populateCommentsDictionary];
-    
     [self prepareTableViewForResizingCells];
 }
 #pragma mark - Helpers
 
+-(void) setupSegmentedControl
+{
+    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
+}
+
+
 -(void) populateCommentsDictionary
 {
+    self.commentsDictionary = [[NSMutableDictionary alloc] init];
+    
     // work over each donation
     for(FISDonation *donation in self.proposal.donations)
     {
@@ -86,7 +99,7 @@
         }
         else
         {
-            NSString *tapMeText = @"Tap here to reply";
+            NSString *tapMeText = INPUT_CELL_PLACEHOLDER;
             teacherResponse = [[FISComment alloc] initWithTeacherComment:tapMeText];
         }
         
@@ -94,7 +107,7 @@
         [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
     }
     
-    NSLog(@"%@", self.commentsDictionary);
+    NSLog(@"dictionary %@", self.commentsDictionary);
     [self.tableView reloadData];
 }
 
@@ -120,20 +133,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FISCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
     
-    if (!cell) {
-        cell = [[FISCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"basicCell"];
-        cell.parentTableView = tableView;
-    }
-
     NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
     NSArray *thisSetOfComments = self.commentsDictionary[donorName];
     FISComment *thisComment = thisSetOfComments[indexPath.row];
-    
-    cell.comment = thisComment;
-    
-    return cell;
+
+    if ([thisComment.commentBody isEqualToString: INPUT_CELL_PLACEHOLDER])
+    {
+        FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
+        if (!cell) {
+            cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
+        }
+        cell.parentTableView = tableView;
+        cell.placeholder = INPUT_CELL_PLACEHOLDER;
+        return cell;
+    }
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: BASIC_CELL_IDENTIFIER];
+        if (!cell){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
+        }
+        [self formatCellForBasicDisplay: cell withComment: thisComment];
+        NSLog(@"basic cell");
+        return cell;
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -141,7 +165,16 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"%@", [self.commentsDictionary allKeys][section]];
 }
+#pragma mark - Helpers
 
+-(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment
+{
+    cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.text = comment.commentBody;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+}
 
 
 @end

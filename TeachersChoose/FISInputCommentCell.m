@@ -6,27 +6,39 @@
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "FISCommentCell.h"
+#import "FISInputCommentCell.h"
 #import "FISComment.h"
 
 
-@interface FISCommentCell () <UITextViewDelegate>
+@interface FISInputCommentCell () <UITextViewDelegate>
 
 @property (strong, nonatomic) UITextView *myTextView;
--(void) formatCellWithDonorComment:(FISComment*) comment;
--(void) formatCellWithTeacherComment:(FISComment*) comment;
+-(void) formatCellWithPlaceholder:(NSString *)placeholder;
 @end
 
-@implementation FISCommentCell
+@implementation FISInputCommentCell
 
 
+#pragma mark - Cell LifeCycle
 
--(void)setComment:(FISComment *)comment
+-(void)setPlaceholder:(NSString *)placeholder
 {
-    if(comment.commentType == CommentFromDonor){
-        [self formatCellWithDonorComment:comment]; }
-    else {
-        [self formatCellWithTeacherComment:comment]; }
+    self.myTextView = [[UITextView alloc] init];
+    self.myTextView.delegate = self;
+
+    [self constrainTextView: self.myTextView];
+    [self formatCellWithPlaceholder: placeholder];
+}
+
+#pragma mark - Formatting
+
+-(void)formatCellWithPlaceholder:(NSString *)placeholder
+{
+    self.myTextView.text = placeholder;
+    self.myTextView.scrollEnabled = NO;
+    self.myTextView.textAlignment = NSTextAlignmentCenter;
+    self.myTextView.font = self.textLabel.font;
+    self.myTextView.textColor = [UIColor lightGrayColor];
 }
 
 #pragma mark - UITextViewDelegate
@@ -46,41 +58,18 @@
 
 #pragma mark - Helpers
 
--(void) formatCellWithDonorComment:(FISComment*) comment
-{
-    self.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.textLabel.numberOfLines = 0;
-    self.textLabel.text = comment.commentBody;
-}
-
--(void) formatCellWithTeacherComment:(FISComment*) comment
-{
-    self.myTextView = [[UITextView alloc] init];
-    [self constrainTextView: self.myTextView];
-    self.myTextView.delegate = self;
-    self.myTextView.scrollEnabled = NO;
-    self.myTextView.textAlignment = NSTextAlignmentCenter;
-    self.myTextView.font = self.textLabel.font;
-    self.myTextView.text = comment.commentBody;
-    self.myTextView.textColor = [UIColor lightGrayColor];
-    
-    // add it to the cell
-}
 
 -(void) constrainTextView:(UITextView *) textView
 {
     [self.contentView addSubview: textView];
     textView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = @{@"tv":textView};
 
+    NSDictionary *views = @{@"tv":textView};
     NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:views];
     [self.contentView addConstraints:horizontal];
-    
     NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
     [self.contentView addConstraints:vertical];
 }
-
 -(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

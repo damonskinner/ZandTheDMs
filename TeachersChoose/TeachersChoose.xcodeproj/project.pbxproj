@@ -48,7 +48,7 @@
 		E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
 		E27F0EFA1AD9EA4D00E6AC5F /* FISComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */; };
-		E27F0F051ADB048800E6AC5F /* FISCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISCommentCell.m */; };
+		E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,8 +138,8 @@
 		E25D84C61ACF013600D98118 /* StatDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailsViewController.m; sourceTree = "<group>"; };
 		E27F0EF81AD9EA4D00E6AC5F /* FISComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISComment.h; sourceTree = "<group>"; };
 		E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISComment.m; sourceTree = "<group>"; };
-		E27F0F031ADB048800E6AC5F /* FISCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCommentCell.h; sourceTree = "<group>"; };
-		E27F0F041ADB048800E6AC5F /* FISCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCommentCell.m; sourceTree = "<group>"; };
+		E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISInputCommentCell.h; sourceTree = "<group>"; };
+		E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISInputCommentCell.m; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -350,8 +350,8 @@
 				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
 				E27F0EF81AD9EA4D00E6AC5F /* FISComment.h */,
 				E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */,
-				E27F0F031ADB048800E6AC5F /* FISCommentCell.h */,
-				E27F0F041ADB048800E6AC5F /* FISCommentCell.m */,
+				E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */,
+				E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -554,7 +554,7 @@
 				36AE94731AD5D2E400F32AD5 /* ProposalTableViewCell.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,
 				36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */,
-				E27F0F051ADB048800E6AC5F /* FISCommentCell.m in Sources */,
+				E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
