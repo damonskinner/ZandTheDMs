@@ -33,7 +33,6 @@
 		36B124161AD18670009866EB /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
 		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
-		3D577A211ACDDF02007F7A01 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 		E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A41ACDE1FB00D98118 /* CommentsTableViewController.m */; };
@@ -113,8 +112,6 @@
 		36B124151AD18670009866EB /* FISDonation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDonation.m; sourceTree = "<group>"; };
 		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
 		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
-		3D577A1F1ACDDF02007F7A01 /* ProposalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposalTableViewCell.h; path = TeachersChoose/ProposalTableViewCell.h; sourceTree = "<group>"; };
-		3D577A201ACDDF02007F7A01 /* ProposalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposalTableViewCell.m; path = TeachersChoose/ProposalTableViewCell.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTableViewViewController.h; path = TeachersChoose/MainTableViewViewController.h; sourceTree = "<group>"; };
