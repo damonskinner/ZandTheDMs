@@ -197,6 +197,24 @@
     }];
 }
 
-
++(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/%@",donationObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"responseMessage":responseMessage};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Retrieve Donation Object Failed: %@",error.localizedDescription);
+    }];
+}
 
 @end

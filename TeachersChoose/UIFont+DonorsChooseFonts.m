@@ -11,7 +11,15 @@
 @implementation UIFont (DonorsChooseFonts)
 
 NSString *const DonorsChooseCSSFont=@"SSJunior";
-NSString *const DonorsChooseBasicFont = @"HelveticaNeue";
-NSString *const DonorsChooseBoldFont = @"HelveticaNeue-Bold";
+NSString *const DonorsChooseTitleBasicFont = @"Rooney-Regular";
+NSString *const DonorsChooseTitleBoldFont = @"Rooney-Bold";
+NSString *const DonorsChooseTitleLightFont = @"Rooney-Light";
+NSString *const DonorsChooseTitleItalicFont = @"Rooney-RegularItalic";
+
+NSString *const DonorsChooseBodyBasicFont = @"Rooney-Regular";
+NSString *const DonorsChooseBodyBoldFont = @"Rooney-Bold";
+NSString *const DonorsChooseBodyLightFont = @"Rooney-Light";
+NSString *const DonorsChooseBodyItalicFont = @"Rooney-RegularItalic";
+
 
 @end

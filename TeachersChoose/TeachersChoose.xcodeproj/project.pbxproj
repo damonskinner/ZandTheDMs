@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3603946D1ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 360394691ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf */; };
+		3603946E1ADC19B200067658 /* Jan Fromm - Rooney-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3603946A1ADC19B200067658 /* Jan Fromm - Rooney-Light.otf */; };
+		3603946F1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3603946B1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf */; };
+		360394701ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3603946C1ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf */; };
+		360394761ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 360394721ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf */; };
+		360394771ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 360394731ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf */; };
+		360394781ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 360394741ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf */; };
+		360394791ADC19BA00067658 /* Jan Fromm - RooneySans-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 360394751ADC19BA00067658 /* Jan Fromm - RooneySans-RegularItalic.otf */; };
 		3617DEF91ACC376E0078F4E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEF81ACC376E0078F4E3 /* main.m */; };
 		3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF001ACC376E0078F4E3 /* Main.storyboard */; };
 		3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF031ACC376E0078F4E3 /* Images.xcassets */; };
@@ -63,6 +71,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		360394691ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - Rooney-Bold.otf"; sourceTree = "<group>"; };
+		3603946A1ADC19B200067658 /* Jan Fromm - Rooney-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - Rooney-Light.otf"; sourceTree = "<group>"; };
+		3603946B1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - Rooney-Regular.otf"; sourceTree = "<group>"; };
+		3603946C1ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - Rooney-RegularItalic.otf"; sourceTree = "<group>"; };
+		360394721ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - RooneySans-Bold.otf"; sourceTree = "<group>"; };
+		360394731ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - RooneySans-Light.otf"; sourceTree = "<group>"; };
+		360394741ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - RooneySans-Regular.otf"; sourceTree = "<group>"; };
+		360394751ADC19BA00067658 /* Jan Fromm - RooneySans-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jan Fromm - RooneySans-RegularItalic.otf"; sourceTree = "<group>"; };
 		360394F61ACCA70500114853 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = TeachersChoose/LogInViewController.h; sourceTree = "<group>"; };
 		360394F71ACCA70500114853 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = TeachersChoose/LogInViewController.m; sourceTree = "<group>"; };
 		360394F81ACCA70500114853 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = TeachersChoose/SignUpViewController.h; sourceTree = "<group>"; };
@@ -165,11 +181,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		360394681ADC19B200067658 /* Rooney */ = {
+			isa = PBXGroup;
+			children = (
+				360394691ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf */,
+				3603946A1ADC19B200067658 /* Jan Fromm - Rooney-Light.otf */,
+				3603946B1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf */,
+				3603946C1ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf */,
+			);
+			path = Rooney;
+			sourceTree = "<group>";
+		};
+		360394711ADC19BA00067658 /* RooneySans */ = {
+			isa = PBXGroup;
+			children = (
+				360394721ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf */,
+				360394731ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf */,
+				360394741ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf */,
+				360394751ADC19BA00067658 /* Jan Fromm - RooneySans-RegularItalic.otf */,
+			);
+			path = RooneySans;
+			sourceTree = "<group>";
+		};
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
-				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
-				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
 				36AE94701AD5D2E400F32AD5 /* ProposalTableViewCell.h */,
 				36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */,
 				36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */,
@@ -255,6 +291,8 @@
 		36AE944F1AD4907B00F32AD5 /* Support Classes */ = {
 			isa = PBXGroup;
 			children = (
+				360394711ADC19BA00067658 /* RooneySans */,
+				360394681ADC19B200067658 /* Rooney */,
 				36AE945B1AD586A400F32AD5 /* ss-junior */,
 				36AE94551AD564F100F32AD5 /* UIFont+DonorsChooseFonts.h */,
 				36AE94561AD564F100F32AD5 /* UIFont+DonorsChooseFonts.m */,
@@ -273,6 +311,8 @@
 		36AE94501AD490AF00F32AD5 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
+				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
 				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
 				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
@@ -473,16 +513,24 @@
 				36AE94661AD586A400F32AD5 /* ss-junior.ttf in Resources */,
 				36AE94741AD5D2E400F32AD5 /* ProposalTableViewCell.xib in Resources */,
 				3617DF021ACC376E0078F4E3 /* Main.storyboard in Resources */,
+				360394701ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf in Resources */,
 				3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
 				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
 				E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */,
 				36AE94621AD586A400F32AD5 /* ss-junior.css in Resources */,
+				360394781ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf in Resources */,
 				36AE94651AD586A400F32AD5 /* ss-junior.svg in Resources */,
+				3603946E1ADC19B200067658 /* Jan Fromm - Rooney-Light.otf in Resources */,
+				360394791ADC19BA00067658 /* Jan Fromm - RooneySans-RegularItalic.otf in Resources */,
+				3603946F1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf in Resources */,
+				360394771ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf in Resources */,
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
 				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
+				360394761ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf in Resources */,
 				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
+				3603946D1ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
