@@ -128,8 +128,8 @@
 {
     FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 
-    [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.cancelButton addTarget:self.parentTableView action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.saveButton addTarget:self.parentTableView action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
     return inputAccessoryView;
 }

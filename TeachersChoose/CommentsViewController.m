@@ -1,12 +1,12 @@
 //
-//  CommentsTableViewController.m
+//  CommentsViewController.m
 //  TeachersChoose
 //
-//  Created by Cooper Veysey on 4/8/15.
+//  Created by Damon Skinner on 4/13/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "CommentsTableViewController.h"
+#import "CommentsViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
@@ -16,16 +16,19 @@
 #import "FISInputCommentCell.h"
 
 
-@interface CommentsTableViewController () <UITextViewDelegate>
+@interface CommentsViewController () <UITextViewDelegate>
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 @property (strong, nonatomic) NSMutableDictionary *commentsDictionary;
 @property (strong, nonatomic) NSMutableArray *orderedListOfDonors;
+@property (nonatomic, strong) UITableView *myTableView;
+@property (nonatomic, strong) UISegmentedControl *mySegmentedControl;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
 -(void) populateCommentsDictionary;
--(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment;
+
 
 @end
 
@@ -33,7 +36,7 @@ NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply"; // there is a ma
 NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
 NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
-@implementation CommentsTableViewController
+@implementation CommentsViewController
 
 #pragma mark - View LifeCycle
 
@@ -43,9 +46,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     [self setupSegmentedControl];
+    [self setupLayout];
     [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.myTableView.delegate=self;
+    self.myTableView.dataSource=self;
 }
 
 -(void)didReceiveMemoryWarning
@@ -71,14 +77,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
     NSArray *thisSetOfComments = self.commentsDictionary[donorName];
     FISComment *thisComment = thisSetOfComments[indexPath.row];
-
+    
     if ([thisComment.commentBody isEqualToString: INPUT_CELL_PLACEHOLDER])
     {
         FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
         if (!cell) {
             cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
         }
-//        cell.parentTableView = tableView;
+        //        cell.parentTableView = tableView;
         cell.placeholder = INPUT_CELL_PLACEHOLDER;
         return cell;
     }
@@ -145,19 +151,55 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 #pragma mark - Initialization Helpers
 
+-(void) setupLayout {
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.text=self.proposal.title;
+    self.titleLabel.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
+    self.titleLabel.textColor=[UIColor DonorsChooseBlack];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.textAlignment=NSTextAlignmentCenter;
+    self.myTableView = [[UITableView alloc]init];
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.myTableView];
+    self.view.backgroundColor=[UIColor DonorsChooseGreyLight];
+    
+    
+    
+    [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
+    [self.myTableView removeConstraints:self.myTableView.constraints];
+    [self.titleLabel removeConstraints:self.titleLabel.constraints];
+    [self.view removeConstraints:self.view.constraints];
+    
+    [self.myTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.mySegmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSDictionary *views = @{@"view":self.view,@"segmentedControl":self.mySegmentedControl,@"titleLabel":self.titleLabel,@"tableView":self.myTableView};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel(view)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[segmentedControl(view)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-65-[titleLabel(80)][segmentedControl(35)]-[tableView]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
+}
+
+
+
 -(void) setupSegmentedControl
 {
-    self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
-    ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
-    self.tableView.tableHeaderView.layer.borderWidth=1;
-    self.tableView.tableHeaderView.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
-    self.tableView.tableHeaderView.tintColor=[UIColor DonorsChooseOrange];
+    self.mySegmentedControl= [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    self.mySegmentedControl.selectedSegmentIndex = 0;
+
+    self.mySegmentedControl.layer.borderWidth=1;
+    self.mySegmentedControl.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
+    self.mySegmentedControl.tintColor=[UIColor DonorsChooseOrange];
+    [self.view addSubview:self.mySegmentedControl];
 }
 
 -(void) prepareTableViewForResizingCells
 {
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 50.0;
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
+    self.myTableView.estimatedRowHeight = 50.0;
 }
 
 -(void) populateCommentsDictionary
@@ -171,7 +213,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
     }
     NSLog(@"dictionary %@", self.commentsDictionary);
-    [self.tableView reloadData];
+    [self.myTableView reloadData];
 }
 
 
