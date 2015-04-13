@@ -349,10 +349,10 @@
 		E25D84C01ACEFEF100D98118 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
-				3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */,
-				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
 				E27F0EF81AD9EA4D00E6AC5F /* FISComment.h */,
 				E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */,
+				3DD567A81AD57EF50052DD95 /* CommentsTableViewController.h */,
+				3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */,
 				E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */,
 				E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */,
 				E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */,

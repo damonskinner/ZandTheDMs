@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class FISDonation;
 typedef enum commentType{
     CommentFromDonor, CommentFromTeacher
 } commentType;
@@ -19,5 +19,7 @@ typedef enum commentType{
 
 -(instancetype) initWithTeacherComment:(NSString*) teacherComment;
 -(instancetype) initWithDonorComment:(NSString *)donorComment;
++(FISComment*) createDonorCommentFromDonation: (FISDonation*) donation;
++(FISComment*) createTeacherCommentFromDonation: (FISDonation*) donation;
 
 @end

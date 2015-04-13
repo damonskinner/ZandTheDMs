@@ -25,14 +25,11 @@
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
 -(void) populateCommentsDictionary;
--(FISComment*) createDonorCommentFromDonation: (FISDonation*) donation;
--(FISComment*) createTeacherCommentFromDonation: (FISDonation*) donation;
-
 -(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment;
 
 @end
 
-NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply";
+NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply"; // there is a matching one in FISComment
 NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
 NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
@@ -81,7 +78,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         if (!cell) {
             cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
         }
-        cell.parentTableView = tableView;
+//        cell.parentTableView = tableView;
         cell.placeholder = INPUT_CELL_PLACEHOLDER;
         return cell;
     }
@@ -91,30 +88,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         if (!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
         }
-        [self formatCellForBasicDisplay: cell withComment: thisComment];
+        [self formatCell: cell forBasicDisplaywithComment: thisComment];
         return cell;
     }
 }
 
 #pragma mark - UITableViewDelegate
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // have to change cell.textLabel color here cause
-    // it will be set to clear otherwise
-    
-    //FIXME: cell.textLabel corner radius not working
-    if(indexPath.row == 0)
-    {
-        cell.textLabel.backgroundColor = [UIColor lightGrayColor];
-        cell.textLabel.layer.cornerRadius = (10);
-    }
-    else if(indexPath.row == 1 && ![cell isKindOfClass: [FISInputCommentCell class]])
-    {
-        cell.textLabel.backgroundColor = [UIColor colorWithRed:0.092 green:0.648 blue:1.000 alpha:1.000];
-        cell.textLabel.textAlignment = NSTextAlignmentRight;
-    }
-}
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"%@", [self.commentsDictionary allKeys][section]];
@@ -123,30 +102,44 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     // height-less because we implement tableView:heightForFooterInSection:
-    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 0)];
+    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     view.backgroundColor = [UIColor clearColor];
     return view;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 20; // just seemed like a magical number
+    return 30; // just seemed like a magical number
 }
 
 #pragma mark - Formatting Helpers
 
--(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment
+-(void) formatCell:(UITableViewCell*) cell forBasicDisplaywithComment: (FISComment*) comment
 {
     cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = comment.commentBody;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self formatCell: cell byCommentTypeWithComment:comment];
 }
 
--(void) formatCellAsDonorComment
+-(void) formatCell: (UITableViewCell*) cell byCommentTypeWithComment: (FISComment *) comment
 {
-    
+    // !!! need to have counter-acting actions in each since cells are reusable
+    if (comment.commentType == CommentFromDonor)
+    {
+        cell.backgroundColor = [UIColor DonorsChooseGreyLight];
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.indentationLevel = 0;
+    }
+    else
+    {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
+        cell.indentationLevel = 3;
+    }
 }
 
 -(void) formatCellAsTeacherComment
@@ -176,43 +169,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
     for(FISDonation *donation in self.proposal.donations)
     {
-        FISComment *donorComment = [self createDonorCommentFromDonation: (FISDonation*) donation];
-        FISComment *teacherResponse = [self createTeacherCommentFromDonation: (FISDonation*) donation];
+        FISComment *donorComment = [FISComment createDonorCommentFromDonation: (FISDonation*) donation];
+        FISComment *teacherResponse = [FISComment createTeacherCommentFromDonation: (FISDonation*) donation];
         [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
     }
     NSLog(@"dictionary %@", self.commentsDictionary);
     [self.tableView reloadData];
 }
 
--(FISComment*) createDonorCommentFromDonation: (FISDonation*) donation
-{
-    FISComment *donorComment;
-    if (!donation.donorMessage || [donation.donorMessage isEqualToString:@""])
-    {
-        NSString *automatedComment = [NSString stringWithFormat:@"%@ donated $%@.", donation.donorName, donation.donationAmount];
-        NSLog(@"automatedComment:%@", automatedComment);
-        donorComment = [[FISComment alloc] initWithDonorComment: automatedComment];
-    }
-    else
-    {
-        donorComment = [[FISComment alloc] initWithDonorComment:donation.donorMessage];
-    }
-    return donorComment;
-}
 
--(FISComment*) createTeacherCommentFromDonation: (FISDonation*) donation
-{
-    FISComment *teacherResponse;
-    if (!donation.responseMessage || [donation.responseMessage isEqualToString:@""])
-    {
-        NSString *tapMeText = INPUT_CELL_PLACEHOLDER;
-        teacherResponse = [[FISComment alloc] initWithTeacherComment:tapMeText];
-    }
-    else
-    {
-        teacherResponse = [[FISComment alloc] initWithTeacherComment:donation.responseMessage];
-    }
-    return teacherResponse;
-}
 
 @end

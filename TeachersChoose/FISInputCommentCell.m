@@ -13,10 +13,18 @@
 
 @interface FISInputCommentCell () <UITextViewDelegate>
 
+@property (strong, nonatomic) UITableView *parentTableView;
 @property (strong, nonatomic) UITextView *myTextView;
-@property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
 
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
+
+-(void) constrainTextView:(UITextView *) textView;
+
+-(FISCommentInputAccessoryView *)createInputAccessoryView;
+-(void) cancelButtonTapped;
+-(void) saveButtonTapped;
+-(void) handleSaveButton;
+
 @end
 
 @implementation FISInputCommentCell
@@ -44,6 +52,22 @@
     }
 }
 
+-(UITableView *)parentTableView
+{
+    // get the superview
+    id view = [self superview];
+    
+    // if the superview exists and is NOT a tableview, keep going up
+    while (view && [view isKindOfClass:[UITableView class]] == NO) {
+        view = [view superview];
+    }
+
+    // cast it
+    UITableView *tableView = (UITableView *)view;
+    
+    return tableView;
+}
+
 #pragma mark - Formatting
 
 -(void)formatCellWithPlaceholder:(NSString *)placeholder
@@ -53,6 +77,18 @@
     self.myTextView.textAlignment = NSTextAlignmentCenter;
     self.myTextView.font = self.textLabel.font;
     self.myTextView.textColor = [UIColor lightGrayColor];
+}
+
+-(void) constrainTextView:(UITextView *) textView
+{
+    [self.contentView addSubview: textView];
+    textView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSDictionary *views = @{@"tv":textView};
+    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:views];
+    [self.contentView addConstraints:horizontal];
+    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
+    [self.contentView addConstraints:vertical];
 }
 
 #pragma mark - UITextViewDelegate
@@ -86,34 +122,9 @@
     [self handleSaveButton];
 }
 
-#pragma mark - Helpers
-
--(void) constrainTextView:(UITextView *) textView
-{
-    [self.contentView addSubview: textView];
-    textView.translatesAutoresizingMaskIntoConstraints = NO;
-
-    NSDictionary *views = @{@"tv":textView};
-    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:views];
-    [self.contentView addConstraints:horizontal];
-    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
-    [self.contentView addConstraints:vertical];
-}
-
--(void) handleSaveButton
-{
-    if (self.myTextView.text.length > 0) {
-        [self.textViewInputAccessoryView.saveButton setEnabled: YES];
-        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor DonorsChooseOrange];
-    }
-    else{
-        [self.textViewInputAccessoryView.saveButton setEnabled: NO];
-        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
-    }
-}
 #pragma mark - InputAccessoryView
 
--(UIView*)createInputAccessoryView
+-(FISCommentInputAccessoryView *)createInputAccessoryView
 {
     FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 
@@ -133,6 +144,32 @@
 -(void) saveButtonTapped
 {
     NSLog(@"save tapped");
+    [self.myTextView resignFirstResponder];
+    self.myTextView.editable = NO;
+    self.myTextView.selectable = NO;
+    
+    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
+//    
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+//    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
+//    
+//    [alertController addAction:cancelAction];
+//    [alertController addAction:submitAction];
 }
+
+#pragma mark - IAV Helpers
+
+-(void) handleSaveButton
+{
+    if (self.myTextView.text.length > 0) {
+        [self.textViewInputAccessoryView.saveButton setEnabled: YES];
+        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor DonorsChooseOrange];
+    }
+    else{
+        [self.textViewInputAccessoryView.saveButton setEnabled: NO];
+        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
+    }
+}
+
 
 @end

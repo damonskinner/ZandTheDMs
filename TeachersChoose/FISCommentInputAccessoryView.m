@@ -31,7 +31,6 @@
         [self addSubview: self.cancelButton];
         [self addSubview: self.saveButton];
     }
-    
     return self;
 }
 
