@@ -156,12 +156,12 @@
 
 -(void) settingFontAttributes {
     
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseCSSFont size:25];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:25];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     
     
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:30];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:20];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     
@@ -170,11 +170,6 @@
     self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
     
     
-    if ([self.expirationDateLabel.text integerValue]<=30) {
-        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
-    } else {
-        self.expirationDateLabel.textColor=[UIColor clearColor];
-    }
     
 }
 
@@ -190,11 +185,30 @@
     _proposal = proposal;
     self.titleLabel.text = _proposal.title;
     
-    self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@ To Go!",_proposal.costToComplete];
+    if ([_proposal.costToComplete integerValue]>0) {
+        self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@ To Go!",_proposal.costToComplete];
+    } else {
+        self.costToCompleteLabel.text=@"";
+    }
+        
+    
     
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     
-    self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
+    if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {
+        self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
+        self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
+        if ([self.expirationDateLabel.text integerValue]<=30) {
+            self.expirationDateLabel.hidden=NO;
+        } else {
+            self.expirationDateLabel.hidden=YES;
+        }
+    } else {
+        self.expirationDateLabel.hidden=NO;
+        self.expirationDateLabel.textColor=[UIColor DonorsChooseGreen];
+        self.expirationDateLabel.text=@"Project Complete!";
+    }
+    
     
     [self settingFontAttributes];
 }

@@ -13,4 +13,6 @@
 + (NSInteger)daysBetweenDate:(NSDate*)fromDateTime andDate:(NSDate*)toDateTime;
 +(NSDate *) expirationDateFormatterWithDateString: (NSString *) dateString;
 
+- (NSDate *)randomDateInYearOfDate;
+
 @end

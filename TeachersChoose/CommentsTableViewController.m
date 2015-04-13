@@ -8,6 +8,8 @@
 
 #import "CommentsTableViewController.h"
 #import "FISDonorsChooseProposal.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 #import "DetailsTabBarController.h"
 #import "FISDonation.h"
 #import "FISComment.h"
@@ -157,6 +159,9 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 {
     self.tableView.tableHeaderView = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
     ((UISegmentedControl*)self.tableView.tableHeaderView).selectedSegmentIndex = 0;
+    self.tableView.tableHeaderView.layer.borderWidth=1;
+    self.tableView.tableHeaderView.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
+    self.tableView.tableHeaderView.tintColor=[UIColor DonorsChooseOrange];
 }
 
 -(void) prepareTableViewForResizingCells

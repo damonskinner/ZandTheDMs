@@ -10,6 +10,7 @@
 #import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import "UIColor+DonorsChooseColors.h"
 #import "CustomItemUIActivityItemProvider.h"
 #import "DonorsTableViewController.h"
 
@@ -40,6 +41,9 @@
 		[view removeConstraints:[view constraints]];
 		[view setTranslatesAutoresizingMaskIntoConstraints:NO];
 	}
+    
+    
+
 
 	self.view.backgroundColor = [UIColor whiteColor];
 
@@ -59,7 +63,7 @@
 	self.titleLabel.numberOfLines = 0;
 	self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	self.titleLabel.text = self.proposal.title;
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseCSSFont size:24];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:24];
 	[self.titleLabel sizeToFit];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[titleLabel]-|" options:0 metrics:nil views:views]];
@@ -101,10 +105,29 @@
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[numberOfDonations]" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[numberOfDonations(30)]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[shareButton]-|" options:0 metrics:nil views:views]];
+    
+    NSLayoutConstraint *shareButtonWidthConstraints = [NSLayoutConstraint constraintWithItem:self.self.shareButton
+                                     attribute:NSLayoutAttributeWidth
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.view
+                                     attribute:NSLayoutAttributeWidth
+                                    multiplier:0.3
+                                      constant:0];
+    [self.view addConstraint:shareButtonWidthConstraints];
+    
+    NSLayoutConstraint *shareButtonCenterXConstraints = [NSLayoutConstraint constraintWithItem:self.self.shareButton
+                                                                                   attribute:NSLayoutAttributeCenterX
+                                                                                   relatedBy:NSLayoutRelationEqual
+                                                                                      toItem:self.view
+                                                                                   attribute:NSLayoutAttributeCenterX
+                                                                                  multiplier:1.0
+                                                                                    constant:0];
+    [self.view addConstraint:shareButtonCenterXConstraints];
+    
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[numberOfDonations]-50-[shareButton]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[numberOfDonations]-[donorsListButton]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[numberOfDonations]-10-[donorsListButton]" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[donorsListButton(30)]" options:0 metrics:nil views:views]];
 }
 
@@ -132,13 +155,41 @@
 	[self.view addSubview:self.numberOfDonations];
     
     self.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    
     [self.shareButton addTarget:self action:@selector(shareTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [self.shareButton setTitle:@"Share" forState:UIControlStateNormal];
+    self.shareButton.backgroundColor=[UIColor DonorsChooseOrange];
+    self.shareButton.tintColor=[UIColor DonorsChooseGreyVeryLight];
+    self.shareButton.layer.cornerRadius=10;
+    self.shareButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:15];
+    self.shareButton.layer.borderWidth=1.0f;
+    self.shareButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
+    self.shareButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
+    self.shareButton.layer.shadowOpacity=0.3;
+    self.shareButton.layer.shadowRadius=7;
+    self.shareButton.layer.shadowOffset=CGSizeMake(2, 2);
+    
+
     [self.view addSubview:self.shareButton];
     
     self.donorsListButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.donorsListButton addTarget:self action:@selector(donorsListButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [self.donorsListButton setTitle:@"Donors List" forState:UIControlStateNormal];
+    [self.donorsListButton setTitle:@"  Donors List  " forState:UIControlStateNormal];
+    
+    self.donorsListButton.backgroundColor=[UIColor DonorsChooseOrange];
+    self.donorsListButton.tintColor=[UIColor DonorsChooseGreyVeryLight];
+    self.donorsListButton.layer.cornerRadius=10;
+    self.donorsListButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:15];
+    self.donorsListButton.layer.borderWidth=1.0f;
+    self.donorsListButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
+    self.donorsListButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
+    self.donorsListButton.layer.shadowOpacity=0.3;
+    self.donorsListButton.layer.shadowRadius=7;
+    self.donorsListButton.layer.shadowOffset=CGSizeMake(2, 2);
+    
     [self.view addSubview:self.donorsListButton];
 }
 
@@ -151,7 +202,12 @@
 - (void)donorsListButtonTapped {
     DonorsTableViewController *donorsTable = [[DonorsTableViewController alloc] init];
     donorsTable.proposal = self.proposal;
+    
+
+//    [self.navigationController addChildViewController:donorsTable];
     [self.navigationController presentViewController:donorsTable animated:YES completion:nil];
+    
+
 }
 
 @end

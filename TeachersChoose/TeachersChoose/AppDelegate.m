@@ -10,7 +10,11 @@
 #import <Parse/Parse.h>
 #import "FISDonorsChooseProposal.h"
 #import "FISConstants.h"
-#import "CommentsTableViewController.h"
+
+
+
+#import "UIColor+DonorsChooseColors.h"
+
 
 
 @interface AppDelegate ()
@@ -24,7 +28,8 @@
     
     [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
-
+    [[UINavigationBar appearance] setTintColor:[UIColor DonorsChooseGreyVeryLight]];
+    
     // Override point for customization after application launch.
     return YES;
 }

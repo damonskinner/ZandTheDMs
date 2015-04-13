@@ -12,6 +12,8 @@
 // child VCs
 #import "StatDetailsViewController.h"
 #import "CommentsTableViewController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 
 @interface DetailsTabBarController ()
 
@@ -29,13 +31,18 @@
     // make icons / tabBarItems
 
     UIImage *statsImage = [[FAKIonIcons iosPulseStrongIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    
     statsVC.tabBarItem        = [[UITabBarItem alloc] initWithTitle:@"Stats" image:statsImage  tag:0];
+    
+    [statsVC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]} forState:UIControlStateSelected];
+    self.tabBar.tintColor=[UIColor DonorsChooseOrange];
     
     UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     commentsTVC.tabBarItem    = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
     
     // make nav controllers
     UINavigationController *statsNav    = [[UINavigationController alloc] init];
+    
     UINavigationController *commentsNav = [[UINavigationController alloc] init];
     
     // add their respective children
@@ -43,7 +50,7 @@
     [commentsNav addChildViewController: commentsTVC];
     
     // add them to self.viewControllers
-    self.viewControllers = @[statsNav, commentsNav];
+    self.viewControllers = @[commentsNav,statsNav];
 }
 
 - (void)didReceiveMemoryWarning {

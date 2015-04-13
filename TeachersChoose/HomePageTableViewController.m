@@ -8,9 +8,11 @@
 
 #import "HomePageTableViewController.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonorsChooseCompletedProposal.h"
 #import "ProposalTableViewCell.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 #import <FAKIonIcons.h>
 
 @interface HomePageTableViewController ()
@@ -23,19 +25,44 @@
     [super viewDidLoad];
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
     
-    [self setHeaderImage:self.datastore.loggedInTeacher.image];
+    UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
+
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = testView.bounds;
+    gradientLayer.colors= @[(id)[UIColor clearColor].CGColor, (id)[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.85f].CGColor];
+    gradientLayer.locations=@[[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.85]];
+    gradientLayer.startPoint = CGPointMake(0.5, 0);
+    gradientLayer.endPoint = CGPointMake(0.5, 1);
+    [testView.layer addSublayer:gradientLayer];
+    
+    UIGraphicsBeginImageContextWithOptions(testView.frame.size, testView.opaque, 0.0);
+    [testView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    [self setHeaderImage:newImage];
+//    [self setHeaderImage:self.datastore.loggedInTeacher.image];
     [self setTitleText:self.datastore.loggedInTeacher.name];
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
+    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
+
+    
 
     
     
-    self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseGreyVeryLight];
     
-    self.title = @"Home";
+    self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+    self.title=@"Home";
+    
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]}];
-    [self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseBoldFont size:25]}];
+    self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
+    
+    [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
+
+
     
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
@@ -50,7 +77,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
     
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGrey];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
 //    
 //    
 //    
@@ -129,17 +156,26 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
     
-    return 200;
+    if (indexPath.section==0) {
+        return 200;
+    } else {
+        return 140;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Number of rows is the number of time zones in the region for the specified section.
-    
-    return [self.datastore.loggedInTeacherProposals count];
+    if (section==0) {
+        return [self.datastore.loggedInTeacherProposals count];
+    } else {
+        return [self.datastore.loggedInTeacherCompletedProposals count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,8 +189,11 @@
     }
     
     
-    
-    cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
+    if(indexPath.section==0) {
+        cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
+    } else if (indexPath.section ==1) {
+        cell.proposal = [self.datastore.loggedInTeacherCompletedProposals objectAtIndex:indexPath.row];
+    }
     
     
     return cell;
@@ -166,17 +205,63 @@
     return NO;
 }
 
+
+-(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 30;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    
+    if(section ==0) {
+        headerLabel.text = @"Current Proposals";
+    } else {
+        headerLabel.text = @"Completed Proposals";
+    }
+    headerLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:20];
+    headerLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
+    view.layer.borderColor=[UIColor DonorsChooseGreyLight].CGColor;
+    view.layer.borderWidth=1;
+    view.layer.shadowOpacity=0.6;
+    view.layer.shadowRadius=10;
+    view.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
+    view.layer.shadowOffset=CGSizeMake(2, 2);
+    
+    [view addSubview:headerLabel];
+    view.backgroundColor = [UIColor DonorsChooseOrange];
+    
+    
+    
+    return view;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+//    NSLog(@"selected row: %ld", indexPath.row);
     
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     
-    FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
     
-    tabBarController.navigationItem.title = selectedProposal.title;
-    tabBarController.selectedProposal=selectedProposal;
+    if (indexPath.section ==0) {
+        FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
+        tabBarController.navigationItem.title = @"Project";
+        tabBarController.selectedProposal=selectedProposal;
+
+        
+    } else {
+        FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
+        tabBarController.navigationItem.title = @"Project";
+        tabBarController.selectedProposal=selectedProposal;
+        
+    }
+    
+    
+    
+    
     
     [self.navigationController pushViewController:tabBarController animated:YES];
     

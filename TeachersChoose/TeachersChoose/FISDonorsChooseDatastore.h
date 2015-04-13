@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FISDonorsChooseTeacher.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonation.h"
+
 
 @interface FISDonorsChooseDatastore : NSObject
 
@@ -16,6 +18,7 @@
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
+@property (nonatomic, strong) NSArray *sampleDonations;
 
 + (instancetype)sharedDataStore;
 

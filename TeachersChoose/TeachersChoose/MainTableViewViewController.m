@@ -40,6 +40,8 @@
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
+    
+    
 
 
     [self.mainTableView removeConstraints:self.mainTableView.constraints];
@@ -156,7 +158,7 @@
 
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
-    
+
     tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
     
