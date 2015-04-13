@@ -8,11 +8,14 @@
 
 #import "FISInputCommentCell.h"
 #import "FISComment.h"
-
+#import "FISCommentInputAccessoryView.h"
+#import "UIColor+DonorsChooseColors.h"
 
 @interface FISInputCommentCell () <UITextViewDelegate>
 
 @property (strong, nonatomic) UITextView *myTextView;
+@property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
+
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
 @end
 
@@ -54,17 +57,33 @@
 
 #pragma mark - UITextViewDelegate
 
+-(UIView *)textViewInputAccessoryView{
+    if(!_textViewInputAccessoryView)
+    {
+        _textViewInputAccessoryView = [self createInputAccessoryView];
+    }
+    return _textViewInputAccessoryView;
+}
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [textView setInputAccessoryView: self.textViewInputAccessoryView];
+    return YES;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     textView.text = @"";
     textView.textAlignment = NSTextAlignmentRight;
     textView.textColor = [UIColor blackColor];
+    [self handleSaveButton];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
 {
     [self.parentTableView beginUpdates];
     [self.parentTableView endUpdates];
+    [self handleSaveButton];
 }
 
 #pragma mark - Helpers
@@ -79,6 +98,41 @@
     [self.contentView addConstraints:horizontal];
     NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
     [self.contentView addConstraints:vertical];
+}
+
+-(void) handleSaveButton
+{
+    if (self.myTextView.text.length > 0) {
+        [self.textViewInputAccessoryView.saveButton setEnabled: YES];
+        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor DonorsChooseOrange];
+    }
+    else{
+        [self.textViewInputAccessoryView.saveButton setEnabled: NO];
+        self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
+    }
+}
+#pragma mark - InputAccessoryView
+
+-(UIView*)createInputAccessoryView
+{
+    FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
+
+    [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    return inputAccessoryView;
+}
+
+-(void) cancelButtonTapped
+{
+    NSLog(@"Cancel tapped");
+    [self.myTextView resignFirstResponder];
+    [self formatCellWithPlaceholder: @"Tap here to reply"];
+}
+
+-(void) saveButtonTapped
+{
+    NSLog(@"save tapped");
 }
 
 @end

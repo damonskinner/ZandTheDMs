@@ -28,11 +28,11 @@
 
 -(void) formatCellForBasicDisplay:(UITableViewCell*) cell withComment: (FISComment*) comment;
 
+@end
+
 NSString * const INPUT_CELL_PLACEHOLDER = @"Tap here to reply";
 NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
 NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
-
-@end
 
 @implementation CommentsTableViewController
 
@@ -42,33 +42,17 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 {
     [super viewDidLoad];
     
-    // START FOR TEST PURPOSES ONLY!!!!
-    
-    FISDonorsChooseProposal *proposal = [[FISDonorsChooseProposal alloc] init];
-    
-    NSMutableArray *donations = [[NSMutableArray alloc] init];
-    
-    for (NSInteger i = 0; i < 6; i++) {
-        FISDonation *donation = [[FISDonation alloc] init];
-        donation.donorName = [NSString stringWithFormat: @"Test User 00%ld", i];
-        donation.donorMessage = @"i love school sah much. Also this is gonna be longer so we test out the multiline capability of the donor formatted cells.";
-        [donations addObject: donation];
-        if (i == 4)
-        {
-            donation.donorMessage = @"";
-            donation.responseMessage = @"Worrrrd checking if teacher responses also display correctly";
-        }
-    }
-    
-    proposal.donations = donations;
-    self.proposal = proposal;
-    
-    // END FOR TEST PURPOSES ONLY!!!!
-    
-    //    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     [self setupSegmentedControl];
     [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+-(void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    NSLog(@"MEMORY WARNING");
 }
 
 #pragma mark - UITableViewDataSource
@@ -112,8 +96,39 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 #pragma mark - UITableViewDelegate
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // have to change cell.textLabel color here cause
+    // it will be set to clear otherwise
+    
+    //FIXME: cell.textLabel corner radius not working
+    if(indexPath.row == 0)
+    {
+        cell.textLabel.backgroundColor = [UIColor lightGrayColor];
+        cell.textLabel.layer.cornerRadius = (10);
+    }
+    else if(indexPath.row == 1 && ![cell isKindOfClass: [FISInputCommentCell class]])
+    {
+        cell.textLabel.backgroundColor = [UIColor colorWithRed:0.092 green:0.648 blue:1.000 alpha:1.000];
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
+    }
+}
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return [NSString stringWithFormat:@"%@", [self.commentsDictionary allKeys][section]];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    // height-less because we implement tableView:heightForFooterInSection:
+    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 0)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 20; // just seemed like a magical number
 }
 
 #pragma mark - Formatting Helpers
@@ -127,6 +142,15 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+-(void) formatCellAsDonorComment
+{
+    
+}
+
+-(void) formatCellAsTeacherComment
+{
+    
+}
 #pragma mark - Initialization Helpers
 
 -(void) setupSegmentedControl
@@ -138,7 +162,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 -(void) prepareTableViewForResizingCells
 {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    // this line is needed to cell`s textview change cause resize the tableview`s cell
     self.tableView.estimatedRowHeight = 50.0;
 }
 

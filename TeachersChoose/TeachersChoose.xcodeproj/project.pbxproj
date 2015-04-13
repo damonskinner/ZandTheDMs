@@ -49,6 +49,7 @@
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
 		E27F0EFA1AD9EA4D00E6AC5F /* FISComment.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */; };
 		E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */; };
+		E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISComment.m; sourceTree = "<group>"; };
 		E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISInputCommentCell.h; sourceTree = "<group>"; };
 		E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISInputCommentCell.m; sourceTree = "<group>"; };
+		E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCommentInputAccessoryView.h; sourceTree = "<group>"; };
+		E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCommentInputAccessoryView.m; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -352,6 +355,8 @@
 				E27F0EF91AD9EA4D00E6AC5F /* FISComment.m */,
 				E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */,
 				E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */,
+				E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */,
+				E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
+				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
 				3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */,
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,

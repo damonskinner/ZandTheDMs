@@ -24,22 +24,7 @@
     
     [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
-    
-    /* TEST PURPOSES ONLY */
-    
-    // make and set self.window
-    UIWindow *myWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window = myWindow;
-    self.window.backgroundColor = [UIColor blueColor];
-    
-    // make a commentstableviewcontroller
-    
-    CommentsTableViewController *commentsTVC = [[CommentsTableViewController alloc] init];
-    
-    self.window.rootViewController = commentsTVC;
-    [self.window addSubview: commentsTVC.view];
-    
-    [self.window makeKeyAndVisible]; // DO NOT FORGET THIS
+
     // Override point for customization after application launch.
     return YES;
 }
