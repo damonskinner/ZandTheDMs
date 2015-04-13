@@ -63,32 +63,32 @@
 	self.titleLabel.numberOfLines = 0;
 	self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	self.titleLabel.text = self.proposal.title;
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:24];
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:24];
 	[self.titleLabel sizeToFit];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[titleLabel]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[titleLabel(100)]" options:0 metrics:nil views:views]];
 
 	self.expirationDate.text = [NSString stringWithFormat:@"Exp. Date: %@", self.proposal.expirationDate];
-	self.expirationDate.font = [UIFont fontWithName:DonorsChooseBasicFont size:14];
+	self.expirationDate.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[expirationDate]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[location]-30-[expirationDate(30)]" options:0 metrics:nil views:views]];
 
 	self.schoolName.text = [NSString stringWithFormat:@"%@", self.proposal.schoolName];
     self.schoolName.textAlignment = NSTextAlignmentCenter;
-	self.schoolName.font = [UIFont fontWithName:DonorsChooseBasicFont size:16];
+	self.schoolName.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:16];
 	self.schoolName.textAlignment = NSTextAlignmentCenter;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[schoolName]-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel][schoolName(15)]" options:0 metrics:nil views:views]];
 
 	self.location.text = [NSString stringWithFormat:@"%@, %@ %@", self.proposal.city, self.proposal.state, self.proposal.zip];
-	self.location.font = [UIFont fontWithName:DonorsChooseBasicFont size:16];
+	self.location.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:16];
 	self.location.textAlignment = NSTextAlignmentCenter;
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[location]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[schoolName]-[location(20)]" options:0 metrics:nil views:views]];
 
 	self.fundingStatus.text = [NSString stringWithFormat:@"Funding Status: %@", self.proposal.fundingStatus];
-	self.fundingStatus.font = [UIFont fontWithName:DonorsChooseBasicFont size:14];
+	self.fundingStatus.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[fundingStatus]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[expirationDate]-[fundingStatus(30)]" options:0 metrics:nil views:views]];
 
@@ -96,12 +96,12 @@
 	NSInteger total = [self.proposal.totalPrice integerValue];
 	NSString *raisedSoFar = [NSString stringWithFormat:@"%d", total - costToComplete];
 	self.costToCompleteOfTotalWithPercent.text = [NSString stringWithFormat:@"Raised: $%@ of $%@ (%@%%)", raisedSoFar, self.proposal.totalPrice, self.proposal.percentFunded];
-	self.costToCompleteOfTotalWithPercent.font = [UIFont fontWithName:DonorsChooseBasicFont size:14];
+	self.costToCompleteOfTotalWithPercent.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[costToCompleteOfTotalWithPercent]-|" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[fundingStatus]-[costToCompleteOfTotalWithPercent(30)]" options:0 metrics:nil views:views]];
 
 	self.numberOfDonations.text = [NSString stringWithFormat:@"Number of Donations: %ld", (unsigned long)[self.proposal.donations count]];
-	self.numberOfDonations.font = [UIFont fontWithName:DonorsChooseBasicFont size:14];
+	self.numberOfDonations.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[numberOfDonations]" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[numberOfDonations(30)]" options:0 metrics:nil views:views]];
     
@@ -164,7 +164,7 @@
     self.shareButton.backgroundColor=[UIColor DonorsChooseOrange];
     self.shareButton.tintColor=[UIColor DonorsChooseGreyVeryLight];
     self.shareButton.layer.cornerRadius=10;
-    self.shareButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:15];
+    self.shareButton.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:15];
     self.shareButton.layer.borderWidth=1.0f;
     self.shareButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
     self.shareButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
@@ -182,7 +182,7 @@
     self.donorsListButton.backgroundColor=[UIColor DonorsChooseOrange];
     self.donorsListButton.tintColor=[UIColor DonorsChooseGreyVeryLight];
     self.donorsListButton.layer.cornerRadius=10;
-    self.donorsListButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:15];
+    self.donorsListButton.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:15];
     self.donorsListButton.layer.borderWidth=1.0f;
     self.donorsListButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
     self.donorsListButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;

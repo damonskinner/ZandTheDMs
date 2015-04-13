@@ -11,7 +11,14 @@
 @interface UIFont (DonorsChooseFonts)
 
 extern NSString *const DonorsChooseCSSFont;
-extern NSString *const DonorsChooseBasicFont;
-extern NSString *const DonorsChooseBoldFont;
+extern NSString *const DonorsChooseTitleBasicFont;
+extern NSString *const DonorsChooseTitleBoldFont;
+extern NSString *const DonorsChooseTitleLightFont;
+extern NSString *const DonorsChooseTitleItalicFont;
+
+extern NSString *const DonorsChooseBodyBasicFont;
+extern NSString *const DonorsChooseBodyBoldFont;
+extern NSString *const DonorsChooseBodyLightFont;
+extern NSString *const DonorsChooseBodyItalicFont;
 
 @end

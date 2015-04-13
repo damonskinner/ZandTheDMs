@@ -56,7 +56,7 @@
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseBoldFont size:25]}];
+                                                                      NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
     
@@ -221,7 +221,7 @@
     } else {
         headerLabel.text = @"Completed Proposals";
     }
-    headerLabel.font = [UIFont fontWithName:DonorsChooseBoldFont size:20];
+    headerLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
     headerLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
     view.layer.borderColor=[UIColor DonorsChooseGreyLight].CGColor;
     view.layer.borderWidth=1;
@@ -233,7 +233,13 @@
     [view addSubview:headerLabel];
     view.backgroundColor = [UIColor DonorsChooseOrange];
     
-    
+    if (([self.datastore.loggedInTeacherCompletedProposals count] ==0) && section==1) {
+        view.hidden=YES;
+    } else if (([self.datastore.loggedInTeacherProposals count] ==0) && section==0){
+        view.hidden=YES;
+    } else {
+        view.hidden = NO;
+    }
     
     return view;
 }

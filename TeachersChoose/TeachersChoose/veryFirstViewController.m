@@ -155,7 +155,7 @@
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
 
-    [signUpController dismissViewControllerAnimated:YES completion:nil];
+    
     PFUser *currentUser = user;
     NSNumber *maxSearchResults=@50;
     NSDictionary *params = @{@"location":@"NY",@"max":maxSearchResults};
