@@ -23,7 +23,7 @@
     donation.proposalId=donationDictionary[@"proposalId"];
     donation.donationAmount=donationDictionary[@"donationAmount"];
     
-    
+    donation.donationObjectId=donationDictionary[@"objectId"];
     
     return donation;
 }

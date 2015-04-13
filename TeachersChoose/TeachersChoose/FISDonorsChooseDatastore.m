@@ -123,6 +123,13 @@
 }
 
 
+-(void) addNewDonationResponseMessage:(NSString *)responseMessage   forProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock {
+    
+    
+    
+    
+}
+
 
 
 -(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock {

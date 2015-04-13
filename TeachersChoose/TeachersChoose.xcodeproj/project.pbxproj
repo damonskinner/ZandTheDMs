@@ -206,8 +206,6 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
-				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
-				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
 				36AE94701AD5D2E400F32AD5 /* ProposalTableViewCell.h */,
 				36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */,
 				36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */,
@@ -313,6 +311,8 @@
 		36AE94501AD490AF00F32AD5 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
+				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
 				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
 				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
