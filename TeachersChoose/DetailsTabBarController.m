@@ -50,7 +50,7 @@
     [commentsNav addChildViewController: commentsTVC];
     
     // add them to self.viewControllers
-    self.viewControllers = @[statsNav, commentsNav];
+    self.viewControllers = @[commentsNav,statsNav];
 }
 
 - (void)didReceiveMemoryWarning {

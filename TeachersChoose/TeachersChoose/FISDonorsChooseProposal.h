@@ -46,6 +46,8 @@
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSDictionary *zone;
 
+@property (nonatomic) NSInteger daysLeft;
+
 @property (nonatomic, strong) NSMutableArray *donations;
 @property (nonatomic, strong) NSString *parseObjectId;
 

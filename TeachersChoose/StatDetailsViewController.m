@@ -105,7 +105,26 @@
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[numberOfDonations]" options:0 metrics:nil views:views]];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[numberOfDonations(30)]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-150-[shareButton]-150-|" options:0 metrics:nil views:views]];
+    
+    NSLayoutConstraint *shareButtonWidthConstraints = [NSLayoutConstraint constraintWithItem:self.self.shareButton
+                                     attribute:NSLayoutAttributeWidth
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.view
+                                     attribute:NSLayoutAttributeWidth
+                                    multiplier:0.3
+                                      constant:0];
+    [self.view addConstraint:shareButtonWidthConstraints];
+    
+    NSLayoutConstraint *shareButtonCenterXConstraints = [NSLayoutConstraint constraintWithItem:self.self.shareButton
+                                                                                   attribute:NSLayoutAttributeCenterX
+                                                                                   relatedBy:NSLayoutRelationEqual
+                                                                                      toItem:self.view
+                                                                                   attribute:NSLayoutAttributeCenterX
+                                                                                  multiplier:1.0
+                                                                                    constant:0];
+    [self.view addConstraint:shareButtonCenterXConstraints];
+    
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[numberOfDonations]-50-[shareButton]" options:0 metrics:nil views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[numberOfDonations]-10-[donorsListButton]" options:0 metrics:nil views:views]];

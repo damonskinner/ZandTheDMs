@@ -17,6 +17,7 @@
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "HomePageTableViewController.h"
+#import <MBProgressHUD.h>
 
 
 
@@ -54,6 +55,7 @@
         // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         // tell the datastore to grab the current users proposals
         if([self.datastore.loggedInTeacherProposals count]<1){
             PFUser *loggedInUser = [PFUser currentUser];
@@ -67,6 +69,7 @@
     [FISParseAPI getTeacherIdForObjectId:loggedInTeacherParseObjectId andCompletionBlock:^(NSString *teacherId) {
         
         [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:teacherId andCompletionBlock:^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 [self transitionToHomePage];
         }];
@@ -90,6 +93,8 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
 
+
+    
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
 
@@ -149,11 +154,17 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    
+
+    [signUpController dismissViewControllerAnimated:YES completion:nil];
     PFUser *currentUser = user;
     NSNumber *maxSearchResults=@50;
     NSDictionary *params = @{@"location":@"NY",@"max":maxSearchResults};
+    NSOperation *APIOperation = [[NSOperation alloc] init];
+    APIOperation.completionBlock = ^{
+    };
+    
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
+        
         NSString *randomTeacherId = [self getRandomTeacherIdForNewParseUser];
 
         [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
@@ -165,9 +176,10 @@
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
             [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self transitionToHomePage];
-            }];
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                 [self dismissViewControllerAnimated:YES completion:nil];
+                 [self transitionToHomePage];
+                 }];
         }];
     }];
 }
