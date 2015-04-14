@@ -7,9 +7,10 @@
 //
 
 #import "FISInputCommentCell.h"
-#import "FISComment.h"
+#import "FISConstants.h"
 #import "FISCommentInputAccessoryView.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 
 @interface FISInputCommentCell () <UITextViewDelegate>
 
@@ -26,6 +27,8 @@
 -(void) handleSaveButton;
 
 @end
+
+
 
 @implementation FISInputCommentCell
 
@@ -45,7 +48,9 @@
     [super setSelected:selected animated:animated];
     if(selected)
     {
+        
         [self.myTextView becomeFirstResponder];
+        
     } else
     {
         [self.myTextView resignFirstResponder];
@@ -74,9 +79,10 @@
 {
     self.myTextView.text = placeholder;
     self.myTextView.scrollEnabled = NO;
-    self.myTextView.textAlignment = NSTextAlignmentCenter;
-    self.myTextView.font = self.textLabel.font;
-    self.myTextView.textColor = [UIColor lightGrayColor];
+    self.myTextView.backgroundColor=[UIColor DonorsChooseGreyVeryLight];
+    self.myTextView.textAlignment = NSTextAlignmentRight;
+    self.myTextView.font = [UIFont fontWithName:DonorsChooseCSSFont size:40];
+    self.myTextView.textColor = [UIColor DonorsChooseOrange];
 }
 
 -(void) constrainTextView:(UITextView *) textView
@@ -104,14 +110,18 @@
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [textView setInputAccessoryView: self.textViewInputAccessoryView];
+    
+    
+    
     return YES;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     textView.text = @"";
+    textView.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
     textView.textAlignment = NSTextAlignmentRight;
-    textView.textColor = [UIColor blackColor];
+    textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
 }
 
@@ -128,34 +138,13 @@
 {
     FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 
-    [inputAccessoryView.cancelButton addTarget:self.parentTableView action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [inputAccessoryView.saveButton addTarget:self.parentTableView action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
     return inputAccessoryView;
 }
 
--(void) cancelButtonTapped
-{
-    NSLog(@"Cancel tapped");
-    [self.myTextView resignFirstResponder];
-    [self formatCellWithPlaceholder: @"Tap here to reply"];
-}
 
--(void) saveButtonTapped
-{
-    NSLog(@"save tapped");
-    [self.myTextView resignFirstResponder];
-    self.myTextView.editable = NO;
-    self.myTextView.selectable = NO;
-    
-    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-//    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
-//    
-//    [alertController addAction:cancelAction];
-//    [alertController addAction:submitAction];
-}
 
 #pragma mark - IAV Helpers
 
@@ -171,5 +160,32 @@
     }
 }
 
+-(void) cancelButtonTapped
+{
+    NSLog(@"Cancel tapped");
+    [self.myTextView resignFirstResponder];
+    
+    [self formatCellWithPlaceholder: INPUT_CELL_PLACEHOLDER];
+
+}
+
+-(void) saveButtonTapped
+{
+    NSLog(@"save tapped");
+    
+    [self.CommentsViewController saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
+
+    [self.myTextView resignFirstResponder];
+    self.myTextView.editable = NO;
+    self.myTextView.selectable = NO;
+    
+    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
+    //
+    //    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    //    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
+    //
+    //    [alertController addAction:cancelAction];
+    //    [alertController addAction:submitAction];
+}
 
 @end

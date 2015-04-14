@@ -8,7 +8,7 @@
 
 #import "FISParseAPI.h"
 #import <AFNetworking.h>
-#import "FISConstants.h"
+
 
 @implementation FISParseAPI
 
@@ -197,7 +197,7 @@
     }];
 }
 
-+(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
++(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/%@",donationObjectId];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -209,11 +209,11 @@
     [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     manager.securityPolicy.allowInvalidCertificates = YES;
     
-    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        completionBlock(responseObject);
+        completionBlock();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Retrieve Donation Object Failed: %@",error.localizedDescription);
+        NSLog(@"Add Donation Response Message Failed: %@",error.localizedDescription);
     }];
 }
 

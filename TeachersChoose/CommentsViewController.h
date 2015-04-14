@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISInputCommentCell.h"
 
-@interface CommentsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CommentsViewController : UIViewController <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate, CommentCellDelegate>
+
 
 @end
