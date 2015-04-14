@@ -1,5 +1,5 @@
 //
-//  settingsViewController.h
+//  SettingsViewController.h
 //  TeachersChoose
 //
 //  Created by Ian Smith on 4/13/15.
@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIFont+DonorsChooseFonts.h"
+#import "UIColor+DonorsChooseColors.h"
 
-@interface settingsViewController : UIViewController
+@interface SettingsViewController : UIViewController
 
 @end

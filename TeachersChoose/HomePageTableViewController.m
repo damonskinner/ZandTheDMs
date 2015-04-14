@@ -14,6 +14,7 @@
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
 #import <FAKIonIcons.h>
+#import "SettingsViewController.h"
 
 @interface HomePageTableViewController ()
 
@@ -144,7 +145,8 @@
 }
 
 -(void) segueToSettingsPage {
-    
+    SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
+    [self presentViewController:settingsVC animated:YES completion: nil];
 }
 
 

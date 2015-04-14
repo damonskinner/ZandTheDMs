@@ -14,7 +14,7 @@
 #import "CustomItemUIActivityItemProvider.h"
 #import "DonorsTableViewController.h"
 
-@interface StatDetailsViewController ()<UIActivityItemSource>
+@interface StatDetailsViewController () <UIActivityItemSource>
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *expirationDate;
@@ -40,11 +40,8 @@
 	for (UIView *view in self.view.subviews) {
 		[view removeConstraints:[view constraints]];
 		[view setTranslatesAutoresizingMaskIntoConstraints:NO];
-	}
+	} 
     
-    
-
-
 	self.view.backgroundColor = [UIColor whiteColor];
 
 	self.proposal = ((DetailsTabBarController *)self.tabBarController).selectedProposal;

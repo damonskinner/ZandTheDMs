@@ -13,6 +13,7 @@
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
+#import "settingsViewController.h"
 
 
 
@@ -36,14 +37,10 @@
                               NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]}];
     [self.mainTableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
 
-    
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
     
-    
-
-
     [self.mainTableView removeConstraints:self.mainTableView.constraints];
 
     self.mainTableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -51,11 +48,8 @@
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
-    
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGrey];
-    
-    
-
 
     NSLayoutConstraint *mainTableViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.mainTableView
@@ -119,7 +113,11 @@
 }
 
 -(void) segueToSettingsPage {
-    
+    NSLog(@"Settings Button Tapped");
+    SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:settingsVC];
+    [self presentViewController:navigationController animated:YES completion: nil];
 }
 
 -(void) viewDidAppear:(BOOL)animated
