@@ -10,9 +10,7 @@
 #import <Parse/Parse.h>
 #import "FISDonorsChooseProposal.h"
 #import "FISConstants.h"
-
-
-
+#import <AFNetworking.h>
 #import "UIColor+DonorsChooseColors.h"
 
 
@@ -38,6 +36,8 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [application registerForRemoteNotifications];
+    
+    [self sendPushNotification];
     
     return YES;
 }
@@ -69,6 +69,31 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)sendPushNotification {
+    NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    NSDictionary *params = @{@"where": @{@"deviceType":@"ios"}, @"data": @{@"alert":@"From Code !"}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"Content-Type"                             forHTTPHeaderField:@"application/json"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager PUT:pushURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+
 }
 
 @end
