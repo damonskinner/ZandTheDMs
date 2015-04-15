@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +17,68 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vth-36-DM1">
+                                <rect key="frame" x="244" y="199" width="112" height="30"/>
+                                <state key="normal" title="Create Donation">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createDonationTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ELz-Rc-mlJ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jP9-LE-rBO">
+                                <rect key="frame" x="16" y="45" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeA-Dd-QES">
+                                <rect key="frame" x="16" y="138" width="15" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount Donated" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8j-nD-Lk6">
+                                <rect key="frame" x="309" y="138" width="15" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-I1-dWB">
+                                <rect key="frame" x="16" y="92" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DeA-Dd-QES" firstAttribute="top" secondItem="4tI-I1-dWB" secondAttribute="bottom" constant="25" id="0vM-7C-ISe"/>
+                            <constraint firstAttribute="centerX" secondItem="vth-36-DM1" secondAttribute="centerX" id="2bS-Mo-FEv"/>
+                            <constraint firstItem="4tI-I1-dWB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="3Dz-Ev-Gma"/>
+                            <constraint firstItem="j8j-nD-Lk6" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="DMA-bC-xhP"/>
+                            <constraint firstItem="j8j-nD-Lk6" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.45" id="Hr7-ul-Hrh"/>
+                            <constraint firstItem="4tI-I1-dWB" firstAttribute="top" secondItem="jP9-LE-rBO" secondAttribute="bottom" constant="25" id="NBj-Ju-S1y"/>
+                            <constraint firstItem="j8j-nD-Lk6" firstAttribute="top" secondItem="4tI-I1-dWB" secondAttribute="bottom" constant="25" id="S7N-eS-t24"/>
+                            <constraint firstAttribute="centerX" secondItem="jP9-LE-rBO" secondAttribute="centerX" id="T69-wq-N6N"/>
+                            <constraint firstItem="DeA-Dd-QES" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.45" id="U6h-94-X7O"/>
+                            <constraint firstItem="vth-36-DM1" firstAttribute="bottom" secondItem="j8j-nD-Lk6" secondAttribute="bottom" constant="50" id="VQq-ir-oDU"/>
+                            <constraint firstItem="jP9-LE-rBO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="Yfe-vi-5Sv"/>
+                            <constraint firstItem="jP9-LE-rBO" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="dNr-Ui-lFj"/>
+                            <constraint firstItem="DeA-Dd-QES" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="geB-3a-mNE"/>
+                            <constraint firstItem="jP9-LE-rBO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="giz-ka-qFZ"/>
+                            <constraint firstItem="4tI-I1-dWB" firstAttribute="centerX" secondItem="jP9-LE-rBO" secondAttribute="centerX" id="noj-SQ-UmI"/>
+                            <constraint firstItem="4tI-I1-dWB" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="rJP-Ky-HvG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="noj-SQ-UmI"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="amount" destination="j8j-nD-Lk6" id="5NI-fO-DrS"/>
+                        <outlet property="location" destination="DeA-Dd-QES" id="UTy-4e-PfN"/>
+                        <outlet property="message" destination="4tI-I1-dWB" id="llb-yi-joB"/>
+                        <outlet property="name" destination="jP9-LE-rBO" id="yvS-bQ-Sdw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
