@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "FISDonorsChooseTeacher.h"
+#import "FISDonorsChooseProposal.h"
+#import "FISDonation.h"
+
 
 @interface FISDonorsChooseDatastore : NSObject
 
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
+@property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
+@property (nonatomic, strong) NSArray *sampleDonations;
 
 + (instancetype)sharedDataStore;
 
@@ -22,6 +27,10 @@
 -(void)getSearchResultsWithParams: (NSDictionary *) params andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
--(void) getDonationsListForProposalId: (NSString *) proposalObjectId andCompletion:(void (^)(BOOL))completionBlock;
+-(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
+
+
+-(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock;
+
 
 @end

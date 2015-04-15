@@ -15,6 +15,10 @@
 #import "FISParseAPI.h"
 #import "FISDonation.h"
 #import "DetailsTabBarController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "HomePageTableViewController.h"
+#import <MBProgressHUD.h>
+
 
 
 @interface veryFirstViewController () <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
@@ -27,7 +31,7 @@
     [super viewDidLoad];
 
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-    
+    self.view.backgroundColor=[UIColor DonorsChooseOrange];
 
     [self.view removeConstraints:self.view.constraints];
 }
@@ -51,27 +55,25 @@
         // Present the log  in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     } else {
-
-        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         // tell the datastore to grab the current users proposals
         if([self.datastore.loggedInTeacherProposals count]<1){
             PFUser *loggedInUser = [PFUser currentUser];
-            [FISParseAPI getTeacherIdForObjectId:loggedInUser.objectId andCompletionBlock:^(NSString *teacherId) {
-                
-                [self.datastore getSearchResultsWithTeacherId:teacherId andCompletion:^(BOOL completion) {
-                    
-                    for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-                        [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
-                            
-                        }];
-                    }
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                    [self transitionToHomePage];
-                }];
-            }];
+            [self getCurrentTeacherIdForLoggedInUserParseObjectId:loggedInUser.objectId];
             
         }
     }
+}
+
+-(void) getCurrentTeacherIdForLoggedInUserParseObjectId:(NSString *) loggedInTeacherParseObjectId {
+    [FISParseAPI getTeacherIdForObjectId:loggedInTeacherParseObjectId andCompletionBlock:^(NSString *teacherId) {
+        
+        [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:teacherId andCompletionBlock:^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
+                [self transitionToHomePage];
+        }];
+    }];
 }
 
 - (BOOL)logInViewController:(PFLogInViewController *)logInController shouldBeginLogInWithUsername:(NSString *)username password:(NSString *)password {
@@ -91,32 +93,19 @@
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
 
+
+    
     PFUser *currentUser = user;
     NSString *currentTeacherId = currentUser[@"teacherId"];
-    
-    [self.datastore getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
 
-        //May need to insert API stuff here to update proposals on parse
-        if(completion) {
-            
-            for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
-                [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
-                    
-                }];
-            }
-            
-        } else {
-            NSLog(@"No active proposals");
-        }
-        //DAMON
-         [self dismissViewControllerAnimated:YES completion:nil];
+    [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:currentTeacherId andCompletionBlock:^{
         
-        // FISDonorsChooseProposal *testProposal = self.datastore.loggedInTeacherProposals[0];
-        
-        // COOPER
-         [self transitionToHomePage];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
     }];
+
 }
+
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
@@ -154,38 +143,60 @@
     return informationComplete;
 }
 
+-(NSString *) getRandomTeacherIdForNewParseUser {
+    NSUInteger r=arc4random_uniform([self.datastore.donorsChooseSearchResults count]);
+    FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
+    NSString *randomTeacherId = randomProposal.teacherId;
+    
+    return randomTeacherId;
+}
+
+
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
 
+    
     PFUser *currentUser = user;
-    NSInteger maxSearchResults=50;
-    NSDictionary *params = @{@"location":@"NY",@"max":[NSString stringWithFormat:@"%ld",maxSearchResults]};
+    NSNumber *maxSearchResults=@50;
+    NSDictionary *params = @{@"location":@"NY",@"max":maxSearchResults};
+    NSOperation *APIOperation = [[NSOperation alloc] init];
+    APIOperation.completionBlock = ^{
+    };
+    
     [self.datastore getSearchResultsWithParams:params andCompletion:^(BOOL completion) {
-        
-        NSUInteger r=arc4random_uniform((u_int32_t)[self.datastore.donorsChooseSearchResults count]);
-        FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
-        NSString *randomTeacherId = randomProposal.teacherId;
+
+        NSString *randomTeacherId = [self getRandomTeacherIdForNewParseUser];
 
         [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-            
+
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
 
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-                
-                [FISParseAPI createProposalWithId:eachProposal.proposalId withTeacherObjectId:currentUser.objectId andCompletionBlock:^(NSDictionary *responseObject){
-
-                    eachProposal.parseObjectId=responseObject[@"objectId"];
-                    
-                    [FISParseAPI addProposalObjectId:eachProposal.parseObjectId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^{
-                    }];
-                    [self.datastore getDonationsListForProposalId:eachProposal.proposalId andCompletion:^(BOOL completion) {
-                        
-                    }];
-                }];
+                [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [self transitionToHomePage];
+            [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                 [self dismissViewControllerAnimated:YES completion:nil];
+                 [self transitionToHomePage];
+                 }];
+        }];
+    }];
+}
+
+-(void) createNewParseProposalForProposal:(FISDonorsChooseProposal *) proposal andCurrentUser:(PFUser *) user {
+    [FISParseAPI createProposalWithId:proposal.proposalId withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
+        
+        proposal.parseObjectId=responseObject[@"objectId"];
+        
+        [FISParseAPI addProposalObjectId:proposal.parseObjectId toNewUserWithObjectId:user.objectId currentUserSessionToken:user.sessionToken andCompletionBlock:^{
+        }];
+        [self.datastore getDonationsListForProposal:proposal andCompletion:^(BOOL completion) {
+            if(completion) {
+                NSLog(@"%@",proposal.donations);
+            } else {
+                NSLog(@"Donations array not populated.  Check parse datastore and manually link if needed.");
+            }
         }];
     }];
 }
@@ -201,10 +212,12 @@
 }
 
 -(void) transitionToHomePage {
-    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
     UINavigationController *newNavController = [[UINavigationController alloc]init];
+//    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
+//    [newNavController addChildViewController:homePageVC];
     
-    [newNavController addChildViewController:homePageVC];
+    HomePageTableViewController *newHomePageVC =[[HomePageTableViewController alloc] init];
+    [newNavController addChildViewController:newHomePageVC];
     
     
     [self presentViewController:newNavController animated:YES completion:nil];

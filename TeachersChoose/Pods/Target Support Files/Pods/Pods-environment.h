@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_Bolts 1
 #define COCOAPODS_VERSION_PATCH_Bolts 4
 
+// FXBlurView
+#define COCOAPODS_POD_AVAILABLE_FXBlurView
+#define COCOAPODS_VERSION_MAJOR_FXBlurView 1
+#define COCOAPODS_VERSION_MINOR_FXBlurView 6
+#define COCOAPODS_VERSION_PATCH_FXBlurView 3
+
 // FontAwesomeKit
 #define COCOAPODS_POD_AVAILABLE_FontAwesomeKit
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit 2
@@ -89,6 +95,42 @@
 #define COCOAPODS_VERSION_MAJOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_MINOR_FontAwesomeKit_Zocial 2
 #define COCOAPODS_VERSION_PATCH_FontAwesomeKit_Zocial 0
+
+// MBProgressHUD
+#define COCOAPODS_POD_AVAILABLE_MBProgressHUD
+#define COCOAPODS_VERSION_MAJOR_MBProgressHUD 0
+#define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
+#define COCOAPODS_VERSION_PATCH_MBProgressHUD 1
+
+// MWFeedParser
+#define COCOAPODS_POD_AVAILABLE_MWFeedParser
+#define COCOAPODS_VERSION_MAJOR_MWFeedParser 1
+#define COCOAPODS_VERSION_MINOR_MWFeedParser 0
+#define COCOAPODS_VERSION_PATCH_MWFeedParser 1
+
+// MWFeedParser/FeedParser
+#define COCOAPODS_POD_AVAILABLE_MWFeedParser_FeedParser
+#define COCOAPODS_VERSION_MAJOR_MWFeedParser_FeedParser 1
+#define COCOAPODS_VERSION_MINOR_MWFeedParser_FeedParser 0
+#define COCOAPODS_VERSION_PATCH_MWFeedParser_FeedParser 1
+
+// MWFeedParser/NSDate+InternetDateTime
+#define COCOAPODS_POD_AVAILABLE_MWFeedParser_NSDate_InternetDateTime
+#define COCOAPODS_VERSION_MAJOR_MWFeedParser_NSDate_InternetDateTime 1
+#define COCOAPODS_VERSION_MINOR_MWFeedParser_NSDate_InternetDateTime 0
+#define COCOAPODS_VERSION_PATCH_MWFeedParser_NSDate_InternetDateTime 1
+
+// MWFeedParser/NSString+HTML
+#define COCOAPODS_POD_AVAILABLE_MWFeedParser_NSString_HTML
+#define COCOAPODS_VERSION_MAJOR_MWFeedParser_NSString_HTML 1
+#define COCOAPODS_VERSION_MINOR_MWFeedParser_NSString_HTML 0
+#define COCOAPODS_VERSION_PATCH_MWFeedParser_NSString_HTML 1
+
+// ParallaxBlur
+#define COCOAPODS_POD_AVAILABLE_ParallaxBlur
+#define COCOAPODS_VERSION_MAJOR_ParallaxBlur 0
+#define COCOAPODS_VERSION_MINOR_ParallaxBlur 1
+#define COCOAPODS_VERSION_PATCH_ParallaxBlur 4
 
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse

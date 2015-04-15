@@ -7,11 +7,11 @@
 //
 
 #import "DonorsTableViewController.h"
-#import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonation.h"
+#import "UIColor+DonorsChooseColors.h"
 
 @interface DonorsTableViewController ()
-@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end
 
@@ -19,77 +19,67 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
-    self.tableView.backgroundColor = [UIColor purpleColor];
     
-    /* setup public property (self.donors)
-       awaiting data models to do more */
-    
+    [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
+    [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Table view data source
+#pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.donors count];
+    return [self.proposal.donations count] +1;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSString *cellIdentifier = @"basicCell";
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    FISDonation *thisDonation =[[FISDonation alloc] initWithName:@"" Location:@"" Date:nil DonorMessage:@"" ResponseMessage:@"" DonationAmount:@""];
+    // get appropriate donation item
+    if(indexPath.row>0){
+        thisDonation= self.proposal.donations[indexPath.row-1];
+    }
+    
+    
+    // set standard properties
+    cell.textLabel.text = thisDonation.donorName;
+    cell.detailTextLabel.text = thisDonation.donorLocation;
+    cell.detailTextLabel.textColor = [UIColor grayColor];
+    
+    // make a new label, format it and set it as accessory view
+    UILabel *amountDonatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.frame.size.height)];
+    if (indexPath.row!=0) {
+        amountDonatedLabel.text = [NSString stringWithFormat:@"$%@", thisDonation.donationAmount];
+        amountDonatedLabel.textAlignment = NSTextAlignmentRight;
+        [cell setAccessoryView: amountDonatedLabel];
+    }
+    
+    
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    return NO;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

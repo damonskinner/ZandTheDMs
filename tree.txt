@@ -1,0 +1,442 @@
+.
+├── README.md
+├── TeachersChoose
+│   ├── CommentsTableViewController.h
+│   ├── CommentsTableViewController.m
+│   ├── CustomItemUIActivityItemProvider.h
+│   ├── CustomItemUIActivityItemProvider.m
+│   ├── DetailsTabBarController.h
+│   ├── DetailsTabBarController.m
+│   ├── DonorsTableViewController.h
+│   ├── DonorsTableViewController.m
+│   ├── FISDonation.h
+│   ├── FISDonation.m
+│   ├── FISDonorsChooseCompletedProposal.h
+│   ├── FISDonorsChooseCompletedProposal.m
+│   ├── FISParseAPI.h
+│   ├── FISParseAPI.m
+│   ├── NSDate+DateConvenienceMethods.h
+│   ├── NSDate+DateConvenienceMethods.m
+│   ├── PhotoManagerView.h
+│   ├── PhotoManagerView.m
+│   ├── PhotoManagerView.xib
+│   ├── Podfile
+│   ├── Podfile.lock
+│   ├── Pods
+│   │   ├── AFNetworking
+│   │   │   ├── AFNetworking
+│   │   │   │   ├── AFHTTPRequestOperation.h
+│   │   │   │   ├── AFHTTPRequestOperation.m
+│   │   │   │   ├── AFHTTPRequestOperationManager.h
+│   │   │   │   ├── AFHTTPRequestOperationManager.m
+│   │   │   │   ├── AFHTTPSessionManager.h
+│   │   │   │   ├── AFHTTPSessionManager.m
+│   │   │   │   ├── AFNetworkReachabilityManager.h
+│   │   │   │   ├── AFNetworkReachabilityManager.m
+│   │   │   │   ├── AFNetworking.h
+│   │   │   │   ├── AFSecurityPolicy.h
+│   │   │   │   ├── AFSecurityPolicy.m
+│   │   │   │   ├── AFURLConnectionOperation.h
+│   │   │   │   ├── AFURLConnectionOperation.m
+│   │   │   │   ├── AFURLRequestSerialization.h
+│   │   │   │   ├── AFURLRequestSerialization.m
+│   │   │   │   ├── AFURLResponseSerialization.h
+│   │   │   │   ├── AFURLResponseSerialization.m
+│   │   │   │   ├── AFURLSessionManager.h
+│   │   │   │   └── AFURLSessionManager.m
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   └── UIKit+AFNetworking
+│   │   │       ├── AFNetworkActivityIndicatorManager.h
+│   │   │       ├── AFNetworkActivityIndicatorManager.m
+│   │   │       ├── UIActivityIndicatorView+AFNetworking.h
+│   │   │       ├── UIActivityIndicatorView+AFNetworking.m
+│   │   │       ├── UIAlertView+AFNetworking.h
+│   │   │       ├── UIAlertView+AFNetworking.m
+│   │   │       ├── UIButton+AFNetworking.h
+│   │   │       ├── UIButton+AFNetworking.m
+│   │   │       ├── UIImageView+AFNetworking.h
+│   │   │       ├── UIImageView+AFNetworking.m
+│   │   │       ├── UIKit+AFNetworking.h
+│   │   │       ├── UIProgressView+AFNetworking.h
+│   │   │       ├── UIProgressView+AFNetworking.m
+│   │   │       ├── UIRefreshControl+AFNetworking.h
+│   │   │       ├── UIRefreshControl+AFNetworking.m
+│   │   │       ├── UIWebView+AFNetworking.h
+│   │   │       └── UIWebView+AFNetworking.m
+│   │   ├── Bolts
+│   │   │   ├── Bolts
+│   │   │   │   ├── Common
+│   │   │   │   │   ├── BFExecutor.h
+│   │   │   │   │   ├── BFExecutor.m
+│   │   │   │   │   ├── BFTask.h
+│   │   │   │   │   ├── BFTask.m
+│   │   │   │   │   ├── BFTaskCompletionSource.h
+│   │   │   │   │   ├── BFTaskCompletionSource.m
+│   │   │   │   │   ├── Bolts.h
+│   │   │   │   │   ├── Bolts.m
+│   │   │   │   │   └── BoltsVersion.h
+│   │   │   │   └── iOS
+│   │   │   │       ├── BFAppLink.h
+│   │   │   │       ├── BFAppLink.m
+│   │   │   │       ├── BFAppLinkNavigation.h
+│   │   │   │       ├── BFAppLinkNavigation.m
+│   │   │   │       ├── BFAppLinkResolving.h
+│   │   │   │       ├── BFAppLinkReturnToRefererController.h
+│   │   │   │       ├── BFAppLinkReturnToRefererController.m
+│   │   │   │       ├── BFAppLinkReturnToRefererView.h
+│   │   │   │       ├── BFAppLinkReturnToRefererView.m
+│   │   │   │       ├── BFAppLinkReturnToRefererView_Internal.h
+│   │   │   │       ├── BFAppLinkTarget.h
+│   │   │   │       ├── BFAppLinkTarget.m
+│   │   │   │       ├── BFAppLink_Internal.h
+│   │   │   │       ├── BFMeasurementEvent.h
+│   │   │   │       ├── BFMeasurementEvent.m
+│   │   │   │       ├── BFMeasurementEvent_Internal.h
+│   │   │   │       ├── BFURL.h
+│   │   │   │       ├── BFURL.m
+│   │   │   │       ├── BFURL_Internal.h
+│   │   │   │       ├── BFWebViewAppLinkResolver.h
+│   │   │   │       └── BFWebViewAppLinkResolver.m
+│   │   │   ├── LICENSE
+│   │   │   └── Readme.md
+│   │   ├── FontAwesomeKit
+│   │   │   ├── FontAwesomeKit
+│   │   │   │   ├── FAKFontAwesome.h
+│   │   │   │   ├── FAKFontAwesome.m
+│   │   │   │   ├── FAKFoundationIcons.h
+│   │   │   │   ├── FAKFoundationIcons.m
+│   │   │   │   ├── FAKIcon.h
+│   │   │   │   ├── FAKIcon.m
+│   │   │   │   ├── FAKIonIcons.h
+│   │   │   │   ├── FAKIonIcons.m
+│   │   │   │   ├── FAKZocial.h
+│   │   │   │   ├── FAKZocial.m
+│   │   │   │   ├── FontAwesome.otf
+│   │   │   │   ├── FontAwesomeKit.h
+│   │   │   │   ├── foundation-icons.ttf
+│   │   │   │   ├── ionicons.ttf
+│   │   │   │   └── zocial-regular-webfont.ttf
+│   │   │   ├── LICENSE
+│   │   │   └── README.md
+│   │   ├── Headers
+│   │   │   └── Public
+│   │   │       ├── AFNetworking
+│   │   │       │   ├── AFHTTPRequestOperation.h -> ../../../AFNetworking/AFNetworking/AFHTTPRequestOperation.h
+│   │   │       │   ├── AFHTTPRequestOperationManager.h -> ../../../AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h
+│   │   │       │   ├── AFHTTPSessionManager.h -> ../../../AFNetworking/AFNetworking/AFHTTPSessionManager.h
+│   │   │       │   ├── AFNetworkActivityIndicatorManager.h -> ../../../AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h
+│   │   │       │   ├── AFNetworkReachabilityManager.h -> ../../../AFNetworking/AFNetworking/AFNetworkReachabilityManager.h
+│   │   │       │   ├── AFNetworking.h -> ../../../AFNetworking/AFNetworking/AFNetworking.h
+│   │   │       │   ├── AFSecurityPolicy.h -> ../../../AFNetworking/AFNetworking/AFSecurityPolicy.h
+│   │   │       │   ├── AFURLConnectionOperation.h -> ../../../AFNetworking/AFNetworking/AFURLConnectionOperation.h
+│   │   │       │   ├── AFURLRequestSerialization.h -> ../../../AFNetworking/AFNetworking/AFURLRequestSerialization.h
+│   │   │       │   ├── AFURLResponseSerialization.h -> ../../../AFNetworking/AFNetworking/AFURLResponseSerialization.h
+│   │   │       │   ├── AFURLSessionManager.h -> ../../../AFNetworking/AFNetworking/AFURLSessionManager.h
+│   │   │       │   ├── UIActivityIndicatorView+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h
+│   │   │       │   ├── UIAlertView+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.h
+│   │   │       │   ├── UIButton+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h
+│   │   │       │   ├── UIImageView+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h
+│   │   │       │   ├── UIKit+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h
+│   │   │       │   ├── UIProgressView+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h
+│   │   │       │   ├── UIRefreshControl+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h
+│   │   │       │   └── UIWebView+AFNetworking.h -> ../../../AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h
+│   │   │       ├── Bolts
+│   │   │       │   ├── BFAppLink.h -> ../../../Bolts/Bolts/iOS/BFAppLink.h
+│   │   │       │   ├── BFAppLinkNavigation.h -> ../../../Bolts/Bolts/iOS/BFAppLinkNavigation.h
+│   │   │       │   ├── BFAppLinkResolving.h -> ../../../Bolts/Bolts/iOS/BFAppLinkResolving.h
+│   │   │       │   ├── BFAppLinkReturnToRefererController.h -> ../../../Bolts/Bolts/iOS/BFAppLinkReturnToRefererController.h
+│   │   │       │   ├── BFAppLinkReturnToRefererView.h -> ../../../Bolts/Bolts/iOS/BFAppLinkReturnToRefererView.h
+│   │   │       │   ├── BFAppLinkReturnToRefererView_Internal.h -> ../../../Bolts/Bolts/iOS/BFAppLinkReturnToRefererView_Internal.h
+│   │   │       │   ├── BFAppLinkTarget.h -> ../../../Bolts/Bolts/iOS/BFAppLinkTarget.h
+│   │   │       │   ├── BFAppLink_Internal.h -> ../../../Bolts/Bolts/iOS/BFAppLink_Internal.h
+│   │   │       │   ├── BFExecutor.h -> ../../../Bolts/Bolts/Common/BFExecutor.h
+│   │   │       │   ├── BFMeasurementEvent.h -> ../../../Bolts/Bolts/iOS/BFMeasurementEvent.h
+│   │   │       │   ├── BFMeasurementEvent_Internal.h -> ../../../Bolts/Bolts/iOS/BFMeasurementEvent_Internal.h
+│   │   │       │   ├── BFTask.h -> ../../../Bolts/Bolts/Common/BFTask.h
+│   │   │       │   ├── BFTaskCompletionSource.h -> ../../../Bolts/Bolts/Common/BFTaskCompletionSource.h
+│   │   │       │   ├── BFURL.h -> ../../../Bolts/Bolts/iOS/BFURL.h
+│   │   │       │   ├── BFURL_Internal.h -> ../../../Bolts/Bolts/iOS/BFURL_Internal.h
+│   │   │       │   ├── BFWebViewAppLinkResolver.h -> ../../../Bolts/Bolts/iOS/BFWebViewAppLinkResolver.h
+│   │   │       │   ├── Bolts.h -> ../../../Bolts/Bolts/Common/Bolts.h
+│   │   │       │   └── BoltsVersion.h -> ../../../Bolts/Bolts/Common/BoltsVersion.h
+│   │   │       ├── FontAwesomeKit
+│   │   │       │   ├── FAKFontAwesome.h -> ../../../FontAwesomeKit/FontAwesomeKit/FAKFontAwesome.h
+│   │   │       │   ├── FAKFoundationIcons.h -> ../../../FontAwesomeKit/FontAwesomeKit/FAKFoundationIcons.h
+│   │   │       │   ├── FAKIcon.h -> ../../../FontAwesomeKit/FontAwesomeKit/FAKIcon.h
+│   │   │       │   ├── FAKIonIcons.h -> ../../../FontAwesomeKit/FontAwesomeKit/FAKIonIcons.h
+│   │   │       │   ├── FAKZocial.h -> ../../../FontAwesomeKit/FontAwesomeKit/FAKZocial.h
+│   │   │       │   └── FontAwesomeKit.h -> ../../../FontAwesomeKit/FontAwesomeKit/FontAwesomeKit.h
+│   │   │       ├── Parse
+│   │   │       │   ├── PFACL.h -> ../../../Parse/Parse.framework/Headers/PFACL.h
+│   │   │       │   ├── PFAnalytics.h -> ../../../Parse/Parse.framework/Headers/PFAnalytics.h
+│   │   │       │   ├── PFAnonymousUtils.h -> ../../../Parse/Parse.framework/Headers/PFAnonymousUtils.h
+│   │   │       │   ├── PFCloud.h -> ../../../Parse/Parse.framework/Headers/PFCloud.h
+│   │   │       │   ├── PFConfig.h -> ../../../Parse/Parse.framework/Headers/PFConfig.h
+│   │   │       │   ├── PFConstants.h -> ../../../Parse/Parse.framework/Headers/PFConstants.h
+│   │   │       │   ├── PFFile.h -> ../../../Parse/Parse.framework/Headers/PFFile.h
+│   │   │       │   ├── PFGeoPoint.h -> ../../../Parse/Parse.framework/Headers/PFGeoPoint.h
+│   │   │       │   ├── PFInstallation.h -> ../../../Parse/Parse.framework/Headers/PFInstallation.h
+│   │   │       │   ├── PFNetworkActivityIndicatorManager.h -> ../../../Parse/Parse.framework/Headers/PFNetworkActivityIndicatorManager.h
+│   │   │       │   ├── PFNullability.h -> ../../../Parse/Parse.framework/Headers/PFNullability.h
+│   │   │       │   ├── PFObject+Subclass.h -> ../../../Parse/Parse.framework/Headers/PFObject+Subclass.h
+│   │   │       │   ├── PFObject.h -> ../../../Parse/Parse.framework/Headers/PFObject.h
+│   │   │       │   ├── PFProduct.h -> ../../../Parse/Parse.framework/Headers/PFProduct.h
+│   │   │       │   ├── PFPurchase.h -> ../../../Parse/Parse.framework/Headers/PFPurchase.h
+│   │   │       │   ├── PFPush.h -> ../../../Parse/Parse.framework/Headers/PFPush.h
+│   │   │       │   ├── PFQuery.h -> ../../../Parse/Parse.framework/Headers/PFQuery.h
+│   │   │       │   ├── PFRelation.h -> ../../../Parse/Parse.framework/Headers/PFRelation.h
+│   │   │       │   ├── PFRole.h -> ../../../Parse/Parse.framework/Headers/PFRole.h
+│   │   │       │   ├── PFSession.h -> ../../../Parse/Parse.framework/Headers/PFSession.h
+│   │   │       │   ├── PFSubclassing.h -> ../../../Parse/Parse.framework/Headers/PFSubclassing.h
+│   │   │       │   ├── PFTwitterUtils.h -> ../../../Parse/Parse.framework/Headers/PFTwitterUtils.h
+│   │   │       │   ├── PFUser.h -> ../../../Parse/Parse.framework/Headers/PFUser.h
+│   │   │       │   ├── PF_Twitter.h -> ../../../Parse/Parse.framework/Headers/PF_Twitter.h
+│   │   │       │   └── Parse.h -> ../../../Parse/Parse.framework/Headers/Parse.h
+│   │   │       └── ParseUI
+│   │   │           ├── PFCollectionViewCell.h -> ../../../ParseUI/ParseUI/Classes/Cells/PFCollectionViewCell.h
+│   │   │           ├── PFImageView.h -> ../../../ParseUI/ParseUI/Classes/Views/PFImageView.h
+│   │   │           ├── PFLogInView.h -> ../../../ParseUI/ParseUI/Classes/LogInViewController/PFLogInView.h
+│   │   │           ├── PFLogInViewController.h -> ../../../ParseUI/ParseUI/Classes/LogInViewController/PFLogInViewController.h
+│   │   │           ├── PFProductTableViewController.h -> ../../../ParseUI/ParseUI/Classes/ProductTableViewController/PFProductTableViewController.h
+│   │   │           ├── PFPurchaseTableViewCell.h -> ../../../ParseUI/ParseUI/Classes/Cells/PFPurchaseTableViewCell.h
+│   │   │           ├── PFQueryCollectionViewController.h -> ../../../ParseUI/ParseUI/Classes/QueryCollectionViewController/PFQueryCollectionViewController.h
+│   │   │           ├── PFQueryTableViewController.h -> ../../../ParseUI/ParseUI/Classes/QueryTableViewController/PFQueryTableViewController.h
+│   │   │           ├── PFSignUpView.h -> ../../../ParseUI/ParseUI/Classes/SignUpViewController/PFSignUpView.h
+│   │   │           ├── PFSignUpViewController.h -> ../../../ParseUI/ParseUI/Classes/SignUpViewController/PFSignUpViewController.h
+│   │   │           ├── PFTableViewCell.h -> ../../../ParseUI/ParseUI/Classes/Cells/PFTableViewCell.h
+│   │   │           ├── PFTextField.h -> ../../../ParseUI/ParseUI/Classes/Views/PFTextField.h
+│   │   │           ├── ParseUI.h -> ../../../ParseUI/ParseUI/Other/ParseUI.h
+│   │   │           └── ParseUIConstants.h -> ../../../ParseUI/ParseUI/Other/ParseUIConstants.h
+│   │   ├── Manifest.lock
+│   │   ├── Parse
+│   │   │   └── Parse.framework
+│   │   │       ├── Headers
+│   │   │       │   ├── PFACL.h
+│   │   │       │   ├── PFAnalytics.h
+│   │   │       │   ├── PFAnonymousUtils.h
+│   │   │       │   ├── PFCloud.h
+│   │   │       │   ├── PFConfig.h
+│   │   │       │   ├── PFConstants.h
+│   │   │       │   ├── PFFile.h
+│   │   │       │   ├── PFGeoPoint.h
+│   │   │       │   ├── PFInstallation.h
+│   │   │       │   ├── PFNetworkActivityIndicatorManager.h
+│   │   │       │   ├── PFNullability.h
+│   │   │       │   ├── PFObject+Subclass.h
+│   │   │       │   ├── PFObject.h
+│   │   │       │   ├── PFProduct.h
+│   │   │       │   ├── PFPurchase.h
+│   │   │       │   ├── PFPush.h
+│   │   │       │   ├── PFQuery.h
+│   │   │       │   ├── PFRelation.h
+│   │   │       │   ├── PFRole.h
+│   │   │       │   ├── PFSession.h
+│   │   │       │   ├── PFSubclassing.h
+│   │   │       │   ├── PFTwitterUtils.h
+│   │   │       │   ├── PFUser.h
+│   │   │       │   ├── PF_Twitter.h
+│   │   │       │   └── Parse.h
+│   │   │       ├── Info.plist
+│   │   │       ├── Localizable.strings
+│   │   │       ├── Modules
+│   │   │       │   └── module.modulemap
+│   │   │       ├── Parse
+│   │   │       └── third_party_licenses.txt
+│   │   ├── ParseUI
+│   │   │   ├── LICENSE
+│   │   │   ├── ParseUI
+│   │   │   │   ├── Classes
+│   │   │   │   │   ├── Cells
+│   │   │   │   │   │   ├── PFCollectionViewCell.h
+│   │   │   │   │   │   ├── PFCollectionViewCell.m
+│   │   │   │   │   │   ├── PFPurchaseTableViewCell.h
+│   │   │   │   │   │   ├── PFPurchaseTableViewCell.m
+│   │   │   │   │   │   ├── PFTableViewCell.h
+│   │   │   │   │   │   └── PFTableViewCell.m
+│   │   │   │   │   ├── Internal
+│   │   │   │   │   │   ├── Cells
+│   │   │   │   │   │   │   ├── PFActivityIndicatorCollectionReusableView.h
+│   │   │   │   │   │   │   ├── PFActivityIndicatorCollectionReusableView.m
+│   │   │   │   │   │   │   ├── PFActivityIndicatorTableViewCell.h
+│   │   │   │   │   │   │   └── PFActivityIndicatorTableViewCell.m
+│   │   │   │   │   │   ├── Extensions
+│   │   │   │   │   │   │   ├── PFAlertView.h
+│   │   │   │   │   │   │   ├── PFAlertView.m
+│   │   │   │   │   │   │   ├── PFColor.h
+│   │   │   │   │   │   │   ├── PFColor.m
+│   │   │   │   │   │   │   ├── PFImage.h
+│   │   │   │   │   │   │   ├── PFImage.m
+│   │   │   │   │   │   │   ├── PFRect.h
+│   │   │   │   │   │   │   └── PFRect.m
+│   │   │   │   │   │   ├── PFImageCache.h
+│   │   │   │   │   │   ├── PFImageCache.m
+│   │   │   │   │   │   ├── PFLocalization.h
+│   │   │   │   │   │   └── Views
+│   │   │   │   │   │       ├── Buttons
+│   │   │   │   │   │       │   ├── PFActionButton.h
+│   │   │   │   │   │       │   ├── PFActionButton.m
+│   │   │   │   │   │       │   ├── PFDismissButton.h
+│   │   │   │   │   │       │   ├── PFDismissButton.m
+│   │   │   │   │   │       │   ├── PFPrimaryButton.h
+│   │   │   │   │   │       │   ├── PFPrimaryButton.m
+│   │   │   │   │   │       │   ├── PFTextButton.h
+│   │   │   │   │   │       │   └── PFTextButton.m
+│   │   │   │   │   │       ├── PFLoadingView.h
+│   │   │   │   │   │       └── PFLoadingView.m
+│   │   │   │   │   ├── LogInViewController
+│   │   │   │   │   │   ├── PFLogInView.h
+│   │   │   │   │   │   ├── PFLogInView.m
+│   │   │   │   │   │   ├── PFLogInViewController.h
+│   │   │   │   │   │   └── PFLogInViewController.m
+│   │   │   │   │   ├── ProductTableViewController
+│   │   │   │   │   │   ├── PFProductTableViewController.h
+│   │   │   │   │   │   └── PFProductTableViewController.m
+│   │   │   │   │   ├── QueryCollectionViewController
+│   │   │   │   │   │   ├── PFQueryCollectionViewController.h
+│   │   │   │   │   │   └── PFQueryCollectionViewController.m
+│   │   │   │   │   ├── QueryTableViewController
+│   │   │   │   │   │   ├── PFQueryTableViewController.h
+│   │   │   │   │   │   └── PFQueryTableViewController.m
+│   │   │   │   │   ├── SignUpViewController
+│   │   │   │   │   │   ├── PFSignUpView.h
+│   │   │   │   │   │   ├── PFSignUpView.m
+│   │   │   │   │   │   ├── PFSignUpViewController.h
+│   │   │   │   │   │   └── PFSignUpViewController.m
+│   │   │   │   │   └── Views
+│   │   │   │   │       ├── PFImageView.h
+│   │   │   │   │       ├── PFImageView.m
+│   │   │   │   │       ├── PFTextField.h
+│   │   │   │   │       └── PFTextField.m
+│   │   │   │   ├── Generated
+│   │   │   │   │   ├── PFResources.h
+│   │   │   │   │   └── PFResources.m
+│   │   │   │   ├── Other
+│   │   │   │   │   ├── ParseUI.h
+│   │   │   │   │   └── ParseUIConstants.h
+│   │   │   │   └── Resources
+│   │   │   │       └── Localization
+│   │   │   │           └── en.lproj
+│   │   │   │               └── ParseUI.strings
+│   │   │   └── README.md
+│   │   ├── Pods.xcodeproj
+│   │   │   ├── project.pbxproj
+│   │   │   └── xcuserdata
+│   │   │       └── ian.xcuserdatad
+│   │   │           └── xcschemes
+│   │   │               ├── Pods-AFNetworking.xcscheme
+│   │   │               ├── Pods-Bolts.xcscheme
+│   │   │               ├── Pods-FontAwesomeKit.xcscheme
+│   │   │               ├── Pods-Parse.xcscheme
+│   │   │               ├── Pods-ParseUI.xcscheme
+│   │   │               ├── Pods.xcscheme
+│   │   │               └── xcschememanagement.plist
+│   │   └── Target\ Support\ Files
+│   │       ├── Pods
+│   │       │   ├── Pods-acknowledgements.markdown
+│   │       │   ├── Pods-acknowledgements.plist
+│   │       │   ├── Pods-dummy.m
+│   │       │   ├── Pods-environment.h
+│   │       │   ├── Pods-resources.sh
+│   │       │   ├── Pods.debug.xcconfig
+│   │       │   └── Pods.release.xcconfig
+│   │       ├── Pods-AFNetworking
+│   │       │   ├── Pods-AFNetworking-Private.xcconfig
+│   │       │   ├── Pods-AFNetworking-dummy.m
+│   │       │   ├── Pods-AFNetworking-prefix.pch
+│   │       │   └── Pods-AFNetworking.xcconfig
+│   │       ├── Pods-Bolts
+│   │       │   ├── Pods-Bolts-Private.xcconfig
+│   │       │   ├── Pods-Bolts-dummy.m
+│   │       │   ├── Pods-Bolts-prefix.pch
+│   │       │   └── Pods-Bolts.xcconfig
+│   │       ├── Pods-FontAwesomeKit
+│   │       │   ├── Pods-FontAwesomeKit-Private.xcconfig
+│   │       │   ├── Pods-FontAwesomeKit-dummy.m
+│   │       │   ├── Pods-FontAwesomeKit-prefix.pch
+│   │       │   └── Pods-FontAwesomeKit.xcconfig
+│   │       ├── Pods-Parse
+│   │       │   ├── Pods-Parse-Private.xcconfig
+│   │       │   ├── Pods-Parse-dummy.m
+│   │       │   ├── Pods-Parse-prefix.pch
+│   │       │   └── Pods-Parse.xcconfig
+│   │       └── Pods-ParseUI
+│   │           ├── Pods-ParseUI-Private.xcconfig
+│   │           ├── Pods-ParseUI-dummy.m
+│   │           ├── Pods-ParseUI-prefix.pch
+│   │           └── Pods-ParseUI.xcconfig
+│   ├── StatDetailsViewController.h
+│   ├── StatDetailsViewController.m
+│   ├── TeachersChoose
+│   │   ├── AppDelegate.h
+│   │   ├── AppDelegate.m
+│   │   ├── Base.lproj
+│   │   │   ├── LaunchScreen.xib
+│   │   │   └── Main.storyboard
+│   │   ├── CameraTest.storyboard
+│   │   ├── CompletionImageCollectionViewCell.h
+│   │   ├── CompletionImageCollectionViewCell.m
+│   │   ├── FISConstants.h
+│   │   ├── FISConstants.m
+│   │   ├── FISDonorsChooseAPI.h
+│   │   ├── FISDonorsChooseAPI.m
+│   │   ├── FISDonorsChooseDatastore.h
+│   │   ├── FISDonorsChooseDatastore.m
+│   │   ├── FISDonorsChooseProposal.h
+│   │   ├── FISDonorsChooseProposal.m
+│   │   ├── FISDonorsChooseTeacher.h
+│   │   ├── FISDonorsChooseTeacher.m
+│   │   ├── Images.xcassets
+│   │   │   └── AppIcon.appiconset
+│   │   │       └── Contents.json
+│   │   ├── Info.plist
+│   │   ├── LogInViewController.h
+│   │   ├── LogInViewController.m
+│   │   ├── MainTableViewViewController.h
+│   │   ├── MainTableViewViewController.m
+│   │   ├── PhotoManagerViewController.h
+│   │   ├── PhotoManagerViewController.m
+│   │   ├── ProposalTableViewCell.h
+│   │   ├── ProposalTableViewCell.m
+│   │   ├── SignUpViewController.h
+│   │   ├── SignUpViewController.m
+│   │   ├── main.m
+│   │   ├── veryFirstViewController.h
+│   │   └── veryFirstViewController.m
+│   ├── TeachersChoose.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   │   ├── contents.xcworkspacedata
+│   │   │   └── xcuserdata
+│   │   │       └── ian.xcuserdatad
+│   │   │           └── UserInterfaceState.xcuserstate
+│   │   └── xcuserdata
+│   │       └── ian.xcuserdatad
+│   │           └── xcschemes
+│   │               ├── TeachersChoose.xcscheme
+│   │               └── xcschememanagement.plist
+│   ├── TeachersChoose.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   └── xcuserdata
+│   │       └── ian.xcuserdatad
+│   │           ├── UserInterfaceState.xcuserstate
+│   │           ├── WorkspaceSettings.xcsettings
+│   │           └── xcdebugger
+│   │               └── Breakpoints_v2.xcbkptlist
+│   ├── TeachersChooseTests
+│   │   ├── Info.plist
+│   │   └── TeachersChooseTests.m
+│   ├── UIColor+DonorsChooseColors.h
+│   ├── UIColor+DonorsChooseColors.m
+│   ├── UIFont+DonorsChooseFonts.h
+│   ├── UIFont+DonorsChooseFonts.m
+│   └── ss-junior
+│       ├── ss-junior.css
+│       ├── ss-junior.eot
+│       ├── ss-junior.js
+│       ├── ss-junior.svg
+│       ├── ss-junior.ttf
+│       └── ss-junior.woff
+└── tree.txt
+
+70 directories, 369 files

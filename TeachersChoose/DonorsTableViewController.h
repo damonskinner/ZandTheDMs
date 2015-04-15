@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISDonorsChooseProposal;
+
 @interface DonorsTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *donors;
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end

@@ -17,10 +17,13 @@
 @property (nonatomic, strong) NSString *responseMessage;
 @property (nonatomic, strong) NSString *proposalId;
 @property (nonatomic, strong) NSDate *donationDate;
+@property (nonatomic, strong) NSString *donationAmount;
 
 @property (nonatomic, strong) NSString *donationObjectId;
 
 
 +(FISDonation *)donationFromDictionary:(NSDictionary *)donationDictionary;
+- (instancetype)initWithName: (NSString *) donorName Location: (NSString *) donorLocation Date: (NSDate *) donationDate DonorMessage: (NSString *) donorMessage ResponseMessage: (NSString *) responseMessage DonationAmount: (NSString *) donationAmount;
+
 
 @end

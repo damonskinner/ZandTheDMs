@@ -9,14 +9,17 @@
 #import "MainTableViewViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "ProposalTableViewCell.h"
-#import "Proposal.h"
+#import "StatDetailsViewController.h"
 #import "DetailsTabBarController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import <FAKIonIcons.h>
+
 
 
 @interface MainTableViewViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *mainTableView;
-@property (strong, nonatomic) NSMutableArray *proposalsArray;
+
 
 @end
 
@@ -26,22 +29,33 @@
     [super viewDidLoad];
     
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+    self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseGreyVeryLight];
+    
+    self.title = self.datastore.loggedInTeacher.name;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                              NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]}];
+    [self.mainTableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+
     
     [self.view removeConstraints:self.view.constraints];
     self.mainTableView.delegate = self;
     self.mainTableView.dataSource = self;
+    
+    
+
 
     [self.mainTableView removeConstraints:self.mainTableView.constraints];
 
     self.mainTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.proposalsArray = [[NSMutableArray alloc] init];
+    UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
     
-    for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
-        Proposal *newLocalProposal = [[Proposal alloc] initWithProposalTitle:eachProposal.title proposalExpirationDate:eachProposal.expirationDate proposalCostToComplete:eachProposal.costToComplete];
-        [self.proposalsArray addObject:newLocalProposal];
-        
-    }
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGrey];
+    
+    
+
 
     NSLayoutConstraint *mainTableViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.mainTableView
@@ -50,7 +64,7 @@
                                     toItem:self.view
                                  attribute:NSLayoutAttributeTop
                                 multiplier:1.0
-                                  constant:50];
+                                  constant:0];
     
     [self.view addConstraint:mainTableViewTopConstraint];
     
@@ -104,6 +118,10 @@
     
 }
 
+-(void) segueToSettingsPage {
+    
+}
+
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
@@ -116,13 +134,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Number of rows is the number of time zones in the region for the specified section.
     
-    return [self.proposalsArray count];
+    return [self.datastore.loggedInTeacherProposals count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     ProposalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
-    cell.proposal = [self.proposalsArray objectAtIndex:indexPath.row];
+    cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
     
 //    self.mainTableView.rowHeight = UITableViewAutomaticDimension;
 //    self.mainTableView.estimatedRowHeight = 100.0;
@@ -133,20 +152,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+    NSLog(@"selected row: %ld", (long)indexPath.row);
     
-    // make the tab bar controller
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
 
-    
-    //static for now
     FISDonorsChooseProposal *selectedProposal = self.datastore.loggedInTeacherProposals[indexPath.row];
     
-    
-    tabBarController.navigationItem.title = selectedProposal.title;
+
+    tabBarController.navigationItem.title = [NSString stringWithFormat:@"Project Details"]; // selectedProposal.title;
     tabBarController.selectedProposal=selectedProposal;
-    // move to it (all the child VCs are setup in viewDidLoad of DetailsTabBarController)
-//    [self.navigationController showViewController: tabBarController sender:nil];
     
     [self.navigationController pushViewController:tabBarController animated:YES];
     

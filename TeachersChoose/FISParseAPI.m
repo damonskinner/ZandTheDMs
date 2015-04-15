@@ -113,11 +113,14 @@
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
     [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"results"] count]!=0) {
+            completionBlock(responseObject[@"results"][0][@"donationsList"]);
+        }
         
-        completionBlock(responseObject[@"results"][0][@"donationsList"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
     }];
@@ -155,7 +158,6 @@
     
     
     NSDictionary *params = @{@"where": @{@"proposalId":proposalId}};
-//    NSDictionary *params = @{@"proposalId":proposalId};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
@@ -195,5 +197,46 @@
     }];
 }
 
-
++(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/%@",donationObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"responseMessage":responseMessage};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Retrieve Donation Object Failed: %@",error.localizedDescription);
+    }];
+}
+#pragma mark - Push Notifications
++(void)sendPushNotificationToEveryone {
+    NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{       @"where": @{@"deviceType": @"ios"},
+                                    @"data": @{@"alert": @"Don't fuck up your interview again !"}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"application/json"                         forHTTPHeaderField:@"Content-Type"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:pushURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
 @end

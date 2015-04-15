@@ -21,12 +21,12 @@
     donation.hasResponded=donationDictionary[@"hasResponded"];
     donation.responseMessage=donationDictionary[@"responseMessage"];
     donation.proposalId=donationDictionary[@"proposalId"];
+    donation.donationAmount=donationDictionary[@"donationAmount"];
     
-    
+    donation.donationObjectId=donationDictionary[@"objectId"];
     
     return donation;
 }
-
 
 
 @end

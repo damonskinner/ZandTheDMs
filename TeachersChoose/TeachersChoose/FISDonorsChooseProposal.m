@@ -7,6 +7,8 @@
 //
 
 #import "FISDonorsChooseProposal.h"
+#import "NSDate+DateConvenienceMethods.h"
+#import <NSString+HTML.h>
 
 @implementation FISDonorsChooseProposal
 
@@ -45,12 +47,14 @@
     proposal.teacherName=proposalDictionary[@"teacherName"];
     proposal.teacherTypes=proposalDictionary[@"teacherTypes"];
     proposal.thumbImageURL=proposalDictionary[@"thumbImageURL"];
-    proposal.title=proposalDictionary[@"title"];
+    NSString *encodedTitleString=proposalDictionary[@"title"];
+    proposal.title=[encodedTitleString stringByDecodingHTMLEntities];
     proposal.totalPrice=proposalDictionary[@"totalPrice"];
     proposal.zip=proposalDictionary[@"zip"];
     proposal.zone=proposalDictionary[@"zone"];
 
-
+    proposal.daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:proposalDictionary[@"expirationDate"]]];
+    
     return proposal;
 }
 

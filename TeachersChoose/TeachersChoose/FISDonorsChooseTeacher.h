@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface FISDonorsChooseTeacher : NSObject
 
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) NSString *totalProposals;
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSDictionary *zone;
+
+@property (nonatomic, strong) UIImage *image;
 
 +(FISDonorsChooseTeacher *)teacherFromDictionary:(NSDictionary *)teacherDictionary;
 

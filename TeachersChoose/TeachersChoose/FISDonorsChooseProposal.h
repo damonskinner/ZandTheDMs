@@ -10,13 +10,12 @@
 
 @interface FISDonorsChooseProposal : NSObject
 
-
 @property (nonatomic, strong) NSArray *additionalSubjects;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *costToComplete;
 @property (nonatomic, strong) NSString *expirationDate;
 @property (nonatomic) BOOL freeShipping;
-@property (nonatomic, strong) NSString *fulfillmentTrailer;
+@property (nonatomic, strong) NSString *fulfillmentTrailer; // I need...
 @property (nonatomic, strong) NSString *fundURL;
 @property (nonatomic, strong) NSString *fundingStatus;
 @property (nonatomic, strong) NSDictionary *gradeLevel;
@@ -46,6 +45,8 @@
 @property (nonatomic, strong) NSString *totalPrice;
 @property (nonatomic, strong) NSString *zip;
 @property (nonatomic, strong) NSDictionary *zone;
+
+@property (nonatomic) NSInteger daysLeft;
 
 @property (nonatomic, strong) NSMutableArray *donations;
 @property (nonatomic, strong) NSString *parseObjectId;
