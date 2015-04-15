@@ -50,10 +50,15 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+
     
-    NSDictionary *params = @{@"proposals": @{@"__type":@"Pointer",
+    NSDictionary *params = @{@"proposals": @{
+                                 @"__op": @"AddRelation",
+                                 @"objects": @[@{@"__type":@"Pointer",
                                                @"className":@"Proposals",
-                                               @"objectId": proposalObjectId}};
+                                               @"objectId": proposalObjectId}]
+                                             }};
+    
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     
@@ -70,7 +75,7 @@
         
         completionBlock();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Fail: %@",error.localizedDescription);
+        NSLog(@"Adding Parse Proposal Failed: %@",error.localizedDescription);
     }];
     
 }

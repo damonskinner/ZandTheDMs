@@ -18,4 +18,7 @@ NSString *const ParseRestAPIKey=@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un";
 NSString *const INPUT_CELL_PLACEHOLDER = @"ellipsis chat";
 
 
+//[{"__type":"Pointer","className":"Donations","objectId":"LbWJndAvzB"},{"__type":"Pointer","className":"Donations","objectId":"62qCHAQaqO"},{"__type":"Pointer","className":"Donations","objectId":"BeV668QqHd"},{"__type":"Pointer","className":"Donations","objectId":"S6wqrcalb1"},{"__type":"Pointer","className":"Donations","objectId":"7FZfeJ0hCx"},{"__type":"Pointer","className":"Donations","objectId":"W5kYuXr3ak"}]
+
+
 @end
