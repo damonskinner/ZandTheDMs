@@ -50,6 +50,8 @@
     [statsNav addChildViewController: statsVC];
     [commentsNav addChildViewController: commentsTVC];
     
+
+    
     // add them to self.viewControllers
     self.viewControllers = @[commentsNav,statsNav];
 }
