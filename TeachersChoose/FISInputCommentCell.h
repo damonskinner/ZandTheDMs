@@ -20,7 +20,7 @@
 @end
 
 @interface FISInputCommentCell : UITableViewCell
-
+@property (strong, nonatomic) UITextView *myTextView;
 @property (strong, nonatomic) NSString *placeholder;
 @property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
 

@@ -135,7 +135,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 {
     // height-less because we implement tableView:heightForFooterInSection:
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
-    view.backgroundColor = [UIColor clearColor];
+    view.backgroundColor = [UIColor DonorsChooseWhite];
     return view;
 }
 
@@ -146,35 +146,42 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 #pragma mark - Formatting Helpers
 
-//-(void) formatCell:(UITableViewCell*) cell forBasicDisplaywithComment: (FISComment*) comment
-//{
-//    cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    cell.textLabel.numberOfLines = 0;
-//    cell.textLabel.text = comment.commentBody;
-//
-//    
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    
-//    [self formatCell: cell byCommentTypeWithComment:comment];
-//}
-//
-//-(void) formatCell: (UITableViewCell*) cell byCommentTypeWithComment: (FISComment *) comment
-//{
-//    // !!! need to have counter-acting actions in each since cells are reusable
-//    if (comment.commentType == CommentFromDonor)
-//    {
-//        cell.backgroundColor = [UIColor DonorsChooseGrey];
-//        cell.textLabel.textAlignment = NSTextAlignmentLeft;
-//        cell.indentationLevel = 0;
-//    }
-//    else
-//    {
-//        cell.backgroundColor = [UIColor DonorsChooseGreyLight];
-//        cell.textLabel.textAlignment = NSTextAlignmentRight;
-//        cell.indentationLevel = 3;
-//    }
-//}
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(tintColor)]) {
+        if (tableView == self.myTableView) {
+            CGFloat cornerRadius = 8.f;
+            cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
+            
+            CAShapeLayer *layer = [[CAShapeLayer alloc] init];
+            CGMutablePathRef pathRef = CGPathCreateMutable();
+            CGRect bounds = (CGRectInset(cell.bounds, 10, 2));
+//            if ([cell isKindOfClass:[FISInputCommentCell class]]) {
+//                bounds = CGRectInset(((FISInputCommentCell *)cell).myTextView.bounds, 10, 2);
+//            } else if ([cell isKindOfClass:[UITableViewCell class]]){
+//                bounds = CGRectInset(cell.textLabel.frame, 10, 2);
+//            }
+            
+            CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+            CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+            CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), cornerRadius);
+            CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+            CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+            
+
+            layer.path = pathRef;
+            CFRelease(pathRef);
+
+            layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
+            UIView *testView = [[UIView alloc] initWithFrame:bounds];
+            [testView.layer insertSublayer:layer atIndex:0];
+            testView.backgroundColor = UIColor.clearColor;
+            cell.backgroundView = testView;
+        }
+    }
+}
+
+
 
 -(void) formatCell:(UITableViewCell*) cell forBasicDisplaywithMessage: (NSString*) comment andIndexPath: (NSIndexPath *) indexPath
 {
@@ -195,12 +202,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     if (indexPath.row==0)
     {
         cell.backgroundColor = [UIColor DonorsChooseGreyLight];
+        cell.textLabel.textColor=[UIColor DonorsChooseGreyVeryLight];
+        cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:17];
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
         cell.indentationLevel = 0;
     }
     else
     {
         cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
+        cell.textLabel.textColor=[UIColor DonorsChooseWhite];
+        cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:17];
         cell.textLabel.textAlignment = NSTextAlignmentRight;
         cell.indentationLevel = 3;
     }
@@ -256,6 +267,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(void) saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
+    [self.myTableView reloadData];
     
     [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
 

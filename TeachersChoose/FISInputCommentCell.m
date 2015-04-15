@@ -15,7 +15,7 @@
 @interface FISInputCommentCell () <UITextViewDelegate>
 
 @property (strong, nonatomic) UITableView *parentTableView;
-@property (strong, nonatomic) UITextView *myTextView;
+
 
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
 
