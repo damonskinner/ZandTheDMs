@@ -15,7 +15,7 @@ extern NSString *const DonorsChooseBaseURL;
 extern NSString *const ParseApplicationId;
 extern NSString *const ParseClientKey;
 extern NSString *const ParseRestAPIKey;
-
+extern NSString *const INPUT_CELL_PLACEHOLDER;
 
 
 @end

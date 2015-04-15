@@ -50,8 +50,10 @@
 
     
     
-    
+    //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+
+
     self.title=@"Home";
     
     
@@ -253,16 +255,15 @@
     
     
     if (indexPath.section ==0) {
-        FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
+//        FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
         tabBarController.navigationItem.title = @"Project";
-        tabBarController.selectedProposal=selectedProposal;
+        tabBarController.selectedProposal=self.datastore.loggedInTeacherProposals[indexPath.row];
 
         
     } else {
-        FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
+//        FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
         tabBarController.navigationItem.title = @"Project";
-        tabBarController.selectedProposal=selectedProposal;
-        
+        tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
     

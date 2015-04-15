@@ -123,9 +123,19 @@
 }
 
 
--(void) addNewDonationResponseMessage:(NSString *)responseMessage   forProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock {
+-(void) addNewDonationResponseMessage:(NSString *)responseMessage  forDonation: (FISDonation *) donation forProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock {
+    for (FISDonation *eachDonation in proposal.donations)
+    {
+        if (donation.donationObjectId == eachDonation.donationObjectId) {
+            eachDonation.responseMessage=responseMessage;
+        }
+    }
     
-    
+    [FISParseAPI addDonationResponseMessage:responseMessage forDonationWithObjectId:donation.donationObjectId andCompletionBlock:^() {
+        
+        completionBlock(YES);
+        
+    }];
     
     
 }
