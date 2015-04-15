@@ -47,7 +47,6 @@
     [self setupUIButtonCheckbox: self.checkbox1];
     [self setupUIButtonCheckbox: self.checkbox2];
     [self setupUIButtonCheckbox: self.checkbox3];
-    
 }
 
 -(void) setupUIButtonCheckbox: (UIButton *) checkbox
