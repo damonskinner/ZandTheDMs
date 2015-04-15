@@ -12,6 +12,7 @@
 @interface AddressConfirmationViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *checkbox;
+@property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 
 @end
 
@@ -19,9 +20,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    [self setupKeyboardDismissalOnTouch];
     self.nextButton.layer.cornerRadius = 10;
     [self setupCheckbox];
+}
+
+
+-(void) setupKeyboardDismissalOnTouch
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void) dismissKeyboard
+{
+    [self.inputTextField resignFirstResponder];
 }
 
 -(void) setupCheckbox
@@ -41,18 +58,28 @@
     [self evaluateCheckbox];
 }
 
-- (void) evaluateCheckbox
+- (BOOL) evaluateCheckbox
 {
     if ([self.checkbox isSelected])
     {
         self.nextButton.enabled = YES;
         self.nextButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
+        return YES;
     }
     else
     {
         self.nextButton.enabled = NO;
         self.nextButton.backgroundColor = [UIColor lightGrayColor];
+        return NO;
     }
 }
+
+#pragma mark - Navigation
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    return [self evaluateCheckbox];
+}
+
 
 @end

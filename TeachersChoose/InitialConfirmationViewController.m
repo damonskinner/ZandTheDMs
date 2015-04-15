@@ -22,7 +22,7 @@
 -(void) setupCheckboxes;
 -(void) setupUIButtonCheckbox: (UIButton *) checkbox;
 -(void) toggleCheckbox:(id)sender;
--(void) evaluateCheckboxes;
+-(BOOL) evaluateCheckboxes;
 
 @end
 
@@ -35,6 +35,29 @@
     
     self.nextButton.layer.cornerRadius = 10;
     [self setupCheckboxes];
+}
+
+#pragma mark - Navigation
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if(![self evaluateCheckboxes])
+        [self presentAlert];
+    
+    return [self evaluateCheckboxes];
+}
+
+-(void) presentAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Incomplete" message:@"First, confirm all statements by tapping the circles next to them." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self animateCheckboxForUser];
+    }];
+    
+    [alertController addAction: okayAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Checkbox Methods
@@ -63,21 +86,41 @@
     [self evaluateCheckboxes];
 }
 
-- (void) evaluateCheckboxes
+- (BOOL) evaluateCheckboxes
 {
-    BOOL allBoxesChecked = ([self.checkbox1 isSelected] && [self.checkbox2 isSelected] && [self.checkbox3 isSelected]);
+    BOOL allBoxesChecked = ([self.checkbox1 isSelected] &&
+                            [self.checkbox2 isSelected] &&
+                            [self.checkbox3 isSelected]);
     
-    if (allBoxesChecked)
-    {
-        self.nextButton.enabled = YES;
+    if (allBoxesChecked) {
         self.nextButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
+        return YES;
     }
-    else
-    {
-        self.nextButton.enabled = NO;
+    else {
         self.nextButton.backgroundColor = [UIColor lightGrayColor];
+        return NO;
     }
 }
 
+-(void) animateCheckboxForUser
+{
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: 0
+                     animations:^{
+                         self.checkbox1.selected = YES;
+                         self.checkbox1.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);                     }
+                     completion:^(BOOL finished) {
+                         if (finished)
+                         {
+                             [UIView animateWithDuration:0.5 animations:^{
+                                 self.checkbox1.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0, 1.0);
+                             } completion:^(BOOL finished) {
+                                 if(finished)
+                                     self.checkbox1.selected = NO;
+                             }];
+                         }
+                     }];
+}
 
 @end

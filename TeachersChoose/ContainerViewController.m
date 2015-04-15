@@ -7,6 +7,10 @@
 //
 
 #import "ContainerViewController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
+
+static const float totalNumberOfViewControllers = 6.0;
 
 @interface ContainerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -18,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor DonorsChooseOrange];
+    self.myProgressView.progressTintColor = [UIColor DonorsChooseOrange];
 }
 
 #pragma mark - Navigation
@@ -29,6 +35,9 @@
 
     self.navController = segue.destinationViewController;
     self.navController.delegate = self;
+    [self.navController.navigationBar setTranslucent: NO];
+    [self.navController.navigationBar setBarTintColor: [UIColor DonorsChooseOrange]];
+    [self.navController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
 }
 
 #pragma mark - UINavigationController delegate
@@ -36,9 +45,8 @@
 // THIS IS HOW WE UPDATE THE PROGRESS BAR
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    float totalNumberOfControllers = 6.0; // MAGIC NUMBER
     NSInteger currentNumberOfControllers = [navigationController.viewControllers count];
-    [self.myProgressView setProgress:(currentNumberOfControllers/totalNumberOfControllers) animated:YES];
+    [self.myProgressView setProgress:(currentNumberOfControllers/totalNumberOfViewControllers) animated:YES];
     
     NSLog(@"DID SHOW");
     NSLog(@"STACK COUNT: %ld", [navigationController.viewControllers count]);

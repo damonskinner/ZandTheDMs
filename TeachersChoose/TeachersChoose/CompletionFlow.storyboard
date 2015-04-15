@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Confirmation-->
+        <!--Initial Confirmation-->
         <scene sceneID="wPJ-Bd-Jto">
             <objects>
                 <viewController id="t45-yA-WMH" customClass="InitialConfirmationViewController" sceneMemberID="viewController">
@@ -22,8 +22,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVL-aV-wEN" userLabel="CHECKBOXES">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="580"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7Q-as-Wv1" userLabel="Checkbox 1">
-                                        <rect key="frame" x="31" y="188" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7Q-as-Wv1" userLabel="Checkbox 1">
+                                        <rect key="frame" x="30" y="188" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="X7Q-as-Wv1" secondAttribute="height" multiplier="1:1" id="QyM-X9-whJ"/>
                                         </constraints>
@@ -32,15 +32,15 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-zh-9be" userLabel="checkbox 2">
-                                        <rect key="frame" x="31" y="297" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-zh-9be" userLabel="checkbox 2">
+                                        <rect key="frame" x="30" y="297" width="60" height="60"/>
                                         <color key="tintColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Au8-Y9-yen" userLabel="checkbox 3">
-                                        <rect key="frame" x="31" y="428" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Au8-Y9-yen" userLabel="checkbox 3">
+                                        <rect key="frame" x="30" y="428" width="60" height="60"/>
                                         <color key="tintColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,7 +98,7 @@
                                     <constraint firstItem="7oN-Qq-F2W" firstAttribute="left" secondItem="LfP-vI-CZr" secondAttribute="left" id="hxR-OQ-UxJ"/>
                                 </constraints>
                             </view>
-                            <button contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6j-NT-wJy">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O6j-NT-wJy">
                                 <rect key="frame" x="75" y="490" width="450" height="36"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -107,7 +107,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Ek8-I7-ueb" kind="show" id="6Gs-vl-2gL"/>
+                                    <segue destination="Ek8-I7-ueb" kind="show" id="VIS-8d-4aU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -135,7 +135,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Confirmation" id="B23-yk-s7H"/>
+                    <navigationItem key="navigationItem" title="Initial Confirmation" id="B23-yk-s7H"/>
                     <connections>
                         <outlet property="checkbox1" destination="X7Q-as-Wv1" id="snW-t7-lru"/>
                         <outlet property="checkbox2" destination="sBi-zh-9be" id="uMe-I7-zsE"/>
@@ -145,9 +145,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Unr-nh-q5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="-855"/>
+            <point key="canvasLocation" x="290" y="-726"/>
         </scene>
-        <!--Address Confirmation View Controller-->
+        <!--Confirm Shipping Address-->
         <scene sceneID="ydd-Lh-ZFo">
             <objects>
                 <viewController id="Ek8-I7-ueb" customClass="AddressConfirmationViewController" sceneMemberID="viewController">
@@ -159,8 +159,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgr-sZ-ddi">
-                                <rect key="frame" x="60" y="490" width="480" height="36"/>
+                            <button contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgr-sZ-ddi">
+                                <rect key="frame" x="60" y="506" width="480" height="36"/>
                                 <color key="backgroundColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Next">
@@ -169,10 +169,10 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dff-A8-LOE" userLabel="text container">
-                                <rect key="frame" x="0.0" y="145" width="600" height="290"/>
+                                <rect key="frame" x="0.0" y="174" width="600" height="290"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
-                                        <rect key="frame" x="60" y="39" width="480" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
+                                        <rect key="frame" x="60" y="38" width="480" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -183,7 +183,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="178" y="79" width="246" height="21"/>
+                                        <rect key="frame" x="177" y="78" width="246" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -195,19 +195,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="210" y="140" width="181" height="21"/>
+                                        <rect key="frame" x="210" y="139" width="181" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="I confirm that the information stated above is correct." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxR-Fu-Y0s" userLabel="CONFIRMATION">
-                                        <rect key="frame" x="130" y="215" width="460" height="21"/>
+                                        <rect key="frame" x="130" y="224" width="460" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unD-BZ-RDa" userLabel="CHECKBOX">
-                                        <rect key="frame" x="30" y="180" width="90" height="90"/>
+                                        <rect key="frame" x="30" y="190" width="90" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="unD-BZ-RDa" secondAttribute="height" multiplier="1:1" id="zvk-C3-cmf"/>
                                         </constraints>
@@ -228,7 +228,7 @@
                                     <constraint firstItem="SxR-Fu-Y0s" firstAttribute="trailing" secondItem="dff-A8-LOE" secondAttribute="trailing" constant="-10" id="9LI-3i-Yr0"/>
                                     <constraint firstAttribute="centerX" secondItem="nhw-cl-Ogy" secondAttribute="centerX" id="Ees-bE-Kh2"/>
                                     <constraint firstItem="Nrc-6G-8Xz" firstAttribute="top" secondItem="nhw-cl-Ogy" secondAttribute="bottom" constant="10" id="FJG-TP-nY1"/>
-                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="top" secondItem="nbL-BP-7uy" secondAttribute="bottom" constant="20" id="GKB-74-8Rk"/>
+                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="top" secondItem="nbL-BP-7uy" secondAttribute="bottom" constant="30" id="GKB-74-8Rk"/>
                                     <constraint firstItem="nbL-BP-7uy" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="KmP-Uj-ulr"/>
                                     <constraint firstItem="aXr-VN-jm6" firstAttribute="width" secondItem="dff-A8-LOE" secondAttribute="width" multiplier="0.8" id="OHL-KR-yjR"/>
                                     <constraint firstItem="nbL-BP-7uy" firstAttribute="top" secondItem="Nrc-6G-8Xz" secondAttribute="bottom" constant="10" id="QT3-Y4-4kb"/>
@@ -252,20 +252,19 @@
                             <constraint firstItem="tgr-sZ-ddi" firstAttribute="width" secondItem="CL4-SI-JCV" secondAttribute="width" multiplier="0.8" id="gXO-n8-Zcp"/>
                             <constraint firstItem="dff-A8-LOE" firstAttribute="width" secondItem="CL4-SI-JCV" secondAttribute="width" id="l0U-Ap-iYM"/>
                             <constraint firstItem="dff-A8-LOE" firstAttribute="height" secondItem="CL4-SI-JCV" secondAttribute="height" multiplier="0.5" id="oqh-xF-U2Z"/>
-                            <constraint firstItem="dff-A8-LOE" firstAttribute="centerY" secondItem="CL4-SI-JCV" secondAttribute="centerY" id="tpo-m6-gJH"/>
+                            <constraint firstItem="dff-A8-LOE" firstAttribute="centerY" secondItem="CL4-SI-JCV" secondAttribute="centerY" multiplier="1.1" id="tpo-m6-gJH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="M5c-ul-VXx">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Confirm Shipping Address" id="M5c-ul-VXx"/>
                     <connections>
                         <outlet property="checkbox" destination="unD-BZ-RDa" id="cQI-n3-HRe"/>
+                        <outlet property="inputTextField" destination="aXr-VN-jm6" id="qHt-Bz-wNi"/>
                         <outlet property="nextButton" destination="tgr-sZ-ddi" id="QBv-4k-xKe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8o-g5-GPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="23"/>
+            <point key="canvasLocation" x="290" y="32"/>
         </scene>
         <!--Upload Completion Photos-->
         <scene sceneID="dR5-55-6xl">
@@ -369,14 +368,14 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csi-5d-zqL">
-                                <rect key="frame" x="60" y="64" width="480" height="120"/>
+                                <rect key="frame" x="60" y="88" width="480" height="72"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" secondItem="csi-5d-zqL" secondAttribute="width" multiplier="0.25" id="ayH-1p-bkH"/>
+                                    <constraint firstAttribute="height" secondItem="csi-5d-zqL" secondAttribute="width" multiplier="0.15" id="ayH-1p-bkH"/>
                                 </constraints>
                             </view>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-FF-qPf">
-                                <rect key="frame" x="60" y="64" width="480" height="120"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v7c-FF-qPf">
+                                <rect key="frame" x="60" y="88" width="480" height="72"/>
                                 <color key="progressTintColor" red="0.94462200129999996" green="0.52153643110000003" blue="0.25900945819999999" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                         </subviews>
