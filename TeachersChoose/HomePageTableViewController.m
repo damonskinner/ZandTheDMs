@@ -7,12 +7,14 @@
 //
 
 #import "HomePageTableViewController.h"
+#import "veryFirstViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseCompletedProposal.h"
 #import "ProposalTableViewCell.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import <Parse.h>
 #import <FAKIonIcons.h>
 
 @interface HomePageTableViewController ()
@@ -62,6 +64,7 @@
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
     
+    
     [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
 
 
@@ -70,78 +73,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
-//    [self.tableView removeConstraints:self.tableView.constraints];
-//    
-//    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
-//    
-//    
-//    
-//    
-//    NSLayoutConstraint *mainTableViewTopConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeTop
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeTop
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewTopConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewRightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeRight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeRight
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewRightConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewLeftConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeLeft
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeLeft
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewLeftConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewBottomConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeBottom
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeBottom
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewBottomConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewCenteringXConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeCenterX
-//     
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeCenterX
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewCenteringXConstraint];
-//    
-//    //     Do any additional setup after loading the view.
-//    [self.tableView reloadData];
     
 }
 
@@ -202,10 +138,13 @@
     
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-    return NO;
-}
+//- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+//    return NO;
+//}
+
+
+
 
 
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -274,9 +213,21 @@
     
 }
 
+-(void) logOutTapped {
+    veryFirstViewController *reLogInViewController = [[veryFirstViewController alloc]init];
+    
+    [PFUser logOut];
+    self.navigationController.viewControllers = @[reLogInViewController];
+
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 @end

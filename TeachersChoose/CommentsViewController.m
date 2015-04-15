@@ -327,6 +327,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.donationsWhichNeedResponse removeAllObjects];
     [self populateDonationsWhichNeedResponseArray];
     [self.myTableView reloadData];
+    [self prepareTableViewForResizingCells];
 }
 
 
@@ -346,7 +347,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.donationsWhichNeedResponse removeAllObjects];
     [self populateDonationsWhichNeedResponseArray];
     [self.myTableView reloadData];
-    
+    [self prepareTableViewForResizingCells];
 }
 
 

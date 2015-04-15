@@ -26,7 +26,7 @@
     [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
     [[UINavigationBar appearance] setTintColor:[UIColor DonorsChooseGreyVeryLight]];
-
+    self.window.backgroundColor=[UIColor whiteColor];
     
     // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |

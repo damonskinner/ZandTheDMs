@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Icon-76"]];
+    logoImageView.contentMode = UIViewContentModeScaleAspectFill;
+    logoImageView.frame=self.signUpView.bounds;
+    
+    [self.signUpView setLogo:logoImageView];
+    [self.signUpView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
 }
 
