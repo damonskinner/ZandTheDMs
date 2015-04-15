@@ -15,16 +15,17 @@
 #import "UIFont+DonorsChooseFonts.h"
 #import <FAKIonIcons.h>
 
-@interface HomePageTableViewController ()
+@interface HomePageTableViewController () <UIScrollViewDelegate>
 
 @end
 
 @implementation HomePageTableViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
-    
+
     UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -52,6 +53,7 @@
     
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+    [self.navigationController.navigationBar setTranslucent:NO];
 
 
     self.title=@"Home";
@@ -69,7 +71,9 @@
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+ 
     
+
     
 //    [self.tableView removeConstraints:self.tableView.constraints];
 //    
@@ -80,76 +84,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
-//    
-//    
-//    
-//    
-//    NSLayoutConstraint *mainTableViewTopConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeTop
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeTop
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewTopConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewRightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeRight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeRight
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewRightConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewLeftConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeLeft
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeLeft
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewLeftConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewBottomConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeBottom
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeBottom
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewBottomConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewCenteringXConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeCenterX
-//     
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeCenterX
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewCenteringXConstraint];
-//    
-//    //     Do any additional setup after loading the view.
-//    [self.tableView reloadData];
     
 }
-
--(void) segueToSettingsPage {
-    
-}
-
-
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -202,9 +138,11 @@
     
 }
 
+
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-    return NO;
+
+    return YES;
 }
 
 
@@ -246,12 +184,28 @@
     return view;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSLog(@"willBeginDragging");
+}
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"willBeginDecelerating");
+    [self.tableView setUserInteractionEnabled:NO];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"Did Scroll");
+    [self.tableView setUserInteractionEnabled:YES];
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"selected row: %ld", indexPath.row);
-    
+    NSLog(@"selected row: %ld", indexPath.row);
+
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
-    
     
     
     if (indexPath.section ==0) {
@@ -266,17 +220,22 @@
         tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
-    
-    
-    
+
+//    NSLog(@"just before deselect code");
+
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
     
     [self.navigationController pushViewController:tabBarController animated:YES];
-    
 }
 
+//-(void)viewWillAppear:(BOOL)animated {
+//    [self.tableView reloadData];
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
