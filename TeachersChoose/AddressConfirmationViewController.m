@@ -10,6 +10,7 @@
 #import <FAKIonIcons.h>
 
 @interface AddressConfirmationViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *checkbox;
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
@@ -78,8 +79,22 @@
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    
+    if(![self evaluateCheckbox])
+        [self presentAlert];
+    
     return [self evaluateCheckbox];
 }
 
+-(void) presentAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unconfirmed Address" message:@"First, confirm your address by tapping the circle next to the confirmation statement." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addAction: okayAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 @end

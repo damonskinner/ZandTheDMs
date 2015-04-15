@@ -53,6 +53,7 @@
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
 		E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */; };
 		E264D3A81ADEAF6500D98D9C /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */; };
+		E264D3AE1ADF0CA400D98D9C /* DateConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */; };
 		E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */; };
 		E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
@@ -155,6 +156,8 @@
 		E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CompletionFlow.storyboard; path = TeachersChoose/CompletionFlow.storyboard; sourceTree = "<group>"; };
 		E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		E264D3AC1ADF0CA400D98D9C /* DateConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateConfirmationViewController.h; sourceTree = "<group>"; };
+		E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateConfirmationViewController.m; sourceTree = "<group>"; };
 		E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialConfirmationViewController.h; sourceTree = "<group>"; };
 		E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialConfirmationViewController.m; sourceTree = "<group>"; };
 		E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressConfirmationViewController.h; sourceTree = "<group>"; };
@@ -220,12 +223,12 @@
 				360394F71ACCA70500114853 /* LogInViewController.m */,
 				360394F81ACCA70500114853 /* SignUpViewController.h */,
 				360394F91ACCA70500114853 /* SignUpViewController.m */,
-				E26AD5E91AD4440500BACAE8 /* Completion Flow */,
 				36AE94701AD5D2E400F32AD5 /* ProposalTableViewCell.h */,
 				36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */,
 				36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */,
 				36AE946B1AD5C81C00F32AD5 /* HomePageTableViewController.h */,
 				36AE946C1AD5C81C00F32AD5 /* HomePageTableViewController.m */,
+				E26AD5E91AD4440500BACAE8 /* Completion Flow */,
 				36AE94511AD490E500F32AD5 /* Login Flow */,
 				36AE94501AD490AF00F32AD5 /* APIs */,
 				36AE944F1AD4907B00F32AD5 /* Support Classes */,
@@ -377,7 +380,7 @@
 			name = "Detail Flow";
 			sourceTree = "<group>";
 		};
-		E25D84B21ACED9B700D98118 /* Camera */ = {
+		E25D84B21ACED9B700D98118 /* Picture Uploader */ = {
 			isa = PBXGroup;
 			children = (
 				E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */,
@@ -385,7 +388,7 @@
 				E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */,
 				E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */,
 			);
-			name = Camera;
+			name = "Picture Uploader";
 			sourceTree = "<group>";
 		};
 		E25D84C01ACEFEF100D98118 /* Comments */ = {
@@ -421,6 +424,15 @@
 			name = Stats;
 			sourceTree = "<group>";
 		};
+		E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E264D3AC1ADF0CA400D98D9C /* DateConfirmationViewController.h */,
+				E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */,
+			);
+			name = "Date Confirmation";
+			sourceTree = "<group>";
+		};
 		E26AD5E91AD4440500BACAE8 /* Completion Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,7 +441,8 @@
 				E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */,
 				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
 				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
-				E25D84B21ACED9B700D98118 /* Camera */,
+				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
+				E25D84B21ACED9B700D98118 /* Picture Uploader */,
 			);
 			name = "Completion Flow";
 			sourceTree = "<group>";
@@ -617,6 +630,7 @@
 			files = (
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
+				E264D3AE1ADF0CA400D98D9C /* DateConfirmationViewController.m in Sources */,
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,

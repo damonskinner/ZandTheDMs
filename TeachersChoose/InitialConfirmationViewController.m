@@ -41,6 +41,7 @@
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    
     if(![self evaluateCheckboxes])
         [self presentAlert];
     
@@ -52,7 +53,11 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Incomplete" message:@"First, confirm all statements by tapping the circles next to them." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self animateCheckboxForUser];
+        
+        BOOL anyCheckboxIsSelected = ([self.checkbox1 isSelected] || [self.checkbox2 isSelected] || [self.checkbox3 isSelected]);
+
+        if (!anyCheckboxIsSelected)
+            [self animateCheckboxForUser];
     }];
     
     [alertController addAction: okayAction];
