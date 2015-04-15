@@ -17,16 +17,17 @@
 #import <Parse.h>
 #import <FAKIonIcons.h>
 
-@interface HomePageTableViewController ()
+@interface HomePageTableViewController () <UIScrollViewDelegate>
 
 @end
 
 @implementation HomePageTableViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
-    
+
     UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -54,6 +55,7 @@
     
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+    [self.navigationController.navigationBar setTranslucent:NO];
 
 
     self.title=@"Home";
@@ -72,7 +74,9 @@
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+ 
     
+
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
@@ -80,12 +84,6 @@
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
     
 }
-
--(void) segueToSettingsPage {
-    
-}
-
-
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -138,12 +136,13 @@
     
 }
 
-//- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-//    return NO;
-//}
 
 
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+
+    return YES;
+}
 
 
 
@@ -185,12 +184,28 @@
     return view;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSLog(@"willBeginDragging");
+}
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"willBeginDecelerating");
+    [self.tableView setUserInteractionEnabled:NO];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"Did Scroll");
+    [self.tableView setUserInteractionEnabled:YES];
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"selected row: %ld", indexPath.row);
-    
+    NSLog(@"selected row: %ld", indexPath.row);
+
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
-    
     
     
     if (indexPath.section ==0) {
@@ -205,13 +220,15 @@
         tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
-    
-    
-    
+
+//    NSLog(@"just before deselect code");
+
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
     
     [self.navigationController pushViewController:tabBarController animated:YES];
-    
 }
+
 
 -(void) logOutTapped {
     veryFirstViewController *reLogInViewController = [[veryFirstViewController alloc]init];
@@ -222,12 +239,11 @@
 }
 
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 
 @end

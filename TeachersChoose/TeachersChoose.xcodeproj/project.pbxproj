@@ -537,6 +537,7 @@
 				TargetAttributes = {
 					3617DEF21ACC376E0078F4E3 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 9RXLE5FXUN;
 					};
 					3617DF0B1ACC376E0078F4E3 = {
 						CreatedOnToolsVersion = 6.2;
@@ -812,11 +813,12 @@
 			baseConfigurationReference = C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ian Smith (2U2845JTA3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -825,11 +827,12 @@
 			baseConfigurationReference = ED51748089525FC2668399D6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ian Smith (2U2845JTA3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
