@@ -14,7 +14,7 @@
 #import "CustomItemUIActivityItemProvider.h"
 #import "DonorsTableViewController.h"
 
-@interface StatDetailsViewController ()<UIActivityItemSource>
+@interface StatDetailsViewController ()
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *expirationDate;
@@ -42,9 +42,6 @@
 		[view setTranslatesAutoresizingMaskIntoConstraints:NO];
 	}
     
-    
-
-
 	self.view.backgroundColor = [UIColor whiteColor];
 
 	self.proposal = ((DetailsTabBarController *)self.tabBarController).selectedProposal;
@@ -94,7 +91,7 @@
 
 	NSInteger costToComplete = [self.proposal.costToComplete integerValue];
 	NSInteger total = [self.proposal.totalPrice integerValue];
-	NSString *raisedSoFar = [NSString stringWithFormat:@"%d", total - costToComplete];
+	NSString *raisedSoFar = [NSString stringWithFormat:@"%ld", total - costToComplete];
 	self.costToCompleteOfTotalWithPercent.text = [NSString stringWithFormat:@"Raised: $%@ of $%@ (%@%%)", raisedSoFar, self.proposal.totalPrice, self.proposal.percentFunded];
 	self.costToCompleteOfTotalWithPercent.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25-[costToCompleteOfTotalWithPercent]-|" options:0 metrics:nil views:views]];

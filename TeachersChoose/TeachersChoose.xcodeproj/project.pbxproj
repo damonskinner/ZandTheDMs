@@ -43,19 +43,16 @@
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */; };
 		3DD567AB1AD57EF50052DD95 /* CommentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD567A91AD57EF50052DD95 /* CommentsTableViewController.m */; };
-		3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
-		E25D84B11ACED69600D98118 /* CompletionFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CompletionFlow.storyboard */; };
-		E25D84B51ACEDBDF00D98118 /* FakeHomepageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */; };
-		E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */; };
-		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
-		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
 		E25D84B71ACEDCCB00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */; };
+		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
+		E25D84BC1ACEE12C00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
+		E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */; };
+		E264D3A81ADEAF6500D98D9C /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */; };
 		E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */; };
 		E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
@@ -149,17 +146,15 @@
 		E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompletionImageCollectionViewCell.m; path = TeachersChoose/CompletionImageCollectionViewCell.m; sourceTree = "<group>"; };
 		E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagerViewController.h; path = TeachersChoose/PhotoManagerViewController.h; sourceTree = "<group>"; };
 		E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagerViewController.m; path = TeachersChoose/PhotoManagerViewController.m; sourceTree = "<group>"; };
-		E25D84B01ACED69600D98118 /* CompletionFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CompletionFlow.storyboard; path = TeachersChoose/CompletionFlow.storyboard; sourceTree = "<group>"; };
-		E25D84B31ACEDBDF00D98118 /* FakeHomepageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeHomepageTableViewController.h; sourceTree = "<group>"; };
-		E25D84B41ACEDBDF00D98118 /* FakeHomepageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeHomepageTableViewController.m; sourceTree = "<group>"; };
-		E25D84B61ACEDCCB00D98118 /* FakeMainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FakeMainStoryboard.storyboard; sourceTree = "<group>"; };
-		E25D84B01ACED69600D98118 /* CameraTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CameraTest.storyboard; path = TeachersChoose/CameraTest.storyboard; sourceTree = "<group>"; };
 		E25D84B81ACEDE1000D98118 /* DetailsTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTabBarController.h; sourceTree = "<group>"; };
 		E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTabBarController.m; sourceTree = "<group>"; };
 		E25D84C11ACEFFB700D98118 /* DonorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonorsTableViewController.h; sourceTree = "<group>"; };
 		E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonorsTableViewController.m; sourceTree = "<group>"; };
 		E25D84C51ACF013600D98118 /* StatDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatDetailsViewController.h; sourceTree = "<group>"; };
 		E25D84C61ACF013600D98118 /* StatDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailsViewController.m; sourceTree = "<group>"; };
+		E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CompletionFlow.storyboard; path = TeachersChoose/CompletionFlow.storyboard; sourceTree = "<group>"; };
+		E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialConfirmationViewController.h; sourceTree = "<group>"; };
 		E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialConfirmationViewController.m; sourceTree = "<group>"; };
 		E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressConfirmationViewController.h; sourceTree = "<group>"; };
@@ -296,8 +291,6 @@
 			children = (
 				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
 				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
-				36B124141AD18670009866EB /* FISDonation.h */,
-				36B124151AD18670009866EB /* FISDonation.m */,
 				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
 				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				36AE94581AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.h */,
@@ -333,8 +326,6 @@
 			children = (
 				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
 				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
-				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
-				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
 				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
 			);
@@ -349,10 +340,6 @@
 				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
 				3DAB19C01ACD9B1F00623967 /* MainTableViewViewController.h */,
 				3DAB19C11ACD9B1F00623967 /* MainTableViewViewController.m */,
-				360394F61ACCA70500114853 /* LogInViewController.h */,
-				360394F71ACCA70500114853 /* LogInViewController.m */,
-				360394F81ACCA70500114853 /* SignUpViewController.h */,
-				360394F91ACCA70500114853 /* SignUpViewController.m */,
 			);
 			name = "Login Flow";
 			sourceTree = "<group>";
@@ -437,7 +424,9 @@
 		E26AD5E91AD4440500BACAE8 /* Completion Flow */ = {
 			isa = PBXGroup;
 			children = (
-				E25D84B01ACED69600D98118 /* CompletionFlow.storyboard */,
+				E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */,
+				E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */,
+				E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */,
 				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
 				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
 				E25D84B21ACED9B700D98118 /* Camera */,
@@ -560,10 +549,8 @@
 				360394701ADC19B200067658 /* Jan Fromm - Rooney-RegularItalic.otf in Resources */,
 				3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
-				E25D84B11ACED69600D98118 /* CompletionFlow.storyboard in Resources */,
-				E25D84B71ACEDCCB00D98118 /* FakeMainStoryboard.storyboard in Resources */,
+				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
 				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
-				E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */,
 				36AE94621AD586A400F32AD5 /* ss-junior.css in Resources */,
 				360394781ADC19BA00067658 /* Jan Fromm - RooneySans-Regular.otf in Resources */,
 				36AE94651AD586A400F32AD5 /* ss-junior.svg in Resources */,
@@ -572,8 +559,9 @@
 				3603946F1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf in Resources */,
 				360394771ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf in Resources */,
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
-				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
+				E25D84BC1ACEE12C00D98118 /* (null) in Resources */,
 				360394761ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf in Resources */,
+				E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */,
 				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
 				3603946D1ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf in Resources */,
@@ -629,7 +617,6 @@
 			files = (
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
-				3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */,
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
@@ -641,14 +628,12 @@
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
 				E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
-				E25D84A51ACDE1FB00D98118 /* CommentsTableViewController.m in Sources */,
-				36B124161AD18670009866EB /* FISDonation.m in Sources */,
 				E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */,
-				3D7F12C81ACEEB2F0038C31B /* Proposal.m in Sources */,
 				36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */,
 				36AE945A1AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m in Sources */,
 				36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */,
 				36AE944E1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.m in Sources */,
+				E264D3A81ADEAF6500D98D9C /* ContainerViewController.m in Sources */,
 				E27F0EFA1AD9EA4D00E6AC5F /* FISComment.m in Sources */,
 				36AE94571AD564F100F32AD5 /* UIFont+DonorsChooseFonts.m in Sources */,
 				3DAB19C21ACD9B1F00623967 /* MainTableViewViewController.m in Sources */,

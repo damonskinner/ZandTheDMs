@@ -144,7 +144,7 @@
 }
 
 -(NSString *) getRandomTeacherIdForNewParseUser {
-    NSUInteger r=arc4random_uniform([self.datastore.donorsChooseSearchResults count]);
+    NSUInteger r=arc4random_uniform((int)[self.datastore.donorsChooseSearchResults count]);
     FISDonorsChooseProposal *randomProposal = self.datastore.donorsChooseSearchResults[r];
     NSString *randomTeacherId = randomProposal.teacherId;
     

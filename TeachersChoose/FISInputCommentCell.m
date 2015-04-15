@@ -57,7 +57,7 @@
 
 #pragma mark - UITextViewDelegate
 
--(UIView *)textViewInputAccessoryView{
+-(FISCommentInputAccessoryView *)textViewInputAccessoryView{
     if(!_textViewInputAccessoryView)
     {
         _textViewInputAccessoryView = [self createInputAccessoryView];
@@ -113,7 +113,7 @@
 }
 #pragma mark - InputAccessoryView
 
--(UIView*)createInputAccessoryView
+-(FISCommentInputAccessoryView*)createInputAccessoryView
 {
     FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 
