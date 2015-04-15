@@ -157,9 +157,9 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     
     if(section ==0) {
-        headerLabel.text = @"Current Proposals";
+        headerLabel.text = @"Current Projects";
     } else {
-        headerLabel.text = @"Completed Proposals";
+        headerLabel.text = @"Completed Projects";
     }
     headerLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
     headerLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
