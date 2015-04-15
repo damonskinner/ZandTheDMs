@@ -53,12 +53,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
-    for (FISDonation *eachDonation in self.proposal.donations) {
-        if (!(eachDonation.hasResponded)) {
-            [self.donationsWhichNeedResponse addObject:eachDonation];
-        }
-        
-    }
+    [self populateDonationsWhichNeedResponseArray];
+    
     [self setupSegmentedControl];
     [self setupLayout];
 //    [self populateCommentsDictionary];
@@ -171,7 +167,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 #pragma mark - UITableViewDelegate
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+    
+    if(self.mySegmentedControl.selectedSegmentIndex==0) {
+        return [NSString stringWithFormat:@"%@", ((FISDonation *) self.donationsWhichNeedResponse[section]).donorName];
+    } else {
+        return [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+    }
+    
+    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -198,24 +201,39 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             
             CAShapeLayer *layer = [[CAShapeLayer alloc] init];
             CGMutablePathRef pathRef = CGPathCreateMutable();
-            CGRect bounds = (CGRectInset(cell.bounds, 10, 2));
-//            if ([cell isKindOfClass:[FISInputCommentCell class]]) {
-//                bounds = CGRectInset(((FISInputCommentCell *)cell).myTextView.bounds, 10, 2);
-//            } else if ([cell isKindOfClass:[UITableViewCell class]]){
-//                bounds = CGRectInset(cell.textLabel.frame, 10, 2);
-//            }
-            
-            CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
-            CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
-            CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), cornerRadius);
-            CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
-            CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
-            
+            CGRect bounds = (CGRectInset(cell.bounds, 10, 3));
+            if (indexPath.row==0) {
+                layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
+                CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
+                
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-5);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+
+            } else {
+                layer.fillColor = [UIColor clearColor].CGColor;
+                layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
+               
+                
+                CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-5);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)+5, CGRectGetMaxY(bounds)+3);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)-10, CGRectGetMaxY(bounds));
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+                
+            }
 
             layer.path = pathRef;
             CFRelease(pathRef);
 
-            layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
+            
             UIView *testView = [[UIView alloc] initWithFrame:bounds];
             [testView.layer insertSublayer:layer atIndex:0];
             testView.backgroundColor = UIColor.clearColor;
@@ -253,7 +271,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     else
     {
         cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
-        cell.textLabel.textColor=[UIColor DonorsChooseWhite];
+        cell.textLabel.textColor=[UIColor DonorsChooseOrange];
         cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:17];
         cell.textLabel.textAlignment = NSTextAlignmentRight;
         cell.indentationLevel = 3;
@@ -306,19 +324,28 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 -(void) segmentedControlToggler {
-    
+    [self.donationsWhichNeedResponse removeAllObjects];
+    [self populateDonationsWhichNeedResponseArray];
     [self.myTableView reloadData];
 }
 
 
 -(void) saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
-    [self.myTableView reloadData];
     
-    [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
-
+    
+    if (self.mySegmentedControl.selectedSegmentIndex==0) {
+        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
+        }];
+    } else {
+        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
+        }];
         
-    }];
+    }
+    
+    [self.donationsWhichNeedResponse removeAllObjects];
+    [self populateDonationsWhichNeedResponseArray];
+    [self.myTableView reloadData];
     
 }
 
@@ -329,22 +356,15 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.estimatedRowHeight = 50.0;
 }
 
-
-
-
-//-(void) populateCommentsDictionary
-//{
-//    self.commentsDictionary = [[NSMutableDictionary alloc] init];
-//    
-//    for(FISDonation *donation in self.proposal.donations)
-//    {
-//        FISComment *donorComment = [FISComment createDonorCommentFromDonation: (FISDonation*) donation];
-//        FISComment *teacherResponse = [FISComment createTeacherCommentFromDonation: (FISDonation*) donation];
-//        [self.commentsDictionary setObject:@[donorComment, teacherResponse] forKey: donation.donorName];
-//    }
-//    NSLog(@"dictionary %@", self.commentsDictionary);
-//    [self.myTableView reloadData];
-//}
+-(void) populateDonationsWhichNeedResponseArray {
+    for (FISDonation *eachDonation in self.proposal.donations) {
+        if (!(eachDonation.hasResponded)) {
+            [self.donationsWhichNeedResponse addObject:eachDonation];
+        }
+        
+    }
+    
+}
 
 
 
