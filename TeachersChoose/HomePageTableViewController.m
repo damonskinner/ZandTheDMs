@@ -50,8 +50,10 @@
 
     
     
-    
+    //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+
+
     self.title=@"Home";
     
     

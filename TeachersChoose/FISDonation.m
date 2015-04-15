@@ -18,7 +18,7 @@
     donation.donorLocation=donationDictionary[@"donorLocation"];
     donation.donorMessage=donationDictionary[@"donorMessage"];
     donation.donationDate=donationDictionary[@"donationDate"];
-    donation.hasResponded=donationDictionary[@"hasResponded"];
+
     donation.responseMessage=donationDictionary[@"responseMessage"];
     donation.proposalId=donationDictionary[@"proposalId"];
     donation.donationAmount=donationDictionary[@"donationAmount"];
@@ -46,6 +46,16 @@
         }
     }
     return self;
+}
+
+
+-(BOOL) hasResponded {
+    if ([_responseMessage length]>0) {
+        _hasResponded=YES;
+    } else {
+        _hasResponded=NO;
+    }
+    return _hasResponded;
 }
 
 @end
