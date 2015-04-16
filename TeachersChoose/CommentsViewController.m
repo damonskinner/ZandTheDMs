@@ -175,15 +175,29 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 #pragma mark - UITableViewDelegate
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]];
+    NSString *titleString;
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
-        return [NSString stringWithFormat:@"%@", ((FISDonation *) self.donationsWhichNeedResponse[section]).donorName];
+        titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.donationsWhichNeedResponse[section]).donorName];
     } else {
-        return [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+        titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
     }
     
-    
+    [label setText:titleString];
+    [view addSubview:label];
+
+    view.backgroundColor = [UIColor DonorsChooseGreyLight];
+    return view;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30; // just seemed like a magical number
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -196,7 +210,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 50; // just seemed like a magical number
+    return 10; // just seemed like a magical number
 }
 
 #pragma mark - Formatting Helpers
@@ -302,16 +316,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addSubview:self.myTableView];
     self.view.backgroundColor=[UIColor DonorsChooseWhite];
     
-
-    
-
-    
-//    self.navigationController.navigationBar.opaque=YES;
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    CGFloat screenScale = [[UIScreen mainScreen] scale];
-//    
-//    self.navigationController.navigationBar.frame = CGRectMake(0, 0, screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-    
     [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];
@@ -327,7 +331,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     NSDictionary *views = @{@"view":self.view,@"segmentedControl":self.mySegmentedControl,@"titleLabel":self.titleLabel,@"tableView":self.myTableView};
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel(view)]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[segmentedControl(view)]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-50-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
 }
 

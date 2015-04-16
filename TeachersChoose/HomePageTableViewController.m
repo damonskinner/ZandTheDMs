@@ -49,8 +49,6 @@
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
     [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
-//    self.navigationController.navigationBar.opaque=YES;
-//    self.navigationController.navigationBar.alpha=1;
 
     
     //need to change alpha of navBar, but won't work?

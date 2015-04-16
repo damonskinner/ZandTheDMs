@@ -28,10 +28,6 @@
     [[UINavigationBar appearance] setTintColor:[UIColor DonorsChooseGreyVeryLight]];
     self.window.backgroundColor=[UIColor whiteColor];
     
-//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-//    CGFloat screenScale = [[UIScreen mainScreen] scale];
-//    [[UINavigationBar appearance] setFrame:CGRectMake(0, 144, screenBounds.size.width * screenScale, screenBounds.size.height * screenScale)];
-    
     // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
                                                     UIUserNotificationTypeBadge |
