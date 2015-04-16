@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "FISParseAPI.h"
-#import "delete.h"
+#import "ParsePopulateDonations.h"
 
 @interface ViewController ()
 
@@ -36,9 +36,16 @@
 }
 
 - (IBAction)createDonationTapped:(id)sender {
-    [FISParseAPI createDonationWithName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *response) {
-        NSLog(@"%@",response);
+    [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *proposalObjectId) {
+        [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
+            [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
+                
+            }];
+        }];
     }];
+    
+    
+    
     
     [FISParseAPI sendPushNotificationToEveryone];
 }
@@ -50,16 +57,10 @@
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
-                                                              PFQuery *query = [PFQuery queryWithClassName:@"delete"];
-                                                              [query whereKey:@"name" notEqualTo:@""];
-                                                              [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                                                                  if (!error) {
-                                                                      [PFObject deleteAllInBackground:objects];
-                                                                  }
-                                                                  else {
-                                                                      NSLog(@"Error: %@ %@", error, [error userInfo]);
-                                                                  }
+                                                              [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *objectId) {
+                                                                  [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
                                                               }];
+
                                                           }];
     
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault

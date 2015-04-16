@@ -9,9 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class FISComment;
-@interface FISInputCommentCell : UITableViewCell
+@class FISCommentInputAccessoryView;
+@class CommentsViewController;
 
+
+@protocol CommentCellDelegate <NSObject>
+
+-(void) saveDonationWithMessage: (NSString *) responseMessage andIndexPath: (NSIndexPath *) indexPath;
+
+@end
+
+@interface FISInputCommentCell : UITableViewCell
+@property (strong, nonatomic) UITextView *myTextView;
 @property (strong, nonatomic) NSString *placeholder;
-@property (strong, nonatomic) UITableView *parentTableView;
+@property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
+
+@property (strong, nonatomic) id <CommentCellDelegate> CommentsViewController;
 
 @end

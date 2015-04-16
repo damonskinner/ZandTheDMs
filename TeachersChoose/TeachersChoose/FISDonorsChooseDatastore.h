@@ -28,9 +28,11 @@
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
-
+-(void) addNewDonationResponseMessage:(NSString *)responseMessage  forDonation: (FISDonation *) donation forProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
 
 -(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock;
+
+-(void) populateRandomDonationsForProposal:(FISDonorsChooseProposal *) proposal withCompletionblock:(void (^)(void))completionBlock;
 
 
 @end

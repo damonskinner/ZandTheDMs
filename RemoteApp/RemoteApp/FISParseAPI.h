@@ -28,8 +28,10 @@
 
 + (void)addDonationResponseMessage:(NSString *)responseMessage forDonationWithObjectId:(NSString *)donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+ (void)createDonationWithName:(NSString *)donorName withDonorLocation:(NSString *)donorLocation donorMessage:(NSString *)donorMessage responseMessage:(NSString *)responseMessage donationAmount:(NSString *)donationAmount andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++(void)createDonationForProposalObjectId:(NSString *)proposalObjectId withName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
 + (void)sendPushNotificationToEveryone;
+
++(void)addDonationObjectId:(NSString *) donationObjectId toProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
 @end

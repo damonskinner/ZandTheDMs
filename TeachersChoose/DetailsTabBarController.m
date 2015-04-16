@@ -11,7 +11,8 @@
 
 // child VCs
 #import "StatDetailsViewController.h"
-#import "CommentsTableViewController.h"
+
+#import "CommentsViewController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
 
@@ -26,7 +27,7 @@
     
     // make child view controllers
     StatDetailsViewController *statsVC         = [[StatDetailsViewController alloc] init];
-    CommentsTableViewController *commentsTVC   = [[CommentsTableViewController alloc] init];
+    CommentsViewController *commentsTVC   = [[CommentsViewController alloc] init];
 
     // make icons / tabBarItems
 
@@ -48,6 +49,8 @@
     // add their respective children
     [statsNav addChildViewController: statsVC];
     [commentsNav addChildViewController: commentsTVC];
+    
+
     
     // add them to self.viewControllers
     self.viewControllers = @[commentsNav,statsNav];
