@@ -371,7 +371,7 @@
         <!--Add Message-->
         <scene sceneID="1sX-sU-acb">
             <objects>
-                <viewController id="6v5-he-q34" sceneMemberID="viewController">
+                <viewController id="6v5-he-q34" customClass="GoodNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZMl-xB-zOS"/>
                         <viewControllerLayoutGuide type="bottom" id="Udz-Y6-cgI"/>
@@ -380,20 +380,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-oi-s6v">
-                                <rect key="frame" x="0.0" y="-8" width="600" height="580"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tap here to begin your message" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="so9-vq-Vpj">
+                                <rect key="frame" x="30" y="174" width="540" height="232"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="width" secondItem="hHy-OR-mew" secondAttribute="width" id="8hl-SI-lqc"/>
-                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="height" secondItem="hHy-OR-mew" secondAttribute="height" id="JDV-y3-xFX"/>
-                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" constant="-8" id="TV6-sV-UMr"/>
-                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="centerX" secondItem="hHy-OR-mew" secondAttribute="centerX" id="VvE-Mp-0bP"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="centerX" secondItem="hHy-OR-mew" secondAttribute="centerX" id="4sN-jH-rB1"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="height" secondItem="hHy-OR-mew" secondAttribute="height" multiplier="0.4" id="8JQ-CV-buJ"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" id="DTH-im-Nln"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="width" secondItem="hHy-OR-mew" secondAttribute="width" multiplier="0.9" id="HyI-0v-IWj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Message" id="6uo-Vk-jnM"/>

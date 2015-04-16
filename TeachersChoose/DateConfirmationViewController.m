@@ -25,6 +25,12 @@
     [super didReceiveMemoryWarning];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self presentAlert];
+}
+
 #pragma mark - DatePicker
 
 -(void) setupDatePicker
@@ -37,6 +43,17 @@
 -(NSDate *) calculateMaximumDate{
     // just gonna do 90 days (roughly 3 months) past today
     return [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:90 toDate:[NSDate date] options:0];
+}
+
+-(void) presentAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Due Date For \nThank You Package" message:@"This will be the date you deliver your 'Thank You Package' by. For more information, visit DonorsChoose.org." preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addAction: okayAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 /*
