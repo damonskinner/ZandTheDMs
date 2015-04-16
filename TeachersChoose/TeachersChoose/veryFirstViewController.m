@@ -195,12 +195,8 @@
         
         [FISParseAPI addProposalObjectId:proposal.parseObjectId toNewUserWithObjectId:user.objectId currentUserSessionToken:user.sessionToken andCompletionBlock:^{
         }];
-        [self.datastore getDonationsListForProposal:proposal andCompletion:^(BOOL completion) {
-            if(completion) {
-                NSLog(@"%@",proposal.donations);
-            } else {
-                NSLog(@"Donations array not populated.  Check parse datastore and manually link if needed.");
-            }
+        [self.datastore populateRandomDonationsForProposal:proposal withCompletionblock:^{
+            
         }];
     }];
 }
