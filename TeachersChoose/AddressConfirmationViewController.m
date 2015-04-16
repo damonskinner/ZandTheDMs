@@ -12,21 +12,23 @@
 @interface AddressConfirmationViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) IBOutlet UIButton *checkbox;
+
+@property (weak, nonatomic) IBOutlet UIButton *editAddressButton;
+
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 
 @end
 
 @implementation AddressConfirmationViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupKeyboardDismissalOnTouch];
+    self.editAddressButton.layer.cornerRadius = 10;
     self.nextButton.layer.cornerRadius = 10;
-    [self setupCheckbox];
 }
-
 
 -(void) setupKeyboardDismissalOnTouch
 {
@@ -42,53 +44,15 @@
     [self.inputTextField resignFirstResponder];
 }
 
--(void) setupCheckbox
-{
-    UIImage *emptyCheckbox = [[FAKIonIcons iosCircleOutlineIconWithSize:50] imageWithSize:CGSizeMake(50,50)];
-    UIImage *checkedCheckbox = [[FAKIonIcons iosCheckmarkIconWithSize:50] imageWithSize:CGSizeMake(50,50)];
-    
-    [self.checkbox setImage: emptyCheckbox forState:UIControlStateNormal];
-    [self.checkbox setImage: checkedCheckbox forState:UIControlStateSelected];
-    [self.checkbox addTarget:self action:@selector(toggleCheckbox:) forControlEvents:UIControlEventTouchUpInside];
-}
+#pragma mark - Edit Address Button
 
-- (void)toggleCheckbox:(id)sender
-{
-    UIButton *thisButton = sender;
-    thisButton.selected = !thisButton.selected;
-    [self evaluateCheckbox];
-}
-
-- (BOOL) evaluateCheckbox
-{
-    if ([self.checkbox isSelected])
-    {
-        self.nextButton.enabled = YES;
-        self.nextButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
-        return YES;
-    }
-    else
-    {
-        self.nextButton.enabled = NO;
-        self.nextButton.backgroundColor = [UIColor lightGrayColor];
-        return NO;
-    }
-}
-
-#pragma mark - Navigation
-
--(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
-{
-    
-    if(![self evaluateCheckbox])
-        [self presentAlert];
-    
-    return [self evaluateCheckbox];
+- (IBAction)editAddressTapped:(id)sender {
+    [self presentAlert];
 }
 
 -(void) presentAlert
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Unconfirmed Address" message:@"First, confirm your address by tapping the circle next to the confirmation statement." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Contact Us" message:@"Changing your address requires confirmation by a DonorsChoose employee. Please call us at 555-555-5555." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     

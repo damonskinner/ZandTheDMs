@@ -147,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="-362" y="-649"/>
         </scene>
-        <!--Confirm Address-->
+        <!--Delivery Address-->
         <scene sceneID="ydd-Lh-ZFo">
             <objects>
                 <viewController id="Ek8-I7-ueb" customClass="AddressConfirmationViewController" sceneMemberID="viewController">
@@ -159,86 +159,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dff-A8-LOE" userLabel="text container">
-                                <rect key="frame" x="0.0" y="102" width="600" height="435"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
-                                        <rect key="frame" x="60" y="56" width="480" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-pj-5iZ" userLabel="TEACHER NAME">
-                                        <rect key="frame" x="251" y="25" width="99" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="178" y="96" width="246" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
-                                        <rect key="frame" x="249" y="126" width="102" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="210" y="157" width="181" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="I confirm that the information stated above is correct." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxR-Fu-Y0s" userLabel="CONFIRMATION">
-                                        <rect key="frame" x="130" y="273" width="460" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unD-BZ-RDa" userLabel="CHECKBOX">
-                                        <rect key="frame" x="30" y="238" width="90" height="90"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="unD-BZ-RDa" secondAttribute="height" multiplier="1:1" id="zvk-C3-cmf"/>
-                                        </constraints>
-                                        <color key="tintColor" red="0.1058823529" green="0.76078431369999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" multiplier="0.25" id="0WD-zO-8La"/>
-                                    <constraint firstItem="nhw-cl-Ogy" firstAttribute="top" secondItem="aXr-VN-jm6" secondAttribute="bottom" constant="10" id="1Cr-Kg-F9k"/>
-                                    <constraint firstItem="zbr-pj-5iZ" firstAttribute="top" secondItem="dff-A8-LOE" secondAttribute="top" constant="25" id="1X3-Bl-KdM"/>
-                                    <constraint firstItem="Nrc-6G-8Xz" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="467-Y6-V9V"/>
-                                    <constraint firstItem="SxR-Fu-Y0s" firstAttribute="leading" secondItem="unD-BZ-RDa" secondAttribute="trailing" constant="10" id="4R7-l8-KyY"/>
-                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="centerY" secondItem="SxR-Fu-Y0s" secondAttribute="centerY" constant="0.5" id="4kh-uA-M3P"/>
-                                    <constraint firstAttribute="centerY" secondItem="unD-BZ-RDa" secondAttribute="centerY" constant="-54" id="6mY-Lt-5O5"/>
-                                    <constraint firstItem="SxR-Fu-Y0s" firstAttribute="trailing" secondItem="dff-A8-LOE" secondAttribute="trailing" constant="-10" id="9LI-3i-Yr0"/>
-                                    <constraint firstAttribute="centerX" secondItem="nhw-cl-Ogy" secondAttribute="centerX" id="Ees-bE-Kh2"/>
-                                    <constraint firstItem="Nrc-6G-8Xz" firstAttribute="top" secondItem="nhw-cl-Ogy" secondAttribute="bottom" constant="10" id="FJG-TP-nY1"/>
-                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="top" secondItem="nbL-BP-7uy" secondAttribute="bottom" multiplier="1.3" constant="8" symbolic="YES" id="GKB-74-8Rk"/>
-                                    <constraint firstItem="nbL-BP-7uy" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="KmP-Uj-ulr"/>
-                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="width" secondItem="dff-A8-LOE" secondAttribute="width" multiplier="0.8" id="OHL-KR-yjR"/>
-                                    <constraint firstItem="nbL-BP-7uy" firstAttribute="top" secondItem="Nrc-6G-8Xz" secondAttribute="bottom" constant="10" id="QT3-Y4-4kb"/>
-                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="Xv5-6W-LTe"/>
-                                    <constraint firstItem="unD-BZ-RDa" firstAttribute="width" secondItem="dff-A8-LOE" secondAttribute="width" multiplier="0.15" id="awH-RR-J0J"/>
-                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="top" secondItem="zbr-pj-5iZ" secondAttribute="bottom" constant="10" id="d61-jZ-egx"/>
-                                    <constraint firstAttribute="centerX" secondItem="zbr-pj-5iZ" secondAttribute="centerX" constant="-0.5" id="kMz-5I-EQM"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="6mY-Lt-5O5"/>
-                                    </mask>
-                                </variation>
-                            </view>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgr-sZ-ddi">
                                 <rect key="frame" x="60" y="490" width="480" height="36"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.1058823529" green="0.76078431369999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Confirm Address">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -246,6 +171,68 @@
                                     <segue destination="mze-d8-haB" kind="show" id="MwL-uE-Fa9"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dff-A8-LOE" userLabel="text container">
+                                <rect key="frame" x="0.0" y="116" width="600" height="348"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
+                                        <rect key="frame" x="60" y="55.5" width="480" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-pj-5iZ" userLabel="TEACHER NAME">
+                                        <rect key="frame" x="251" y="25" width="99" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
+                                        <rect key="frame" x="177.5" y="95.5" width="245.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
+                                        <rect key="frame" x="249" y="126" width="102" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
+                                        <rect key="frame" x="210" y="156.5" width="181" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rp-QN-e03">
+                                        <rect key="frame" x="60" y="261.5" width="480" height="36"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Edit Address">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editAddressTapped:" destination="Ek8-I7-ueb" eventType="touchUpInside" id="2Sd-aF-Wbo"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="nhw-cl-Ogy" firstAttribute="top" secondItem="aXr-VN-jm6" secondAttribute="bottom" constant="10" id="1Cr-Kg-F9k"/>
+                                    <constraint firstItem="zbr-pj-5iZ" firstAttribute="top" secondItem="dff-A8-LOE" secondAttribute="top" constant="25" id="1X3-Bl-KdM"/>
+                                    <constraint firstItem="Nrc-6G-8Xz" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="467-Y6-V9V"/>
+                                    <constraint firstItem="5rp-QN-e03" firstAttribute="width" secondItem="dff-A8-LOE" secondAttribute="width" multiplier="0.8" id="4mA-7K-n7m"/>
+                                    <constraint firstAttribute="centerX" secondItem="5rp-QN-e03" secondAttribute="centerX" id="6xF-81-5qm"/>
+                                    <constraint firstAttribute="centerX" secondItem="nhw-cl-Ogy" secondAttribute="centerX" id="Ees-bE-Kh2"/>
+                                    <constraint firstItem="Nrc-6G-8Xz" firstAttribute="top" secondItem="nhw-cl-Ogy" secondAttribute="bottom" constant="10" id="FJG-TP-nY1"/>
+                                    <constraint firstItem="nbL-BP-7uy" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="KmP-Uj-ulr"/>
+                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="width" secondItem="dff-A8-LOE" secondAttribute="width" multiplier="0.8" id="OHL-KR-yjR"/>
+                                    <constraint firstItem="nbL-BP-7uy" firstAttribute="top" secondItem="Nrc-6G-8Xz" secondAttribute="bottom" constant="10" id="QT3-Y4-4kb"/>
+                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="centerX" secondItem="dff-A8-LOE" secondAttribute="centerX" id="Xv5-6W-LTe"/>
+                                    <constraint firstItem="aXr-VN-jm6" firstAttribute="top" secondItem="zbr-pj-5iZ" secondAttribute="bottom" constant="10" id="d61-jZ-egx"/>
+                                    <constraint firstAttribute="centerX" secondItem="zbr-pj-5iZ" secondAttribute="centerX" constant="-0.5" id="kMz-5I-EQM"/>
+                                    <constraint firstAttribute="centerY" secondItem="5rp-QN-e03" secondAttribute="centerY" constant="-105.5" id="pDk-8U-sjr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -254,13 +241,13 @@
                             <constraint firstItem="dff-A8-LOE" firstAttribute="centerX" secondItem="CL4-SI-JCV" secondAttribute="centerX" id="Ra1-HP-tkJ"/>
                             <constraint firstItem="tgr-sZ-ddi" firstAttribute="width" secondItem="CL4-SI-JCV" secondAttribute="width" multiplier="0.8" id="gXO-n8-Zcp"/>
                             <constraint firstItem="dff-A8-LOE" firstAttribute="width" secondItem="CL4-SI-JCV" secondAttribute="width" id="l0U-Ap-iYM"/>
-                            <constraint firstItem="dff-A8-LOE" firstAttribute="height" secondItem="CL4-SI-JCV" secondAttribute="height" multiplier="0.75" id="oqh-xF-U2Z"/>
-                            <constraint firstItem="dff-A8-LOE" firstAttribute="centerY" secondItem="CL4-SI-JCV" secondAttribute="centerY" multiplier="1.1" id="tpo-m6-gJH"/>
+                            <constraint firstItem="dff-A8-LOE" firstAttribute="height" secondItem="CL4-SI-JCV" secondAttribute="height" multiplier="0.6" id="oqh-xF-U2Z"/>
+                            <constraint firstItem="dff-A8-LOE" firstAttribute="centerY" secondItem="CL4-SI-JCV" secondAttribute="centerY" id="tpo-m6-gJH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Confirm Address" id="M5c-ul-VXx"/>
+                    <navigationItem key="navigationItem" title="Delivery Address" id="M5c-ul-VXx"/>
                     <connections>
-                        <outlet property="checkbox" destination="unD-BZ-RDa" id="cQI-n3-HRe"/>
+                        <outlet property="editAddressButton" destination="5rp-QN-e03" id="TIZ-wX-jl9"/>
                         <outlet property="inputTextField" destination="aXr-VN-jm6" id="qHt-Bz-wNi"/>
                         <outlet property="nextButton" destination="tgr-sZ-ddi" id="QBv-4k-xKe"/>
                     </connections>
