@@ -25,5 +25,6 @@
 +(FISDonation *)donationFromDictionary:(NSDictionary *)donationDictionary;
 - (instancetype)initWithName: (NSString *) donorName Location: (NSString *) donorLocation Date: (NSDate *) donationDate DonorMessage: (NSString *) donorMessage ResponseMessage: (NSString *) responseMessage DonationAmount: (NSString *) donationAmount;
 
+//+(BOOL) hasResponded;
 
 @end

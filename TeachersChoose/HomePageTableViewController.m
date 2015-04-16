@@ -7,12 +7,14 @@
 //
 
 #import "HomePageTableViewController.h"
+#import "veryFirstViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseCompletedProposal.h"
 #import "ProposalTableViewCell.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import <Parse.h>
 #import <FAKIonIcons.h>
 
 @interface HomePageTableViewController () <UIScrollViewDelegate>
@@ -47,14 +49,12 @@
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
     [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
-    
 
-    
     
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
     [self.navigationController.navigationBar setTranslucent:NO];
-
+    
 
     self.title=@"Home";
     
@@ -62,6 +62,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
+    
     
     
     [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
@@ -74,14 +75,9 @@
  
     
 
-    
-//    [self.tableView removeConstraints:self.tableView.constraints];
-//    
-//    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
     
@@ -139,11 +135,13 @@
 }
 
 
+
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
 
     return YES;
 }
+
 
 
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -229,9 +227,22 @@
     [self.navigationController pushViewController:tabBarController animated:YES];
 }
 
-//-(void)viewWillAppear:(BOOL)animated {
-//    [self.tableView reloadData];
-//}
+
+-(void) logOutTapped {
+    veryFirstViewController *reLogInViewController = [[veryFirstViewController alloc]init];
+    
+    
+    [self.datastore.loggedInTeacherProposals removeAllObjects];
+    [self.datastore.loggedInTeacherCompletedProposals removeAllObjects];
+    
+    
+    [PFUser logOut];
+    self.navigationController.viewControllers = @[reLogInViewController];
+
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
