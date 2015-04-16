@@ -9,6 +9,8 @@
 #import "FISParseAPI.h"
 #import <AFNetworking.h>
 #import "FISConstants.h"
+#import <Parse/Parse.h>
+#import "delete.h"
 
 @implementation FISParseAPI
 
@@ -112,7 +114,6 @@
     params[@"donorMessage"] = donorMessage;
     params[@"responseMessage"] = responseMessage;
     params[@"donationAmount"] = donationAmount;
-    //params[@"donationDate"] = @{@"__type": @"Date",@"iso": @"2011-08-21T18:02:52.249Z"};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
@@ -245,7 +246,31 @@
     }];
 }
 
++(void)sendPushNotificationToEveryone {
+    NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{       @"where": @{@"deviceType": @"ios"},
+                                    @"data": @{@"alert": @"You've gotten a new donation !"}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"application/json"                         forHTTPHeaderField:@"Content-Type"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:pushURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
 
 
-
++(void) deleteTable {
+    [delete deleteAllInBackground:@[]];
+}
 @end

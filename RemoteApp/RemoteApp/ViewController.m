@@ -8,9 +8,14 @@
 
 #import "ViewController.h"
 #import "FISParseAPI.h"
+#import "delete.h"
 
 @interface ViewController ()
+
+- (IBAction)resetDBTapped:(id)sender;
 - (IBAction)createDonationTapped:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITextField *projectId;
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (strong, nonatomic) IBOutlet UITextField *message;
 @property (strong, nonatomic) IBOutlet UITextField *location;
@@ -34,5 +39,37 @@
     [FISParseAPI createDonationWithName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *response) {
         NSLog(@"%@",response);
     }];
+    
+    [FISParseAPI sendPushNotificationToEveryone];
 }
+
+- (IBAction)resetDBTapped:(id)sender {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
+                                                                   message:@"Are you really really sure you want to clear the database??"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              PFQuery *query = [PFQuery queryWithClassName:@"delete"];
+                                                              [query whereKey:@"name" notEqualTo:@""];
+                                                              [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                                                  if (!error) {
+                                                                      [PFObject deleteAllInBackground:objects];
+                                                                  }
+                                                                  else {
+                                                                      NSLog(@"Error: %@ %@", error, [error userInfo]);
+                                                                  }
+                                                              }];
+                                                          }];
+    
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              [self dismissViewControllerAnimated:alert completion:nil];
+                                                          }];
+    
+    [alert addAction:defaultAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 @end

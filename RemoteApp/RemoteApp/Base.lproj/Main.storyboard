@@ -27,23 +27,38 @@
                                     <action selector="createDonationTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ELz-Rc-mlJ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jP9-LE-rBO">
-                                <rect key="frame" x="16" y="45" width="568" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jP9-LE-rBO">
+                                <rect key="frame" x="16" y="75" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeA-Dd-QES">
-                                <rect key="frame" x="16" y="138" width="15" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PnW-lf-LfN">
+                                <rect key="frame" x="16" y="28" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount Donated" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8j-nD-Lk6">
-                                <rect key="frame" x="309" y="138" width="15" height="30"/>
+                                <rect key="frame" x="309" y="168" width="275" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4tI-I1-dWB">
-                                <rect key="frame" x="16" y="92" width="568" height="30"/>
+                                <rect key="frame" x="16" y="122" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsI-tU-kfi">
+                                <rect key="frame" x="246" y="370" width="109" height="30"/>
+                                <state key="normal" title="Reset Database">
+                                    <color key="titleColor" red="1" green="0.21570241095906806" blue="0.13283238193008184" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetDBTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="d44-9J-wxy"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeA-Dd-QES">
+                                <rect key="frame" x="16" y="168" width="277" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -51,25 +66,34 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DeA-Dd-QES" firstAttribute="top" secondItem="4tI-I1-dWB" secondAttribute="bottom" constant="25" id="0vM-7C-ISe"/>
+                            <constraint firstItem="PnW-lf-LfN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="167-xX-eND"/>
                             <constraint firstAttribute="centerX" secondItem="vth-36-DM1" secondAttribute="centerX" id="2bS-Mo-FEv"/>
                             <constraint firstItem="4tI-I1-dWB" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="3Dz-Ev-Gma"/>
+                            <constraint firstItem="jP9-LE-rBO" firstAttribute="top" secondItem="PnW-lf-LfN" secondAttribute="bottom" constant="25" id="860-Yb-U6v"/>
                             <constraint firstItem="j8j-nD-Lk6" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="DMA-bC-xhP"/>
+                            <constraint firstItem="PnW-lf-LfN" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="EfV-w2-5Jt"/>
                             <constraint firstItem="j8j-nD-Lk6" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.45" id="Hr7-ul-Hrh"/>
                             <constraint firstItem="4tI-I1-dWB" firstAttribute="top" secondItem="jP9-LE-rBO" secondAttribute="bottom" constant="25" id="NBj-Ju-S1y"/>
                             <constraint firstItem="j8j-nD-Lk6" firstAttribute="top" secondItem="4tI-I1-dWB" secondAttribute="bottom" constant="25" id="S7N-eS-t24"/>
                             <constraint firstAttribute="centerX" secondItem="jP9-LE-rBO" secondAttribute="centerX" id="T69-wq-N6N"/>
                             <constraint firstItem="DeA-Dd-QES" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.45" id="U6h-94-X7O"/>
                             <constraint firstItem="vth-36-DM1" firstAttribute="bottom" secondItem="j8j-nD-Lk6" secondAttribute="bottom" constant="50" id="VQq-ir-oDU"/>
-                            <constraint firstItem="jP9-LE-rBO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="25" id="Yfe-vi-5Sv"/>
+                            <constraint firstItem="jP9-LE-rBO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="60" id="Yfe-vi-5Sv"/>
+                            <constraint firstAttribute="centerX" secondItem="ZsI-tU-kfi" secondAttribute="centerX" constant="-0.5" id="a6W-jQ-ZCK"/>
+                            <constraint firstItem="ZsI-tU-kfi" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" id="aKd-nl-b2M"/>
                             <constraint firstItem="jP9-LE-rBO" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="dNr-Ui-lFj"/>
                             <constraint firstItem="DeA-Dd-QES" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="geB-3a-mNE"/>
                             <constraint firstItem="jP9-LE-rBO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="giz-ka-qFZ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ZsI-tU-kfi" secondAttribute="bottom" constant="200" id="mhO-64-90D"/>
                             <constraint firstItem="4tI-I1-dWB" firstAttribute="centerX" secondItem="jP9-LE-rBO" secondAttribute="centerX" id="noj-SQ-UmI"/>
                             <constraint firstItem="4tI-I1-dWB" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="rJP-Ky-HvG"/>
+                            <constraint firstItem="PnW-lf-LfN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zmZ-gB-Tey"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Yfe-vi-5Sv"/>
                                 <exclude reference="noj-SQ-UmI"/>
+                                <exclude reference="aKd-nl-b2M"/>
                             </mask>
                         </variation>
                     </view>
@@ -77,7 +101,8 @@
                         <outlet property="amount" destination="j8j-nD-Lk6" id="5NI-fO-DrS"/>
                         <outlet property="location" destination="DeA-Dd-QES" id="UTy-4e-PfN"/>
                         <outlet property="message" destination="4tI-I1-dWB" id="llb-yi-joB"/>
-                        <outlet property="name" destination="jP9-LE-rBO" id="yvS-bQ-Sdw"/>
+                        <outlet property="name" destination="jP9-LE-rBO" id="Km4-Uu-c23"/>
+                        <outlet property="projectId" destination="PnW-lf-LfN" id="zBc-Z4-spv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

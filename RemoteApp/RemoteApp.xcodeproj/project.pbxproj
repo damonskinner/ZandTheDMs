@@ -18,6 +18,7 @@
 		3C0A62CF1ADEBD8900C3D32F /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A62CC1ADEBD8900C3D32F /* FISParseAPI.m */; };
 		3C0A62D01ADEBD8900C3D32F /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A62CE1ADEBD8900C3D32F /* FISConstants.m */; };
 		3C0A62D31ADEC1F800C3D32F /* NSDate+DateConvenienceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A62D21ADEC1F800C3D32F /* NSDate+DateConvenienceMethods.m */; };
+		3CC2C14B1AE032E900947C9B /* delete.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC2C14A1AE032E900947C9B /* delete.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		3C0A62CE1ADEBD8900C3D32F /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISConstants.m; sourceTree = "<group>"; };
 		3C0A62D11ADEC1F800C3D32F /* NSDate+DateConvenienceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateConvenienceMethods.h"; sourceTree = "<group>"; };
 		3C0A62D21ADEC1F800C3D32F /* NSDate+DateConvenienceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateConvenienceMethods.m"; sourceTree = "<group>"; };
+		3CC2C1491AE032E900947C9B /* delete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delete.h; sourceTree = "<group>"; };
+		3CC2C14A1AE032E900947C9B /* delete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = delete.m; sourceTree = "<group>"; };
 		717B3D9AE971700B32ED9E55 /* libPods-RemoteApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RemoteApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC99B657662CE6534F2B1FEF /* Pods-RemoteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteApp/Pods-RemoteApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +131,8 @@
 				3C0A62B21ADEBAA400C3D32F /* Images.xcassets */,
 				3C0A62B41ADEBAA400C3D32F /* LaunchScreen.xib */,
 				3C0A62A51ADEBAA400C3D32F /* Supporting Files */,
+				3CC2C1491AE032E900947C9B /* delete.h */,
+				3CC2C14A1AE032E900947C9B /* delete.m */,
 			);
 			path = RemoteApp;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0A62AE1ADEBAA400C3D32F /* ViewController.m in Sources */,
+				3CC2C14B1AE032E900947C9B /* delete.m in Sources */,
 				3C0A62D01ADEBD8900C3D32F /* FISConstants.m in Sources */,
 				3C0A62AB1ADEBAA400C3D32F /* AppDelegate.m in Sources */,
 				3C0A62A81ADEBAA400C3D32F /* main.m in Sources */,
