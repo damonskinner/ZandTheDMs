@@ -30,6 +30,9 @@
 @property (nonatomic, strong) FISDonorsChooseDatastore   *datastore;
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
 
+
+
+
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
 //-(void) populateCommentsDictionary;
@@ -62,6 +65,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
+    self.navigationController.navigationBarHidden=YES;
+
+
+    
+    
+
 
 }
 
@@ -205,15 +214,15 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (indexPath.row==0) {
                 layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
                 CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), cornerRadius);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
-                
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+               
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-5);
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
 
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
             } else {
                 layer.fillColor = [UIColor clearColor].CGColor;
                 layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
@@ -293,7 +302,15 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addSubview:self.myTableView];
     self.view.backgroundColor=[UIColor DonorsChooseWhite];
     
+
     
+
+    
+//    self.navigationController.navigationBar.opaque=YES;
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+//    CGFloat screenScale = [[UIScreen mainScreen] scale];
+//    
+//    self.navigationController.navigationBar.frame = CGRectMake(0, 0, screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
     [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
@@ -303,12 +320,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.myTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.mySegmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+
 //    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
     
     NSDictionary *views = @{@"view":self.view,@"segmentedControl":self.mySegmentedControl,@"titleLabel":self.titleLabel,@"tableView":self.myTableView};
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel(view)]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[segmentedControl(view)]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-65-[titleLabel(80)][segmentedControl(35)]-[tableView]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-30-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
 }
 

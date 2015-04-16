@@ -49,14 +49,14 @@
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
     [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
-    
+//    self.navigationController.navigationBar.opaque=YES;
+//    self.navigationController.navigationBar.alpha=1;
 
-    
     
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
     [self.navigationController.navigationBar setTranslucent:NO];
-
+    
 
     self.title=@"Home";
     
@@ -232,6 +232,11 @@
 
 -(void) logOutTapped {
     veryFirstViewController *reLogInViewController = [[veryFirstViewController alloc]init];
+    
+    
+    [self.datastore.loggedInTeacherProposals removeAllObjects];
+    [self.datastore.loggedInTeacherCompletedProposals removeAllObjects];
+    
     
     [PFUser logOut];
     self.navigationController.viewControllers = @[reLogInViewController];
