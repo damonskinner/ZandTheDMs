@@ -8,7 +8,10 @@
 
 #import "SpreadTheNewsViewController.h"
 
+static NSString* TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
+
 @interface SpreadTheNewsViewController () <UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *saveMessageButton;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
@@ -20,6 +23,7 @@
     self.textView.delegate = self;
     self.saveMessageButton.layer.cornerRadius = 10;
     [self setupKeyboardDismissalOnTouch];
+    [self createInputAccessoryView];
     [super viewDidLoad];
 }
 
@@ -48,15 +52,18 @@
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    textView.text = @"";
-    textView.textColor = [UIColor blackColor];
-    textView.textAlignment = NSTextAlignmentLeft;
+    if ([textView.text isEqualToString:TEXTVIEW_PLACEHOLDER])
+    {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+        textView.textAlignment = NSTextAlignmentLeft;
+    }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@""]) {
-        textView.text = @"Tap here to begin your message.";
+        textView.text = TEXTVIEW_PLACEHOLDER;
         textView.textColor = [UIColor lightGrayColor];
         textView.textAlignment = NSTextAlignmentCenter;
     }
@@ -85,8 +92,18 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+-(void) createInputAccessoryView
+{
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
 
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.textView action:@selector(resignFirstResponder)];
 
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    toolbar.items = @[flexibleSpace, doneButton];
+
+    self.textView.inputAccessoryView = toolbar;
+}
 
 /*
 #pragma mark - Navigation

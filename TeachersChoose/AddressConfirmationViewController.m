@@ -9,7 +9,7 @@
 #import "AddressConfirmationViewController.h"
 #import <FAKIonIcons.h>
 
-@interface AddressConfirmationViewController ()
+@interface AddressConfirmationViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
@@ -25,9 +25,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.inputTextField.delegate = self;
     [self setupKeyboardDismissalOnTouch];
     self.editAddressButton.layer.cornerRadius = 10;
     self.nextButton.layer.cornerRadius = 10;
+}
+
+#pragma mark - UITextFieldDelegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void) setupKeyboardDismissalOnTouch
@@ -43,6 +52,8 @@
 {
     [self.inputTextField resignFirstResponder];
 }
+
+
 
 #pragma mark - Edit Address Button
 

@@ -10,7 +10,7 @@
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
 
-static const float totalNumberOfViewControllers = 5.0;
+static const float totalNumberOfViewControllers = 4.0;
 
 @interface ContainerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
@@ -45,7 +45,7 @@ static const float totalNumberOfViewControllers = 5.0;
 // THIS IS HOW WE UPDATE THE PROGRESS BAR
 -(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    NSInteger currentNumberOfControllers = [navigationController.viewControllers count];
+    NSInteger currentNumberOfControllers = [navigationController.viewControllers count] -1;
     [self.myProgressView setProgress:(currentNumberOfControllers/totalNumberOfViewControllers) animated:YES];
     
     NSLog(@"DID SHOW");
