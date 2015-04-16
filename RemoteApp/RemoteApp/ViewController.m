@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "FISParseAPI.h"
 #import "ParsePopulateDonations.h"
+#import "FISDonation.h"
 
 @interface ViewController ()
 
@@ -58,9 +59,20 @@
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
                                                               [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *objectId) {
-                                                                  [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
+                                                                  
+                                                                  [FISParseAPI getDonationsListForProposalWithId:objectId andCompletionBlock:^(NSArray *donationDictionaries) {
+//                                                                      NSMutableArray *donationListToDelete = [[NSMutableArray alloc]init];
+                                                                      for (NSDictionary *eachDonation in donationDictionaries) {
+//                                                                          [donationListToDelete addObject:[FISDonation donationFromDictionary:eachDonation]];
+                                                                          [FISParseAPI removeDonationObjectId:eachDonation[@"objectId"] fromProposalWithObjectId:objectId andCompletionBlock:^{
+                                                                              [FISParseAPI deleteDonationWithObjectId:eachDonation[@"objectId"] andCompletionBlock:^{
+                                                                                  [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
+                                                                              }];
+                                                                          }];
+                                                                      }
+                                                                      
+                                                                  }];
                                                               }];
-
                                                           }];
     
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault

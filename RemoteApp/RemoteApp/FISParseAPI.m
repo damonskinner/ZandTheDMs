@@ -136,12 +136,6 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    //    NSDictionary *params = @{@"where":@[@{@"$relatedTo":
-    //                                            @{@"object": @{
-    //                                                      @"__type": @"Pointer",
-    //                                                      @"className": @"Proposals",
-    //                                                      @"objectId":proposalId},@"key":@"proposal"
-    //        }}]};
     
     NSDictionary *params = @{@"where": @{@"proposal": @{@"__type": @"Pointer",
                                                         @"className": @"Proposals",
@@ -309,6 +303,59 @@
         NSLog(@"Adding Parse Donation Relation Failed: %@",error.localizedDescription);
     }];
     
+}
+
++(void)removeDonationObjectId:(NSString *) donationObjectId fromProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposalObjectId];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    
+    NSDictionary *params = @{@"donations": @{
+                                     @"__op": @"RemoveRelation",
+                                     @"objects": @[@{@"__type":@"Pointer",
+                                                     @"className":@"Donations",
+                                                     @"objectId": donationObjectId}]
+                                     }};
+    
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        
+        completionBlock();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Remove Parse Donation Relation Failed: %@",error.localizedDescription);
+    }];
+    
+}
+
+
++(void) deleteDonationWithObjectId:(NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock {
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/%@",donationObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager DELETE:donorsChooseURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Delete Donation Object Failed: %@",error.localizedDescription);
+    }];
 }
 
 

@@ -34,4 +34,8 @@
 
 +(void)addDonationObjectId:(NSString *) donationObjectId toProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
++(void)removeDonationObjectId:(NSString *) donationObjectId fromProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
+
++(void) deleteDonationWithObjectId:(NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock;
+
 @end
