@@ -175,36 +175,36 @@
                                 <rect key="frame" x="0.0" y="116" width="600" height="348"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
-                                        <rect key="frame" x="60" y="55.5" width="480" height="30"/>
+                                        <rect key="frame" x="60" y="56" width="480" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-pj-5iZ" userLabel="TEACHER NAME">
-                                        <rect key="frame" x="251" y="25" width="99" height="20.5"/>
+                                        <rect key="frame" x="251" y="25" width="99" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="177.5" y="95.5" width="245.5" height="20.5"/>
+                                        <rect key="frame" x="178" y="96" width="246" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
-                                        <rect key="frame" x="249" y="126" width="102" height="20.5"/>
+                                        <rect key="frame" x="249" y="126" width="102" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="210" y="156.5" width="181" height="20.5"/>
+                                        <rect key="frame" x="210" y="157" width="181" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rp-QN-e03">
-                                        <rect key="frame" x="60" y="261.5" width="480" height="36"/>
+                                        <rect key="frame" x="60" y="262" width="480" height="36"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Edit Address">
@@ -270,9 +270,9 @@
                         <subviews>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUc-w5-cLG">
                                 <rect key="frame" x="60" y="490" width="480" height="36"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Confirm Date">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -281,33 +281,86 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ntK-a5-G5a">
-                                <rect key="frame" x="0.0" y="182" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="296" width="600" height="162"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ntK-a5-G5a" secondAttribute="height" id="d9U-pq-ydl"/>
+                                    <constraint firstAttribute="height" secondItem="ntK-a5-G5a" secondAttribute="width" multiplier="0.5" id="d9U-pq-ydl"/>
                                 </constraints>
                                 <date key="date" timeIntervalSinceReferenceDate="450827086.39661098">
                                     <!--2015-04-15 21:44:46 +0000-->
                                 </date>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="d9U-pq-ydl"/>
+                                    </mask>
+                                </variation>
                             </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYR-SI-Bjq">
+                                <rect key="frame" x="0.0" y="102" width="600" height="145"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avoid Setting a Date on or Near:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-f0-Pdp">
+                                        <rect key="frame" x="175" y="8" width="248" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• School vacations and holidays" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-nd-qbn">
+                                        <rect key="frame" x="183" y="37" width="245" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• School or State Testing Days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-k8-92I">
+                                        <rect key="frame" x="183" y="65" width="232" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• End of the School Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9p-bq-oRQ">
+                                        <rect key="frame" x="183" y="93" width="186" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Any Special Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0J-Qu-DmB">
+                                        <rect key="frame" x="183" y="121" width="158" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Clt-k8-92I" firstAttribute="top" secondItem="2fw-nd-qbn" secondAttribute="bottom" constant="8" id="7g4-F2-maV"/>
+                                    <constraint firstItem="2fw-nd-qbn" firstAttribute="leading" secondItem="1By-f0-Pdp" secondAttribute="leading" constant="8" id="BVt-nB-sTk"/>
+                                    <constraint firstItem="A0J-Qu-DmB" firstAttribute="leading" secondItem="F9p-bq-oRQ" secondAttribute="leading" id="FHZ-Db-sdr"/>
+                                    <constraint firstItem="2fw-nd-qbn" firstAttribute="top" secondItem="1By-f0-Pdp" secondAttribute="bottom" constant="8" id="LDk-EN-zzR"/>
+                                    <constraint firstItem="1By-f0-Pdp" firstAttribute="top" secondItem="tYR-SI-Bjq" secondAttribute="top" constant="8" id="OoS-wu-Rj0"/>
+                                    <constraint firstItem="Clt-k8-92I" firstAttribute="leading" secondItem="F9p-bq-oRQ" secondAttribute="leading" id="P5j-9l-bhN"/>
+                                    <constraint firstAttribute="centerX" secondItem="1By-f0-Pdp" secondAttribute="centerX" constant="2" id="XAM-NS-AXd"/>
+                                    <constraint firstItem="Clt-k8-92I" firstAttribute="leading" secondItem="2fw-nd-qbn" secondAttribute="leading" id="dOA-H3-ITb"/>
+                                    <constraint firstItem="F9p-bq-oRQ" firstAttribute="top" secondItem="Clt-k8-92I" secondAttribute="bottom" constant="7" id="kRg-8P-veo"/>
+                                    <constraint firstItem="A0J-Qu-DmB" firstAttribute="top" secondItem="F9p-bq-oRQ" secondAttribute="bottom" constant="8" id="nY6-ye-VMH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ntK-a5-G5a" firstAttribute="width" secondItem="eJB-Tx-cjK" secondAttribute="width" id="1Gk-9F-6B8"/>
                             <constraint firstItem="ntK-a5-G5a" firstAttribute="centerX" secondItem="eJB-Tx-cjK" secondAttribute="centerX" id="1YO-Uu-C9a"/>
-                            <constraint firstItem="ntK-a5-G5a" firstAttribute="centerY" secondItem="eJB-Tx-cjK" secondAttribute="centerY" id="IB2-H9-1ec"/>
+                            <constraint firstItem="ntK-a5-G5a" firstAttribute="height" secondItem="eJB-Tx-cjK" secondAttribute="height" multiplier="0.2" id="Hg9-wk-ZHr"/>
+                            <constraint firstItem="ntK-a5-G5a" firstAttribute="centerY" secondItem="eJB-Tx-cjK" secondAttribute="centerY" multiplier="1.3" id="IB2-H9-1ec"/>
+                            <constraint firstItem="tYR-SI-Bjq" firstAttribute="centerY" secondItem="eJB-Tx-cjK" secondAttribute="centerY" multiplier="0.6" id="O1U-Qo-ZtC"/>
+                            <constraint firstItem="tYR-SI-Bjq" firstAttribute="height" secondItem="eJB-Tx-cjK" secondAttribute="height" multiplier="0.25" id="VQ5-F3-4H4"/>
                             <constraint firstItem="wUc-w5-cLG" firstAttribute="width" secondItem="eJB-Tx-cjK" secondAttribute="width" multiplier="0.8" id="Xla-SB-mQh"/>
-                            <constraint firstItem="ntK-a5-G5a" firstAttribute="width" secondItem="eJB-Tx-cjK" secondAttribute="height" multiplier="30:29" id="cC6-tk-Jdf"/>
+                            <constraint firstItem="tYR-SI-Bjq" firstAttribute="width" secondItem="eJB-Tx-cjK" secondAttribute="width" id="g88-mo-7vv"/>
                             <constraint firstItem="wUc-w5-cLG" firstAttribute="centerX" secondItem="eJB-Tx-cjK" secondAttribute="centerX" id="nnS-Re-lW7"/>
                             <constraint firstItem="wUc-w5-cLG" firstAttribute="centerY" secondItem="eJB-Tx-cjK" secondAttribute="centerY" multiplier="1.75" id="tav-5k-pAn"/>
+                            <constraint firstItem="tYR-SI-Bjq" firstAttribute="centerX" secondItem="eJB-Tx-cjK" secondAttribute="centerX" id="uML-Fl-CJ1"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="cC6-tk-Jdf"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Set Due Date" id="qm3-Dv-EmI"/>
                     <connections>
+                        <outlet property="confirmDateButton" destination="wUc-w5-cLG" id="utU-sY-jrH"/>
                         <outlet property="datePicker" destination="ntK-a5-G5a" id="5OJ-Pj-UhI"/>
                     </connections>
                 </viewController>
@@ -326,7 +379,22 @@
                     <view key="view" contentMode="scaleToFill" id="hHy-OR-mew">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mr-oi-s6v">
+                                <rect key="frame" x="0.0" y="-8" width="600" height="580"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="width" secondItem="hHy-OR-mew" secondAttribute="width" id="8hl-SI-lqc"/>
+                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="height" secondItem="hHy-OR-mew" secondAttribute="height" id="JDV-y3-xFX"/>
+                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" constant="-8" id="TV6-sV-UMr"/>
+                            <constraint firstItem="2Mr-oi-s6v" firstAttribute="centerX" secondItem="hHy-OR-mew" secondAttribute="centerX" id="VvE-Mp-0bP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Message" id="6uo-Vk-jnM"/>
                 </viewController>
@@ -469,7 +537,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2R-33-x7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="987" y="-1543"/>
+            <point key="canvasLocation" x="87" y="-1909"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FYe-PD-gYN">
@@ -487,7 +555,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-KR-rVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086" y="-1543"/>
+            <point key="canvasLocation" x="960" y="-1343"/>
         </scene>
     </scenes>
 </document>

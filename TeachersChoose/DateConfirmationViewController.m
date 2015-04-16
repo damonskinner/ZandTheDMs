@@ -9,6 +9,7 @@
 #import "DateConfirmationViewController.h"
 
 @interface DateConfirmationViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *confirmDateButton;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @end
 
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.confirmDateButton.layer.cornerRadius = 10;
     [self setupDatePicker];
 }
 
@@ -34,9 +36,9 @@
 
 -(NSDate *) calculateMaximumDate{
     // just gonna do 90 days (roughly 3 months) past today
-
     return [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:90 toDate:[NSDate date] options:0];
 }
+
 /*
 #pragma mark - Navigation
 
