@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     self.textView.delegate = self;
     self.saveMessageButton.layer.cornerRadius = 10;
+    [self setupKeyboardDismissalOnTouch];
     [super viewDidLoad];
 }
 
@@ -28,9 +29,18 @@
     [self presentAlert];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) setupKeyboardDismissalOnTouch
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void) dismissKeyboard
+{
+    [self.textView resignFirstResponder];
 }
 
 
@@ -43,6 +53,26 @@
     textView.textAlignment = NSTextAlignmentLeft;
 }
 
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Tap here to begin your message.";
+        textView.textColor = [UIColor lightGrayColor];
+        textView.textAlignment = NSTextAlignmentCenter;
+    }
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length] > 3) {
+        self.saveMessageButton.enabled = YES;
+        self.saveMessageButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
+    }
+    else {
+        self.saveMessageButton.enabled = NO;
+        self.saveMessageButton.backgroundColor = [UIColor lightGrayColor];
+    }
+}
 
 -(void) presentAlert
 {
@@ -54,6 +84,8 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+
 
 
 /*

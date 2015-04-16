@@ -405,9 +405,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSQ-KH-wsP">
+                            <button contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSQ-KH-wsP">
                                 <rect key="frame" x="60" y="490" width="480" height="36"/>
-                                <color key="backgroundColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Save Message">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
