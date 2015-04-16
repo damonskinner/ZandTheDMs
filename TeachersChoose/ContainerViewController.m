@@ -10,7 +10,7 @@
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
 
-static const float totalNumberOfViewControllers = 6.0;
+static const float totalNumberOfViewControllers = 5.0;
 
 @interface ContainerViewController () <UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *containerView;
