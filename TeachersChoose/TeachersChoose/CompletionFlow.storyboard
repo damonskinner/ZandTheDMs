@@ -256,7 +256,7 @@
             </objects>
             <point key="canvasLocation" x="342" y="-649"/>
         </scene>
-        <!--Set Date-->
+        <!--Set Due Date-->
         <scene sceneID="W0m-ia-8Ge">
             <objects>
                 <viewController id="mze-d8-haB" customClass="DateConfirmationViewController" sceneMemberID="viewController">
@@ -276,6 +276,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="6v5-he-q34" kind="show" id="ZwX-0j-OQx"/>
+                                </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ntK-a5-G5a">
                                 <rect key="frame" x="0.0" y="182" width="600" height="216"/>
@@ -303,7 +306,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Set Date" id="qm3-Dv-EmI"/>
+                    <navigationItem key="navigationItem" title="Set Due Date" id="qm3-Dv-EmI"/>
                     <connections>
                         <outlet property="datePicker" destination="ntK-a5-G5a" id="5OJ-Pj-UhI"/>
                     </connections>
@@ -311,6 +314,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3Y-c9-JVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1017" y="-649"/>
+        </scene>
+        <!--Add Message-->
+        <scene sceneID="1sX-sU-acb">
+            <objects>
+                <viewController id="6v5-he-q34" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZMl-xB-zOS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Udz-Y6-cgI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hHy-OR-mew">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Message" id="6uo-Vk-jnM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="edy-Bz-PyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="-649"/>
         </scene>
         <!--Upload Completion Photos-->
         <scene sceneID="dR5-55-6xl">
@@ -393,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pK-t4-VCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="89"/>
+            <point key="canvasLocation" x="1070" y="441"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="hQe-nr-AcJ">
@@ -447,7 +469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2R-33-x7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="307" y="-1379"/>
+            <point key="canvasLocation" x="987" y="-1543"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FYe-PD-gYN">
@@ -465,7 +487,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-KR-rVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="406" y="-1379"/>
+            <point key="canvasLocation" x="1086" y="-1543"/>
         </scene>
     </scenes>
 </document>

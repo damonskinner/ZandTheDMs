@@ -33,9 +33,9 @@
 }
 
 -(NSDate *) calculateMaximumDate{
-    // just gonna do 3 months past today
+    // just gonna do 90 days (roughly 3 months) past today
 
-    return [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:3 toDate:[NSDate date] options:0];
+    return [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:90 toDate:[NSDate date] options:0];
 }
 /*
 #pragma mark - Navigation
