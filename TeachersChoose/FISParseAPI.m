@@ -99,6 +99,26 @@
 }
 
 
++(void)createDonationWithName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount donationDate: (NSDate *)donationDate andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"donorName":donorName,@"donorLocation":donorLocation,@"donorMessage":donorMessage,@"responseMessage":responseMessage,@"donationAmount":donationAmount,@"donationDate":donationDate};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Create New Donation Failed: %@",error.localizedDescription);
+    }];
+}
+
 //need to test this method
 +(void) getDonationsListForProposalWithId: (NSString *) proposalId andCompletionBlock:(void (^)(NSArray *))completionBlock {
     
@@ -216,5 +236,8 @@
         NSLog(@"Retrieve Donation Object Failed: %@",error.localizedDescription);
     }];
 }
+
+
+
 
 @end

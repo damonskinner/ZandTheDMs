@@ -29,4 +29,6 @@
 
 +(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
++(void)createDonationWithName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount donationDate: (NSDate *)donationDate andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
 @end

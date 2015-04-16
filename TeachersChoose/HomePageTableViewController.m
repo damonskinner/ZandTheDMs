@@ -26,6 +26,8 @@
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
     
     UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
+    
+    [self.tableView deselectRowAtIndexPath:nil animated:YES];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = testView.bounds;
