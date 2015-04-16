@@ -17,7 +17,7 @@
     donation.donorName=donationDictionary[@"donorName"];
     donation.donorLocation=donationDictionary[@"donorLocation"];
     donation.donorMessage=donationDictionary[@"donorMessage"];
-    donation.donationDate=donationDictionary[@"donationDate"];
+//    donation.donationDate=donationDictionary[@"donationDate"];
 
     donation.responseMessage=donationDictionary[@"responseMessage"];
     donation.proposalId=donationDictionary[@"proposalId"];

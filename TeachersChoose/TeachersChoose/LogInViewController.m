@@ -7,6 +7,7 @@
 //
 
 #import "LogInViewController.h"
+#import "UIColor+DonorsChooseColors.h"
 
 @interface LogInViewController ()
 
@@ -16,18 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    UIImageView *logoImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Icon-76"]];
+    logoImageView.contentMode = UIViewContentModeScaleAspectFill;
+    logoImageView.frame=self.logInView.bounds;
     
-    [self.logInView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"main_background.png"]]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    [self.logInView setLogo:logoImageView];
+    [self.logInView setBackgroundColor:[UIColor whiteColor]];
     
+
     // Set buttons appearance
-    [self.logInView.dismissButton setImage:[UIImage imageNamed:@"exit.png"] forState:UIControlStateNormal];
-    [self.logInView.dismissButton setImage:[UIImage imageNamed:@"exit_down.png"] forState:UIControlStateHighlighted];
     
-    [self.logInView.signUpButton setBackgroundImage:[UIImage imageNamed:@"signup.png"] forState:UIControlStateNormal];
-    [self.logInView.signUpButton setBackgroundImage:[UIImage imageNamed:@"signup_down.png"] forState:UIControlStateHighlighted];
-    [self.logInView.signUpButton setTitle:@"CooperSignupTest1" forState:UIControlStateNormal];
-    [self.logInView.signUpButton setTitle:@"CooperSignupTest2" forState:UIControlStateHighlighted];
+    
+    
     
     // Do any additional setup after loading the view.
     // Remove text shadow

@@ -42,7 +42,7 @@
 		[view setTranslatesAutoresizingMaskIntoConstraints:NO];
 	}
     
-    
+    self.navigationController.navigationBarHidden=YES;
 
 
 	self.view.backgroundColor = [UIColor whiteColor];
@@ -67,7 +67,7 @@
 	[self.titleLabel sizeToFit];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[titleLabel]-|" options:0 metrics:nil views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-70-[titleLabel(100)]" options:0 metrics:nil views:views]];
+	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[titleLabel(100)]" options:0 metrics:nil views:views]];
 
 	self.expirationDate.text = [NSString stringWithFormat:@"Exp. Date: %@", self.proposal.expirationDate];
 	self.expirationDate.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:14];
@@ -106,7 +106,7 @@
 	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[costToCompleteOfTotalWithPercent]-[numberOfDonations(30)]" options:0 metrics:nil views:views]];
     
     
-    NSLayoutConstraint *shareButtonWidthConstraints = [NSLayoutConstraint constraintWithItem:self.self.shareButton
+    NSLayoutConstraint *shareButtonWidthConstraints = [NSLayoutConstraint constraintWithItem:self.shareButton
                                      attribute:NSLayoutAttributeWidth
                                      relatedBy:NSLayoutRelationEqual
                                         toItem:self.view

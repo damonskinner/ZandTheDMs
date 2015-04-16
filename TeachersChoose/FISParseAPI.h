@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FISDonorsChooseProposal.h"
 #import "FISConstants.h"
+#import "FISDonation.h"
 #import <Parse.h>
 
 @interface FISParseAPI : NSObject
@@ -29,5 +30,11 @@
 +(void) getTeacherIdForObjectId: (NSString *) teacherObjectId andCompletionBlock:(void (^)(NSString *))completionBlock;
 
 +(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock;
+
+
++(void)createDonationForProposalObjectId:(NSString *)proposalObjectId withName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
++(void)addDonationObjectId:(NSString *) donationObjectId toProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
+
 
 @end
