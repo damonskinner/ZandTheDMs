@@ -9,21 +9,34 @@
 #import "DateConfirmationViewController.h"
 
 @interface DateConfirmationViewController ()
-
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @end
 
 @implementation DateConfirmationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setupDatePicker];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - DatePicker
+
+-(void) setupDatePicker
+{
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+    self.datePicker.minimumDate = [NSDate date];
+    self.datePicker.maximumDate = [self calculateMaximumDate];
+}
+
+-(NSDate *) calculateMaximumDate{
+    // just gonna do 3 months past today
+
+    return [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:3 toDate:[NSDate date] options:0];
+}
 /*
 #pragma mark - Navigation
 

@@ -304,6 +304,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Set Date" id="qm3-Dv-EmI"/>
+                    <connections>
+                        <outlet property="datePicker" destination="ntK-a5-G5a" id="5OJ-Pj-UhI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3Y-c9-JVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
