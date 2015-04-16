@@ -368,10 +368,10 @@
             </objects>
             <point key="canvasLocation" x="1017" y="-649"/>
         </scene>
-        <!--Add Message-->
+        <!--Spread The News-->
         <scene sceneID="1sX-sU-acb">
             <objects>
-                <viewController id="6v5-he-q34" customClass="GoodNewsViewController" sceneMemberID="viewController">
+                <viewController id="6v5-he-q34" customClass="SpreadTheNewsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZMl-xB-zOS"/>
                         <viewControllerLayoutGuide type="bottom" id="Udz-Y6-cgI"/>
@@ -380,23 +380,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Tap here to begin your message" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="so9-vq-Vpj">
-                                <rect key="frame" x="30" y="174" width="540" height="232"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Tap here to begin your message" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="so9-vq-Vpj">
+                                <rect key="frame" x="30" y="145" width="540" height="232"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Gratitude," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDD-s2-2QY">
+                                <rect key="frame" x="454" y="385" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dear Donors," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fE9-cG-GOI">
+                                <rect key="frame" x="30" y="117" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mrs. Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa1-rJ-EmK">
+                                <rect key="frame" x="485" y="414" width="85" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSQ-KH-wsP">
+                                <rect key="frame" x="60" y="490" width="480" height="36"/>
+                                <color key="backgroundColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save Message">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="so9-vq-Vpj" firstAttribute="centerX" secondItem="hHy-OR-mew" secondAttribute="centerX" id="4sN-jH-rB1"/>
+                            <constraint firstItem="Pa1-rJ-EmK" firstAttribute="trailing" secondItem="FDD-s2-2QY" secondAttribute="trailing" id="6EU-pt-Knn"/>
                             <constraint firstItem="so9-vq-Vpj" firstAttribute="height" secondItem="hHy-OR-mew" secondAttribute="height" multiplier="0.4" id="8JQ-CV-buJ"/>
-                            <constraint firstItem="so9-vq-Vpj" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" id="DTH-im-Nln"/>
+                            <constraint firstItem="hSQ-KH-wsP" firstAttribute="width" secondItem="hHy-OR-mew" secondAttribute="width" multiplier="0.8" id="C3i-QV-tjz"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" multiplier="0.9" id="DTH-im-Nln"/>
                             <constraint firstItem="so9-vq-Vpj" firstAttribute="width" secondItem="hHy-OR-mew" secondAttribute="width" multiplier="0.9" id="HyI-0v-IWj"/>
+                            <constraint firstItem="Pa1-rJ-EmK" firstAttribute="top" secondItem="FDD-s2-2QY" secondAttribute="bottom" constant="8" id="Kgp-RM-0t1"/>
+                            <constraint firstItem="FDD-s2-2QY" firstAttribute="top" secondItem="so9-vq-Vpj" secondAttribute="bottom" constant="8" id="e5R-3h-YIP"/>
+                            <constraint firstItem="hSQ-KH-wsP" firstAttribute="centerX" secondItem="hHy-OR-mew" secondAttribute="centerX" id="ePz-9v-CEl"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="trailing" secondItem="FDD-s2-2QY" secondAttribute="trailing" id="k2y-y0-D24"/>
+                            <constraint firstItem="so9-vq-Vpj" firstAttribute="top" secondItem="fE9-cG-GOI" secondAttribute="bottom" constant="8" id="mHO-5S-Unc"/>
+                            <constraint firstItem="fE9-cG-GOI" firstAttribute="leading" secondItem="so9-vq-Vpj" secondAttribute="leading" id="v2I-5N-Agg"/>
+                            <constraint firstItem="hSQ-KH-wsP" firstAttribute="centerY" secondItem="hHy-OR-mew" secondAttribute="centerY" multiplier="1.75" id="vo9-6X-mmv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Message" id="6uo-Vk-jnM"/>
+                    <navigationItem key="navigationItem" title="Spread The News" id="6uo-Vk-jnM"/>
+                    <connections>
+                        <outlet property="saveMessageButton" destination="hSQ-KH-wsP" id="rgo-9c-81w"/>
+                        <outlet property="textView" destination="so9-vq-Vpj" id="Hla-g6-bun"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edy-Bz-PyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

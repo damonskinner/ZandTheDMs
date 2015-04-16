@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GoodNewsViewController : UIViewController
+@interface SpreadTheNewsViewController : UIViewController
 
 @end
