@@ -174,7 +174,9 @@
         NSString *randomTeacherId = [self getRandomTeacherIdForNewParseUser];
 
         [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-
+            [self.datastore createFakeFundedProposal];
+            
+            
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
             //attach teacherId to installation

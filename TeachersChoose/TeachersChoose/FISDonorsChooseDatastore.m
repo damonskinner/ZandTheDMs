@@ -193,6 +193,16 @@
     return [sortedArray mutableCopy];
 }
 
+
+-(void) createFakeFundedProposal {
+    self.fakeFundedProposal = [((FISDonorsChooseProposal *)self.loggedInTeacherProposals[0]) copy];
+    self.fakeFundedProposal.title = @"Almost there!";
+    self.fakeFundedProposal.proposalId = @"9999999";
+    self.fakeFundedProposal.costToComplete=@"0";
+    self.fakeFundedProposal.fundingStatus=@"funded";
+    [self.loggedInTeacherProposals addObject:self.fakeFundedProposal];
+}
+
 -(void) populateRandomDonationsForProposal:(FISDonorsChooseProposal *) proposal withCompletionblock:(void (^)(void))completionBlock {
     
     FISDonation *donation0=[[FISDonation alloc]initWithName:@"Johnny B. Gud" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"" DonationAmount:@"35.00"];
