@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
 @property (nonatomic, strong) NSArray *sampleDonations;
+@property (nonatomic, strong) NSString *decodedDeviceToken;
 
 + (instancetype)sharedDataStore;
 

@@ -35,6 +35,8 @@
     logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     logoImageView.frame=self.view.frame;
     
+    
+    
     [self.view addSubview:logoImageView];
 
     [self.view removeConstraints:self.view.constraints];
@@ -175,7 +177,14 @@
 
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
-
+            //attach teacherId to installation
+            [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+                [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+                    
+                }];
+            }];
+            
+            
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
@@ -189,7 +198,7 @@
 }
 
 -(void) createNewParseProposalForProposal:(FISDonorsChooseProposal *) proposal andCurrentUser:(PFUser *) user {
-    [FISParseAPI createProposalWithId:proposal.proposalId withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
+    [FISParseAPI createProposalWithId:proposal.proposalId proposalTitle:proposal.title withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
         
         proposal.parseObjectId=responseObject[@"objectId"];
         

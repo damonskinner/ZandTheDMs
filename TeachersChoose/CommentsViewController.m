@@ -35,6 +35,7 @@
 
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
+-(void) populateDonationsWhichNeedResponseArray;
 //-(void) populateCommentsDictionary;
 
 
@@ -312,7 +313,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(void) setupLayout {
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text=self.proposal.title;
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ (%@)",self.proposal.title ,self.proposal.proposalId];
     self.titleLabel.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
     self.titleLabel.textColor=[UIColor DonorsChooseBlack];
     self.titleLabel.numberOfLines = 0;
@@ -368,13 +369,13 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     if (self.mySegmentedControl.selectedSegmentIndex==0) {
         [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
            
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
-                                                                           message:@"Are you really really sure you want to clear th e database??"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
-                                                                      
+//            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
+//                                                                           message:@"Are you really really sure you want to clear th e database??"
+//                                                                    preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+//                                                                  handler:^(UIAlertAction * action) {
+//                                                                      
         }];
     } else {
         [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
