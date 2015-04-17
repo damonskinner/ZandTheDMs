@@ -102,7 +102,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 //    NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
 //    NSArray *thisSetOfComments = self.commentsDictionary[donorName];
 //    FISComment *thisComment = thisSetOfComments[indexPath.row];
-    NSLog(@"%ld",indexPath.section);
+
 
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
         if (indexPath.row==1) {
@@ -122,14 +122,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
             }
-            if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
+            if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
-                 NSLog(@"%@",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage);
+               
                 return cell;
                 
             } else {
                 [self formatCell: cell forBasicDisplaywithMessage: [NSString stringWithFormat:@"%@ from %@ donated.",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorName,((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorLocation] andIndexPath:indexPath];
-                NSLog(@"%@",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage);
+
                 return cell;
             }
         }
@@ -163,7 +163,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             }
             if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
-                NSLog(@"%@",((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage);
+
                 
                 return cell;
                 
