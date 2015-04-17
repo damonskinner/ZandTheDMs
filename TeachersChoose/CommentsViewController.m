@@ -35,6 +35,7 @@
 
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
+-(void) populateDonationsWhichNeedResponseArray;
 //-(void) populateCommentsDictionary;
 
 
@@ -57,20 +58,29 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
     [self populateDonationsWhichNeedResponseArray];
-    
     [self setupSegmentedControl];
     [self setupLayout];
-//    [self populateCommentsDictionary];
+    //    [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
-
-
     
-    
+}
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.proposal.donations removeAllObjects];
+    
+    [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+        [self.myTableView reloadData];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
 }
 
@@ -92,20 +102,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    NSString *donorName = [self.commentsDictionary allKeys][section];
-//    NSArray *thisDonorsComments = self.commentsDictionary[donorName];
-//    return [thisDonorsComments count];
+
     return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
-//    NSArray *thisSetOfComments = self.commentsDictionary[donorName];
-//    FISComment *thisComment = thisSetOfComments[indexPath.row];
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
         if (indexPath.row==1) {
-            
+
+
             FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
             if (!cell) {
                 cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
@@ -120,12 +126,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
             }
-            if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
+            if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
+               
                 return cell;
                 
             } else {
                 [self formatCell: cell forBasicDisplaywithMessage: [NSString stringWithFormat:@"%@ from %@ donated.",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorName,((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorLocation] andIndexPath:indexPath];
+
                 return cell;
             }
         }
@@ -159,6 +167,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             }
             if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
+
+                
                 return cell;
                 
             } else {
@@ -179,7 +189,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
     [label setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]];
     NSString *titleString;
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
@@ -213,7 +223,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     return 10; // just seemed like a magical number
 }
 
-#pragma mark - Formatting Helpers
+
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -229,18 +239,18 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
                 CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
-               
+                
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-5);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
-
+                
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
             } else {
                 layer.fillColor = [UIColor clearColor].CGColor;
                 layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
-               
+                
                 
                 CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
@@ -252,10 +262,10 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
                 
             }
-
+            
             layer.path = pathRef;
             CFRelease(pathRef);
-
+            
             
             UIView *testView = [[UIView alloc] initWithFrame:bounds];
             [testView.layer insertSublayer:layer atIndex:0];
@@ -264,7 +274,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         }
     }
 }
+#pragma mark - Formatting Helpers
 
+
+
+
+-(void) prepareTableViewForResizingCells
+{
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
+    self.myTableView.estimatedRowHeight = 50.0;
+}
 
 
 -(void) formatCell:(UITableViewCell*) cell forBasicDisplaywithMessage: (NSString*) comment andIndexPath: (NSIndexPath *) indexPath
@@ -273,8 +292,9 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = comment;
+
     
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self formatCell: cell byCommentTypeWithMessage:comment andIndexPath: indexPath];
@@ -305,7 +325,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(void) setupLayout {
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text=self.proposal.title;
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ (%@)",self.proposal.title ,self.proposal.proposalId];
     self.titleLabel.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
     self.titleLabel.textColor=[UIColor DonorsChooseBlack];
     self.titleLabel.numberOfLines = 0;
@@ -356,34 +376,44 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(void) saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
-    
-    
-    if (self.mySegmentedControl.selectedSegmentIndex==0) {
-        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
-        }];
-    } else {
-        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
-        }];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
+                                                                   message:@"Are you really really sure you want to send this message?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
-    }
+    }];
     
-    [self.donationsWhichNeedResponse removeAllObjects];
-    [self populateDonationsWhichNeedResponseArray];
-    [self.myTableView reloadData];
-    [self prepareTableViewForResizingCells];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              if (self.mySegmentedControl.selectedSegmentIndex==0) {
+                                                                  [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
+                                                                      
+                                                                      
+                                                                  }];
+                                                              } else {
+                                                                  [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
+                                                                  }];
+                                                                  
+                                                              }
+                                                              [self.donationsWhichNeedResponse removeAllObjects];
+                                                              [self populateDonationsWhichNeedResponseArray];
+                                                              [self.myTableView reloadData];
+                                                              [self prepareTableViewForResizingCells];
+                                                              
+                                                          }];
+    [alert addAction:defaultAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES  completion:nil];
+    
+    
 }
 
-
--(void) prepareTableViewForResizingCells
-{
-    self.myTableView.rowHeight = UITableViewAutomaticDimension;
-    self.myTableView.estimatedRowHeight = 50.0;
-}
 
 -(void) populateDonationsWhichNeedResponseArray {
     for (FISDonation *eachDonation in self.proposal.donations) {
         if (!(eachDonation.hasResponded)) {
             [self.donationsWhichNeedResponse addObject:eachDonation];
+
         }
         
     }

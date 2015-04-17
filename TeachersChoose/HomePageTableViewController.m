@@ -29,6 +29,8 @@
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
 
     UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
+    
+    [self.tableView deselectRowAtIndexPath:nil animated:YES];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = testView.bounds;
@@ -183,18 +185,18 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    NSLog(@"willBeginDragging");
+
 }
 
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"willBeginDecelerating");
+
     [self.tableView setUserInteractionEnabled:NO];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"Did Scroll");
+
     [self.tableView setUserInteractionEnabled:YES];
     
 }
@@ -223,6 +225,7 @@
 
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
+    
     
     [self.navigationController pushViewController:tabBarController animated:YES];
 }

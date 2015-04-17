@@ -17,8 +17,10 @@
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
+@property (nonatomic, strong) FISDonorsChooseProposal *fakeFundedProposal;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
 @property (nonatomic, strong) NSArray *sampleDonations;
+@property (nonatomic, strong) NSString *decodedDeviceToken;
 
 + (instancetype)sharedDataStore;
 
@@ -32,5 +34,7 @@
 
 -(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock;
 
+-(void) populateRandomDonationsForProposal:(FISDonorsChooseProposal *) proposal withCompletionblock:(void (^)(void))completionBlock;
+-(void) createFakeFundedProposal;
 
 @end

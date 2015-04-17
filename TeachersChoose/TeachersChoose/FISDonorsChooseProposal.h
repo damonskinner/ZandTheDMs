@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FISDonorsChooseProposal : NSObject
+@interface FISDonorsChooseProposal : NSObject <NSCopying>
 
 @property (nonatomic, strong) NSArray *additionalSubjects;
 @property (nonatomic, strong) NSString *city;
@@ -53,6 +53,6 @@
 
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 
-
+-(id) copyWithZone:(NSZone *)zone;
 
 @end

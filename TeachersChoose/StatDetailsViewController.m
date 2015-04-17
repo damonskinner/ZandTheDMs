@@ -14,7 +14,7 @@
 #import "CustomItemUIActivityItemProvider.h"
 #import "DonorsTableViewController.h"
 
-@interface StatDetailsViewController ()<UIActivityItemSource>
+@interface StatDetailsViewController () <UIActivityItemSource>
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *expirationDate;
