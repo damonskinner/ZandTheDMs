@@ -316,6 +316,9 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addSubview:self.myTableView];
     self.view.backgroundColor=[UIColor DonorsChooseWhite];
     
+
+    
+    
     [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];

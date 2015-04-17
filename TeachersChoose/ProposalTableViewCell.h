@@ -17,7 +17,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *costToCompleteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *expirationDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *numDonorsLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *proposalTableViewProgressView;
+@property (weak, nonatomic) IBOutlet UILabel *toGoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *raisedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fundedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *amountRaisedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *percentFundedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *donorsLabel;
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
