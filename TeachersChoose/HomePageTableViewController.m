@@ -226,6 +226,7 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationNone];
     
+    
     [self.navigationController pushViewController:tabBarController animated:YES];
 }
 

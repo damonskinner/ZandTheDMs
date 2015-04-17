@@ -69,6 +69,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.proposal.donations removeAllObjects];
+    
+    [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+        [self.myTableView reloadData];
+    }];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -179,7 +189,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
     [label setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]];
     NSString *titleString;
     if(self.mySegmentedControl.selectedSegmentIndex==0) {

@@ -147,7 +147,7 @@
         
         //May need to insert more API stuff here to update any new proposals on parse
         if(completion) {
-            
+            [self createFakeFundedProposal];
             for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals) {
                 [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *returnedObjectId) {
                     eachProposal.parseObjectId=returnedObjectId;

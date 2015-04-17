@@ -75,9 +75,10 @@
     [FISParseAPI getTeacherIdForObjectId:loggedInTeacherParseObjectId andCompletionBlock:^(NSString *teacherId) {
         
         [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:teacherId andCompletionBlock:^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self transitionToHomePage];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
         }];
     }];
 }
@@ -180,12 +181,14 @@
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
             //attach teacherId to installation
-//            [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
-//                [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
-//                    
-//                }];
-//            }];
             
+            if ([self.datastore.decodedDeviceToken length]>0) {
+                [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+                    [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+                        
+                    }];
+                }];
+            }
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
