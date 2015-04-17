@@ -55,6 +55,29 @@
     }];
 }
 
++(void)getTeacherIdForProposalId:(NSString *) proposalId andCompletionBlock:(void (^)(NSString *))completionBlock
+{
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"id":proposalId,@"APIKEY":DonorsChooseAPIKey};
+    
+    manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        
+        
+        completionBlock(rawResults[@"proposals"][0][@"teacherId"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
+
+
 +(void)getSearchResultsWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSArray *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];

@@ -35,6 +35,7 @@
     logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     logoImageView.frame=self.view.frame;
     
+
     [self.view addSubview:logoImageView];
 
     [self.view removeConstraints:self.view.constraints];
@@ -73,9 +74,10 @@
     [FISParseAPI getTeacherIdForObjectId:loggedInTeacherParseObjectId andCompletionBlock:^(NSString *teacherId) {
         
         [self.datastore updateCurrentTeacherProposalsForCurrentTeacherId:teacherId andCompletionBlock:^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                [self transitionToHomePage];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [self transitionToHomePage];
         }];
     }];
 }
@@ -172,10 +174,21 @@
         NSString *randomTeacherId = [self getRandomTeacherIdForNewParseUser];
 
         [self.datastore getSearchResultsWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
-
+            [self.datastore createFakeFundedProposal];
+            
+            
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
-
+            //attach teacherId to installation
+            
+            if ([self.datastore.decodedDeviceToken length]>0) {
+                [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+                    [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+                        
+                    }];
+                }];
+            }
+            
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
@@ -189,18 +202,14 @@
 }
 
 -(void) createNewParseProposalForProposal:(FISDonorsChooseProposal *) proposal andCurrentUser:(PFUser *) user {
-    [FISParseAPI createProposalWithId:proposal.proposalId withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
+    [FISParseAPI createProposalWithId:proposal.proposalId proposalTitle:proposal.title withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
         
         proposal.parseObjectId=responseObject[@"objectId"];
         
         [FISParseAPI addProposalObjectId:proposal.parseObjectId toNewUserWithObjectId:user.objectId currentUserSessionToken:user.sessionToken andCompletionBlock:^{
         }];
-        [self.datastore getDonationsListForProposal:proposal andCompletion:^(BOOL completion) {
-            if(completion) {
-                NSLog(@"%@",proposal.donations);
-            } else {
-                NSLog(@"Donations array not populated.  Check parse datastore and manually link if needed.");
-            }
+        [self.datastore populateRandomDonationsForProposal:proposal withCompletionblock:^{
+            
         }];
     }];
 }

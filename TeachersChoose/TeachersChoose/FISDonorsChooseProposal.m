@@ -52,10 +52,21 @@
     proposal.totalPrice=proposalDictionary[@"totalPrice"];
     proposal.zip=proposalDictionary[@"zip"];
     proposal.zone=proposalDictionary[@"zone"];
+    
+    proposal.parseObjectId=proposalDictionary[@"objectId"];
 
     proposal.daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:proposalDictionary[@"expirationDate"]]];
     
     return proposal;
+}
+
+
+-(id)copyWithZone:(NSZone *)zone
+{
+    // We'll ignore the zone for now
+    FISDonorsChooseProposal *proposalCopy = [[FISDonorsChooseProposal allocWithZone:zone]init];
+    
+    return proposalCopy;
 }
 
 - (instancetype)init

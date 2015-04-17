@@ -20,7 +20,7 @@
 		3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF031ACC376E0078F4E3 /* Images.xcassets */; };
 		3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */; };
 		3617DF131ACC376E0078F4E3 /* TeachersChooseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DF121ACC376E0078F4E3 /* TeachersChooseTests.m */; };
-		36793A351ADC6DCD00F5777E /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36793A331ADC69CD00F5777E /* CommentsViewController.m */; };
+		361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36793A331ADC69CD00F5777E /* CommentsViewController.m */; };
 		369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */; };
 		369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */; };
 		3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */; };
@@ -657,6 +657,9 @@
 				36E866781ADEF98500DF1B54 /* SignUpViewController.m in Sources */,
 				36E866771ADEF98200DF1B54 /* LogInViewController.m in Sources */,
 				36793A351ADC6DCD00F5777E /* CommentsViewController.m in Sources */,
+				361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */,
+				36E866781ADEF98500DF1B54 /* SignUpViewController.m in Sources */,
+				36E866771ADEF98200DF1B54 /* LogInViewController.m in Sources */,
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
 				3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */,
@@ -809,12 +812,12 @@
 			baseConfigurationReference = C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
 			};
 			name = Debug;
 		};
@@ -823,12 +826,12 @@
 			baseConfigurationReference = ED51748089525FC2668399D6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
 			};
 			name = Release;
 		};
