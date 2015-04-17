@@ -52,6 +52,8 @@
     proposal.totalPrice=proposalDictionary[@"totalPrice"];
     proposal.zip=proposalDictionary[@"zip"];
     proposal.zone=proposalDictionary[@"zone"];
+    
+    proposal.parseObjectId=proposalDictionary[@"objectId"];
 
     proposal.daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:proposalDictionary[@"expirationDate"]]];
     

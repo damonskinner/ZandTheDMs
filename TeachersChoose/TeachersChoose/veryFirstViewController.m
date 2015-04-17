@@ -178,11 +178,11 @@
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
             //attach teacherId to installation
-            [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
-                [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
-                    
-                }];
-            }];
+//            [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+//                [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+//                    
+//                }];
+//            }];
             
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){

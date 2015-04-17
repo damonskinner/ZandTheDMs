@@ -10,6 +10,9 @@
 #import "FISParseAPI.h"
 #import "ParsePopulateDonations.h"
 #import "FISDonation.h"
+#import "FISDonorsChooseProposal.h"
+#import "FISDonorsChooseAPI.h"
+
 
 @interface ViewController ()
 
@@ -40,15 +43,14 @@
     [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *proposalObjectId) {
         [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
             [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
-                
+                [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSString * teacherId) {
+//                    [FISParseAPI sendPushNotificationToTeacherId:teacherId];
+                    [FISParseAPI sendPushNotificationToEveryone];
+                }];
             }];
         }];
     }];
-    
-    
-    
-    
-    [FISParseAPI sendPushNotificationToEveryone];
+
 }
 
 - (IBAction)resetDBTapped:(id)sender {

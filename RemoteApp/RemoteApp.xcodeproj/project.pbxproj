@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361A97A31AE176D0003635E7 /* FISDonorsChooseProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 361A97A11AE176D0003635E7 /* FISDonorsChooseProposal.m */; };
+		361A97A41AE176D0003635E7 /* FISDonorsChooseCompletedProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 361A97A21AE176D0003635E7 /* FISDonorsChooseCompletedProposal.m */; };
+		36E4B59D1AE17A8B00ADD40B /* FISDonorsChooseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36E4B59C1AE17A8B00ADD40B /* FISDonorsChooseAPI.m */; };
 		385A35F2AA8E7A2DEB2CE87F /* libPods-RemoteApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 717B3D9AE971700B32ED9E55 /* libPods-RemoteApp.a */; };
 		3C0A62A81ADEBAA400C3D32F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A62A71ADEBAA400C3D32F /* main.m */; };
 		3C0A62AB1ADEBAA400C3D32F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0A62AA1ADEBAA400C3D32F /* AppDelegate.m */; };
@@ -34,6 +37,12 @@
 
 /* Begin PBXFileReference section */
 		316CC72DD9F4C51F5DEF2DAF /* Pods-RemoteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RemoteApp/Pods-RemoteApp.debug.xcconfig"; sourceTree = "<group>"; };
+		361A97A11AE176D0003635E7 /* FISDonorsChooseProposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseProposal.m; path = ../../TeachersChoose/TeachersChoose/FISDonorsChooseProposal.m; sourceTree = "<group>"; };
+		361A97A21AE176D0003635E7 /* FISDonorsChooseCompletedProposal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseCompletedProposal.m; path = ../../TeachersChoose/FISDonorsChooseCompletedProposal.m; sourceTree = "<group>"; };
+		361A97A51AE176F5003635E7 /* FISDonorsChooseCompletedProposal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseCompletedProposal.h; path = ../../TeachersChoose/FISDonorsChooseCompletedProposal.h; sourceTree = "<group>"; };
+		361A97A61AE176F5003635E7 /* FISDonorsChooseProposal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseProposal.h; path = ../../TeachersChoose/TeachersChoose/FISDonorsChooseProposal.h; sourceTree = "<group>"; };
+		36E4B59B1AE17A8B00ADD40B /* FISDonorsChooseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseAPI.h; path = ../../TeachersChoose/TeachersChoose/FISDonorsChooseAPI.h; sourceTree = "<group>"; };
+		36E4B59C1AE17A8B00ADD40B /* FISDonorsChooseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseAPI.m; path = ../../TeachersChoose/TeachersChoose/FISDonorsChooseAPI.m; sourceTree = "<group>"; };
 		3C0A62A21ADEBAA400C3D32F /* RemoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RemoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C0A62A61ADEBAA400C3D32F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C0A62A71ADEBAA400C3D32F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -120,6 +129,12 @@
 		3C0A62A41ADEBAA400C3D32F /* RemoteApp */ = {
 			isa = PBXGroup;
 			children = (
+				361A97A51AE176F5003635E7 /* FISDonorsChooseCompletedProposal.h */,
+				361A97A61AE176F5003635E7 /* FISDonorsChooseProposal.h */,
+				361A97A11AE176D0003635E7 /* FISDonorsChooseProposal.m */,
+				361A97A21AE176D0003635E7 /* FISDonorsChooseCompletedProposal.m */,
+				36E4B59B1AE17A8B00ADD40B /* FISDonorsChooseAPI.h */,
+				36E4B59C1AE17A8B00ADD40B /* FISDonorsChooseAPI.m */,
 				3C891CB01AE05AAC00A44035 /* FISDonation.h */,
 				3C891CB11AE05AAC00A44035 /* FISDonation.m */,
 				3C0A62CB1ADEBD8900C3D32F /* FISParseAPI.h */,
@@ -304,8 +319,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0A62AE1ADEBAA400C3D32F /* ViewController.m in Sources */,
+				36E4B59D1AE17A8B00ADD40B /* FISDonorsChooseAPI.m in Sources */,
 				3C0A62D01ADEBD8900C3D32F /* FISConstants.m in Sources */,
 				3C0A62AB1ADEBAA400C3D32F /* AppDelegate.m in Sources */,
+				361A97A31AE176D0003635E7 /* FISDonorsChooseProposal.m in Sources */,
+				361A97A41AE176D0003635E7 /* FISDonorsChooseCompletedProposal.m in Sources */,
 				3C0A62A81ADEBAA400C3D32F /* main.m in Sources */,
 				3C0A62CF1ADEBD8900C3D32F /* FISParseAPI.m in Sources */,
 				3C0A62D31ADEC1F800C3D32F /* NSDate+DateConvenienceMethods.m in Sources */,
@@ -437,9 +455,12 @@
 			baseConfigurationReference = 316CC72DD9F4C51F5DEF2DAF /* Pods-RemoteApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
 				INFOPLIST_FILE = RemoteApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
 			};
 			name = Debug;
 		};
@@ -448,9 +469,12 @@
 			baseConfigurationReference = CC99B657662CE6534F2B1FEF /* Pods-RemoteApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
 				INFOPLIST_FILE = RemoteApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
 			};
 			name = Release;
 		};
