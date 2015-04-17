@@ -253,7 +253,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSDictionary *params = @{       @"where": @{@"deviceType": @"ios"},
-                                    @"data": @{@"alert": @"You've gotten a new donation !"}};
+                                    @"data": @{@"alert": @"You've received a new donation !"}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     

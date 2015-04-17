@@ -61,9 +61,7 @@
                                                               [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *objectId) {
                                                                   
                                                                   [FISParseAPI getDonationsListForProposalWithId:objectId andCompletionBlock:^(NSArray *donationDictionaries) {
-//                                                                      NSMutableArray *donationListToDelete = [[NSMutableArray alloc]init];
                                                                       for (NSDictionary *eachDonation in donationDictionaries) {
-//                                                                          [donationListToDelete addObject:[FISDonation donationFromDictionary:eachDonation]];
                                                                           [FISParseAPI removeDonationObjectId:eachDonation[@"objectId"] fromProposalWithObjectId:objectId andCompletionBlock:^{
                                                                               [FISParseAPI deleteDonationWithObjectId:eachDonation[@"objectId"] andCompletionBlock:^{
 ;

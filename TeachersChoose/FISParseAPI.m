@@ -253,7 +253,7 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSDictionary *params = @{       @"where": @{@"deviceType": @"ios"},
+    NSDictionary *params = @{       @"where": @{@"proposalId": @"ios"},
                                     @"data": @{@"alert": @"Don't fuck up your interview again !"}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
@@ -331,6 +331,33 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Adding Parse Donation Relation Failed: %@",error.localizedDescription);
     }];
+    
+}
+
++(void) addProposalIdtoChannelWithObjectId:(NSString *)objectId {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/_Installation/%@",objectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"channels":  }};
+    
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        
+        completionBlock();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Adding Parse Donation Relation Failed: %@",error.localizedDescription);
+    }];
+
     
 }
 
