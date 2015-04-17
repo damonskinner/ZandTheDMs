@@ -40,8 +40,6 @@
 		36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */; };
 		36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124121ACDAF8E009866EB /* FISParseAPI.m */; };
 		36C67098E328C4594321760C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E3A6D663C527B52F55FDB09 /* libPods.a */; };
-		36E866771ADEF98200DF1B54 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
-		36E866781ADEF98500DF1B54 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
 		36E866AB1ADEFE6900DF1B54 /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E866991ADEFE6900DF1B54 /* Icon-60.png */; };
 		36E866AC1ADEFE6900DF1B54 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E8669A1ADEFE6900DF1B54 /* Icon-60@2x.png */; };
 		36E866AD1ADEFE6900DF1B54 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E8669B1ADEFE6900DF1B54 /* Icon-60@3x.png */; };
@@ -62,6 +60,8 @@
 		36E866BC1ADEFE6900DF1B54 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E866AA1ADEFE6900DF1B54 /* iTunesArtwork@2x.png */; };
 		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
+		3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
+		3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
 		3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
@@ -654,12 +654,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36E866781ADEF98500DF1B54 /* SignUpViewController.m in Sources */,
-				36E866771ADEF98200DF1B54 /* LogInViewController.m in Sources */,
-				36793A351ADC6DCD00F5777E /* CommentsViewController.m in Sources */,
+				3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */,
+				3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */,
 				361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */,
-				36E866781ADEF98500DF1B54 /* SignUpViewController.m in Sources */,
-				36E866771ADEF98200DF1B54 /* LogInViewController.m in Sources */,
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
 				3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */,
