@@ -281,7 +281,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     cell.textLabel.text = comment;
 
     
-    NSLog(@"%@",cell.textLabel.text);
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self formatCell: cell byCommentTypeWithMessage:comment andIndexPath: indexPath];
@@ -367,12 +367,23 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
     if (self.mySegmentedControl.selectedSegmentIndex==0) {
         [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
+           
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
+                                                                           message:@"Are you really really sure you want to clear th e database??"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                      
         }];
     } else {
         [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
         }];
         
     }
+    
+
+    
     
     [self.donationsWhichNeedResponse removeAllObjects];
     [self populateDonationsWhichNeedResponseArray];
@@ -391,7 +402,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     for (FISDonation *eachDonation in self.proposal.donations) {
         if (!(eachDonation.hasResponded)) {
             [self.donationsWhichNeedResponse addObject:eachDonation];
-            NSLog(@"%@ %@",eachDonation.donorName, eachDonation.donorMessage);
+
         }
         
     }
