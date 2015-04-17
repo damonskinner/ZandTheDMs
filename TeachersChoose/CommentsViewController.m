@@ -58,6 +58,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
     [self populateDonationsWhichNeedResponseArray];
+
     [self setupSegmentedControl];
     [self setupLayout];
     //    [self populateCommentsDictionary];
@@ -66,6 +67,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
+
     
 }
 
@@ -81,6 +83,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
 
 }
 
@@ -108,8 +111,10 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
         if (indexPath.row==1) {
+
 
 
             FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
@@ -126,9 +131,11 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
             }
+
             if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
                
+
                 return cell;
                 
             } else {
@@ -168,7 +175,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
 
-                
                 return cell;
                 
             } else {
@@ -189,7 +195,9 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     
 
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
+
     [label setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]];
     NSString *titleString;
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
@@ -244,13 +252,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
                 
+
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
             } else {
                 layer.fillColor = [UIColor clearColor].CGColor;
                 layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
-                
+
                 
                 CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
@@ -262,10 +271,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
                 
             }
+
             
             layer.path = pathRef;
             CFRelease(pathRef);
             
+
             
             UIView *testView = [[UIView alloc] initWithFrame:bounds];
             [testView.layer insertSublayer:layer atIndex:0];
@@ -336,6 +347,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addSubview:self.myTableView];
     self.view.backgroundColor=[UIColor DonorsChooseWhite];
     
+
     [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];
@@ -376,11 +388,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 -(void) saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
+
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
                                                                    message:@"Are you really really sure you want to send this message?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        
+
     }];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -404,7 +417,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [alert addAction:defaultAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES  completion:nil];
-    
     
 }
 

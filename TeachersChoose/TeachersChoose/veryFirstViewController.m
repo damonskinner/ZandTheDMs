@@ -35,8 +35,7 @@
     logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     logoImageView.frame=self.view.frame;
     
-    
-    
+
     [self.view addSubview:logoImageView];
 
     [self.view removeConstraints:self.view.constraints];

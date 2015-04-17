@@ -27,7 +27,9 @@
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
     [[UINavigationBar appearance] setTintColor:[UIColor DonorsChooseGreyVeryLight]];
     self.window.backgroundColor=[UIColor whiteColor];
+
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+
     
     // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
