@@ -341,8 +341,8 @@
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSDictionary *params = @{       @"where": @{@"teacherId": teacherId},
-                                    @"data": @{@"alert": @"One of your proposals just got a donation!"}};
+    NSDictionary *params = @{@"where": @{@"teacherId": teacherId},
+                             @"data": @{@"alert": @"One of your proposals just got a donation!"}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     

@@ -44,8 +44,8 @@
         [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
             [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
                 [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSString * teacherId) {
-//                    [FISParseAPI sendPushNotificationToTeacherId:teacherId];
-                    [FISParseAPI sendPushNotificationToEveryone];
+                    [FISParseAPI sendPushNotificationToTeacherId:teacherId];
+//                    [FISParseAPI sendPushNotificationToEveryone];
                 }];
             }];
         }];
@@ -63,9 +63,9 @@
                                                               [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *objectId) {
                                                                   
                                                                   [FISParseAPI getDonationsListForProposalWithId:objectId andCompletionBlock:^(NSArray *donationDictionaries) {
-//                                                                      NSMutableArray *donationListToDelete = [[NSMutableArray alloc]init];
+
                                                                       for (NSDictionary *eachDonation in donationDictionaries) {
-//                                                                          [donationListToDelete addObject:[FISDonation donationFromDictionary:eachDonation]];
+
                                                                           [FISParseAPI removeDonationObjectId:eachDonation[@"objectId"] fromProposalWithObjectId:objectId andCompletionBlock:^{
                                                                               [FISParseAPI deleteDonationWithObjectId:eachDonation[@"objectId"] andCompletionBlock:^{
 ;
