@@ -53,7 +53,7 @@
 
 - (IBAction)resetDBTapped:(id)sender {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
-                                                                   message:@"Are you really really sure you want to clear the database??"
+                                                                   message:@"Are you really really sure you want to clear th e database??"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
@@ -66,11 +66,11 @@
 //                                                                          [donationListToDelete addObject:[FISDonation donationFromDictionary:eachDonation]];
                                                                           [FISParseAPI removeDonationObjectId:eachDonation[@"objectId"] fromProposalWithObjectId:objectId andCompletionBlock:^{
                                                                               [FISParseAPI deleteDonationWithObjectId:eachDonation[@"objectId"] andCompletionBlock:^{
-                                                                                  [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
+;
                                                                               }];
                                                                           }];
                                                                       }
-                                                                      
+                                                                      [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
                                                                   }];
                                                               }];
                                                           }];
