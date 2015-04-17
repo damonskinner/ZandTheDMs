@@ -47,6 +47,10 @@
     NSMutableArray *newDonationArray= [[NSMutableArray alloc]init];
     
     NSInteger randomNumberOfDonations = arc4random_uniform([donationsArray count]);
+    
+    if (randomNumberOfDonations<3) {
+        randomNumberOfDonations=3;
+    }
     for (NSInteger i=0; i<randomNumberOfDonations; i++) {
         NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
         [newDonationArray addObject:donationsArray[randomDonationIndex]];

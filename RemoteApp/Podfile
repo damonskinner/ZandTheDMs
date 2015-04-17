@@ -4,6 +4,7 @@
 target 'RemoteApp' do
 	pod "AFNetworking", "~> 2.0"
 	pod "ParseUI"
+    pod 'MWFeedParser'
 end
 
 target 'RemoteAppTests' do

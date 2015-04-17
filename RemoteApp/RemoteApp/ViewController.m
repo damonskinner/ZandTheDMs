@@ -55,7 +55,7 @@
 
 - (IBAction)resetDBTapped:(id)sender {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete Confirmation"
-                                                                   message:@"Are you really really sure you want to clear th e database??"
+                                                                   message:@"Are you really really sure you want to clear the database??"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault

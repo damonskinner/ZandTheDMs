@@ -185,18 +185,18 @@
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    NSLog(@"willBeginDragging");
+
 }
 
 -(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"willBeginDecelerating");
+
     [self.tableView setUserInteractionEnabled:NO];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"Did Scroll");
+
     [self.tableView setUserInteractionEnabled:YES];
     
 }
