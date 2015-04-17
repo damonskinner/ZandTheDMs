@@ -68,7 +68,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeWidth
                                 multiplier:1.0
-                                  constant:-16];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelWidthConstraint];
     
@@ -88,7 +88,7 @@
                                  attribute:NSLayoutAttributeLeft
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeLeftMargin
+                                 attribute:NSLayoutAttributeLeft
                                 multiplier:1.0
                                   constant:0];
     
@@ -99,7 +99,7 @@
                                  attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
-                                 attribute:NSLayoutAttributeRightMargin
+                                 attribute:NSLayoutAttributeRight
                                 multiplier:1.0
                                   constant:0];
     

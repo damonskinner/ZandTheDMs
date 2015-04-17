@@ -55,7 +55,7 @@
     }];
 }
 
-+(void)getTeacherIdForProposalId:(NSString *) proposalId andCompletionBlock:(void (^)(NSString *))completionBlock
++(void)getTeacherIdForProposalId:(NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock
 {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"%@/json_feed.html?",DonorsChooseBaseURL];
     
@@ -71,7 +71,7 @@
         NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         
         
-        completionBlock(rawResults[@"proposals"][0][@"teacherId"]);
+        completionBlock(rawResults[@"proposals"][0]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];

@@ -65,6 +65,7 @@
 {
     // We'll ignore the zone for now
     FISDonorsChooseProposal *proposalCopy = [[FISDonorsChooseProposal allocWithZone:zone]init];
+
     
     return proposalCopy;
 }

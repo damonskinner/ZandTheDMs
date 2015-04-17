@@ -40,17 +40,29 @@
 }
 
 - (IBAction)createDonationTapped:(id)sender {
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Notification Sent"
+                                                                   message:@"Your notification was successfully sent."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                          }];
+    [alert addAction:defaultAction];
+    
     [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *proposalObjectId) {
         [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
             [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
-                [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSString * teacherId) {
-                    [FISParseAPI sendPushNotificationToTeacherId:teacherId];
-//                    [FISParseAPI sendPushNotificationToEveryone];
+                [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSDictionary * proposalDict) {
+                    [FISParseAPI sendPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }];
+                    
                 }];
             }];
         }];
     }];
-
+//    [FISParseAPI sendPushNotificationToEveryone];
 }
 
 - (IBAction)resetDBTapped:(id)sender {

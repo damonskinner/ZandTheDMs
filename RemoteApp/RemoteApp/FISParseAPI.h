@@ -38,7 +38,7 @@
 
 +(void) deleteDonationWithObjectId:(NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void)sendPushNotificationToTeacherId: (NSString *)teacherId;
++(void)sendPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion;
 +(void) getProposalObjectProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
 

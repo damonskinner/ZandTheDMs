@@ -49,7 +49,7 @@
 //    [self setHeaderImage:self.datastore.loggedInTeacher.image];
     [self setTitleText:self.datastore.loggedInTeacher.name];
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
-    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
+//    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
 
     
@@ -203,7 +203,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected row: %ld", indexPath.row);
+
 
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     

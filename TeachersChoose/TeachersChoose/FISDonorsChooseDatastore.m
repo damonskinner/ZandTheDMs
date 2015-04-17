@@ -200,6 +200,7 @@
     self.fakeFundedProposal.proposalId = @"9999999";
     self.fakeFundedProposal.costToComplete=@"0";
     self.fakeFundedProposal.fundingStatus=@"funded";
+    self.fakeFundedProposal.expirationDate=@"2015-07-23";
     [self.loggedInTeacherProposals addObject:self.fakeFundedProposal];
 }
 

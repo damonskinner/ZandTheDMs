@@ -336,13 +336,13 @@
     }];
 }
 
-+(void)sendPushNotificationToTeacherId: (NSString *)teacherId {
++(void)sendPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion {
     NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
+    NSString *notificationMessage = [NSString stringWithFormat:@"Your project \"%@\" just got a donation!",proposalTitle];
     NSDictionary *params = @{@"where": @{@"teacherId": teacherId},
-                             @"data": @{@"alert": @"One of your proposals just got a donation!"}};
+                             @"data": @{@"alert": notificationMessage}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     
@@ -353,7 +353,7 @@
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager POST:pushURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+        completion();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
