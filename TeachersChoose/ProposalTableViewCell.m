@@ -10,6 +10,7 @@
 #import "UIFont+DonorsChooseFonts.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "NSDate+DateConvenienceMethods.h"
+#import "FISDonorsChooseCompletedProposal.h"
 
 
 //needs more work on cell constraints, i.e., height
@@ -47,6 +48,8 @@
 - (void)awakeFromNib {
     // Initialization code
     
+    self.raisedLabel.hidden=YES;
+    
     self.backgroundColor=[UIColor DonorsChooseBlueLight];
     self.proposalTableViewProgressView.trackTintColor = [UIColor grayColor];
     self.proposalTableViewProgressView.progressTintColor = [UIColor greenColor];
@@ -67,8 +70,10 @@
     [self.percentFundedLabel removeConstraints:self.percentFundedLabel.constraints];
     [self.amountRaisedLabel removeConstraints:self.amountRaisedLabel.constraints];
     [self.donorsLabel removeConstraints:self.donorsLabel.constraints];
+    [self.completionButton removeConstraints:self.completionButton.constraints];
     
-    //    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -80,7 +85,11 @@
     self.percentFundedLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.amountRaisedLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.donorsLabel.translatesAutoresizingMaskIntoConstraints = NO;
-
+    self.completionButton.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    
+    
+    
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
                                  attribute:NSLayoutAttributeWidth
@@ -99,7 +108,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeTop
                                 multiplier:1.0
-                                  constant:10];
+                                  constant:0];
     
     [self.contentView addConstraint:titleLabelTopConstraint];
     
@@ -147,13 +156,35 @@
     
     [self.contentView addConstraint:expirationDateLabelBottomConstraint];
     
+    NSLayoutConstraint *completionButtonRight =
+    [NSLayoutConstraint constraintWithItem:self.completionButton
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeRightMargin
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:completionButtonRight];
+    
+    NSLayoutConstraint *completionButtonCenterY =
+    [NSLayoutConstraint constraintWithItem:self.completionButton
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.expirationDateLabel
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:completionButtonCenterY];
+    
     NSLayoutConstraint *costToCompleteLabelCenterXConstraint =
     [NSLayoutConstraint constraintWithItem:self.costToCompleteLabel
                                  attribute:NSLayoutAttributeCenterX
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeCenterX
-                                multiplier:1.50
+                                multiplier:1.75
                                   constant:0];
     
     [self.contentView addConstraint:costToCompleteLabelCenterXConstraint];
@@ -191,27 +222,6 @@
     
     [self.contentView addConstraint:amountRaisedLabelTopConstraint];
     
-    NSLayoutConstraint *numDonorsLabelCenterXConstraint =
-    [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
-                                 attribute:NSLayoutAttributeCenterX
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
-                                 attribute:NSLayoutAttributeCenterX
-                                multiplier:.50
-                                  constant:0];
-    
-    [self.contentView addConstraint:numDonorsLabelCenterXConstraint];
-    
-    NSLayoutConstraint *numDonorsLabelTopConstraint =
-    [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
-                                 attribute:NSLayoutAttributeTop
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.proposalTableViewProgressView
-                                 attribute:NSLayoutAttributeBottom
-                                multiplier:1.0
-                                  constant:10];
-    
-    [self.contentView addConstraint:numDonorsLabelTopConstraint];
     
     NSLayoutConstraint *toGoLabelTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.toGoLabel
@@ -268,16 +278,16 @@
     
     [self.contentView addConstraint:donorsLabelTopConstraint];
     
-    NSLayoutConstraint *donorsLabelCenterXConstraint =
+    NSLayoutConstraint *donorsLabelCenterX =
     [NSLayoutConstraint constraintWithItem:self.donorsLabel
                                  attribute:NSLayoutAttributeCenterX
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.numDonorsLabel
+                                    toItem:self.contentView
                                  attribute:NSLayoutAttributeCenterX
-                                multiplier:1.0
+                                multiplier:0.25
                                   constant:0];
     
-    [self.contentView addConstraint:donorsLabelCenterXConstraint];
+    [self.contentView addConstraint:donorsLabelCenterX];
     
     NSLayoutConstraint *numDonorsLabelBottomConstraint =
     [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
@@ -289,6 +299,28 @@
                                   constant:5];
     
     [self.contentView addConstraint:numDonorsLabelBottomConstraint];
+    
+    NSLayoutConstraint *numDonorsLabelCenterXConstraint =
+    [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
+                                 attribute:NSLayoutAttributeCenterX
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.donorsLabel
+                                 attribute:NSLayoutAttributeCenterX
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:numDonorsLabelCenterXConstraint];
+    
+    NSLayoutConstraint *numDonorsLabelTopConstraint =
+    [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
+                                 attribute:NSLayoutAttributeTop
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.proposalTableViewProgressView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:10];
+    
+    [self.contentView addConstraint:numDonorsLabelTopConstraint];
     
     NSLayoutConstraint *donorsLabelBottomConstraint =
     [NSLayoutConstraint constraintWithItem:self.donorsLabel
@@ -342,7 +374,7 @@
                                     toItem:self.titleLabel
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
-                                  constant:15];
+                                  constant:0];
     
     [self.contentView addConstraint:proposalTableViewProgressViewTopConstraint];
     
@@ -366,7 +398,7 @@
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:20];
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
     self.expirationDateLabel.backgroundColor = [UIColor clearColor];
     
     self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
@@ -398,6 +430,9 @@
     self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
     self.numDonorsLabel.backgroundColor = [UIColor clearColor];
     
+    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:20];
+    self.completionButton.titleLabel.textColor = [UIColor DonorsChooseOrange];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -421,6 +456,9 @@
     self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.numDonors];
     NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
     
+    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
+    
+    self.proposalTableViewProgressView.progress=  raisedAsFloat/ [self.proposal.totalPrice floatValue];
     self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%d", amountRaised,self.proposal.totalPrice.intValue];
     
     
@@ -431,7 +469,8 @@
     
     if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {
         self.toGoLabel.hidden=NO;
-        self.raisedLabel.hidden=NO;
+        self.completionButton.hidden=YES;
+//        self.raisedLabel.hidden=NO;
         self.fundedLabel.hidden=NO;
         self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
         self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
@@ -446,8 +485,14 @@
         self.fundedLabel.hidden=YES;
 
         
-        
-        self.expirationDateLabel.hidden=NO;
+        if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+            self.expirationDateLabel.hidden=NO;
+            self.completionButton.hidden=YES;
+        } else {
+             self.expirationDateLabel.hidden=YES;
+            self.completionButton.hidden=NO;
+        }
+       
         
         
         
@@ -459,4 +504,7 @@
     [self settingFontAttributes];
 }
 
+- (IBAction)completionButton:(id)sender {
+    NSLog(@"button clicked");
+}
 @end
