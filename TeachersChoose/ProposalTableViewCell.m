@@ -425,7 +425,12 @@
     
     self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
     self.donorsLabel.backgroundColor = [UIColor clearColor];
-    self.donorsLabel.text = @"donors";
+    if ([self.proposal.numDonors isEqual:@"1"]) {
+        self.donorsLabel.text=@"donor";
+    } else {
+        self.donorsLabel.text = @"donors";
+    }
+    
     
     self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
     self.numDonorsLabel.backgroundColor = [UIColor clearColor];
