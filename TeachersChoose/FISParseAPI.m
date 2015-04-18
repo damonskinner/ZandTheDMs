@@ -111,7 +111,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSDictionary *params = @{@"proposalId":proposalId,
-                             @"title":@"proposalTitle",
+                             @"title":proposalTitle,
                              @"teacherId": @{@"__type":@"Pointer",
                                              @"className":@"_User",
                                              @"objectId": teacherObjectId}};

@@ -67,7 +67,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
     
 }
 
@@ -432,7 +432,22 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
 }
 
-
+- (void)reloadTable:(NSNotification *)notification
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Notification Received"
+                                                                   message:@"You just received a new donation!"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                          }];
+    [alert addAction:defaultAction];
+    
+    
+    [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+        [self.myTableView reloadData];
+    }];
+}
 
 
 @end

@@ -10,6 +10,7 @@
 #import <AFNetworking.h>
 #import "FISConstants.h"
 #import <Parse/Parse.h>
+#import <NSString+HTML.h>
 
 
 @implementation FISParseAPI
@@ -61,7 +62,7 @@
     manager.securityPolicy.allowInvalidCertificates = YES;
     
     [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+
         completionBlock(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Create New Donation Failed: %@",error.localizedDescription);
@@ -339,8 +340,11 @@
 +(void)sendPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion {
     NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
     
+    NSString *decodedProposalTitle= [proposalTitle stringByDecodingHTMLEntities];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSString *notificationMessage = [NSString stringWithFormat:@"Your project \"%@\" just got a donation!",proposalTitle];
+    NSString *notificationMessage = [NSString stringWithFormat:@"Your project \"%@\" just got a donation!",decodedProposalTitle];
+    
+    
     NSDictionary *params = @{@"where": @{@"teacherId": teacherId},
                              @"data": @{@"alert": notificationMessage}};
     
