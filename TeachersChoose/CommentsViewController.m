@@ -57,7 +57,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
-    [self populateDonationsWhichNeedResponseArray];
+//    [self populateDonationsWhichNeedResponseArray];
 
     [self setupSegmentedControl];
     [self setupLayout];
@@ -75,8 +75,10 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [super viewDidAppear:animated];
     
     [self.proposal.donations removeAllObjects];
+    [self.donationsWhichNeedResponse removeAllObjects];
     
     [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+        [self populateDonationsWhichNeedResponseArray];
         [self.myTableView reloadData];
     }];
 }
@@ -443,8 +445,13 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                                                           }];
     [alert addAction:defaultAction];
     
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    [self.proposal.donations removeAllObjects];
+    [self.donationsWhichNeedResponse removeAllObjects];
     
     [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+        [self populateDonationsWhichNeedResponseArray];
         [self.myTableView reloadData];
     }];
 }

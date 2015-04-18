@@ -65,7 +65,7 @@
 
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo  {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:userInfo];
     
 }
 
