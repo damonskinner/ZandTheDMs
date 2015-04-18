@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *percentFundedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *donorsLabel;
 
+
+
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
 @end

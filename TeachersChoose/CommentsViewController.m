@@ -8,6 +8,7 @@
 
 #import "CommentsViewController.h"
 #import "FISDonorsChooseProposal.h"
+#import "FISDonorsChooseCompletedProposal.h"
 #import "FISDonorsChooseDatastore.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
@@ -77,10 +78,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.proposal.donations removeAllObjects];
     [self.donationsWhichNeedResponse removeAllObjects];
     
-    [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
-        [self populateDonationsWhichNeedResponseArray];
-        [self.myTableView reloadData];
-    }];
+    if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
+        [self populateDonationsWithFakeRespondedDonations];
+    } else {
+        [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+            [self populateDonationsWhichNeedResponseArray];
+            [self.myTableView reloadData];
+        }];
+    }
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -450,11 +457,33 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.proposal.donations removeAllObjects];
     [self.donationsWhichNeedResponse removeAllObjects];
     
-    [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
-        [self populateDonationsWhichNeedResponseArray];
-        [self.myTableView reloadData];
-    }];
+    
+    
+    if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
+        [self populateDonationsWithFakeRespondedDonations];
+    } else {
+        [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+            [self populateDonationsWhichNeedResponseArray];
+            [self.myTableView reloadData];
+        }];
+    }
 }
 
+-(void) populateDonationsWithFakeRespondedDonations {
+    FISDonation *donation0=[[FISDonation alloc]initWithName:@"Johnny B. Gud" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"Thanks!" DonationAmount:@"35.00"];
+    FISDonation *donation1=[[FISDonation alloc]initWithName:@"Sandra Kyles" Location:@"New York" Date:[NSDate date] DonorMessage:@"Nice job" ResponseMessage:@"You're the best!  Thank you!" DonationAmount:@"5.00"];
+    FISDonation *donation2=[[FISDonation alloc]initWithName:@"Bartholomew Cubbins" Location:@"Idaho" Date:[NSDate date] DonorMessage:@"Wow, keep up the good work!" ResponseMessage:@"Wow, thanks!" DonationAmount:@"2.00"];
+    FISDonation *donation3=[[FISDonation alloc]initWithName:@"Mimi Dieter" Location:@"Hawaii" Date:[NSDate date] DonorMessage:@"Yay learning!" ResponseMessage:@"Thank you so much!" DonationAmount:@"40.00"];
+    FISDonation *donation4=[[FISDonation alloc]initWithName:@"Adam Jones" Location:@"Miami" Date:[NSDate date] DonorMessage:@"Neat" ResponseMessage:@"Incredible, thanks!" DonationAmount:@"6.00"];
+    FISDonation *donation5=[[FISDonation alloc]initWithName:@"Clarissa Starling" Location:@"Texas" Date:[NSDate date] DonorMessage:@"Good job!  Hope they learn a lot." ResponseMessage:@"So generous, thank you!" DonationAmount:@"100.00"];
+    FISDonation *donation6=[[FISDonation alloc]initWithName:@"Johnny English" Location:@"Ohio" Date:[NSDate date] DonorMessage:@"Super fun!" ResponseMessage:@"Thanks!" DonationAmount:@"80.00"];
+    FISDonation *donation7=[[FISDonation alloc]initWithName:@"Chad Hemmingsworth" Location:@"Chicago" Date:[NSDate date] DonorMessage:@"What a cool project.  Those kids sure are lucky" ResponseMessage:@"Wow, thank you so much!" DonationAmount:@"20.00"];
+    FISDonation *donation8=[[FISDonation alloc]initWithName:@"Jasmine Yee" Location:@"Illinois" Date:[NSDate date] DonorMessage:@"Cooooool!" ResponseMessage:@"Thank you." DonationAmount:@"10.00"];
+    FISDonation *donation9=[[FISDonation alloc]initWithName:@"Charlotte Kelly" Location:@"Los Angeles" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Oh my word, thank you!!!" DonationAmount:@"400.00"];
+    
+    self.proposal.donations=[@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9] mutableCopy];
+    
+}
+        
 
 @end

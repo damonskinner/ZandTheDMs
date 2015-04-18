@@ -382,6 +382,7 @@
     self.toGoLabel.backgroundColor = [UIColor clearColor];
     self.toGoLabel.text = @"to go";
     
+    
     self.raisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
     self.raisedLabel.backgroundColor = [UIColor clearColor];
     self.raisedLabel.text = @"raised";
@@ -429,6 +430,9 @@
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     
     if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {
+        self.toGoLabel.hidden=NO;
+        self.raisedLabel.hidden=NO;
+        self.fundedLabel.hidden=NO;
         self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
         self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
         if ([self.expirationDateLabel.text integerValue]<=30) {
@@ -437,7 +441,16 @@
             self.expirationDateLabel.hidden=YES;
         }
     } else {
+        self.toGoLabel.hidden=YES;
+        self.raisedLabel.hidden=YES;
+        self.fundedLabel.hidden=YES;
+
+        
+        
         self.expirationDateLabel.hidden=NO;
+        
+        
+        
         self.expirationDateLabel.textColor=[UIColor DonorsChooseGreen];
         self.expirationDateLabel.text=@"Project Complete!";
     }

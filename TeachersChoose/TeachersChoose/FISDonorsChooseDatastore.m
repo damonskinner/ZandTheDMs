@@ -201,6 +201,9 @@
     self.fakeFundedProposal.costToComplete=@"0";
     self.fakeFundedProposal.fundingStatus=@"funded";
     self.fakeFundedProposal.expirationDate=@"2015-07-23";
+    self.fakeFundedProposal.numDonors=@10;
+    self.fakeFundedProposal.costToComplete=@"0";
+    self.fakeFundedProposal.totalPrice=@"1000";
     [self.loggedInTeacherProposals addObject:self.fakeFundedProposal];
 }
 
