@@ -88,9 +88,11 @@ static CGFloat IMAGE_HEIGHT = 320.0f;
     _mainScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.frame), _contentView.contentSize.height + CGRectGetHeight(_backgroundScrollView.frame));
 }
 
+
+//check for translucency of nav bar
 - (CGFloat)navBarHeight{
     if (self.navigationController && !self.navigationController.navigationBarHidden) {
-        return CGRectGetHeight(self.navigationController.navigationBar.frame) + 20; //include 20 for the status bar
+        return 0; //include 20 for the status bar
     }
     return 0.0f;
 }

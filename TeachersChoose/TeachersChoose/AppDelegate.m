@@ -26,6 +26,10 @@
     [Parse setApplicationId:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj"
                   clientKey:@"cPiKWXa9xalCvk4Irtklchy4T8p90GwZJyxk0ZLK"];
     [[UINavigationBar appearance] setTintColor:[UIColor DonorsChooseGreyVeryLight]];
+    self.window.backgroundColor=[UIColor whiteColor];
+
+    self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+
     
     // Register for Push Notitications
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
@@ -40,14 +44,30 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"didRegisterForRemoteNotifications");
+//    NSLog(@"didRegisterForRemoteNotifications");
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+
+    NSMutableCharacterSet *charactersToFind = [[NSCharacterSet lowercaseLetterCharacterSet] mutableCopy];
+    [charactersToFind formUnionWithCharacterSet:[NSCharacterSet uppercaseLetterCharacterSet]];
+    [charactersToFind formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+
+    NSString* newStr = [deviceToken description];
+    
+    
+    self.datastore.decodedDeviceToken = [[newStr componentsSeparatedByCharactersInSet: [charactersToFind invertedSet]] componentsJoinedByString:@""];
+//    NSLog(@"%@",self.datastore.decodedDeviceToken);
+    
+    
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
 }
 
-
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo  {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:userInfo];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

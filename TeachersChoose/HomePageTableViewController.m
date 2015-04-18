@@ -7,25 +7,30 @@
 //
 
 #import "HomePageTableViewController.h"
+#import "veryFirstViewController.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonorsChooseCompletedProposal.h"
 #import "ProposalTableViewCell.h"
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import <Parse.h>
 #import <FAKIonIcons.h>
 
-@interface HomePageTableViewController ()
+@interface HomePageTableViewController () <UIScrollViewDelegate>
 
 @end
 
 @implementation HomePageTableViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
-    
+
     UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
+    
+    [self.tableView deselectRowAtIndexPath:nil animated:YES];
 
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
     gradientLayer.frame = testView.bounds;
@@ -44,20 +49,22 @@
 //    [self setHeaderImage:self.datastore.loggedInTeacher.image];
     [self setTitleText:self.datastore.loggedInTeacher.name];
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
-    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
+//    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
+
 
     
-
-    
-    
-    
+    //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+
     self.title=@"Home";
     
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
+    
     
     
     [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
@@ -67,87 +74,16 @@
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+ 
     
-    
-//    [self.tableView removeConstraints:self.tableView.constraints];
-//    
-//    self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
+
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToSettingsPage)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
-//    
-//    
-//    
-//    
-//    NSLayoutConstraint *mainTableViewTopConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeTop
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeTop
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewTopConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewRightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeRight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeRight
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewRightConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewLeftConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeLeft
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeLeft
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewLeftConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewBottomConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeBottom
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeBottom
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewBottomConstraint];
-//    
-//    NSLayoutConstraint *mainTableViewCenteringXConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.tableView
-//                                 attribute:NSLayoutAttributeCenterX
-//     
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.view
-//                                 attribute:NSLayoutAttributeCenterX
-//                                multiplier:1.0
-//                                  constant:0];
-//    
-//    [self.view addConstraint:mainTableViewCenteringXConstraint];
-//    
-//    //     Do any additional setup after loading the view.
-//    [self.tableView reloadData];
     
 }
-
--(void) segueToSettingsPage {
-    
-}
-
-
 
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -157,9 +93,9 @@
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
     
     if (indexPath.section==0) {
-        return 200;
+        return 180;
     } else {
-        return 140;
+        return 180;
     }
 }
 
@@ -200,10 +136,14 @@
     
 }
 
+
+
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-    return NO;
+
+    return YES;
 }
+
 
 
 -(CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -217,9 +157,9 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
     
     if(section ==0) {
-        headerLabel.text = @"Current Proposals";
+        headerLabel.text = @"Current Projects";
     } else {
-        headerLabel.text = @"Completed Proposals";
+        headerLabel.text = @"Completed Projects";
     }
     headerLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
     headerLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
@@ -244,38 +184,72 @@
     return view;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+
+}
+
+-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+
+    [self.tableView setUserInteractionEnabled:NO];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+
+    [self.tableView setUserInteractionEnabled:YES];
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"selected row: %ld", indexPath.row);
-    
+
+
     DetailsTabBarController *tabBarController = [[DetailsTabBarController alloc] init];
     
     
-    
     if (indexPath.section ==0) {
-        FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
+//        FISDonorsChooseProposal *selectedProposal= self.datastore.loggedInTeacherProposals[indexPath.row];
         tabBarController.navigationItem.title = @"Project";
-        tabBarController.selectedProposal=selectedProposal;
+        tabBarController.selectedProposal=self.datastore.loggedInTeacherProposals[indexPath.row];
 
         
     } else {
-        FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
+//        FISDonorsChooseCompletedProposal *selectedProposal = self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
         tabBarController.navigationItem.title = @"Project";
-        tabBarController.selectedProposal=selectedProposal;
-        
+        tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
-    
-    
+
+//    NSLog(@"just before deselect code");
+
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationNone];
     
     
     [self.navigationController pushViewController:tabBarController animated:YES];
-    
 }
+
+
+-(void) logOutTapped {
+    veryFirstViewController *reLogInViewController = [[veryFirstViewController alloc]init];
+    
+    
+    [self.datastore.loggedInTeacherProposals removeAllObjects];
+    [self.datastore.loggedInTeacherCompletedProposals removeAllObjects];
+    
+    
+    [PFUser logOut];
+    self.navigationController.viewControllers = @[reLogInViewController];
+
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

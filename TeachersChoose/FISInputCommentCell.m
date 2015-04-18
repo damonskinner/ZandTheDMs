@@ -7,17 +7,28 @@
 //
 
 #import "FISInputCommentCell.h"
-#import "FISComment.h"
+#import "FISConstants.h"
 #import "FISCommentInputAccessoryView.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 
 @interface FISInputCommentCell () <UITextViewDelegate>
 
-@property (strong, nonatomic) UITextView *myTextView;
-@property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
+@property (strong, nonatomic) UITableView *parentTableView;
+
 
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
+
+-(void) constrainTextView:(UITextView *) textView;
+
+-(FISCommentInputAccessoryView *)createInputAccessoryView;
+-(void) cancelButtonTapped;
+-(void) saveButtonTapped;
+-(void) handleSaveButton;
+
 @end
+
+
 
 @implementation FISInputCommentCell
 
@@ -37,11 +48,29 @@
     [super setSelected:selected animated:animated];
     if(selected)
     {
+        
         [self.myTextView becomeFirstResponder];
+        
     } else
     {
         [self.myTextView resignFirstResponder];
     }
+}
+
+-(UITableView *)parentTableView
+{
+    // get the superview
+    id view = [self superview];
+    
+    // if the superview exists and is NOT a tableview, keep going up
+    while (view && [view isKindOfClass:[UITableView class]] == NO) {
+        view = [view superview];
+    }
+
+    // cast it
+    UITableView *tableView = (UITableView *)view;
+    
+    return tableView;
 }
 
 #pragma mark - Formatting
@@ -50,9 +79,22 @@
 {
     self.myTextView.text = placeholder;
     self.myTextView.scrollEnabled = NO;
-    self.myTextView.textAlignment = NSTextAlignmentCenter;
-    self.myTextView.font = self.textLabel.font;
-    self.myTextView.textColor = [UIColor lightGrayColor];
+    self.myTextView.backgroundColor=[UIColor DonorsChooseGreyVeryLight];
+    self.myTextView.textAlignment = NSTextAlignmentRight;
+    self.myTextView.font = [UIFont fontWithName:DonorsChooseCSSFont size:40];
+    self.myTextView.textColor = [UIColor DonorsChooseOrange];
+}
+
+-(void) constrainTextView:(UITextView *) textView
+{
+    [self.contentView addSubview: textView];
+    textView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSDictionary *views = @{@"tv":textView};
+    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:views];
+    [self.contentView addConstraints:horizontal];
+    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
+    [self.contentView addConstraints:vertical];
 }
 
 #pragma mark - UITextViewDelegate
@@ -68,14 +110,18 @@
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [textView setInputAccessoryView: self.textViewInputAccessoryView];
+    
+    
+    
     return YES;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     textView.text = @"";
+    textView.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
     textView.textAlignment = NSTextAlignmentRight;
-    textView.textColor = [UIColor blackColor];
+    textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
 }
 
@@ -86,19 +132,21 @@
     [self handleSaveButton];
 }
 
-#pragma mark - Helpers
+#pragma mark - InputAccessoryView
 
--(void) constrainTextView:(UITextView *) textView
+-(FISCommentInputAccessoryView *)createInputAccessoryView
 {
-    [self.contentView addSubview: textView];
-    textView.translatesAutoresizingMaskIntoConstraints = NO;
+    FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
 
-    NSDictionary *views = @{@"tv":textView};
-    NSArray *horizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tv]|" options:0 metrics:nil views:views];
-    [self.contentView addConstraints:horizontal];
-    NSArray *vertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tv]|" options:0 metrics:nil views:views];
-    [self.contentView addConstraints:vertical];
+    [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    return inputAccessoryView;
 }
+
+
+
+#pragma mark - IAV Helpers
 
 -(void) handleSaveButton
 {
@@ -111,28 +159,34 @@
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
     }
 }
-#pragma mark - InputAccessoryView
 
--(FISCommentInputAccessoryView*)createInputAccessoryView
-{
-    FISCommentInputAccessoryView *inputAccessoryView = [[FISCommentInputAccessoryView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
-
-    [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    return inputAccessoryView;
-}
 
 -(void) cancelButtonTapped
 {
     NSLog(@"Cancel tapped");
     [self.myTextView resignFirstResponder];
-    [self formatCellWithPlaceholder: @"Tap here to reply"];
+    
+    [self formatCellWithPlaceholder: INPUT_CELL_PLACEHOLDER];
+
 }
 
 -(void) saveButtonTapped
 {
     NSLog(@"save tapped");
+    
+    [self.CommentsViewController saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
+
+    [self.myTextView resignFirstResponder];
+    self.myTextView.editable = NO;
+    self.myTextView.selectable = NO;
+    
+    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
+    //
+    //    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    //    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
+    //
+    //    [alertController addAction:cancelAction];
+    //    [alertController addAction:submitAction];
 }
 
 @end

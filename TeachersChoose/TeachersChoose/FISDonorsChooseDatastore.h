@@ -17,8 +17,10 @@
 @property (nonatomic, strong) NSMutableArray *donorsChooseSearchResults;
 @property (nonatomic, strong) FISDonorsChooseTeacher *loggedInTeacher;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherProposals;
+@property (nonatomic, strong) FISDonorsChooseProposal *fakeFundedProposal;
 @property (nonatomic, strong) NSMutableArray *loggedInTeacherCompletedProposals;
 @property (nonatomic, strong) NSArray *sampleDonations;
+@property (nonatomic, strong) NSString *decodedDeviceToken;
 
 + (instancetype)sharedDataStore;
 
@@ -28,9 +30,11 @@
 -(void)getSearchResultsWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void)getTeacherProfileWithTeacherId: (NSString *) teacherId andCompletion:(void (^)(BOOL))completionBlock;
 -(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
-
+-(void) addNewDonationResponseMessage:(NSString *)responseMessage  forDonation: (FISDonation *) donation forProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock;
 
 -(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock;
 
+-(void) populateRandomDonationsForProposal:(FISDonorsChooseProposal *) proposal withCompletionblock:(void (^)(void))completionBlock;
+-(void) createFakeFundedProposal;
 
 @end
