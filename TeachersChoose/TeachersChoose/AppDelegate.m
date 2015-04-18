@@ -44,7 +44,7 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"didRegisterForRemoteNotifications");
+//    NSLog(@"didRegisterForRemoteNotifications");
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
 
@@ -56,7 +56,7 @@
     
     
     self.datastore.decodedDeviceToken = [[newStr componentsSeparatedByCharactersInSet: [charactersToFind invertedSet]] componentsJoinedByString:@""];
-    NSLog(@"%@",self.datastore.decodedDeviceToken);
+//    NSLog(@"%@",self.datastore.decodedDeviceToken);
     
     
     [currentInstallation setDeviceTokenFromData:deviceToken];

@@ -101,16 +101,16 @@
     
     [self.contentView addConstraint:titleLabelWidthConstraint];
     
-    NSLayoutConstraint *titleLabelTopConstraint =
+    NSLayoutConstraint *titleLabelBottomConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
-                                 attribute:NSLayoutAttributeTop
+                                 attribute:NSLayoutAttributeBottom
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
+                                    toItem:self.proposalTableViewProgressView
                                  attribute:NSLayoutAttributeTop
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:-20];
     
-    [self.contentView addConstraint:titleLabelTopConstraint];
+    [self.contentView addConstraint:titleLabelBottomConstraint];
     
     NSLayoutConstraint *titleLabelLeftConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -322,16 +322,6 @@
     
     [self.contentView addConstraint:numDonorsLabelTopConstraint];
     
-    NSLayoutConstraint *donorsLabelBottomConstraint =
-    [NSLayoutConstraint constraintWithItem:self.donorsLabel
-                                 attribute:NSLayoutAttributeBottom
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
-                                 attribute:NSLayoutAttributeBottom
-                                multiplier:1.0
-                                  constant:-5];
-    
-    [self.contentView addConstraint:donorsLabelBottomConstraint];
     
     NSLayoutConstraint *donorsLabelLeftConstraint =
     [NSLayoutConstraint constraintWithItem:self.donorsLabel
@@ -369,10 +359,10 @@
     
     NSLayoutConstraint *proposalTableViewProgressViewTopConstraint =
     [NSLayoutConstraint constraintWithItem:self.proposalTableViewProgressView
-                                 attribute:NSLayoutAttributeTop
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:self.titleLabel
                                  attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeCenterY
                                 multiplier:1.0
                                   constant:0];
     
