@@ -101,6 +101,27 @@
     }];
 }
 
++(void) updateBadgeNumber:(NSNumber *) badgeNumber forInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/installations/%@",installObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"badge":badgeNumber};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Attach TeacherId To Installation Failed: %@",error.localizedDescription);
+    }];
+}
+
 
 
 
@@ -208,6 +229,30 @@
     }];
 }
 
++(void) getInstallationObjectIdForTeacherId: (NSString *) teacherId andCompletionBlock:(void (^)(NSString *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/installations/"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    NSDictionary *params = @{@"where": @{@"teacherId":teacherId}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"N38N3gE53WDaot5TOhAcHl494hrSrAAtLKepqyLM" forHTTPHeaderField:@"X-Parse-Master-Key"];
+    
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject[@"results"][0][@"objectId"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Retrieve Installation ObjectId Failed: %@",error.localizedDescription);
+    }];
+}
 
 
 
@@ -388,6 +433,32 @@
         NSLog(@"Adding Parse Donation Relation Failed: %@",error.localizedDescription);
     }];
     
+}
+
+
++(void) getBadgeNumberForTeacherId:(NSString *)teacherId  andCompletionBlock:(void (^)(NSNumber *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/installations/"];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    NSDictionary *params = @{@"where": @{@"teacherId":teacherId}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"N38N3gE53WDaot5TOhAcHl494hrSrAAtLKepqyLM" forHTTPHeaderField:@"X-Parse-Master-Key"];
+    
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject[@"results"][0][@"badge"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Retrieve Installation ObjectId Failed: %@",error.localizedDescription);
+    }];
 }
 
 @end

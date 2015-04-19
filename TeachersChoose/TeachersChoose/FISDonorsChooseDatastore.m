@@ -143,34 +143,29 @@
 
 
 -(void) updateCurrentTeacherProposalsForCurrentTeacherId: (NSString *) currentTeacherId andCompletionBlock:(void (^)(void))completionBlock {
-    [self getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
+    [self getSearchResultsWithTeacherId:currentTeacherId andCompletion:^(BOOL completed) {
         
         //May need to insert more API stuff here to update any new proposals on parse
-        if(completion) {
+        if(completed) {
             [self createFakeFundedProposal];
-            for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals) {
-                [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *returnedObjectId) {
-                    eachProposal.parseObjectId=returnedObjectId;
-                    [self getDonationsListForProposal:eachProposal andCompletion:^(BOOL completion) {
-                        if(completion) {
-
-                        } else {
-                            NSLog(@"Donations array not populated.  Check parse database and manually link if needed.");
-                        }
-                        
-                    }];
-                }];
-            }
             
-        } else {
-            NSLog(@"No active proposals");
-        }
-        [self getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completion) {
-            [ImagesAPI getImageWithURLString:self.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
-                self.loggedInTeacher.image=teacherImage;
-            completionBlock();
+            [self getTeacherProfileWithTeacherId:currentTeacherId andCompletion:^(BOOL completionCheck) {
+                if (completionCheck) {
+                    for (FISDonorsChooseProposal *eachProposal in self.loggedInTeacherProposals) {
+                        [FISParseAPI getProposalObjectIdForProposalId:eachProposal.proposalId andCompletionBlock:^(NSString *returnedObjectId) {
+                            eachProposal.parseObjectId=returnedObjectId;
+                            [self getDonationsListForProposal:eachProposal andCompletion:^(BOOL completion) {
+                                
+                                if ([eachProposal isEqual:self.loggedInTeacherProposals.lastObject]) {
+                                    completionBlock();
+                                }
+                            }];
+                        }];
+                    }
+                }
+                
             }];
-        }];
+        }
     }];
 }
 

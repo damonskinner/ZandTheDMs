@@ -346,6 +346,7 @@
     
     
     NSDictionary *params = @{@"where": @{@"teacherId": teacherId},
+                             @"badge":@"Increment",
                              @"data": @{@"alert": notificationMessage}};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];

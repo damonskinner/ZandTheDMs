@@ -43,4 +43,11 @@
 
 +(void) attachTeacherId:(NSString *) teacherId toInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock;
 
++(void) getBadgeNumberForTeacherId:(NSString *)teacherId  andCompletionBlock:(void (^)(NSNumber *))completionBlock;
+
++(void) getInstallationObjectIdForTeacherId: (NSString *) teacherId andCompletionBlock:(void (^)(NSString *))completionBlock;
+
++(void) updateBadgeNumber:(NSNumber *) badgeNumber forInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock;
+
+
 @end
