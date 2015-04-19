@@ -12,6 +12,6 @@
 
 @interface DonorsTableViewController : UITableViewController
 
-@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
+
 
 @end

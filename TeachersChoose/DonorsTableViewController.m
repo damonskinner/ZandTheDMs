@@ -7,12 +7,13 @@
 //
 
 #import "DonorsTableViewController.h"
+#import "DetailsTabBarController.h"
 #import "FISDonorsChooseProposal.h"
 #import "FISDonation.h"
 #import "UIColor+DonorsChooseColors.h"
 
 @interface DonorsTableViewController ()
-
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 @end
 
 @implementation DonorsTableViewController
@@ -20,9 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     
     [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
     [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];
@@ -32,7 +31,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.proposal.donations count] +1;
+    return [self.proposal.donations count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,12 +43,8 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    FISDonation *thisDonation =[[FISDonation alloc] initWithName:@"" Location:@"" Date:nil DonorMessage:@"" ResponseMessage:@"" DonationAmount:@""];
-    // get appropriate donation item
-    if(indexPath.row>0){
-        thisDonation= self.proposal.donations[indexPath.row-1];
-    }
-    
+
+    FISDonation *thisDonation= self.proposal.donations[indexPath.row];
     
     // set standard properties
     cell.textLabel.text = thisDonation.donorName;
@@ -58,14 +53,10 @@
     
     // make a new label, format it and set it as accessory view
     UILabel *amountDonatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.frame.size.height)];
-    if (indexPath.row!=0) {
-        amountDonatedLabel.text = [NSString stringWithFormat:@"$%@", thisDonation.donationAmount];
-        amountDonatedLabel.textAlignment = NSTextAlignmentRight;
-        [cell setAccessoryView: amountDonatedLabel];
-    }
-    
-    
-    
+    amountDonatedLabel.text = [NSString stringWithFormat:@"$%@", thisDonation.donationAmount];
+    amountDonatedLabel.textAlignment = NSTextAlignmentRight;
+    [cell setAccessoryView: amountDonatedLabel];
+
     return cell;
 }
 
@@ -76,13 +67,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
     return NO;
-}
-
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
