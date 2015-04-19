@@ -57,20 +57,19 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
     [self populateDonationsWhichNeedResponseArray];
-    
     [self setupSegmentedControl];
     [self setupLayout];
-//    [self populateCommentsDictionary];
+    //    [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.myTableView.delegate=self;
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
-
-
     
-    
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
 }
 
@@ -103,9 +102,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 //    NSString *donorName = [self.commentsDictionary allKeys][indexPath.section];
 //    NSArray *thisSetOfComments = self.commentsDictionary[donorName];
 //    FISComment *thisComment = thisSetOfComments[indexPath.row];
+
+
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
         if (indexPath.row==1) {
-            
+
+
             FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
             if (!cell) {
                 cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
@@ -120,12 +122,14 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
             }
-            if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
+            if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
+               
                 return cell;
                 
             } else {
                 [self formatCell: cell forBasicDisplaywithMessage: [NSString stringWithFormat:@"%@ from %@ donated.",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorName,((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorLocation] andIndexPath:indexPath];
+
                 return cell;
             }
         }
@@ -159,6 +163,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             }
             if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
                 [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
+
+                
                 return cell;
                 
             } else {
@@ -273,8 +279,9 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = comment;
+
     
-    
+    NSLog(@"%@",cell.textLabel.text);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self formatCell: cell byCommentTypeWithMessage:comment andIndexPath: indexPath];
@@ -384,6 +391,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     for (FISDonation *eachDonation in self.proposal.donations) {
         if (!(eachDonation.hasResponded)) {
             [self.donationsWhichNeedResponse addObject:eachDonation];
+            NSLog(@"%@ %@",eachDonation.donorName, eachDonation.donorMessage);
         }
         
     }
