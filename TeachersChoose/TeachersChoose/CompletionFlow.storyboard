@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6v5-he-q34">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hhq-6h-faS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -368,7 +368,7 @@
             </objects>
             <point key="canvasLocation" x="1017" y="-649"/>
         </scene>
-        <!--Spread The News-->
+        <!--Spread The News!-->
         <scene sceneID="1sX-sU-acb">
             <objects>
                 <viewController id="6v5-he-q34" customClass="SpreadTheNewsViewController" sceneMemberID="viewController">
@@ -453,7 +453,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Spread The News" id="6uo-Vk-jnM"/>
+                    <navigationItem key="navigationItem" title="Spread The News!" id="6uo-Vk-jnM"/>
                     <connections>
                         <outlet property="saveMessageButton" destination="hSQ-KH-wsP" id="rgo-9c-81w"/>
                         <outlet property="textView" destination="so9-vq-Vpj" id="Hla-g6-bun"/>
@@ -482,6 +482,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfc-Im-S6m">
+                                <rect key="frame" x="32" y="237" width="180" height="30"/>
+                                <state key="normal" title="Begin Thank You Package">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -631,18 +637,21 @@
         <!--Navigation Controller-->
         <scene sceneID="FYe-PD-gYN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-KR-rVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lo2-Do-Dt7" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="partialCurl" id="lo2-Do-Dt7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Twy-Pi-XmT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="K1n-uj-vFj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="t45-yA-WMH" kind="relationship" relationship="rootViewController" id="Dc2-NJ-3Rr"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-KR-rVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="686" y="-1345"/>
         </scene>

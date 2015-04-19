@@ -9,6 +9,7 @@
 #import "ContainerViewController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import <FAKIonIcons.h>
 
 static const float TOTAL_VIEW_CONTROLLERS = 4.0;
 
@@ -62,7 +63,19 @@ static const float TOTAL_VIEW_CONTROLLERS = 4.0;
 {
     [self.navController.navigationBar setTranslucent: NO];
     [self.navController.navigationBar setBarTintColor: [UIColor DonorsChooseOrange]];
-    [self.navController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
+    [self.navController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]}];
+
+    //FIXME: right bar button item not showing, wtf
+    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)];
+    [homeButton setTintColor: [UIColor whiteColor]];
+    [self.navController.navigationItem setRightBarButtonItem: homeButton];
+    NSLog(@"%@", self.navController.navigationItem.rightBarButtonItem);
+}
+
+-(void) homeButtonTapped
+{
+    NSLog(@"home tapped");
 }
 
 @end

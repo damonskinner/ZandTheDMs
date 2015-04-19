@@ -100,26 +100,29 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 {
     NSValue*keyboardFrame = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect  keyboardRect = [keyboardFrame CGRectValue];
-    CGFloat keyboardTopY = keyboardRect.origin.y;
-//    NSLog(@"kbty: %f", keyboardTopY);
-    
+
+    //FIXME: IAV.height used to work, but for some reason 20 points extra was necessary. so, magic number 64.
+    CGFloat keyboardTopY = keyboardRect.origin.y - 64;
+
     CGFloat textViewTopY = self.textView.superview.frame.origin.y;
     CGFloat textViewHeight = self.textView.frame.size.height;
     CGFloat textViewBottomY = textViewTopY + textViewHeight;
-//    NSLog(@"tvby: %f", textViewBottomY);
     
     self.amountToResizeTextView = (textViewBottomY - keyboardTopY);
-//    NSLog(@"diff: %f", self.amountToResizeTextView);
-    
-//    NSLog(@"keyboard: %@", NSStringFromCGRect(keyboardRect));
-//    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
-//    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
-//    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
-    
+
     [UIView animateWithDuration:0.5 animations:^{
         self.textViewHeightConstraint.constant -= (self.amountToResizeTextView);
         [self.view layoutIfNeeded];
     }];
+
+    //    NSLog(@"kbty: %f", keyboardTopY);
+    //    NSLog(@"tvby: %f", textViewBottomY);
+    //    NSLog(@"diff: %f", self.amountToResizeTextView);
+    
+    //    NSLog(@"keyboard: %@", NSStringFromCGRect(keyboardRect));
+    //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
+    //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
+    //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
 }
 
 -(void) createInputAccessoryView
