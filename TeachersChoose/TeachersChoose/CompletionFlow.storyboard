@@ -175,30 +175,24 @@
                                 <rect key="frame" x="0.0" y="116" width="600" height="348"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="extra instructions (ex: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
-                                        <rect key="frame" x="60" y="56" width="480" height="30"/>
+                                        <rect key="frame" x="60" y="55" width="480" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-pj-5iZ" userLabel="TEACHER NAME">
-                                        <rect key="frame" x="251" y="25" width="99" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="178" y="96" width="246" height="21"/>
+                                        <rect key="frame" x="251" y="25" width="99" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
-                                        <rect key="frame" x="249" y="126" width="102" height="21"/>
+                                        <rect key="frame" x="249" y="126" width="102" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="210" y="157" width="181" height="21"/>
+                                        <rect key="frame" x="210" y="156" width="181" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -215,6 +209,12 @@
                                             <action selector="editAddressTapped:" destination="Ek8-I7-ueb" eventType="touchUpInside" id="2Sd-aF-Wbo"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
+                                        <rect key="frame" x="177.5" y="95.5" width="245.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nhw-cl-Ogy" firstAttribute="top" secondItem="aXr-VN-jm6" secondAttribute="bottom" constant="10" id="1Cr-Kg-F9k"/>
@@ -254,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8o-g5-GPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="342" y="-649"/>
+            <point key="canvasLocation" x="330" y="-649"/>
         </scene>
         <!--Set Due Date-->
         <scene sceneID="W0m-ia-8Ge">
@@ -464,10 +464,10 @@
             </objects>
             <point key="canvasLocation" x="1730" y="-649"/>
         </scene>
-        <!--WOW-->
+        <!--Review Details-->
         <scene sceneID="m8e-q3-zSF">
             <objects>
-                <viewController id="GFo-Fe-6E6" sceneMemberID="viewController">
+                <viewController id="GFo-Fe-6E6" customClass="ReviewInformationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XBE-PF-rDq"/>
                         <viewControllerLayoutGuide type="bottom" id="f20-ql-f2P"/>
@@ -476,26 +476,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HOORAYYYYYY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQt-87-ziP">
-                                <rect key="frame" x="32" y="189" width="206" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-NH-o3W" userLabel="text container">
+                                <rect key="frame" x="0.0" y="145" width="600" height="145"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8W-fC-3hR" userLabel="TEACHER NAME">
+                                        <rect key="frame" x="251" y="8" width="99" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OS-Bo-lOo" userLabel="SCHOOL TITLE">
+                                        <rect key="frame" x="177" y="65" width="245.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CY-y4-9l7" userLabel="ADDRESS LINE 1">
+                                        <rect key="frame" x="249" y="93" width="102" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-Bv-aBy" userLabel="CITY STATE ZIP">
+                                        <rect key="frame" x="210" y="122" width="181" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Special Instructions Added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-Y4-DRS">
+                                        <rect key="frame" x="188" y="36" width="233.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="5OS-Bo-lOo" secondAttribute="centerX" id="3De-iT-JAY"/>
+                                    <constraint firstItem="7CY-y4-9l7" firstAttribute="top" secondItem="5OS-Bo-lOo" secondAttribute="bottom" constant="8" id="BO1-fw-Vtf"/>
+                                    <constraint firstItem="D8W-fC-3hR" firstAttribute="top" secondItem="ZtX-NH-o3W" secondAttribute="top" constant="8" id="Eeb-ic-UBg"/>
+                                    <constraint firstItem="cfs-Bv-aBy" firstAttribute="centerX" secondItem="ZtX-NH-o3W" secondAttribute="centerX" id="Pu5-lG-Iru"/>
+                                    <constraint firstAttribute="centerX" secondItem="D8W-fC-3hR" secondAttribute="centerX" constant="-0.5" id="T5S-lG-P1w"/>
+                                    <constraint firstItem="KkW-Y4-DRS" firstAttribute="top" secondItem="D8W-fC-3hR" secondAttribute="bottom" constant="8" id="TC3-CN-pP2"/>
+                                    <constraint firstItem="cfs-Bv-aBy" firstAttribute="top" secondItem="7CY-y4-9l7" secondAttribute="bottom" constant="8" id="TmD-8d-frw"/>
+                                    <constraint firstAttribute="centerX" secondItem="KkW-Y4-DRS" secondAttribute="centerX" constant="-5" id="dYe-fo-pf0"/>
+                                    <constraint firstItem="5OS-Bo-lOo" firstAttribute="top" secondItem="KkW-Y4-DRS" secondAttribute="bottom" constant="8" id="sqF-JY-Mds"/>
+                                    <constraint firstItem="7CY-y4-9l7" firstAttribute="centerX" secondItem="ZtX-NH-o3W" secondAttribute="centerX" id="uGr-7f-sB1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You Package Due Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56G-4h-WCT">
+                                <rect key="frame" x="184" y="374" width="233" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfc-Im-S6m">
-                                <rect key="frame" x="32" y="237" width="180" height="30"/>
-                                <state key="normal" title="Begin Thank You Package">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM/DD/YYYY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-Kv-pI6">
+                                <rect key="frame" x="245" y="403" width="110" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSR-Qi-Uqc">
+                                <rect key="frame" x="60" y="489" width="480" height="36"/>
+                                <color key="backgroundColor" red="0.1058823529" green="0.76078431369999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Complete My Project!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="0vD-ru-wzB"/>
+                            <constraint firstItem="xSR-Qi-Uqc" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="8oh-5z-4P8"/>
+                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="height" secondItem="XI1-OS-XHi" secondAttribute="height" multiplier="0.25" id="Bo2-lC-9cE"/>
+                            <constraint firstItem="hi2-Kv-pI6" firstAttribute="top" secondItem="56G-4h-WCT" secondAttribute="bottom" constant="8" id="LsF-el-laP"/>
+                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="width" secondItem="XI1-OS-XHi" secondAttribute="width" id="Ner-F1-8CG"/>
+                            <constraint firstItem="hi2-Kv-pI6" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="W7p-XW-YGo"/>
+                            <constraint firstItem="xSR-Qi-Uqc" firstAttribute="centerY" secondItem="XI1-OS-XHi" secondAttribute="centerY" multiplier="1.75" id="izP-Kw-3Wu"/>
+                            <constraint firstItem="hi2-Kv-pI6" firstAttribute="centerY" secondItem="XI1-OS-XHi" secondAttribute="centerY" multiplier="1.425" id="od8-hL-iY1"/>
+                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="centerY" secondItem="XI1-OS-XHi" secondAttribute="centerY" multiplier="0.75" id="rPt-6a-RWS"/>
+                            <constraint firstItem="xSR-Qi-Uqc" firstAttribute="width" secondItem="XI1-OS-XHi" secondAttribute="width" multiplier="0.8" id="vlo-Gz-2ok"/>
+                            <constraint firstItem="56G-4h-WCT" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="wvH-Gv-gZm"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="WOW" id="6dQ-1e-idD"/>
+                    <navigationItem key="navigationItem" title="Review Details" id="6dQ-1e-idD"/>
+                    <connections>
+                        <outlet property="completeMyProjectButton" destination="xSR-Qi-Uqc" id="tLi-dh-UU1"/>
+                        <outlet property="schoolAddressLabel" destination="7CY-y4-9l7" id="Zf6-np-Tgi"/>
+                        <outlet property="schoolCityStateZipLabel" destination="cfs-Bv-aBy" id="fch-8W-EQb"/>
+                        <outlet property="schoolNameLabel" destination="5OS-Bo-lOo" id="uZu-Oz-DyE"/>
+                        <outlet property="specialInstructionsLabel" destination="KkW-Y4-DRS" id="aVd-n7-pT6"/>
+                        <outlet property="teacherNameLabel" destination="D8W-fC-3hR" id="qKE-Qm-Kzl"/>
+                        <outlet property="thankyouDueDateLabel" destination="hi2-Kv-pI6" id="2zX-nr-F4H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CtJ-He-cDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="42"/>
+            <point key="canvasLocation" x="662" y="118"/>
         </scene>
         <!--Upload Completion Photos-->
         <scene sceneID="dR5-55-6xl">
@@ -632,7 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2R-33-x7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="-1355"/>
+            <point key="canvasLocation" x="662" y="-2051"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FYe-PD-gYN">
@@ -653,7 +731,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhV-KR-rVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="-1345"/>
+            <point key="canvasLocation" x="662" y="-1345"/>
         </scene>
     </scenes>
 </document>

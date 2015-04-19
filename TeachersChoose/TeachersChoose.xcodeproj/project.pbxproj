@@ -63,6 +63,7 @@
 		3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
 		3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
 		3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
+		E2245F471AE443A50074C74B /* ReviewInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2245F461AE443A50074C74B /* ReviewInformationViewController.m */; };
 		E24C8D1C1AE03CA2009DB964 /* SpreadTheNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
@@ -178,6 +179,8 @@
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E2245F451AE443A50074C74B /* ReviewInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewInformationViewController.h; sourceTree = "<group>"; };
+		E2245F461AE443A50074C74B /* ReviewInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewInformationViewController.m; sourceTree = "<group>"; };
 		E24C8D1A1AE03CA2009DB964 /* SpreadTheNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadTheNewsViewController.h; sourceTree = "<group>"; };
 		E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadTheNewsViewController.m; sourceTree = "<group>"; };
 		E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletionImageCollectionViewCell.h; path = TeachersChoose/CompletionImageCollectionViewCell.h; sourceTree = "<group>"; };
@@ -427,6 +430,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E2245F481AE443AC0074C74B /* Review Information */ = {
+			isa = PBXGroup;
+			children = (
+				E2245F451AE443A50074C74B /* ReviewInformationViewController.h */,
+				E2245F461AE443A50074C74B /* ReviewInformationViewController.m */,
+			);
+			name = "Review Information";
+			sourceTree = "<group>";
+		};
 		E24C8D1D1AE03CAF009DB964 /* Spread The News */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +521,7 @@
 				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
 				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
 				E24C8D1D1AE03CAF009DB964 /* Spread The News */,
+				E2245F481AE443AC0074C74B /* Review Information */,
 				E25D84B21ACED9B700D98118 /* Picture Uploader */,
 			);
 			name = "Completion Flow";
@@ -721,6 +734,7 @@
 				361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */,
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
+				E2245F471AE443A50074C74B /* ReviewInformationViewController.m in Sources */,
 				E264D3AE1ADF0CA400D98D9C /* DateConfirmationViewController.m in Sources */,
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,
