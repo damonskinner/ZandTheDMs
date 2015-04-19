@@ -15,31 +15,75 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 @property (weak, nonatomic) IBOutlet UIButton *saveMessageButton;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
+@property (nonatomic) float pointsToResizeTextView;
 
-@property (nonatomic) float amountToResizeTextView;
+-(void) presentAlert;
+-(void) setupTextViewAndKeyboard;
+-(void) setupInputAccessoryView;
+-(void) setupKeyboardDismissalOnTouch;
+-(void) receivedKeyboardNotification:(NSNotification*) notification;
 
 @end
 
 @implementation SpreadTheNewsViewController
 
-
 #pragma mark - View LifeCycle
 
-- (void)viewDidLoad {
-    self.textView.delegate = self;
-    self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
-    self.saveMessageButton.layer.cornerRadius = 10;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+- (void)viewDidLoad
+{
+   [super viewDidLoad];
     
-    [self setupKeyboardDismissalOnTouch];
-    [self createInputAccessoryView];
-    [super viewDidLoad];
+    [self setupTextViewAndKeyboard];
+    self.saveMessageButton.layer.cornerRadius = 10;
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear: animated];
     [self presentAlert];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
+
+#pragma mark - UITextViewDelegate
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if(![self.placeholderTextLabel isHidden])
+        [self.placeholderTextLabel setHidden:YES];
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    if ([trimmedText isEqualToString:@""]) {
+        textView.text = @"";
+        [self.placeholderTextLabel setHidden:NO];
+    }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        // pointsToResizeTextView setup in receivedKeyboardNotification:
+        self.textViewHeightConstraint.constant += self.pointsToResizeTextView;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length] > 0) {
+        self.saveMessageButton.enabled = YES;
+        self.saveMessageButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
+    }
+    else {
+        self.saveMessageButton.enabled = NO;
+        self.saveMessageButton.backgroundColor = [UIColor lightGrayColor];
+    }
 }
 
 #pragma mark - Alert Controller
@@ -55,77 +99,19 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - UITextViewDelegate
+#pragma mark - Helpers
 
--(void)textViewDidBeginEditing:(UITextView *)textView
+-(void) setupTextViewAndKeyboard
 {
-    if ([textView.text isEqualToString:  TEXTVIEW_PLACEHOLDER])
-    {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-        textView.textAlignment = NSTextAlignmentLeft;
-    }
-}
-
--(void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = TEXTVIEW_PLACEHOLDER;
-        textView.textColor = [UIColor lightGrayColor];
-        textView.textAlignment = NSTextAlignmentCenter;
-    }
+    self.textView.delegate = self;
+    self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    [UIView animateWithDuration:0.5 animations:^{
-        // amountToResizeTextView setup in receivedKeyboardNotification:
-        self.textViewHeightConstraint.constant += (self.amountToResizeTextView);
-        [self.view layoutIfNeeded];
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+    [self setupKeyboardDismissalOnTouch];
+    [self setupInputAccessoryView];
 }
 
--(void) textViewDidChange:(UITextView *)textView
-{
-    if ([textView.text length] > 3) {
-        self.saveMessageButton.enabled = YES;
-        self.saveMessageButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
-    }
-    else {
-        self.saveMessageButton.enabled = NO;
-        self.saveMessageButton.backgroundColor = [UIColor lightGrayColor];
-    }
-}
-
-#pragma mark - Keyboard / InputAccessoryView
-
--(void) receivedKeyboardNotification:(NSNotification*) notification
-{
-    NSValue*keyboardFrame = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect  keyboardRect = [keyboardFrame CGRectValue];
-
-    //FIXME: IAV.height used to work, but for some reason 20 points extra was necessary. so, magic number 64.
-    CGFloat keyboardTopY = keyboardRect.origin.y - 64;
-
-    CGFloat textViewTopY = self.textView.superview.frame.origin.y;
-    CGFloat textViewHeight = self.textView.frame.size.height;
-    CGFloat textViewBottomY = textViewTopY + textViewHeight;
-    
-    self.amountToResizeTextView = (textViewBottomY - keyboardTopY);
-
-    [UIView animateWithDuration:0.5 animations:^{
-        self.textViewHeightConstraint.constant -= (self.amountToResizeTextView);
-        [self.view layoutIfNeeded];
-    }];
-
-    //    NSLog(@"kbty: %f", keyboardTopY);
-    //    NSLog(@"tvby: %f", textViewBottomY);
-    //    NSLog(@"diff: %f", self.amountToResizeTextView);
-    
-    //    NSLog(@"keyboard: %@", NSStringFromCGRect(keyboardRect));
-    //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
-    //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
-    //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
-}
-
--(void) createInputAccessoryView
+-(void) setupInputAccessoryView
 {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
 
@@ -140,16 +126,37 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
 -(void) setupKeyboardDismissalOnTouch
 {
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.textView action:@selector(resignFirstResponder)];
     [self.view addGestureRecognizer:tap];
 }
 
--(void) dismissKeyboard
+-(void) receivedKeyboardNotification:(NSNotification*) notification
 {
-    [self.textView resignFirstResponder];
+    NSValue*keyboardFrame = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect  keyboardRect = [keyboardFrame CGRectValue];
+    
+    //FIXME: IAV.height used to work, but for some reason 20 points extra was necessary. so, magic number 64.
+    CGFloat keyboardTopY = keyboardRect.origin.y - 64;
+    
+    CGFloat textViewTopY = self.textView.superview.frame.origin.y;
+    CGFloat textViewHeight = self.textView.frame.size.height;
+    CGFloat textViewBottomY = textViewTopY + textViewHeight;
+    
+    self.pointsToResizeTextView = (textViewBottomY - keyboardTopY);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.textViewHeightConstraint.constant -= self.pointsToResizeTextView;
+        [self.view layoutIfNeeded];
+    }];
+    
+    //    NSLog(@"kbty: %f", keyboardTopY);
+    //    NSLog(@"tvby: %f", textViewBottomY);
+    //    NSLog(@"diff: %f", self.amountToResizeTextView);
+    
+    //    NSLog(@"keyboard: %@", NSStringFromCGRect(keyboardRect));
+    //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
+    //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
+    //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
 }
 
 @end
