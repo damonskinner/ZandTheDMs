@@ -16,6 +16,8 @@
 #import "UIFont+DonorsChooseFonts.h"
 #import <Parse.h>
 #import <FAKIonIcons.h>
+#import "ImagesAPI.h"
+#import "FISParseAPI.h"
 
 @interface HomePageTableViewController () <UIScrollViewDelegate>
 
@@ -27,31 +29,28 @@
 
     [super viewDidLoad];
     self.datastore = [FISDonorsChooseDatastore sharedDataStore];
-
-    UIImageView *testView = [[UIImageView alloc] initWithImage:self.datastore.loggedInTeacher.image];
     
     [self.tableView deselectRowAtIndexPath:nil animated:YES];
-
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = testView.bounds;
-    gradientLayer.colors= @[(id)[UIColor clearColor].CGColor, (id)[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.85f].CGColor];
-    gradientLayer.locations=@[[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.85]];
-    gradientLayer.startPoint = CGPointMake(0.5, 0);
-    gradientLayer.endPoint = CGPointMake(0.5, 1);
-    [testView.layer addSublayer:gradientLayer];
     
-    UIGraphicsBeginImageContextWithOptions(testView.frame.size, testView.opaque, 0.0);
-    [testView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    UIImage *placeHolderImage = [UIImage imageNamed:@"iTunesArtwork@2x"];
     
-    [self setHeaderImage:newImage];
+    UIImage *formattedPlaceHolder = [self formatImageWithGradient:placeHolderImage];
+    
+    [self setHeaderImage:formattedPlaceHolder];
+    
+    [ImagesAPI getImageWithURLString:self.datastore.loggedInTeacher.photoURL andCompletion:^(UIImage *teacherImage) {
+        self.datastore.loggedInTeacher.image=teacherImage;
+        UIImage *formattedTeacherImage = [self formatImageWithGradient:self.datastore.loggedInTeacher.image];
+        [self setHeaderImage:formattedTeacherImage];
+        
+    }];
 //    [self setHeaderImage:self.datastore.loggedInTeacher.image];
     [self setTitleText:self.datastore.loggedInTeacher.name];
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
 //    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
-
+    
+    
     
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
@@ -74,7 +73,14 @@
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
- 
+    
+    if ([self.datastore.decodedDeviceToken length]>0) {
+        [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+            [FISParseAPI attachTeacherId:self.datastore.loggedInTeacher.teacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+                
+            }];
+        }];
+    }
     
 
     UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
@@ -88,6 +94,20 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
+    self.datastore.totalUnRespondedDonations=0;
+    for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals) {
+        self.datastore.totalUnRespondedDonations +=eachProposal.numDonationsNeedResponse;
+
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber =self.datastore.totalUnRespondedDonations;
+    
+    [FISParseAPI getInstallationObjectIdForTeacherId:self.datastore.loggedInTeacher.teacherId andCompletionBlock:^(NSString *objectId) {
+        [FISParseAPI updateBadgeNumber:@(self.datastore.totalUnRespondedDonations) forInstallationWithObjectId:objectId andCompletionBlock:^{
+            
+        }];
+    }];
+    
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
@@ -127,6 +147,7 @@
     
     if(indexPath.section==0) {
         cell.proposal = [self.datastore.loggedInTeacherProposals objectAtIndex:indexPath.row];
+
     } else if (indexPath.section ==1) {
         cell.proposal = [self.datastore.loggedInTeacherCompletedProposals objectAtIndex:indexPath.row];
     }
@@ -244,6 +265,25 @@
 
 }
 
+
+-(UIImage *) formatImageWithGradient: (UIImage *) image {
+    
+    UIImageView *testView = [[UIImageView alloc] initWithImage:image];
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = testView.bounds;
+    gradientLayer.colors= @[(id)[UIColor clearColor].CGColor, (id)[UIColor colorWithRed:0/255.0f green:0/255.0f blue:0/255.0f alpha:0.85f].CGColor];
+    gradientLayer.locations=@[[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.85]];
+    gradientLayer.startPoint = CGPointMake(0.5, 0);
+    gradientLayer.endPoint = CGPointMake(0.5, 1);
+    [testView.layer addSublayer:gradientLayer];
+    
+    UIGraphicsBeginImageContextWithOptions(testView.frame.size, testView.opaque, 0.0);
+    [testView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 
 - (void)didReceiveMemoryWarning {

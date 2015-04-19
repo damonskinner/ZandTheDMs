@@ -8,6 +8,7 @@
 
 #import "FISDonorsChooseProposal.h"
 #import "NSDate+DateConvenienceMethods.h"
+#import "FISDonation.h"
 #import <NSString+HTML.h>
 
 @implementation FISDonorsChooseProposal
@@ -58,6 +59,16 @@
     proposal.daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:proposalDictionary[@"expirationDate"]]];
     
     return proposal;
+}
+
+-(NSInteger) numDonationsNeedResponse {
+    NSInteger numDonations=0;
+    for (FISDonation *eachDonation in self.donations) {
+        if (eachDonation.hasResponded==NO) {
+            numDonations++;
+        }
+    }
+    return numDonations;
 }
 
 

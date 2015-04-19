@@ -50,6 +50,7 @@
 
 @property (nonatomic, strong) NSMutableArray *donations;
 @property (nonatomic, strong) NSString *parseObjectId;
+@property (nonatomic) NSInteger numDonationsNeedResponse;
 
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 
