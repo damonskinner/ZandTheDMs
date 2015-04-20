@@ -84,7 +84,7 @@
                                                                               }];
                                                                           }];
                                                                       }
-                                                                      [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId];
+                                                                      [ParsePopulateDonations populateDonationsForProposalWithObjectId:objectId andproposalId:self.projectId.text];
                                                                   }];
                                                               }];
                                                           }];
