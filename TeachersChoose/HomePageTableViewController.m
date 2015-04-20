@@ -152,11 +152,11 @@
         cell.proposal = [self.datastore.loggedInTeacherCompletedProposals objectAtIndex:indexPath.row];
     }
     
-//    if(cell.completionButton)
-//    {
-//        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    
+    if(cell.completionButton)
+    {
+        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     return cell;
     
 }
