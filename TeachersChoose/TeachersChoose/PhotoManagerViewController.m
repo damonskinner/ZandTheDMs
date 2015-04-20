@@ -25,7 +25,8 @@
 
 #pragma mark - View LifeCycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.collectionView.delegate = self;
@@ -130,7 +131,6 @@
         [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
         [self.collectionView reloadData];
     }];
-    
     
     [alertController addAction: takePhoto];
     [alertController addAction: choosePhoto];

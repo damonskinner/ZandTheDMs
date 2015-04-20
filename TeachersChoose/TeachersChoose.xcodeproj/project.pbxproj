@@ -518,15 +518,9 @@
 			isa = PBXGroup;
 			children = (
 				E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */,
-				E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */,
-				E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */,
-				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
-				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
-				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
-				E24C8D1D1AE03CAF009DB964 /* Spread The News */,
-				E2245F481AE443AC0074C74B /* Review Information */,
+				E2A5D44D1AE5512C00DF74E0 /* Part One (Confirmation) */,
 				E27C86591AE4888600D9D738 /* Congratulations! */,
-				E25D84B21ACED9B700D98118 /* Picture Uploader */,
+				E2A5D44E1AE5513600DF74E0 /* Part Two (ThankYouPackage) */,
 			);
 			name = "Completion Flow";
 			sourceTree = "<group>";
@@ -556,6 +550,28 @@
 				E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */,
 			);
 			name = "Congratulations!";
+			sourceTree = "<group>";
+		};
+		E2A5D44D1AE5512C00DF74E0 /* Part One (Confirmation) */ = {
+			isa = PBXGroup;
+			children = (
+				E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */,
+				E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */,
+				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
+				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
+				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
+				E24C8D1D1AE03CAF009DB964 /* Spread The News */,
+				E2245F481AE443AC0074C74B /* Review Information */,
+			);
+			name = "Part One (Confirmation)";
+			sourceTree = "<group>";
+		};
+		E2A5D44E1AE5513600DF74E0 /* Part Two (ThankYouPackage) */ = {
+			isa = PBXGroup;
+			children = (
+				E25D84B21ACED9B700D98118 /* Picture Uploader */,
+			);
+			name = "Part Two (ThankYouPackage)";
 			sourceTree = "<group>";
 		};
 		EC9D2303EC39AADA6631DC7E /* Pods */ = {

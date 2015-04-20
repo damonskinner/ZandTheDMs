@@ -11,6 +11,9 @@
 
 @interface CongratulationsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *impactLetterButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraAccessButton;
+@property (weak, nonatomic) IBOutlet UIButton *printLabelButton;
 
 @end
 
@@ -19,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES animated:YES];
+    [self setupThankYouPackageButtons];
     [self setupHomeButton];
 }
 
@@ -27,13 +31,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)dashboardButtonTapped:(id)sender
+-(void) setupThankYouPackageButtons
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)thankYouPackageButtonTapped:(id)sender {
-    NSLog(@"thankyou");
+    FAKIonIcons *letterIcon = [FAKIonIcons iosEmailOutlineIconWithSize:50];
+    [self.impactLetterButton setAttributedTitle:[letterIcon attributedString] forState:UIControlStateNormal];
+    self.impactLetterButton.layer.cornerRadius = 10;
+    
+    FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:50];
+    [self.cameraAccessButton setAttributedTitle:[cameraIcon attributedString] forState:UIControlStateNormal];
+    self.cameraAccessButton.layer.cornerRadius = 10;
+    
+    FAKIonIcons *printIcon = [FAKIonIcons iosPrinterOutlineIconWithSize:50];
+    [self.printLabelButton setAttributedTitle:[printIcon attributedString] forState:UIControlStateNormal];
+    self.printLabelButton.layer.cornerRadius = 10;
 }
 
 #pragma mark - Home Button
