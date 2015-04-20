@@ -226,6 +226,10 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         
     } else {
         titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+        NSString *dateString = [NSString stringWithFormat:@"%@",((FISDonation *) self.proposal.donations[section]).donationDate];
+        dateLabelString = [self formatDateLabelStringWithDateString:dateString];
        
     }
     
@@ -318,7 +322,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     if ([cell respondsToSelector:@selector(tintColor)]) {
         if (tableView == self.myTableView) {
             CGFloat cornerRadius = 8.f;
-            cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
+            cell.backgroundColor = [UIColor DonorsChooseGreyLight];
             
             CAShapeLayer *layer = [[CAShapeLayer alloc] init];
             CGMutablePathRef pathRef = CGPathCreateMutable();
@@ -337,7 +341,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
             } else {
-                layer.fillColor = [UIColor clearColor].CGColor;
+                layer.fillColor = [UIColor DonorsChooseGreyVeryLight].CGColor;
                 layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
 
                 

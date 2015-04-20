@@ -64,20 +64,10 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-g4-b4F">
-                        <rect key="frame" x="364" y="114" width="63" height="30"/>
-                        <state key="normal" title="Click me">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="completionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nGd-KG-MqG"/>
-                        </connections>
-                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountRaisedLabel" destination="KOd-ko-YbP" id="j9M-2w-U1N"/>
-                <outlet property="completionButton" destination="Vpx-g4-b4F" id="Bbv-MX-rTm"/>
                 <outlet property="costToCompleteLabel" destination="DUc-up-fne" id="6qH-Yb-Kaz"/>
                 <outlet property="donorsLabel" destination="loS-kv-KKZ" id="LIG-xp-455"/>
                 <outlet property="expirationDateLabel" destination="Nbv-Zc-0zt" id="ViJ-oB-Gce"/>
