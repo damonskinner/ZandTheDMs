@@ -16,6 +16,8 @@
 #import "FISDonation.h"
 #import "FISConstants.h"
 #import "FISInputCommentCell.h"
+#import "NSDate+DateConvenienceMethods.h"
+#import "NSDate+InternetDateTime.h"
 
 
 @interface CommentsViewController () 
@@ -203,21 +205,90 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
     
+    
 
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
-
-    [label setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]];
+    [nameLabel setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:17]];
     NSString *titleString;
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
+    
+    [dateLabel setFont:[UIFont fontWithName:DonorsChooseTitleLightFont size:15]];
+    NSString *dateLabelString;
+
     if(self.mySegmentedControl.selectedSegmentIndex==0) {
         titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.donationsWhichNeedResponse[section]).donorName];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+        NSString *dateString = [NSString stringWithFormat:@"%@",((FISDonation *) self.donationsWhichNeedResponse[section]).donationDate];
+        dateLabelString = [self formatDateLabelStringWithDateString:dateString];
+        
+        
     } else {
         titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+       
     }
     
-    [label setText:titleString];
-    [view addSubview:label];
-
+    [nameLabel setText:titleString];
+    [dateLabel setText:dateLabelString];
+    
+    
+    [view addSubview:nameLabel];
+    [view addSubview:dateLabel];
+    
+    
+    [dateLabel removeConstraints:dateLabel.constraints];
+    [view removeConstraints:view.constraints];
+    [nameLabel removeConstraints:nameLabel.constraints];
+    
+    dateLabel.translatesAutoresizingMaskIntoConstraints=NO;
+    nameLabel.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    NSLayoutConstraint *dateLabelRight =
+    [NSLayoutConstraint constraintWithItem:dateLabel
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:view
+                                 attribute:NSLayoutAttributeRightMargin
+                                multiplier:1.0
+                                  constant:0];
+    
+    [view addConstraint:dateLabelRight];
+    
+    NSLayoutConstraint *nameLabelLeft =
+    [NSLayoutConstraint constraintWithItem:nameLabel
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:view
+                                 attribute:NSLayoutAttributeLeftMargin
+                                multiplier:1.0
+                                  constant:0];
+    
+    [view addConstraint:nameLabelLeft];
+    
+    
+    NSLayoutConstraint *dateLabelY =
+    [NSLayoutConstraint constraintWithItem:dateLabel
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:view
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.0
+                                  constant:0];
+    
+    [view addConstraint:dateLabelY];
+    NSLayoutConstraint *nameLabelY =
+    [NSLayoutConstraint constraintWithItem:nameLabel
+                                 attribute:NSLayoutAttributeCenterY
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:view
+                                 attribute:NSLayoutAttributeCenterY
+                                multiplier:1.0
+                                  constant:0];
+    
+    [view addConstraint:nameLabelY];
+    
+    
     view.backgroundColor = [UIColor DonorsChooseGreyLight];
     return view;
 }
@@ -484,6 +555,44 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.proposal.donations=[@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9] mutableCopy];
     
 }
-        
+
+
+-(NSString *) formatDateLabelStringWithDateString: (NSString *) dateString {
+    NSString *formattedString;
+    
+    NSString *monthString = [dateString substringWithRange:NSMakeRange(5, 2)];
+    NSString *yearString = [dateString substringWithRange:NSMakeRange(0, 4)];
+    NSString *dayString = [dateString substringWithRange:NSMakeRange(8, 2)];
+    
+    if ([monthString isEqualToString: @"01"]) {
+        formattedString=@"January";
+    } else if ([monthString isEqualToString:@"02"]){
+        formattedString=@"February";
+    } else if ([monthString isEqualToString:@"03"]){
+        formattedString=@"March";
+    } else if ([monthString isEqualToString:@"04"]){
+        formattedString=@"April";
+    } else if ([monthString isEqualToString:@"05"]){
+        formattedString=@"May";
+    } else if ([monthString isEqualToString:@"06"]){
+        formattedString=@"June";
+    } else if ([monthString isEqualToString:@"07"]){
+        formattedString=@"July";
+    } else if ([monthString isEqualToString:@"08"]){
+        formattedString=@"August";
+    } else if ([monthString isEqualToString:@"09"]){
+        formattedString=@"September";
+    } else if ([monthString isEqualToString:@"10"]){
+        formattedString=@"October";
+    } else if ([monthString isEqualToString:@"11"]){
+        formattedString=@"November";
+    } else if ([monthString isEqualToString:@"12"]){
+        formattedString=@"December";
+    }
+    
+    formattedString = [formattedString stringByAppendingString:[NSString stringWithFormat:@" %@, %@",dayString,yearString]];
+    
+    return formattedString;
+}
 
 @end
