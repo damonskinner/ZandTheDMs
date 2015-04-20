@@ -18,9 +18,10 @@
 #import "FISInputCommentCell.h"
 #import "NSDate+DateConvenienceMethods.h"
 #import "NSDate+InternetDateTime.h"
+#import "CustomItemUIActivityItemProvider.h"
 
 
-@interface CommentsViewController () 
+@interface CommentsViewController () <UIActivityItemSource>
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 //@property (strong, nonatomic) NSMutableDictionary *commentsDictionary;
@@ -34,14 +35,10 @@
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
 
 
-
-
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
 -(void) populateDonationsWhichNeedResponseArray;
 //-(void) populateCommentsDictionary;
-
-
 
 @end
 
@@ -56,6 +53,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [((UINavigationController*)self.parentViewController.parentViewController).navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareTapped)]];
     
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     self.datastore=[FISDonorsChooseDatastore sharedDataStore];
@@ -71,7 +69,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
-    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -226,6 +223,10 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
         
     } else {
         titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+        NSString *dateString = [NSString stringWithFormat:@"%@",((FISDonation *) self.proposal.donations[section]).donationDate];
+        dateLabelString = [self formatDateLabelStringWithDateString:dateString];
        
     }
     
@@ -318,7 +319,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     if ([cell respondsToSelector:@selector(tintColor)]) {
         if (tableView == self.myTableView) {
             CGFloat cornerRadius = 8.f;
-            cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
+            cell.backgroundColor = [UIColor DonorsChooseGreyLight];
             
             CAShapeLayer *layer = [[CAShapeLayer alloc] init];
             CGMutablePathRef pathRef = CGPathCreateMutable();
@@ -337,7 +338,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
                 CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
             } else {
-                layer.fillColor = [UIColor clearColor].CGColor;
+                layer.fillColor = [UIColor DonorsChooseGreyVeryLight].CGColor;
                 layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
 
                 
@@ -593,6 +594,12 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     formattedString = [formattedString stringByAppendingString:[NSString stringWithFormat:@" %@, %@",dayString,yearString]];
     
     return formattedString;
+}
+
+- (void)shareTapped {
+    CustomItemUIActivityItemProvider *customItem = [[CustomItemUIActivityItemProvider alloc] initWithProposal:self.proposal andPlaceholder:@""];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[customItem] applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
 }
 
 @end

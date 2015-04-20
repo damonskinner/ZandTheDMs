@@ -11,6 +11,6 @@
 @interface ParsePopulateDonations : NSObject
 
 
-+(void) populateDonationsForProposalWithObjectId: (NSString *) proposalId;
++(void) populateDonationsForProposalWithObjectId: (NSString *) proposalObjectId andproposalId: (NSString *) proposalId;
 
 @end

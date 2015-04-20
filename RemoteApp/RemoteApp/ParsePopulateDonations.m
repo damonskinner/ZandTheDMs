@@ -9,12 +9,13 @@
 #import "ParsePopulateDonations.h"
 #import "FISDonation.h"
 #import "FISParseAPI.h"
+#import "FISDonorsChooseAPI.h"
 
 
 @implementation ParsePopulateDonations
 
 
-+(void) populateDonationsForProposalWithObjectId: (NSString *) proposalId {
++(void) populateDonationsForProposalWithObjectId: (NSString *) proposalObjectId andproposalId: (NSString *) proposalId {
     
     FISDonation *donation0=[[FISDonation alloc]initWithName:@"Johnny B. Gud" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"" DonationAmount:@"35.00"];
     FISDonation *donation1=[[FISDonation alloc]initWithName:@"Sandra Kyles" Location:@"New York" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"" DonationAmount:@"5.00"];
@@ -46,25 +47,37 @@
     NSMutableArray *donationsArray = [@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9,donation10,donation11,donation12,donation13,donation14,donation15,donation16,donation17,donation18,donation19,donation20,donation21,donation22] mutableCopy];
     NSMutableArray *newDonationArray= [[NSMutableArray alloc]init];
     
-    NSInteger randomNumberOfDonations = arc4random_uniform([donationsArray count]);
-    
-    if (randomNumberOfDonations<3) {
-        randomNumberOfDonations=3;
-    }
-    for (NSInteger i=0; i<randomNumberOfDonations; i++) {
-        NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
-        [newDonationArray addObject:donationsArray[randomDonationIndex]];
-        [donationsArray removeObjectAtIndex:randomDonationIndex];
-    }
-    
-    for (FISDonation *eachDonation in newDonationArray) {
-        [FISParseAPI createDonationForProposalObjectId:proposalId withName:eachDonation.donorName withDonorLocation:eachDonation.donorLocation donorMessage:eachDonation.donorMessage responseMessage:eachDonation.responseMessage donationAmount:eachDonation.donationAmount andCompletionBlock:^(NSDictionary *responseObject) {
-            eachDonation.donationObjectId=responseObject[@"objectId"];
-            [FISParseAPI addDonationObjectId:eachDonation.donationObjectId toProposalWithObjectId:proposalId andCompletionBlock:^{
-                
+    [FISDonorsChooseAPI getProposalObjectForProposalId:proposalId andCompletionBlock:^(NSDictionary *proposalDict) {
+        NSInteger numberOfDonors = [proposalDict[@"numDonors"] integerValue];
+        for (NSInteger i=0; i<numberOfDonors; i++) {
+            NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
+            [newDonationArray addObject:donationsArray[randomDonationIndex]];
+            [donationsArray removeObjectAtIndex:randomDonationIndex];
+        }
+        
+        for (FISDonation *eachDonation in newDonationArray) {
+            [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:eachDonation.donorName withDonorLocation:eachDonation.donorLocation donorMessage:eachDonation.donorMessage responseMessage:eachDonation.responseMessage donationAmount:eachDonation.donationAmount andCompletionBlock:^(NSDictionary *responseObject) {
+                eachDonation.donationObjectId=responseObject[@"objectId"];
+                [FISParseAPI addDonationObjectId:eachDonation.donationObjectId toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
+                    
+                }];
             }];
-        }];
-    }
+        }
+        
+    }];
+    
+//    NSInteger randomNumberOfDonations = arc4random_uniform([donationsArray count]);
+//    
+//    if (randomNumberOfDonations<3) {
+//        randomNumberOfDonations=3;
+//    }
+//    for (NSInteger i=0; i<randomNumberOfDonations; i++) {
+//        NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
+//        [newDonationArray addObject:donationsArray[randomDonationIndex]];
+//        [donationsArray removeObjectAtIndex:randomDonationIndex];
+//    }
+    
+    
     
     
 }
