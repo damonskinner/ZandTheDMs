@@ -9,6 +9,7 @@
 #import "ProposalTableViewCell.h"
 #import "UIFont+DonorsChooseFonts.h"
 #import "UIColor+DonorsChooseColors.h"
+
 #import "NSDate+DateConvenienceMethods.h"
 #import "FISDonorsChooseCompletedProposal.h"
 
@@ -71,6 +72,7 @@
     [self.amountRaisedLabel removeConstraints:self.amountRaisedLabel.constraints];
     [self.donorsLabel removeConstraints:self.donorsLabel.constraints];
     [self.completionButton removeConstraints:self.completionButton.constraints];
+    [self.donorsAwaitingReplyLabel removeConstraints:self.donorsAwaitingReplyLabel.constraints];
     
     
 //        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -86,9 +88,7 @@
         self.amountRaisedLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.donorsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.completionButton.translatesAutoresizingMaskIntoConstraints=NO;
-    
-    
-    
+    self.donorsAwaitingReplyLabel.translatesAutoresizingMaskIntoConstraints=NO;
     
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -368,6 +368,29 @@
     
     [self.contentView addConstraint:proposalTableViewProgressViewTopConstraint];
     
+    NSLayoutConstraint *donorsAwaitingReplyLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorsAwaitingReplyLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:donorsAwaitingReplyLabelBottomConstraint];
+    
+    
+    NSLayoutConstraint *donorsAwaitingReplyLabelLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorsAwaitingReplyLabel
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1.0
+                                  constant:8];
+    
+    [self.contentView addConstraint:donorsAwaitingReplyLabelLeftConstraint];
+
 //    NSLayoutConstraint *proposalTableViewProgressViewHeightConstraint =
 //    [NSLayoutConstraint constraintWithItem:self.proposalTableViewProgressView
 //                                 attribute:NSLayoutAttributeHeight
@@ -413,6 +436,10 @@
     self.fundedLabel.backgroundColor = [UIColor clearColor];
     self.fundedLabel.text = @"funded";
     
+    self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
+    self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
+    self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
+    
     self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
     self.donorsLabel.backgroundColor = [UIColor clearColor];
     if ([self.proposal.numDonors isEqual:@"1"]) {
@@ -456,10 +483,13 @@
     self.proposalTableViewProgressView.progress=  raisedAsFloat/ [self.proposal.totalPrice floatValue];
     self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%d", amountRaised,self.proposal.totalPrice.intValue];
     
-    
-    
-    
-    
+    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%d donors awaiting reply)",self.proposal.numDonationsNeedResponse];
+    if ([self.donorsAwaitingReplyLabel.text isEqualToString:@"(0 donors awaiting reply)"]) {
+        self.donorsAwaitingReplyLabel.hidden=YES;
+    } else {
+        self.donorsAwaitingReplyLabel.hidden=NO;
+    }
+
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     
     if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {

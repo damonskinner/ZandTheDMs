@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -73,12 +73,19 @@
                             <action selector="completionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nGd-KG-MqG"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="donorsAwaitingReplyLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TK0-pL-pU0">
+                        <rect key="frame" x="8" y="130" width="205" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountRaisedLabel" destination="KOd-ko-YbP" id="j9M-2w-U1N"/>
                 <outlet property="completionButton" destination="Vpx-g4-b4F" id="Bbv-MX-rTm"/>
                 <outlet property="costToCompleteLabel" destination="DUc-up-fne" id="6qH-Yb-Kaz"/>
+                <outlet property="donorsAwaitingReplyLabel" destination="TK0-pL-pU0" id="Ia7-1Y-cys"/>
                 <outlet property="donorsLabel" destination="loS-kv-KKZ" id="LIG-xp-455"/>
                 <outlet property="expirationDateLabel" destination="Nbv-Zc-0zt" id="ViJ-oB-Gce"/>
                 <outlet property="numDonorsLabel" destination="WVB-Ph-ayg" id="PLW-tr-1Cn"/>

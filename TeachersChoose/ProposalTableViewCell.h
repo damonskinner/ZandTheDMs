@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *donorsLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *completionButton;
+@property (weak, nonatomic) IBOutlet UILabel *donorsAwaitingReplyLabel;
 
 - (IBAction)completionButton:(id)sender;
 
