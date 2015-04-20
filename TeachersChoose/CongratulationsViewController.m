@@ -7,7 +7,9 @@
 //
 
 #import "CongratulationsViewController.h"
+#import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
+
 
 @interface CongratulationsViewController ()
 
@@ -35,14 +37,17 @@
 {
     FAKIonIcons *letterIcon = [FAKIonIcons iosEmailOutlineIconWithSize:50];
     [self.impactLetterButton setAttributedTitle:[letterIcon attributedString] forState:UIControlStateNormal];
+    [self.impactLetterButton setBackgroundColor: [UIColor DonorsChooseOrange]];
     self.impactLetterButton.layer.cornerRadius = 10;
-    
+
     FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:50];
     [self.cameraAccessButton setAttributedTitle:[cameraIcon attributedString] forState:UIControlStateNormal];
+    [self.cameraAccessButton setBackgroundColor: [UIColor DonorsChooseOrange]];
     self.cameraAccessButton.layer.cornerRadius = 10;
     
     FAKIonIcons *printIcon = [FAKIonIcons iosPrinterOutlineIconWithSize:50];
     [self.printLabelButton setAttributedTitle:[printIcon attributedString] forState:UIControlStateNormal];
+    [self.printLabelButton setBackgroundColor: [UIColor DonorsChooseOrange]];
     self.printLabelButton.layer.cornerRadius = 10;
 }
 
@@ -50,7 +55,7 @@
 
 -(void) setupHomeButton
 {
-    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
 }
 
