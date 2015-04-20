@@ -33,7 +33,6 @@
 		36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */ = {isa = PBXBuildFile; fileRef = 36AE945E1AD586A400F32AD5 /* ss-junior.js */; };
 		36AE94651AD586A400F32AD5 /* ss-junior.svg in Resources */ = {isa = PBXBuildFile; fileRef = 36AE945F1AD586A400F32AD5 /* ss-junior.svg */; };
 		36AE94661AD586A400F32AD5 /* ss-junior.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94601AD586A400F32AD5 /* ss-junior.ttf */; };
-		36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94611AD586A400F32AD5 /* ss-junior.woff */; };
 		36AE946D1AD5C81C00F32AD5 /* HomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE946C1AD5C81C00F32AD5 /* HomePageTableViewController.m */; };
 		36AE94731AD5D2E400F32AD5 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */; };
 		36AE94741AD5D2E400F32AD5 /* ProposalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */; };
@@ -67,9 +66,7 @@
 		E24C8D1C1AE03CA2009DB964 /* SpreadTheNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
-		E25D84B71ACEDCCB00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
-		E25D84BC1ACEE12C00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
 		E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */; };
@@ -80,8 +77,12 @@
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
 		E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */; };
 		E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */; };
+		E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */; };
 		E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */; };
 		E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */; };
+		E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		E2A5D44B1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94611AD586A400F32AD5 /* ss-junior.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +203,8 @@
 		E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialConfirmationViewController.m; sourceTree = "<group>"; };
 		E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressConfirmationViewController.h; sourceTree = "<group>"; };
 		E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressConfirmationViewController.m; sourceTree = "<group>"; };
+		E27C86561AE4887F00D9D738 /* CongratulationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongratulationsViewController.h; sourceTree = "<group>"; };
+		E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongratulationsViewController.m; sourceTree = "<group>"; };
 		E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISInputCommentCell.h; sourceTree = "<group>"; };
 		E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISInputCommentCell.m; sourceTree = "<group>"; };
 		E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCommentInputAccessoryView.h; sourceTree = "<group>"; };
@@ -522,6 +525,7 @@
 				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
 				E24C8D1D1AE03CAF009DB964 /* Spread The News */,
 				E2245F481AE443AC0074C74B /* Review Information */,
+				E27C86591AE4888600D9D738 /* Congratulations! */,
 				E25D84B21ACED9B700D98118 /* Picture Uploader */,
 			);
 			name = "Completion Flow";
@@ -543,6 +547,15 @@
 				E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */,
 			);
 			name = "Address Confirmation";
+			sourceTree = "<group>";
+		};
+		E27C86591AE4888600D9D738 /* Congratulations! */ = {
+			isa = PBXGroup;
+			children = (
+				E27C86561AE4887F00D9D738 /* CongratulationsViewController.h */,
+				E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */,
+			);
+			name = "Congratulations!";
 			sourceTree = "<group>";
 		};
 		EC9D2303EC39AADA6631DC7E /* Pods */ = {
@@ -650,11 +663,10 @@
 				36E866BC1ADEFE6900DF1B54 /* iTunesArtwork@2x.png in Resources */,
 				36E866B71ADEFE6900DF1B54 /* Icon-Small.png in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
-				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
-				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
+				E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */,
+				E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */,
 				36E866B41ADEFE6900DF1B54 /* Icon-Small-40@3x.png in Resources */,
 				36E866B81ADEFE6900DF1B54 /* Icon-Small@2x.png in Resources */,
-				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
 				36E866BB1ADEFE6900DF1B54 /* Icon@2x.png in Resources */,
 				36E866B21ADEFE6900DF1B54 /* Icon-Small-40.png in Resources */,
 				36AE94621AD586A400F32AD5 /* ss-junior.css in Resources */,
@@ -670,13 +682,11 @@
 				3603946F1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf in Resources */,
 				360394771ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf in Resources */,
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
-				E25D84BC1ACEE12C00D98118 /* (null) in Resources */,
+				E2A5D44B1AE4919C00DF74E0 /* (null) in Resources */,
 				36E866BA1ADEFE6900DF1B54 /* icon.png in Resources */,
 				36E866B91ADEFE6900DF1B54 /* Icon-Small@3x.png in Resources */,
-				E25D84BC1ACEE12C00D98118 /* (null) in Resources */,
 				360394761ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf in Resources */,
 				E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */,
-				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
 				3603946D1ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf in Resources */,
 			);
@@ -761,6 +771,7 @@
 				36AE94731AD5D2E400F32AD5 /* ProposalTableViewCell.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,
 				E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */,
+				E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */,
 				36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */,
 				E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */,
 			);

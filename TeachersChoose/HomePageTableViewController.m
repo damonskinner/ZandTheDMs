@@ -152,7 +152,11 @@
         cell.proposal = [self.datastore.loggedInTeacherCompletedProposals objectAtIndex:indexPath.row];
     }
     
-    
+//    if(cell.completionButton)
+//    {
+//        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    
     return cell;
     
 }
@@ -241,7 +245,6 @@
         tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
-
 //    NSLog(@"just before deselect code");
 
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -285,11 +288,17 @@
     return newImage;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(void) segueToCompletionFlow
+{
+    UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
+    UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController showViewController:containerVC sender:nil];
+}
 
 @end

@@ -521,7 +521,7 @@ carry out the project.</string>
             </objects>
             <point key="canvasLocation" x="1730" y="-649"/>
         </scene>
-        <!--Review Details-->
+        <!--Review & Submit-->
         <scene sceneID="m8e-q3-zSF">
             <objects>
                 <viewController id="GFo-Fe-6E6" customClass="ReviewInformationViewController" sceneMemberID="viewController">
@@ -592,7 +592,7 @@ carry out the project.</string>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSR-Qi-Uqc">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSR-Qi-Uqc">
                                 <rect key="frame" x="60" y="489" width="480" height="36"/>
                                 <color key="backgroundColor" red="0.1058823529" green="0.76078431369999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -600,6 +600,9 @@ carry out the project.</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="completeMyProjectTapped:" destination="GFo-Fe-6E6" eventType="touchUpInside" id="kAp-yf-Ypf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -617,7 +620,7 @@ carry out the project.</string>
                             <constraint firstItem="56G-4h-WCT" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="wvH-Gv-gZm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Review Details" id="6dQ-1e-idD">
+                    <navigationItem key="navigationItem" title="Review &amp; Submit" id="6dQ-1e-idD">
                         <barButtonItem key="backBarButtonItem" title="Back" id="7e6-X2-yAF"/>
                     </navigationItem>
                     <connections>
@@ -632,7 +635,26 @@ carry out the project.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CtJ-He-cDB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="662" y="118"/>
+            <point key="canvasLocation" x="327" y="46"/>
+        </scene>
+        <!--Project Complete!-->
+        <scene sceneID="GIW-eg-JGw">
+            <objects>
+                <viewController storyboardIdentifier="congratulationsVC" title="Project Complete!" id="NTr-kg-yen" customClass="CongratulationsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zSF-fY-Qn6"/>
+                        <viewControllerLayoutGuide type="bottom" id="gJ0-VO-Hpm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B7p-oN-elf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Project Complete!" id="jc2-K3-4NN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EMj-T1-0Le" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="999" y="56"/>
         </scene>
         <!--Upload Completion Photos-->
         <scene sceneID="dR5-55-6xl">
@@ -715,7 +737,7 @@ carry out the project.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pK-t4-VCT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2153" y="704"/>
+            <point key="canvasLocation" x="1171" y="796"/>
         </scene>
         <!--Container View Controller-->
         <scene sceneID="hQe-nr-AcJ">

@@ -7,6 +7,7 @@
 //
 
 #import "ReviewInformationViewController.h"
+#import "ContainerViewController.h"
 
 @interface ReviewInformationViewController ()
 
@@ -27,14 +28,41 @@
     self.completeMyProjectButton.layer.cornerRadius = 10;
 }
 
-/*
-#pragma mark - Navigation
+-(void) presentAreYouSureAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are You Sure?" message:@"Once submitted, this information may not be edited." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        NSLog(@"readyToSubmit");
+        [self presentCongratulationsViewController];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:submitAction];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self presentViewController:alertController animated:YES completion:nil];
+    NSLog(@"alertPresented");
 }
-*/
+
+- (IBAction)completeMyProjectTapped:(id)sender {
+    [self presentAreYouSureAlert];
+}
+
+-(void) presentCongratulationsViewController
+{
+    UIViewController *nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congratulationsVC"];
+    [UIView animateWithDuration:0.5 animations:^{
+        [((ContainerViewController*) self.navigationController.parentViewController).myProgressView setAlpha:0];
+    }];
+    [self.navigationController showViewController:nextVC sender:nil];
+    
+    
+// for if and when we need to do some nav controller magic
+//    ContainerViewController* containerVC = (ContainerViewController*)[self.navigationController parentViewController];
+//    UINavigationController* originalNavController = (UINavigationController*)[containerVC parentViewController];
+//    [originalNavController setNavigationBarHidden:NO animated:YES];
+}
 
 @end
