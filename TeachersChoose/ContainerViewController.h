@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ContainerViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UIProgressView *myProgressView;
 @end

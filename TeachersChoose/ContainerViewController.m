@@ -17,7 +17,6 @@ static const float TOTAL_VIEW_CONTROLLERS = 4.0;
 
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) UINavigationController *navController;
-@property (weak, nonatomic) IBOutlet UIProgressView *myProgressView;
 
 -(void)formatNavBar;
 
