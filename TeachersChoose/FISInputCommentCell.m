@@ -80,7 +80,7 @@
     self.myTextView.text = placeholder;
     self.myTextView.scrollEnabled = NO;
     self.myTextView.backgroundColor=[UIColor DonorsChooseGreyVeryLight];
-    self.myTextView.textAlignment = NSTextAlignmentRight;
+    self.myTextView.textAlignment = NSTextAlignmentCenter;
     self.myTextView.font = [UIFont fontWithName:DonorsChooseCSSFont size:40];
     self.myTextView.textColor = [UIColor DonorsChooseOrange];
 }
@@ -120,7 +120,7 @@
 {
     textView.text = @"";
     textView.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
-    textView.textAlignment = NSTextAlignmentRight;
+    textView.textAlignment = NSTextAlignmentCenter;
     textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
 }

@@ -190,7 +190,8 @@
 
 
 -(void) createFakeFundedProposal {
-    self.fakeFundedProposal = [((FISDonorsChooseProposal *)self.loggedInTeacherProposals[0]) copy];
+//    self.fakeFundedProposal = [((FISDonorsChooseProposal *)self.loggedInTeacherProposals[0]) copy];
+    self.fakeFundedProposal = [[FISDonorsChooseProposal alloc]init];
     self.fakeFundedProposal.title = @"Almost there!";
     self.fakeFundedProposal.proposalId = @"9999999";
     self.fakeFundedProposal.costToComplete=@"0";

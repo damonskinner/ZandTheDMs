@@ -101,13 +101,13 @@
 
     }
     [UIApplication sharedApplication].applicationIconBadgeNumber =self.datastore.totalUnRespondedDonations;
-    
-    [FISParseAPI getInstallationObjectIdForTeacherId:self.datastore.loggedInTeacher.teacherId andCompletionBlock:^(NSString *objectId) {
-        [FISParseAPI updateBadgeNumber:@(self.datastore.totalUnRespondedDonations) forInstallationWithObjectId:objectId andCompletionBlock:^{
-            
+    if ([self.datastore.decodedDeviceToken length]>0) {
+        [FISParseAPI getInstallationObjectIdForTeacherId:self.datastore.loggedInTeacher.teacherId andCompletionBlock:^(NSString *objectId) {
+            [FISParseAPI updateBadgeNumber:@(self.datastore.totalUnRespondedDonations) forInstallationWithObjectId:objectId andCompletionBlock:^{
+                
+            }];
         }];
-    }];
-    
+    }
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
