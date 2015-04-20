@@ -7,9 +7,10 @@
 //
 
 #import "CongratulationsViewController.h"
-#import "ContainerViewController.h"
+#import <FAKIonIcons.h>
 
 @interface CongratulationsViewController ()
+
 
 @end
 
@@ -18,12 +19,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setHidesBackButton:YES animated:YES];
-    
+    [self setupHomeButton];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)dashboardButtonTapped:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)thankYouPackageButtonTapped:(id)sender {
+    NSLog(@"thankyou");
+}
+
+#pragma mark - Home Button
+
+-(void) setupHomeButton
+{
+    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+}
+
+-(void) homeButtonTapped
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

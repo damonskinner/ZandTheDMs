@@ -7,6 +7,7 @@
 //
 
 #import "DateConfirmationViewController.h"
+#import <FAKIonIcons.h>
 
 @interface DateConfirmationViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *confirmDateButton;
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     self.confirmDateButton.layer.cornerRadius = 10;
     [self setupDatePicker];
+    [self setupHomeButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,14 +58,26 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Home Button
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) setupHomeButton
+{
+    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
 }
-*/
+
+-(void) homeButtonTapped
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 @end

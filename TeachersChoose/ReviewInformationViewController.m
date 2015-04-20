@@ -8,6 +8,7 @@
 
 #import "ReviewInformationViewController.h"
 #import "ContainerViewController.h"
+#import <FAKIonIcons.h>
 
 @interface ReviewInformationViewController ()
 
@@ -26,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.completeMyProjectButton.layer.cornerRadius = 10;
+    [self setupHomeButton];
 }
 
 -(void) presentAreYouSureAlert
@@ -57,12 +59,28 @@
         [((ContainerViewController*) self.navigationController.parentViewController).myProgressView setAlpha:0];
     }];
     [self.navigationController showViewController:nextVC sender:nil];
+}
+
+#pragma mark - Home Button
+
+-(void) setupHomeButton
+{
+    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+}
+
+-(void) homeButtonTapped
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
     
-// for if and when we need to do some nav controller magic
-//    ContainerViewController* containerVC = (ContainerViewController*)[self.navigationController parentViewController];
-//    UINavigationController* originalNavController = (UINavigationController*)[containerVC parentViewController];
-//    [originalNavController setNavigationBarHidden:NO animated:YES];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

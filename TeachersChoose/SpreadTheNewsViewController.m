@@ -7,6 +7,7 @@
 //
 
 #import "SpreadTheNewsViewController.h"
+#import <FAKIonIcons.h>
 
 static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
@@ -36,6 +37,7 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
+    [self setupHomeButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -76,7 +78,9 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
 -(void) textViewDidChange:(UITextView *)textView
 {
-    if ([textView.text length] > 0) {
+    NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if ([trimmedText length] > 0) {
         self.saveMessageButton.enabled = YES;
         self.saveMessageButton.backgroundColor = [UIColor colorWithRed:0.106 green:0.761 blue:0.106 alpha:1.000];
     }
@@ -157,6 +161,28 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
     //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
     //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
+}
+
+#pragma mark - Home Button
+
+-(void) setupHomeButton
+{
+    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+}
+
+-(void) homeButtonTapped
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

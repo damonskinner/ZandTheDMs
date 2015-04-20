@@ -297,8 +297,7 @@
 {
     UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
     UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationController showViewController:containerVC sender:nil];
+    [self.navigationController presentViewController:containerVC animated:YES completion:nil];
 }
 
 @end

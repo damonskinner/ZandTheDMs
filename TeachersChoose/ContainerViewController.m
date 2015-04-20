@@ -52,7 +52,6 @@ static const float TOTAL_VIEW_CONTROLLERS = 4.0;
     NSInteger currentNumberOfControllers = [navigationController.viewControllers count]-1;
     [self.myProgressView setProgress:(currentNumberOfControllers/TOTAL_VIEW_CONTROLLERS) animated:YES];
     
-    NSLog(@"navigationController:willShowViewController:");
     NSLog(@"STACK COUNT: %ld", [navigationController.viewControllers count]);
 }
 
@@ -63,13 +62,6 @@ static const float TOTAL_VIEW_CONTROLLERS = 4.0;
     [self.navController.navigationBar setTranslucent: NO];
     [self.navController.navigationBar setBarTintColor: [UIColor DonorsChooseOrange]];
     [self.navController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]}];
-
-    //FIXME: right bar button item not showing, wtf
-    UIImage *homeIcon = [[FAKIonIcons homeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)];
-    [homeButton setTintColor: [UIColor whiteColor]];
-    [self.navController.navigationItem setRightBarButtonItem: homeButton];
-    NSLog(@"%@", self.navController.navigationItem.rightBarButtonItem);
 }
 
 -(void) homeButtonTapped
