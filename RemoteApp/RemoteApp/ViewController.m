@@ -14,7 +14,7 @@
 #import "FISDonorsChooseAPI.h"
 
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 - (IBAction)resetDBTapped:(id)sender;
 - (IBAction)createDonationTapped:(id)sender;
@@ -25,13 +25,41 @@
 @property (strong, nonatomic) IBOutlet UITextField *location;
 @property (strong, nonatomic) IBOutlet UITextField *amount;
 
+@property (strong, nonatomic) IBOutlet UIButton *createDonationButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetDbButton;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.createDonationButton.enabled = NO;
+    self.resetDbButton.enabled = NO;
+    
+    self.projectId.delegate = self;
+    self.name.delegate = self;
+    self.message.delegate = self;
+    self.location.delegate = self;
+    self.amount.delegate = self;
+    
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSInteger projectIdLength = 7;
+    if ((self.projectId.text.length == projectIdLength) && (self.name.text.length > 0) && (self.message.text.length > 0) && (self.location.text.length > 0) && (self.amount.text.length > 0)) {
+        self.createDonationButton.enabled = YES;
+    } else {
+        self.createDonationButton.enabled = NO;
+    }
+    
+    if (self.projectId.text.length == projectIdLength) {
+        self.resetDbButton.enabled = YES;
+    } else {
+        self.resetDbButton.enabled = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +90,6 @@
             }];
         }];
     }];
-//    [FISParseAPI sendPushNotificationToEveryone];
 }
 
 - (IBAction)resetDBTapped:(id)sender {
