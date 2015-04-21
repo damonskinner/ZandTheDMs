@@ -8,6 +8,7 @@
 
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
+#import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -48,10 +49,10 @@
 {
     CompletionImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
     
-    // assign the corresponding picture
     cell.imageView.image = self.completionPictures[indexPath.row];
+    cell.backgroundColor = [UIColor DonorsChooseOrange];
+    cell.layer.cornerRadius = 10;
     
-    // check whether to hide the label or not
     if (cell.imageView.image == self.cameraImage)
     {
         cell.tapMeLabel.hidden = NO;
@@ -106,7 +107,7 @@
     picker.delegate = self;
     picker.allowsEditing = YES;
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add Photos" message:@"Select photos that you'd like to share on DonorsChoose.org upon completion of your project." preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
@@ -124,17 +125,20 @@
         [self presentViewController:picker animated:YES completion:nil];
     }];
     
-    UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
-    {
-        NSLog(@"remove photo chosen");
-        [self.completionPictures removeObjectAtIndex: self.selectedRow];
-        [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
-        [self.collectionView reloadData];
-    }];
-    
     [alertController addAction: takePhoto];
     [alertController addAction: choosePhoto];
-    [alertController addAction: removePhoto];
+    
+    if (self.completionPictures[self.selectedRow] != self.cameraImage){
+        UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
+        {
+            NSLog(@"remove photo chosen");
+            [self.completionPictures removeObjectAtIndex: self.selectedRow];
+            [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
+            [self.collectionView reloadData];
+        }];
+        [alertController addAction: removePhoto];
+    }
+
     [alertController addAction: cancel];
     
     [self presentViewController: alertController animated: YES completion:nil];
