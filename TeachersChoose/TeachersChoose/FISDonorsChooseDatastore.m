@@ -111,11 +111,15 @@
 
 -(void) getDonationsListForProposal: (FISDonorsChooseProposal *) proposal andCompletion:(void (^)(BOOL))completionBlock {
     [FISParseAPI getDonationsListForProposalWithId:proposal.parseObjectId andCompletionBlock:^(NSArray *donations) {
+        [proposal.donations removeAllObjects];
         for (NSDictionary *donationDict in donations){
             [proposal.donations addObject:[FISDonation donationFromDictionary:donationDict]];
         }
         if([proposal.donations count]>0){
-            completionBlock(YES);
+            [FISParseAPI updateTotalPrice:proposal.totalPrice andCurrentDonated:proposal.parseCurrentDonated forProposalWithObjectId:proposal.parseObjectId andCompletionBlock:^{
+                completionBlock(YES);
+            }];
+            
         } else {
             completionBlock(NO);
         }
@@ -200,6 +204,7 @@
     self.fakeFundedProposal.numDonors=@10;
     self.fakeFundedProposal.costToComplete=@"0";
     self.fakeFundedProposal.totalPrice=@"1000";
+    self.fakeFundedProposal.isFake=YES;
     [self.loggedInTeacherProposals addObject:self.fakeFundedProposal];
 }
 
@@ -233,12 +238,39 @@
     
     
     NSMutableArray *donationsArray = [@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9,donation10,donation11,donation12,donation13,donation14,donation15,donation16,donation17,donation18,donation19,donation20,donation21,donation22] mutableCopy];
+
     
-    for (NSInteger i=0; i<[proposal.numDonors integerValue]; i++) {
+    
+    NSInteger currentTotalDonated = [proposal.totalPrice integerValue] - [proposal.costToComplete integerValue];
+    
+    
+    
+    NSInteger numberOfDonors = [proposal.numDonors integerValue];
+    for (NSInteger i=0; i<numberOfDonors; i++) {
         NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
         [proposal.donations addObject:donationsArray[randomDonationIndex]];
-        [donationsArray removeObjectAtIndex:randomDonationIndex];
+        if ([donationsArray count] >2) {
+            [donationsArray removeObjectAtIndex:randomDonationIndex];
+        }
     }
+    
+    for (FISDonation *eachDonation in proposal.donations) {
+        if ([eachDonation isEqual:proposal.donations.lastObject]) {
+            eachDonation.donationAmount = [NSString stringWithFormat:@"%ld",currentTotalDonated];
+        } else {
+            eachDonation.donationAmount =[NSString stringWithFormat:@"%u",arc4random_uniform(.5*currentTotalDonated)];
+            if ([eachDonation.donationAmount integerValue]<1) {
+                eachDonation.donationAmount=[NSString stringWithFormat:@"1"];
+            }
+            currentTotalDonated -= [eachDonation.donationAmount integerValue];
+        }
+    }
+    
+    
+    [FISParseAPI updateTotalPrice:proposal.totalPrice andCurrentDonated:proposal.parseCurrentDonated forProposalWithObjectId:proposal.parseObjectId andCompletionBlock:^{
+        
+    }];
+    
     
     for (FISDonation *eachDonation in proposal.donations) {
         [FISParseAPI createDonationForProposalObjectId:proposal.parseObjectId withName:eachDonation.donorName withDonorLocation:eachDonation.donorLocation donorMessage:eachDonation.donorMessage responseMessage:eachDonation.responseMessage donationAmount:eachDonation.donationAmount andCompletionBlock:^(NSDictionary * responseObject) {

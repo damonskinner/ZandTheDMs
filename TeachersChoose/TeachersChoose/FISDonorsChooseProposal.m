@@ -55,6 +55,8 @@
     proposal.zone=proposalDictionary[@"zone"];
     
     proposal.parseObjectId=proposalDictionary[@"objectId"];
+    
+    proposal.isFake=NO;
 
     proposal.daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:proposalDictionary[@"expirationDate"]]];
     
@@ -70,6 +72,43 @@
     }
     return numDonations;
 }
+
+-(NSString *) parseNumDonors {
+    
+    return [NSString stringWithFormat:@"%ld",[self.donations count]];
+}
+
+-(NSString *) parseCurrentDonated {
+    
+    NSInteger current = 0;
+    
+    for (FISDonation *eachDonation in self.donations) {
+        current += [eachDonation.donationAmount integerValue];
+    }
+    
+    return [NSString stringWithFormat:@"%ld",current];
+}
+
+-(NSString * ) parseCostToComplete {
+    
+    NSInteger current = 0;
+    
+    for (FISDonation *eachDonation in self.donations) {
+        current += [eachDonation.donationAmount integerValue];
+    }
+    
+    NSInteger amountLeft = [self.totalPrice integerValue] - current;
+    
+    if (amountLeft<=0) {
+        self.fundingStatus=@"funded";
+        amountLeft=0;
+    } else {
+        self.fundingStatus=@"needs funding";
+    }
+    
+    return [NSString stringWithFormat:@"%ld",amountLeft];
+}
+
 
 
 -(id)copyWithZone:(NSZone *)zone
