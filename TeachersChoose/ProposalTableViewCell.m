@@ -9,6 +9,7 @@
 #import "ProposalTableViewCell.h"
 #import "UIFont+DonorsChooseFonts.h"
 #import "UIColor+DonorsChooseColors.h"
+
 #import "NSDate+DateConvenienceMethods.h"
 #import "FISDonorsChooseCompletedProposal.h"
 
@@ -57,13 +58,13 @@
     
     self.completionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [self.completionButton setTitle:@" Complete Project " forState:UIControlStateNormal];
+    [self.completionButton setTitle:@" Confirm Funding " forState:UIControlStateNormal];
     
     [self.completionButton addTarget:self action:@selector(completionButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.completionButton setTitleColor:[UIColor DonorsChooseGreyLight] forState:UIControlStateSelected];
     
-    [self.completionButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+    [self.completionButton setBackgroundColor:[UIColor DonorsChooseGreen]];
     [self.completionButton setTintColor:[UIColor DonorsChooseGreyVeryLight]];
     
     self.completionButton.layer.cornerRadius=10;
@@ -99,6 +100,7 @@
     [self.amountRaisedLabel removeConstraints:self.amountRaisedLabel.constraints];
     [self.donorsLabel removeConstraints:self.donorsLabel.constraints];
     [self.completionButton removeConstraints:self.completionButton.constraints];
+    [self.donorsAwaitingReplyLabel removeConstraints:self.donorsAwaitingReplyLabel.constraints];
     
     
 //        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -114,9 +116,7 @@
         self.amountRaisedLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.donorsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.completionButton.translatesAutoresizingMaskIntoConstraints=NO;
-    
-    
-    
+    self.donorsAwaitingReplyLabel.translatesAutoresizingMaskIntoConstraints=NO;
     
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -396,6 +396,29 @@
     
     [self.contentView addConstraint:proposalTableViewProgressViewTopConstraint];
     
+    NSLayoutConstraint *donorsAwaitingReplyLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorsAwaitingReplyLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:donorsAwaitingReplyLabelBottomConstraint];
+    
+    
+    NSLayoutConstraint *donorsAwaitingReplyLabelLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.donorsAwaitingReplyLabel
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1.0
+                                  constant:8];
+    
+    [self.contentView addConstraint:donorsAwaitingReplyLabelLeftConstraint];
+
 //    NSLayoutConstraint *proposalTableViewProgressViewHeightConstraint =
 //    [NSLayoutConstraint constraintWithItem:self.proposalTableViewProgressView
 //                                 attribute:NSLayoutAttributeHeight
@@ -441,6 +464,10 @@
     self.fundedLabel.backgroundColor = [UIColor clearColor];
     self.fundedLabel.text = @"funded";
     
+    self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
+    self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
+    self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
+    
     self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
     self.donorsLabel.backgroundColor = [UIColor clearColor];
     if ([self.proposal.numDonors isEqual:@"1"]) {
@@ -469,28 +496,51 @@
     _proposal = proposal;
     self.titleLabel.text = _proposal.title;
     
-    if ([_proposal.costToComplete integerValue]>0) {
-        self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%d",_proposal.costToComplete.intValue];
+    
+    
+    if (self.proposal.isFake || [self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+        if ([_proposal.costToComplete integerValue]>0) {
+            self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@", self.proposal.parseCostToComplete];
+        } else {
+            self.costToCompleteLabel.text=@"";
+        }
+        self.numDonorsLabel.text =[NSString stringWithFormat:@"%@", self.proposal.numDonors];
+        NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
+        
+        CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
+        self.proposalTableViewProgressView.progress=  raisedAsFloat / [self.proposal.totalPrice floatValue];
+        self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", amountRaised,[self.proposal.totalPrice integerValue]];
     } else {
-        self.costToCompleteLabel.text=@"";
+        if ([self.proposal.parseCostToComplete integerValue]>0) {
+            self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@", self.proposal.parseCostToComplete];
+        } else {
+            self.costToCompleteLabel.text=@"";
+        }
+        
+        self.percentFundedLabel.text=[NSString stringWithFormat:@"%ld%%",[self.proposal.percentFunded integerValue]];
+        self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.parseNumDonors];
+        //    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
+        
+        //    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
+        
+        self.proposalTableViewProgressView.progress=  [self.proposal.parseCurrentDonated floatValue]/ [self.proposal.totalPrice floatValue];
+        self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", [self.proposal.parseCurrentDonated integerValue],[self.proposal.totalPrice integerValue]];
+        
+
     }
     
-    self.percentFundedLabel.text=[NSString stringWithFormat:@"%d%%",self.proposal.percentFunded.intValue];
-    self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.numDonors];
-    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
-    
-    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
-    
-    self.proposalTableViewProgressView.progress=  raisedAsFloat/ [self.proposal.totalPrice floatValue];
-    self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%d", amountRaised,self.proposal.totalPrice.intValue];
     
     
-    
-    
-    
+    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%ld donors awaiting reply)",(long)self.proposal.numDonationsNeedResponse];
+    if ([self.donorsAwaitingReplyLabel.text isEqualToString:@"(0 donors awaiting reply)"]) {
+        self.donorsAwaitingReplyLabel.hidden=YES;
+    } else {
+        self.donorsAwaitingReplyLabel.hidden=NO;
+    }
+
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     
-    if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {
+    if ([self.proposal.fundingStatus isEqualToString:@"needs funding"]) {
         self.toGoLabel.hidden=NO;
         self.completionButton.hidden=YES;
 //        self.raisedLabel.hidden=NO;
@@ -523,7 +573,7 @@
         self.expirationDateLabel.text=@"Project Complete!";
     }
     
-    
+    [self layoutIfNeeded];
     [self settingFontAttributes];
 }
 

@@ -78,17 +78,27 @@
                                                           }];
     [alert addAction:defaultAction];
     
-    [FISParseAPI getProposalObjectIdForProposalId:self.projectId.text andCompletionBlock:^(NSString *proposalObjectId) {
-        [FISParseAPI createDonationForProposalObjectId:proposalObjectId withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
-            [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:proposalObjectId andCompletionBlock:^{
+    
+    [FISParseAPI getProposalObjectProposalId:self.projectId.text andCompletionBlock:^(NSDictionary *parseProposalDict) {
+        [FISParseAPI createDonationForProposalObjectId:parseProposalDict[@"objectId"] withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
+            [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:parseProposalDict[@"objectId"] andCompletionBlock:^{
                 [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSDictionary * proposalDict) {
-                    [FISParseAPI sendPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
-                        [self presentViewController:alert animated:YES completion:nil];
-                    }];
+                    NSInteger newTotal = [parseProposalDict[@"totalDonated"] integerValue] + [self.amount.text integerValue];
                     
+                    if (newTotal >= [parseProposalDict[@"totalPrice"] integerValue]) {
+                        [FISParseAPI sendFinishedPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }];
+                    } else {
+                        [FISParseAPI sendPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }];
+                    }
                 }];
             }];
         }];
+        
+        
     }];
 }
 

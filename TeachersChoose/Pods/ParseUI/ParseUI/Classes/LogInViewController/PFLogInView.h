@@ -55,6 +55,7 @@ typedef NS_OPTIONS(NSInteger, PFLogInFields) {
                             PFLogInFieldsSignUpButton |
                             PFLogInFieldsPasswordForgotten |
                             PFLogInFieldsDismissButton)
+
 };
 
 @class PFTextField;
