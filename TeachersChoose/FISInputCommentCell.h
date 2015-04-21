@@ -12,9 +12,9 @@
 @class FISCommentInputAccessoryView;
 @class CommentsViewController;
 
-
 @protocol CommentCellDelegate <NSObject>
 
+-(void) textFieldWasTappedWithIndexPath:(NSIndexPath *)indexPath;
 -(void) saveDonationWithMessage: (NSString *) responseMessage andIndexPath: (NSIndexPath *) indexPath;
 
 @end
@@ -24,6 +24,6 @@
 @property (strong, nonatomic) NSString *placeholder;
 @property (strong, nonatomic) FISCommentInputAccessoryView *textViewInputAccessoryView;
 
-@property (strong, nonatomic) id <CommentCellDelegate> CommentsViewController;
+@property (strong, nonatomic) id <CommentCellDelegate> delegate;
 
 @end

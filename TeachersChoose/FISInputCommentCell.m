@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) UITableView *parentTableView;
 
-
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
 
 -(void) constrainTextView:(UITextView *) textView;
@@ -27,8 +26,6 @@
 -(void) handleSaveButton;
 
 @end
-
-
 
 @implementation FISInputCommentCell
 
@@ -111,8 +108,6 @@
 {
     [textView setInputAccessoryView: self.textViewInputAccessoryView];
     
-    
-    
     return YES;
 }
 
@@ -123,6 +118,8 @@
     textView.textAlignment = NSTextAlignmentCenter;
     textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
+    
+    [self.delegate textFieldWasTappedWithIndexPath:[self.parentTableView indexPathForCell:self]];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
@@ -131,6 +128,11 @@
     [self.parentTableView endUpdates];
     [self handleSaveButton];
 }
+
+//-(void) textViewDidEndEditing:(UITextView *)textView
+//{
+//    [s];
+//}
 
 #pragma mark - InputAccessoryView
 
@@ -144,6 +146,10 @@
     return inputAccessoryView;
 }
 
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [self.parentTableView setFrame:CGRectMake(0,0,320,460)];
+}
 
 
 #pragma mark - IAV Helpers
@@ -153,13 +159,11 @@
     if (self.myTextView.text.length > 0) {
         [self.textViewInputAccessoryView.saveButton setEnabled: YES];
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor DonorsChooseOrange];
-    }
-    else{
+    } else{
         [self.textViewInputAccessoryView.saveButton setEnabled: NO];
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
     }
 }
-
 
 -(void) cancelButtonTapped
 {
@@ -167,14 +171,16 @@
     [self.myTextView resignFirstResponder];
     
     [self formatCellWithPlaceholder: INPUT_CELL_PLACEHOLDER];
-
+    
+    
+//    [self restoreViewAfterdismissingKeyboard];
 }
 
 -(void) saveButtonTapped
 {
     NSLog(@"save tapped");
     
-    [self.CommentsViewController saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
+    [self.delegate saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
 
     [self.myTextView resignFirstResponder];
     self.myTextView.editable = NO;
@@ -188,5 +194,24 @@
     //    [alertController addAction:cancelAction];
     //    [alertController addAction:submitAction];
 }
+
+//- (void) restoreViewAfterdismissingKeyboard {
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.25f];
+//    CGRect frame = self.parentTableView.frame;   //self.parentTableView.superview.frame;
+//    frame.origin.y = frame.origin.y - 204;
+//    [self.parentTableView setFrame:frame];
+//    [UIView commitAnimations];
+//}
+//
+//- (void) hideKeyboard {
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:0.25f];
+//    CGRect frame = self.parentTableView.frame;
+//    frame.origin.y = frame.origin.y + 204;
+//    [self.parentTableView setFrame:frame];
+//    [UIView commitAnimations];
+//}
+
 
 @end

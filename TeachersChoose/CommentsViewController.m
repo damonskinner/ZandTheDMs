@@ -34,6 +34,7 @@
 @property (nonatomic, strong) FISDonorsChooseDatastore   *datastore;
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
 
+@property (nonatomic) CGFloat topOfKeyboard;
 
 -(void) setupSegmentedControl;
 -(void) prepareTableViewForResizingCells;
@@ -69,6 +70,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    
+    self.topOfKeyboard = self.view.frame.size.height - (305); // change 305 to hieght of kb plus save/cancel button view.
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -129,7 +132,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             if (!cell) {
                 cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
             }
-            cell.CommentsViewController=self;
+            cell.delegate=self;
             //        cell.parentTableView = tableView;
             cell.placeholder = INPUT_CELL_PLACEHOLDER;
             return cell;
@@ -159,7 +162,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                 if (!cell) {
                     cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
                 }
-                cell.CommentsViewController=self;
+                cell.delegate=self;
                 //        cell.parentTableView = tableView;
                 cell.placeholder = INPUT_CELL_PLACEHOLDER;
                 return cell;
@@ -601,5 +604,27 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[customItem] applicationActivities:nil];
     [self presentViewController:activityVC animated:YES completion:nil];
 }
+
+-(void)textFieldWasTappedWithIndexPath:(NSIndexPath *)indexPath {
+    
+    FISInputCommentCell *choosenCell = (FISInputCommentCell *)[self.myTableView cellForRowAtIndexPath:indexPath];
+    
+    if (choosenCell.frame.origin.y > self.topOfKeyboard) {
+        CGFloat cellY = choosenCell.frame.origin.y;
+        CGFloat cellHeight = choosenCell.frame.size.height;
+        CGPoint point = self.myTableView.contentOffset;
+        point .y -= (cellY + cellHeight) - self.topOfKeyboard;
+        
+        self.myTableView.contentOffset = point;
+    }
+//    NSLog(@"Was Tapped !");
+//    
+//    [self.myTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    CGPoint point = self.myTableView.contentOffset;
+//    point.y = -200;
+//    self.myTableView.contentOffset = point;
+    
+}
+
 
 @end
