@@ -471,7 +471,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
 
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
-                                                                   message:@"Are you really really sure you want to send this message?"
+                                                                   message:@"Are you sure you want to send this message?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 
@@ -526,8 +526,8 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     
     [self presentViewController:alert animated:YES completion:nil];
     
-    [self.proposal.donations removeAllObjects];
-    [self.donationsWhichNeedResponse removeAllObjects];
+//    [self.proposal.donations removeAllObjects];
+//    [self.donationsWhichNeedResponse removeAllObjects];
     
     
     

@@ -181,13 +181,13 @@
             }];
             //attach teacherId to installation
             
-            if ([self.datastore.decodedDeviceToken length]>0) {
-                [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
-                    [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
-                        
-                    }];
-                }];
-            }
+//            if ([self.datastore.decodedDeviceToken length]>0) {
+//                [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
+//                    [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+//                        
+//                    }];
+//                }];
+//            }
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];

@@ -58,13 +58,13 @@
     
     self.completionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [self.completionButton setTitle:@" Complete Project " forState:UIControlStateNormal];
+    [self.completionButton setTitle:@" Confirm Funding " forState:UIControlStateNormal];
     
     [self.completionButton addTarget:self action:@selector(completionButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.completionButton setTitleColor:[UIColor DonorsChooseGreyLight] forState:UIControlStateSelected];
     
-    [self.completionButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+    [self.completionButton setBackgroundColor:[UIColor DonorsChooseGreen]];
     [self.completionButton setTintColor:[UIColor DonorsChooseGreyVeryLight]];
     
     self.completionButton.layer.cornerRadius=10;
@@ -496,20 +496,40 @@
     _proposal = proposal;
     self.titleLabel.text = _proposal.title;
     
-    if ([_proposal.costToComplete integerValue]>0) {
-        self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%d",_proposal.costToComplete.intValue];
+    
+    
+    if (self.proposal.isFake || [self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+        if ([_proposal.costToComplete integerValue]>0) {
+            self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@", self.proposal.parseCostToComplete];
+        } else {
+            self.costToCompleteLabel.text=@"";
+        }
+        self.numDonorsLabel.text =[NSString stringWithFormat:@"%@", self.proposal.numDonors];
+        NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
+        
+        CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
+        self.proposalTableViewProgressView.progress=  raisedAsFloat / [self.proposal.totalPrice floatValue];
+        self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", amountRaised,[self.proposal.totalPrice integerValue]];
     } else {
-        self.costToCompleteLabel.text=@"";
+        if ([self.proposal.parseCostToComplete integerValue]>0) {
+            self.costToCompleteLabel.text = [NSString stringWithFormat:@"$%@", self.proposal.parseCostToComplete];
+        } else {
+            self.costToCompleteLabel.text=@"";
+        }
+        
+        self.percentFundedLabel.text=[NSString stringWithFormat:@"%ld%%",[self.proposal.percentFunded integerValue]];
+        self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.parseNumDonors];
+        //    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
+        
+        //    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
+        
+        self.proposalTableViewProgressView.progress=  [self.proposal.parseCurrentDonated floatValue]/ [self.proposal.totalPrice floatValue];
+        self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", [self.proposal.parseCurrentDonated integerValue],[self.proposal.totalPrice integerValue]];
+        
+
     }
     
-    self.percentFundedLabel.text=[NSString stringWithFormat:@"%d%%",self.proposal.percentFunded.intValue];
-    self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.numDonors];
-    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
     
-    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
-    
-    self.proposalTableViewProgressView.progress=  raisedAsFloat/ [self.proposal.totalPrice floatValue];
-    self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%d", amountRaised,self.proposal.totalPrice.intValue];
     
     self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%d donors awaiting reply)",self.proposal.numDonationsNeedResponse];
     if ([self.donorsAwaitingReplyLabel.text isEqualToString:@"(0 donors awaiting reply)"]) {
@@ -520,7 +540,7 @@
 
     NSInteger daysLeft = [NSDate daysBetweenDate:[NSDate date] andDate:[NSDate expirationDateFormatterWithDateString:self.proposal.expirationDate]];
     
-    if ([_proposal.fundingStatus isEqualToString:@"needs funding"]) {
+    if ([self.proposal.fundingStatus isEqualToString:@"needs funding"]) {
         self.toGoLabel.hidden=NO;
         self.completionButton.hidden=YES;
 //        self.raisedLabel.hidden=NO;
@@ -553,7 +573,7 @@
         self.expirationDateLabel.text=@"Project Complete!";
     }
     
-    
+    [self layoutIfNeeded];
     [self settingFontAttributes];
 }
 
