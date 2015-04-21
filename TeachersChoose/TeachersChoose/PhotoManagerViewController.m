@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSInteger selectedRow;
 @property (nonatomic) UIImage *cameraImage;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 
 -(void) setupCompletionPicturesArray;
 -(void) presentPhotoActionSheet;
@@ -33,12 +34,19 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];
+    FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:100];
+    [cameraIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     
+    self.cameraImage = [cameraIcon imageWithSize:CGSizeMake(100, 100)];
+    self.uploadButton.layer.cornerRadius = 10;
+    self.uploadButton.backgroundColor = [UIColor DonorsChooseGreen];
     [self setupCompletionPicturesArray];
 }
 
 #pragma mark - UICollectionView Delegate
+- (IBAction)uploadButtonTapped:(id)sender {
+    NSLog(@"uploadTapped");
+}
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -52,15 +60,18 @@
     cell.imageView.image = self.completionPictures[indexPath.row];
     cell.backgroundColor = [UIColor DonorsChooseOrange];
     cell.layer.cornerRadius = 10;
-    
-    if (cell.imageView.image == self.cameraImage)
-    {
-        cell.tapMeLabel.hidden = NO;
-    }
-    else
-    {
-        cell.tapMeLabel.hidden = YES;
-    }
+
+    //TODO: decide whether this is good or not
+//    if (cell.imageView.image == self.cameraImage)
+//    {
+//        cell.tapMeLabel.hidden = NO;
+//    }
+//    else
+//    {
+//        cell.tapMeLabel.hidden = YES;
+//    }
+
+    cell.tapMeLabel.hidden = YES;
     
     return cell;
 }

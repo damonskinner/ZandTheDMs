@@ -7,10 +7,13 @@
 //
 
 #import "DateConfirmationViewController.h"
+#import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
+
 
 @interface DateConfirmationViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *confirmDateButton;
+@property (weak, nonatomic) IBOutlet UIView *datePickerBackground;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @end
 
@@ -30,16 +33,21 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self presentAlert];
 }
 
 #pragma mark - DatePicker
 
 -(void) setupDatePicker
 {
+    self.datePickerBackground.backgroundColor = [UIColor DonorsChooseOrange];
+    self.datePickerBackground.layer.cornerRadius = 10;
+    self.datePicker.backgroundColor = [UIColor whiteColor];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
     self.datePicker.minimumDate = [NSDate date];
     self.datePicker.maximumDate = [self calculateMaximumDate];
+}
+- (IBAction)moreInfoTapped:(id)sender {
+    [self presentAlert];
 }
 
 -(NSDate *) calculateMaximumDate{
