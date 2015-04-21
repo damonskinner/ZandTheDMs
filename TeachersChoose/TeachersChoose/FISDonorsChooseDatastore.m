@@ -204,6 +204,12 @@
     self.fakeFundedProposal.numDonors=@10;
     self.fakeFundedProposal.costToComplete=@"0";
     self.fakeFundedProposal.totalPrice=@"1000";
+    self.fakeFundedProposal.teacherName=@"Mrs. Murray";
+    self.fakeFundedProposal.schoolName=@"Hillsdale Elementary School";
+    self.fakeFundedProposal.zip = @"19382";
+    self.fakeFundedProposal.city=@"West Chester";
+    self.fakeFundedProposal.state=@"PA";
+
     self.fakeFundedProposal.isFake=YES;
     [self.loggedInTeacherProposals addObject:self.fakeFundedProposal];
 }
