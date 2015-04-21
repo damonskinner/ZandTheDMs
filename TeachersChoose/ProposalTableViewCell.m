@@ -73,7 +73,14 @@
     [self.donorsLabel removeConstraints:self.donorsLabel.constraints];
     [self.completionButton removeConstraints:self.completionButton.constraints];
     [self.donorsAwaitingReplyLabel removeConstraints:self.donorsAwaitingReplyLabel.constraints];
+<<<<<<< HEAD
     
+=======
+    [self.dateFundedLabel removeConstraints:self.dateFundedLabel.constraints];
+    [self.fullyFundedDateLabel removeConstraints:self.fullyFundedDateLabel.constraints];
+    
+//        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+>>>>>>> need to finish date formatting
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -87,6 +94,8 @@
     self.donorsLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.completionButton.translatesAutoresizingMaskIntoConstraints=NO;
     self.donorsAwaitingReplyLabel.translatesAutoresizingMaskIntoConstraints=NO;
+    self.dateFundedLabel.translatesAutoresizingMaskIntoConstraints=NO;
+    self.fullyFundedDateLabel.translatesAutoresizingMaskIntoConstraints=NO;
     
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -389,60 +398,118 @@
     
     [self.contentView addConstraint:donorsAwaitingReplyLabelLeftConstraint];
     
+    NSLayoutConstraint *dateFundedLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.dateFundedLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:dateFundedLabelBottomConstraint];
+    
+    NSLayoutConstraint *dateFundedLabelRightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.dateFundedLabel
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:-250];
+    
+    [self.contentView addConstraint:dateFundedLabelRightConstraint];
+    
+    NSLayoutConstraint *fullyFundedDateLabelBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.fullyFundedDateLabel
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:fullyFundedDateLabelBottomConstraint];
+    
+    NSLayoutConstraint *fullyFundedDateLabelRightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.fullyFundedDateLabel
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.dateFundedLabel
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:-0];
+    
+    [self.contentView addConstraint:fullyFundedDateLabelRightConstraint];
+    
     [self layoutIfNeeded];
 }
 
-- (void)settingFontAttributes {
-	self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:19];
-	self.titleLabel.backgroundColor = [UIColor clearColor];
-	self.titleLabel.textAlignment = NSTextAlignmentCenter;
+-(void) settingFontAttributes {
+    
+    self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:19];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
+    self.expirationDateLabel.backgroundColor = [UIColor clearColor];
+    
+    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+    self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
+    
+    self.percentFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+    self.percentFundedLabel.backgroundColor = [UIColor clearColor];
+    
+    self.amountRaisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+    self.amountRaisedLabel.backgroundColor = [UIColor clearColor];
+    
+    self.toGoLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+    self.toGoLabel.backgroundColor = [UIColor clearColor];
+    self.toGoLabel.text = @"to go";
+    
+    
+    self.raisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+    self.raisedLabel.backgroundColor = [UIColor clearColor];
+    self.raisedLabel.text = @"raised";
+    
+    self.fundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+    self.fundedLabel.backgroundColor = [UIColor clearColor];
+    self.fundedLabel.text = @"funded";
+    
+    self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
+    self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
+    self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
+    
+    self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+    self.donorsLabel.backgroundColor = [UIColor clearColor];
+    if ([self.proposal.numDonors isEqual:@"1"]) {
+        self.donorsLabel.text=@"donor";
+    } else {
+        self.donorsLabel.text = @"donors";
+    }
+    
+    
+    self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
+    self.numDonorsLabel.backgroundColor = [UIColor clearColor];
+    
+    self.dateFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+    self.dateFundedLabel.backgroundColor = [UIColor clearColor];
+    self.dateFundedLabel.text = @"Funded:";
+    
+    
+    if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+        self.fullyFundedDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+        self.fullyFundedDateLabel.backgroundColor = [UIColor clearColor];
+//        self.fullyFundedDateLabel.text = ((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate;
+        NSDate *dateFromString = [FISDonorsChooseCompletedProposal dateFromString:((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate];
+        self.fullyFundedDateLabel.text = [FISDonorsChooseCompletedProposal stringFromDate:dateFromString];
+    }
+    
+    [self layoutIfNeeded];
 
-	self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
-	self.expirationDateLabel.backgroundColor = [UIColor clearColor];
-
-	self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-	self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
-
-	self.percentFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-	self.percentFundedLabel.backgroundColor = [UIColor clearColor];
-
-	self.amountRaisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-	self.amountRaisedLabel.backgroundColor = [UIColor clearColor];
-
-	self.toGoLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-	self.toGoLabel.backgroundColor = [UIColor clearColor];
-	self.toGoLabel.text = @"to go";
-
-
-	self.raisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-	self.raisedLabel.backgroundColor = [UIColor clearColor];
-	self.raisedLabel.text = @"raised";
-
-	self.fundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-	self.fundedLabel.backgroundColor = [UIColor clearColor];
-	self.fundedLabel.text = @"funded";
-
-	self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
-	self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
-	self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
-
-	self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-	self.donorsLabel.backgroundColor = [UIColor clearColor];
-	if ([self.proposal.numDonors isEqual:@"1"]) {
-		self.donorsLabel.text = @"donor";
-	}
-	else {
-		self.donorsLabel.text = @"donors";
-	}
-
-
-	self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
-	self.numDonorsLabel.backgroundColor = [UIColor clearColor];
-
-
-
-	[self layoutIfNeeded];
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 	[super setSelected:selected animated:animated];
@@ -512,17 +579,22 @@
         self.raisedLabel.hidden=YES;
         self.fundedLabel.hidden=YES;
 
-        
         if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
-            self.expirationDateLabel.hidden=NO;
+            self.expirationDateLabel.hidden=YES;
             self.completionButton.hidden=YES;
+            self.proposalTableViewProgressView.hidden=YES;
+            self.amountRaisedLabel.hidden=YES;
+            self.dateFundedLabel.hidden=NO;
+            self.fullyFundedDateLabel.hidden=NO;
         } else {
              self.expirationDateLabel.hidden=YES;
             self.completionButton.hidden=NO;
+            self.proposalTableViewProgressView.hidden=NO;
+            self.amountRaisedLabel.hidden=NO;
+            self.dateFundedLabel.hidden=YES;
+            self.fullyFundedDateLabel.hidden=YES;
         }
        
-        
-        
         
         self.expirationDateLabel.textColor=[UIColor DonorsChooseGreen];
         self.expirationDateLabel.text=@"Project Complete!";

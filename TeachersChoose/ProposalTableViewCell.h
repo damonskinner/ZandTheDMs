@@ -25,6 +25,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *donorsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *donorsAwaitingReplyLabel;
 @property (strong, nonatomic) IBOutlet UIButton *completionButton;
+@property (weak, nonatomic) IBOutlet UILabel *fullyFundedDateLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *dateFundedLabel;
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
