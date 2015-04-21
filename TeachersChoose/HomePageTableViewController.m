@@ -314,7 +314,16 @@
 {
     UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
     UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
-    [self.navigationController presentViewController:containerVC animated:YES completion:nil];
+    if([self.datastore.completionInfo[@"isConfirmed"] isEqualToString: @"NO"])
+    {
+        [self.navigationController presentViewController:containerVC animated:YES completion:nil];
+    }
+    else
+    {
+        UIViewController *congratsVC = [completionFlowStoryboard instantiateViewControllerWithIdentifier:@"congratulationsNAV"];
+        [self.navigationController presentViewController:congratsVC animated:YES completion:nil];
+    }
+        
 }
 
 

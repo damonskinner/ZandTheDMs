@@ -8,8 +8,9 @@
 
 #import "CongratulationsViewController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "UIFont+DonorsChooseFonts.h"
 #import <FAKIonIcons.h>
-
+#import "FISDonorsChooseDatastore.h"
 
 @interface CongratulationsViewController ()
 
@@ -23,9 +24,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    FISDonorsChooseDatastore *dataStore = [FISDonorsChooseDatastore sharedDataStore];
+    dataStore.completionInfo[@"isConfirmed"] = @"YES";
+    [self formatNavBar];
     [self.navigationItem setHidesBackButton:YES animated:YES];
     [self setupThankYouPackageButtons];
     [self setupHomeButton];
+}
+
+-(void) formatNavBar
+{
+    [self.navigationController.navigationBar setTranslucent: NO];
+    [self.navigationController.navigationBar setBarTintColor: [UIColor DonorsChooseOrange]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]}];
 }
 
 - (void)didReceiveMemoryWarning {

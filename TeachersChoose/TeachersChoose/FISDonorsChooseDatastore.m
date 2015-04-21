@@ -35,6 +35,8 @@
         _loggedInTeacherProposals=[NSMutableArray new];
         _loggedInTeacherCompletedProposals=[NSMutableArray new];
         _loggedInTeacher=[FISDonorsChooseTeacher new];
+        _completionInfo = [NSMutableDictionary new];
+        _completionInfo[@"isConfirmed"] = @"NO";
     }
     return self;
 }
