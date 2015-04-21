@@ -52,13 +52,13 @@
     self.raisedLabel.hidden=YES;
     self.completionButton = [[UIButton alloc]init];
     
-    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:20];
+    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:17];
     
     [self.completionButton setTitleColor:[UIColor DonorsChooseOrange] forState:UIControlStateNormal];
     
     self.completionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [self.completionButton setTitle:@" Confirm Funding " forState:UIControlStateNormal];
+    [self.completionButton setTitle:@"   Confirm Funding   " forState:UIControlStateNormal];
     
     [self.completionButton addTarget:self action:@selector(completionButton:) forControlEvents:UIControlEventTouchUpInside];
     

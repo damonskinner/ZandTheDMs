@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UISegmentedControl *mySegmentedControl;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) NSInteger selectedDonation;
+@property (nonatomic, strong)   UILabel *segmentedControlPlaceholder;
 
 @property (nonatomic, strong) FISDonorsChooseDatastore   *datastore;
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
@@ -60,7 +61,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
 //    [self populateDonationsWhichNeedResponseArray];
 
-    [self setupSegmentedControl];
+//    [self setupSegmentedControl];
     [self setupLayout];
     //    [self populateCommentsDictionary];
     [self prepareTableViewForResizingCells];
@@ -69,6 +70,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.myTableView.dataSource=self;
     self.navigationController.navigationBarHidden=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -423,17 +425,35 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.textAlignment=NSTextAlignmentCenter;
+    
+    
+    self.segmentedControlPlaceholder = [[UILabel alloc]init];
+    self.segmentedControlPlaceholder.text = @"Comments";
+    self.segmentedControlPlaceholder.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
+    self.segmentedControlPlaceholder.textColor=[UIColor DonorsChooseGreyVeryLight];
+    self.segmentedControlPlaceholder.numberOfLines = 0;
+    self.segmentedControlPlaceholder.lineBreakMode = NSLineBreakByWordWrapping;
+    self.segmentedControlPlaceholder.textAlignment=NSTextAlignmentCenter;
+    self.segmentedControlPlaceholder.hidden=YES;
+    self.segmentedControlPlaceholder.backgroundColor=[UIColor DonorsChooseOrange];
+    [self setupSegmentedControl];
+    
+
+    
     self.myTableView = [[UITableView alloc]init];
     [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.segmentedControlPlaceholder];
     [self.view addSubview:self.myTableView];
     self.view.backgroundColor=[UIColor DonorsChooseWhite];
     
 
     [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
+    [self.segmentedControlPlaceholder removeConstraints:self.segmentedControlPlaceholder.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
     [self.titleLabel removeConstraints:self.titleLabel.constraints];
     [self.view removeConstraints:self.view.constraints];
     
+    [self.segmentedControlPlaceholder setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.myTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.mySegmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -446,12 +466,36 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[segmentedControl]-16-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-50-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
+    
+    NSLayoutConstraint *segmentedControlPlaceholderCenterX = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderBottom = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderWidth = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderHeight = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    [self.view addConstraint:segmentedControlPlaceholderHeight];
+    [self.view addConstraint:segmentedControlPlaceholderWidth];
+    [self.view addConstraint:segmentedControlPlaceholderCenterX];
+    [self.view addConstraint:segmentedControlPlaceholderBottom];
+    
 }
 
 -(void) setupSegmentedControl
 {
+    
     self.mySegmentedControl= [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
-    self.mySegmentedControl.selectedSegmentIndex = 0;
+    if (self.proposal.numDonationsNeedResponse==0) {
+        self.mySegmentedControl.selectedSegmentIndex=1;
+        self.mySegmentedControl.hidden=YES;
+        self.segmentedControlPlaceholder.hidden=NO;
+
+        
+    } else {
+        self.segmentedControlPlaceholder.hidden = YES;
+        self.mySegmentedControl.selectedSegmentIndex = 0;
+        self.mySegmentedControl.hidden=NO;
+    
+    }
+    
     [self.mySegmentedControl addTarget:self action:@selector(segmentedControlToggler) forControlEvents:UIControlEventValueChanged];
     self.mySegmentedControl.layer.borderWidth=1;
     self.mySegmentedControl.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
@@ -491,6 +535,19 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
                                                               }
                                                               [self.donationsWhichNeedResponse removeAllObjects];
                                                               [self populateDonationsWhichNeedResponseArray];
+                                                              
+                                                              if (self.proposal.numDonationsNeedResponse==0) {
+                                                                  self.mySegmentedControl.selectedSegmentIndex=1;
+                                                                  self.mySegmentedControl.hidden=YES;
+                                                                  self.segmentedControlPlaceholder.hidden=NO;
+                                                                  
+                                                                  
+                                                              } else {
+                                                                  self.segmentedControlPlaceholder.hidden = YES;
+                                                                  self.mySegmentedControl.selectedSegmentIndex = 0;
+                                                                  self.mySegmentedControl.hidden=NO;
+                                                                  
+                                                              }
                                                               [self.myTableView reloadData];
                                                               [self prepareTableViewForResizingCells];
                                                               
@@ -536,6 +593,18 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     } else {
         [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
             [self populateDonationsWhichNeedResponseArray];
+            if (self.proposal.numDonationsNeedResponse==0) {
+                self.mySegmentedControl.selectedSegmentIndex=1;
+                self.mySegmentedControl.hidden=YES;
+                self.segmentedControlPlaceholder.hidden=NO;
+                
+                
+            } else {
+                self.segmentedControlPlaceholder.hidden = YES;
+                self.mySegmentedControl.selectedSegmentIndex = 0;
+                self.mySegmentedControl.hidden=NO;
+                
+            }
             [self.myTableView reloadData];
         }];
     }
