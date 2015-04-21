@@ -338,9 +338,9 @@
 				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
 				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				36AE94581AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.h */,
+				36AE94591AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m */,
 				3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */,
 				369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */,
-				36AE94591AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m */,
 			);
 			name = "Database Classes";
 			sourceTree = "<group>";

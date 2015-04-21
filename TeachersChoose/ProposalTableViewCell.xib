@@ -70,14 +70,28 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dateFundedLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbr-UB-gas">
+                        <rect key="frame" x="303" y="123" width="135" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="fullyFundedDateLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcY-MO-wm7">
+                        <rect key="frame" x="304" y="122" width="167" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountRaisedLabel" destination="KOd-ko-YbP" id="j9M-2w-U1N"/>
                 <outlet property="costToCompleteLabel" destination="DUc-up-fne" id="6qH-Yb-Kaz"/>
+                <outlet property="dateFundedLabel" destination="Fbr-UB-gas" id="UDI-zP-GDR"/>
                 <outlet property="donorsAwaitingReplyLabel" destination="TK0-pL-pU0" id="Ia7-1Y-cys"/>
                 <outlet property="donorsLabel" destination="loS-kv-KKZ" id="LIG-xp-455"/>
                 <outlet property="expirationDateLabel" destination="Nbv-Zc-0zt" id="ViJ-oB-Gce"/>
+                <outlet property="fullyFundedDateLabel" destination="LcY-MO-wm7" id="I6N-b3-moZ"/>
                 <outlet property="numDonorsLabel" destination="WVB-Ph-ayg" id="PLW-tr-1Cn"/>
                 <outlet property="proposalTableViewProgressView" destination="Fpd-Bj-bfx" id="NsW-5b-JzN"/>
                 <outlet property="raisedLabel" destination="EF4-Bx-dRF" id="dT8-MV-u0t"/>
