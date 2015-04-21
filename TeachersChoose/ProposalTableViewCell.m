@@ -531,7 +531,7 @@
     
     
     
-    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%d donors awaiting reply)",self.proposal.numDonationsNeedResponse];
+    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%ld donors awaiting reply)",(long)self.proposal.numDonationsNeedResponse];
     if ([self.donorsAwaitingReplyLabel.text isEqualToString:@"(0 donors awaiting reply)"]) {
         self.donorsAwaitingReplyLabel.hidden=YES;
     } else {
