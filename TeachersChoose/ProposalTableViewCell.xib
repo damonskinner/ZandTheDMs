@@ -64,15 +64,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-g4-b4F">
-                        <rect key="frame" x="364" y="114" width="63" height="30"/>
-                        <state key="normal" title="Click me">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="completionButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nGd-KG-MqG"/>
-                        </connections>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="donorsAwaitingReplyLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TK0-pL-pU0">
                         <rect key="frame" x="8" y="130" width="205" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -83,7 +74,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountRaisedLabel" destination="KOd-ko-YbP" id="j9M-2w-U1N"/>
-                <outlet property="completionButton" destination="Vpx-g4-b4F" id="Bbv-MX-rTm"/>
                 <outlet property="costToCompleteLabel" destination="DUc-up-fne" id="6qH-Yb-Kaz"/>
                 <outlet property="donorsAwaitingReplyLabel" destination="TK0-pL-pU0" id="Ia7-1Y-cys"/>
                 <outlet property="donorsLabel" destination="loS-kv-KKZ" id="LIG-xp-455"/>

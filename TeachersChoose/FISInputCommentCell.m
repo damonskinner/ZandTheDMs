@@ -79,7 +79,7 @@
 {
     self.myTextView.text = placeholder;
     self.myTextView.scrollEnabled = NO;
-    self.myTextView.backgroundColor=[UIColor DonorsChooseGreyVeryLight];
+    self.myTextView.backgroundColor=[UIColor DonorsChooseGreyLight];
     self.myTextView.textAlignment = NSTextAlignmentCenter;
     self.myTextView.font = [UIFont fontWithName:DonorsChooseCSSFont size:40];
     self.myTextView.textColor = [UIColor DonorsChooseOrange];
@@ -99,7 +99,7 @@
 
 #pragma mark - UITextViewDelegate
 
--(UIView *)textViewInputAccessoryView{
+-(FISCommentInputAccessoryView *)textViewInputAccessoryView{
     if(!_textViewInputAccessoryView)
     {
         _textViewInputAccessoryView = [self createInputAccessoryView];
@@ -159,6 +159,7 @@
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
     }
 }
+
 
 -(void) cancelButtonTapped
 {

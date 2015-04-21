@@ -99,10 +99,12 @@
                     </view>
                     <connections>
                         <outlet property="amount" destination="j8j-nD-Lk6" id="5NI-fO-DrS"/>
+                        <outlet property="createDonationButton" destination="vth-36-DM1" id="JcJ-lJ-k91"/>
                         <outlet property="location" destination="DeA-Dd-QES" id="UTy-4e-PfN"/>
                         <outlet property="message" destination="4tI-I1-dWB" id="llb-yi-joB"/>
                         <outlet property="name" destination="jP9-LE-rBO" id="Km4-Uu-c23"/>
                         <outlet property="projectId" destination="PnW-lf-LfN" id="zBc-Z4-spv"/>
+                        <outlet property="resetDbButton" destination="ZsI-tU-kfi" id="NBY-oM-gOm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

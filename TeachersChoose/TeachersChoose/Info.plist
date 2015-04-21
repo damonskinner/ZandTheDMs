@@ -2,18 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>ss-junior.ttf</string>
-		<string>Jan Fromm - RooneySans-Bold.otf</string>
-		<string>Jan Fromm - RooneySans-Light.otf</string>
-		<string>Jan Fromm - RooneySans-Regular.otf</string>
-		<string>Jan Fromm - RooneySans-RegularItalic.otf</string>
-		<string>Jan Fromm - Rooney-Bold.otf</string>
-		<string>Jan Fromm - Rooney-Light.otf</string>
-		<string>Jan Fromm - Rooney-Regular.otf</string>
-		<string>Jan Fromm - Rooney-RegularItalic.otf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -34,6 +22,18 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ss-junior.ttf</string>
+		<string>Jan Fromm - RooneySans-Bold.otf</string>
+		<string>Jan Fromm - RooneySans-Light.otf</string>
+		<string>Jan Fromm - RooneySans-Regular.otf</string>
+		<string>Jan Fromm - RooneySans-RegularItalic.otf</string>
+		<string>Jan Fromm - Rooney-Bold.otf</string>
+		<string>Jan Fromm - Rooney-Light.otf</string>
+		<string>Jan Fromm - Rooney-Regular.otf</string>
+		<string>Jan Fromm - Rooney-RegularItalic.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

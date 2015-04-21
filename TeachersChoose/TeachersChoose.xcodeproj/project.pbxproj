@@ -33,7 +33,6 @@
 		36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */ = {isa = PBXBuildFile; fileRef = 36AE945E1AD586A400F32AD5 /* ss-junior.js */; };
 		36AE94651AD586A400F32AD5 /* ss-junior.svg in Resources */ = {isa = PBXBuildFile; fileRef = 36AE945F1AD586A400F32AD5 /* ss-junior.svg */; };
 		36AE94661AD586A400F32AD5 /* ss-junior.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94601AD586A400F32AD5 /* ss-junior.ttf */; };
-		36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94611AD586A400F32AD5 /* ss-junior.woff */; };
 		36AE946D1AD5C81C00F32AD5 /* HomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE946C1AD5C81C00F32AD5 /* HomePageTableViewController.m */; };
 		36AE94731AD5D2E400F32AD5 /* ProposalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */; };
 		36AE94741AD5D2E400F32AD5 /* ProposalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */; };
@@ -62,20 +61,28 @@
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
 		3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
-		3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B124151AD18670009866EB /* FISDonation.m */; };
+		E2245F471AE443A50074C74B /* ReviewInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2245F461AE443A50074C74B /* ReviewInformationViewController.m */; };
+		E24C8D1C1AE03CA2009DB964 /* SpreadTheNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */; };
 		E25D84AD1ACED68A00D98118 /* CompletionImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */; };
 		E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */; };
-		E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25D84B01ACED69600D98118 /* CameraTest.storyboard */; };
-		E25D84B71ACEDCCB00D98118 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */; };
+		E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */; };
 		E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */; };
 		E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E25D84C61ACF013600D98118 /* StatDetailsViewController.m */; };
+		E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */; };
+		E264D3A81ADEAF6500D98D9C /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */; };
+		E264D3AE1ADF0CA400D98D9C /* DateConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */; };
 		E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFB1ACC376E0078F4E3 /* AppDelegate.m */; };
 		E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */; };
 		E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */; };
+		E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */; };
+		E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */; };
+		E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */; };
 		E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */; };
 		E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */; };
+		E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		E2A5D44B1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94611AD586A400F32AD5 /* ss-junior.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,20 +180,31 @@
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E2245F451AE443A50074C74B /* ReviewInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewInformationViewController.h; sourceTree = "<group>"; };
+		E2245F461AE443A50074C74B /* ReviewInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewInformationViewController.m; sourceTree = "<group>"; };
+		E24C8D1A1AE03CA2009DB964 /* SpreadTheNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpreadTheNewsViewController.h; sourceTree = "<group>"; };
+		E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpreadTheNewsViewController.m; sourceTree = "<group>"; };
 		E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompletionImageCollectionViewCell.h; path = TeachersChoose/CompletionImageCollectionViewCell.h; sourceTree = "<group>"; };
 		E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompletionImageCollectionViewCell.m; path = TeachersChoose/CompletionImageCollectionViewCell.m; sourceTree = "<group>"; };
 		E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoManagerViewController.h; path = TeachersChoose/PhotoManagerViewController.h; sourceTree = "<group>"; };
 		E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoManagerViewController.m; path = TeachersChoose/PhotoManagerViewController.m; sourceTree = "<group>"; };
-		E25D84B01ACED69600D98118 /* CameraTest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CameraTest.storyboard; path = TeachersChoose/CameraTest.storyboard; sourceTree = "<group>"; };
 		E25D84B81ACEDE1000D98118 /* DetailsTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTabBarController.h; sourceTree = "<group>"; };
 		E25D84B91ACEDE1000D98118 /* DetailsTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTabBarController.m; sourceTree = "<group>"; };
-		E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoManagerView.xib; sourceTree = "<group>"; };
-		E25D84BD1ACEE13B00D98118 /* PhotoManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManagerView.h; sourceTree = "<group>"; };
-		E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManagerView.m; sourceTree = "<group>"; };
 		E25D84C11ACEFFB700D98118 /* DonorsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonorsTableViewController.h; sourceTree = "<group>"; };
 		E25D84C21ACEFFB700D98118 /* DonorsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonorsTableViewController.m; sourceTree = "<group>"; };
 		E25D84C51ACF013600D98118 /* StatDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatDetailsViewController.h; sourceTree = "<group>"; };
 		E25D84C61ACF013600D98118 /* StatDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatDetailsViewController.m; sourceTree = "<group>"; };
+		E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CompletionFlow.storyboard; path = TeachersChoose/CompletionFlow.storyboard; sourceTree = "<group>"; };
+		E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		E264D3AC1ADF0CA400D98D9C /* DateConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateConfirmationViewController.h; sourceTree = "<group>"; };
+		E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateConfirmationViewController.m; sourceTree = "<group>"; };
+		E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialConfirmationViewController.h; sourceTree = "<group>"; };
+		E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialConfirmationViewController.m; sourceTree = "<group>"; };
+		E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressConfirmationViewController.h; sourceTree = "<group>"; };
+		E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressConfirmationViewController.m; sourceTree = "<group>"; };
+		E27C86561AE4887F00D9D738 /* CongratulationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CongratulationsViewController.h; sourceTree = "<group>"; };
+		E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CongratulationsViewController.m; sourceTree = "<group>"; };
 		E27F0F031ADB048800E6AC5F /* FISInputCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISInputCommentCell.h; sourceTree = "<group>"; };
 		E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISInputCommentCell.m; sourceTree = "<group>"; };
 		E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCommentInputAccessoryView.h; sourceTree = "<group>"; };
@@ -238,6 +256,20 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
+				36B124141AD18670009866EB /* FISDonation.h */,
+				36B124151AD18670009866EB /* FISDonation.m */,
+				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
+				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
+				360394F61ACCA70500114853 /* LogInViewController.h */,
+				360394F71ACCA70500114853 /* LogInViewController.m */,
+				360394F81ACCA70500114853 /* SignUpViewController.h */,
+				360394F91ACCA70500114853 /* SignUpViewController.m */,
+				36AE94701AD5D2E400F32AD5 /* ProposalTableViewCell.h */,
+				36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */,
+				36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */,
+				36AE946B1AD5C81C00F32AD5 /* HomePageTableViewController.h */,
+				36AE946C1AD5C81C00F32AD5 /* HomePageTableViewController.m */,
+				E26AD5E91AD4440500BACAE8 /* Completion Flow */,
 				36AE94511AD490E500F32AD5 /* Login Flow */,
 				36AE94501AD490AF00F32AD5 /* APIs */,
 				36AE944F1AD4907B00F32AD5 /* Support Classes */,
@@ -303,8 +335,6 @@
 			children = (
 				369388431ACC3DDC00E7A2E6 /* FISDonorsChooseDatastore.h */,
 				369388441ACC3DDD00E7A2E6 /* FISDonorsChooseDatastore.m */,
-				36B124141AD18670009866EB /* FISDonation.h */,
-				36B124151AD18670009866EB /* FISDonation.m */,
 				3693884D1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.h */,
 				3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */,
 				36AE94581AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.h */,
@@ -341,8 +371,6 @@
 			children = (
 				36AE94751AD5DD3400F32AD5 /* ImagesAPI.h */,
 				36AE94761AD5DD3400F32AD5 /* ImagesAPI.m */,
-				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
-				36B124121ACDAF8E009866EB /* FISParseAPI.m */,
 				3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */,
 				3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */,
 			);
@@ -352,18 +380,9 @@
 		36AE94511AD490E500F32AD5 /* Login Flow */ = {
 			isa = PBXGroup;
 			children = (
-				36AE94701AD5D2E400F32AD5 /* ProposalTableViewCell.h */,
-				36AE94711AD5D2E400F32AD5 /* ProposalTableViewCell.m */,
-				36AE94721AD5D2E400F32AD5 /* ProposalTableViewCell.xib */,
-				36AE946B1AD5C81C00F32AD5 /* HomePageTableViewController.h */,
-				36AE946C1AD5C81C00F32AD5 /* HomePageTableViewController.m */,
 				3617DF001ACC376E0078F4E3 /* Main.storyboard */,
 				3617DEFD1ACC376E0078F4E3 /* veryFirstViewController.h */,
 				3617DEFE1ACC376E0078F4E3 /* veryFirstViewController.m */,
-				360394F61ACCA70500114853 /* LogInViewController.h */,
-				360394F71ACCA70500114853 /* LogInViewController.m */,
-				360394F81ACCA70500114853 /* SignUpViewController.h */,
-				360394F91ACCA70500114853 /* SignUpViewController.m */,
 			);
 			name = "Login Flow";
 			sourceTree = "<group>";
@@ -414,6 +433,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E2245F481AE443AC0074C74B /* Review Information */ = {
+			isa = PBXGroup;
+			children = (
+				E2245F451AE443A50074C74B /* ReviewInformationViewController.h */,
+				E2245F461AE443A50074C74B /* ReviewInformationViewController.m */,
+			);
+			name = "Review Information";
+			sourceTree = "<group>";
+		};
+		E24C8D1D1AE03CAF009DB964 /* Spread The News */ = {
+			isa = PBXGroup;
+			children = (
+				E24C8D1A1AE03CA2009DB964 /* SpreadTheNewsViewController.h */,
+				E24C8D1B1AE03CA2009DB964 /* SpreadTheNewsViewController.m */,
+			);
+			name = "Spread The News";
+			sourceTree = "<group>";
+		};
 		E25D84A01ACDE1A800D98118 /* Detail Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,24 +459,19 @@
 				E25D84C81ACF013A00D98118 /* Stats */,
 				E25D84C01ACEFEF100D98118 /* Comments */,
 				E25D84C41ACEFFC100D98118 /* Donors */,
-				E25D84B21ACED9B700D98118 /* Camera */,
 			);
 			name = "Detail Flow";
 			sourceTree = "<group>";
 		};
-		E25D84B21ACED9B700D98118 /* Camera */ = {
+		E25D84B21ACED9B700D98118 /* Picture Uploader */ = {
 			isa = PBXGroup;
 			children = (
 				E25D84AA1ACED68A00D98118 /* PhotoManagerViewController.h */,
 				E25D84AB1ACED68A00D98118 /* PhotoManagerViewController.m */,
-				E25D84B01ACED69600D98118 /* CameraTest.storyboard */,
 				E25D84A81ACED68A00D98118 /* CompletionImageCollectionViewCell.h */,
 				E25D84A91ACED68A00D98118 /* CompletionImageCollectionViewCell.m */,
-				E25D84BB1ACEE12C00D98118 /* PhotoManagerView.xib */,
-				E25D84BD1ACEE13B00D98118 /* PhotoManagerView.h */,
-				E25D84BE1ACEE13B00D98118 /* PhotoManagerView.m */,
 			);
-			name = Camera;
+			name = "Picture Uploader";
 			sourceTree = "<group>";
 		};
 		E25D84C01ACEFEF100D98118 /* Comments */ = {
@@ -471,6 +503,75 @@
 				E25D84C61ACF013600D98118 /* StatDetailsViewController.m */,
 			);
 			name = Stats;
+			sourceTree = "<group>";
+		};
+		E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E264D3AC1ADF0CA400D98D9C /* DateConfirmationViewController.h */,
+				E264D3AD1ADF0CA400D98D9C /* DateConfirmationViewController.m */,
+			);
+			name = "Date Confirmation";
+			sourceTree = "<group>";
+		};
+		E26AD5E91AD4440500BACAE8 /* Completion Flow */ = {
+			isa = PBXGroup;
+			children = (
+				E264D3A41ADEAB4700D98D9C /* CompletionFlow.storyboard */,
+				E2A5D44D1AE5512C00DF74E0 /* Part One (Confirmation) */,
+				E27C86591AE4888600D9D738 /* Congratulations! */,
+				E2A5D44E1AE5513600DF74E0 /* Part Two (ThankYouPackage) */,
+			);
+			name = "Completion Flow";
+			sourceTree = "<group>";
+		};
+		E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E26AD5EA1AD4733300BACAE8 /* InitialConfirmationViewController.h */,
+				E26AD5EB1AD4733300BACAE8 /* InitialConfirmationViewController.m */,
+			);
+			name = "Initial Confirmation";
+			sourceTree = "<group>";
+		};
+		E26AD5F11AD6F31000BACAE8 /* Address Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				E26AD5ED1AD6F2FC00BACAE8 /* AddressConfirmationViewController.h */,
+				E26AD5EE1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m */,
+			);
+			name = "Address Confirmation";
+			sourceTree = "<group>";
+		};
+		E27C86591AE4888600D9D738 /* Congratulations! */ = {
+			isa = PBXGroup;
+			children = (
+				E27C86561AE4887F00D9D738 /* CongratulationsViewController.h */,
+				E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */,
+			);
+			name = "Congratulations!";
+			sourceTree = "<group>";
+		};
+		E2A5D44D1AE5512C00DF74E0 /* Part One (Confirmation) */ = {
+			isa = PBXGroup;
+			children = (
+				E264D3A61ADEAF6500D98D9C /* ContainerViewController.h */,
+				E264D3A71ADEAF6500D98D9C /* ContainerViewController.m */,
+				E26AD5F01AD6F30400BACAE8 /* Initial Confirmation */,
+				E26AD5F11AD6F31000BACAE8 /* Address Confirmation */,
+				E264D3AF1ADF0CAA00D98D9C /* Date Confirmation */,
+				E24C8D1D1AE03CAF009DB964 /* Spread The News */,
+				E2245F481AE443AC0074C74B /* Review Information */,
+			);
+			name = "Part One (Confirmation)";
+			sourceTree = "<group>";
+		};
+		E2A5D44E1AE5513600DF74E0 /* Part Two (ThankYouPackage) */ = {
+			isa = PBXGroup;
+			children = (
+				E25D84B21ACED9B700D98118 /* Picture Uploader */,
+			);
+			name = "Part Two (ThankYouPackage)";
 			sourceTree = "<group>";
 		};
 		EC9D2303EC39AADA6631DC7E /* Pods */ = {
@@ -578,11 +679,11 @@
 				36E866BC1ADEFE6900DF1B54 /* iTunesArtwork@2x.png in Resources */,
 				36E866B71ADEFE6900DF1B54 /* Icon-Small.png in Resources */,
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
+				E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */,
+				E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */,
 				36E866B41ADEFE6900DF1B54 /* Icon-Small-40@3x.png in Resources */,
 				36E866B81ADEFE6900DF1B54 /* Icon-Small@2x.png in Resources */,
-				36AE94671AD586A400F32AD5 /* ss-junior.woff in Resources */,
 				36E866BB1ADEFE6900DF1B54 /* Icon@2x.png in Resources */,
-				E25D84B11ACED69600D98118 /* CameraTest.storyboard in Resources */,
 				36E866B21ADEFE6900DF1B54 /* Icon-Small-40.png in Resources */,
 				36AE94621AD586A400F32AD5 /* ss-junior.css in Resources */,
 				36E866AF1ADEFE6900DF1B54 /* Icon-72@2x.png in Resources */,
@@ -597,11 +698,11 @@
 				3603946F1ADC19B200067658 /* Jan Fromm - Rooney-Regular.otf in Resources */,
 				360394771ADC19BA00067658 /* Jan Fromm - RooneySans-Light.otf in Resources */,
 				36AE94631AD586A400F32AD5 /* ss-junior.eot in Resources */,
+				E2A5D44B1AE4919C00DF74E0 /* (null) in Resources */,
 				36E866BA1ADEFE6900DF1B54 /* icon.png in Resources */,
 				36E866B91ADEFE6900DF1B54 /* Icon-Small@3x.png in Resources */,
-				E25D84BC1ACEE12C00D98118 /* PhotoManagerView.xib in Resources */,
 				360394761ADC19BA00067658 /* Jan Fromm - RooneySans-Bold.otf in Resources */,
-				E25D84B71ACEDCCB00D98118 /* (null) in Resources */,
+				E264D3A51ADEAB4700D98D9C /* CompletionFlow.storyboard in Resources */,
 				36AE94641AD586A400F32AD5 /* ss-junior.js in Resources */,
 				3603946D1ADC19B200067658 /* Jan Fromm - Rooney-Bold.otf in Resources */,
 			);
@@ -659,7 +760,8 @@
 				361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */,
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
-				3DD567B01AD596E70052DD95 /* DetailsTabBarController.m in Sources */,
+				E2245F471AE443A50074C74B /* ReviewInformationViewController.m in Sources */,
+				E264D3AE1ADF0CA400D98D9C /* DateConfirmationViewController.m in Sources */,
 				E26AD5DD1AD33D9200BACAE8 /* veryFirstViewController.m in Sources */,
 				E26AD5DC1AD33D7900BACAE8 /* FISDonorsChooseDatastore.m in Sources */,
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
@@ -668,11 +770,15 @@
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
+				E26AD5EF1AD6F2FC00BACAE8 /* AddressConfirmationViewController.m in Sources */,
 				E25D84AE1ACED68A00D98118 /* PhotoManagerViewController.m in Sources */,
+				E25D84BA1ACEDE1000D98118 /* DetailsTabBarController.m in Sources */,
 				36AE94481AD45F5800F32AD5 /* UIColor+DonorsChooseColors.m in Sources */,
 				36AE945A1AD5674700F32AD5 /* FISDonorsChooseCompletedProposal.m in Sources */,
 				36AE94771AD5DD3400F32AD5 /* ImagesAPI.m in Sources */,
 				36AE944E1AD47B0A00F32AD5 /* NSDate+DateConvenienceMethods.m in Sources */,
+				E264D3A81ADEAF6500D98D9C /* ContainerViewController.m in Sources */,
+				E24C8D1C1AE03CA2009DB964 /* SpreadTheNewsViewController.m in Sources */,
 				36AE94571AD564F100F32AD5 /* UIFont+DonorsChooseFonts.m in Sources */,
 				3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */,
 				3617DEF91ACC376E0078F4E3 /* main.m in Sources */,
@@ -680,6 +786,8 @@
 				36AE946D1AD5C81C00F32AD5 /* HomePageTableViewController.m in Sources */,
 				36AE94731AD5D2E400F32AD5 /* ProposalTableViewCell.m in Sources */,
 				3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */,
+				E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */,
+				E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */,
 				36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */,
 				E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */,
 			);

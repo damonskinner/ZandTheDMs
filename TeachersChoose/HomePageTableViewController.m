@@ -83,9 +83,11 @@
     }
     
 
-    UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
+//    UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor DonorsChooseGreyVeryLight];
     
@@ -152,6 +154,10 @@
         cell.proposal = [self.datastore.loggedInTeacherCompletedProposals objectAtIndex:indexPath.row];
     }
     
+    if(cell.completionButton)
+    {
+        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     return cell;
     
@@ -174,8 +180,8 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 20)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
     
     if(section ==0) {
         headerLabel.text = @"Current Projects";
@@ -190,8 +196,19 @@
     view.layer.shadowRadius=10;
     view.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
     view.layer.shadowOffset=CGSizeMake(2, 2);
-    
     [view addSubview:headerLabel];
+    
+    [view removeConstraints:view.constraints];
+    [headerLabel removeConstraints:headerLabel.constraints];
+    headerLabel.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    NSLayoutConstraint *headerLabelCenterY = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    [view addConstraint:headerLabelCenterY];
+    
+    NSLayoutConstraint *headerLabelLeft = [NSLayoutConstraint constraintWithItem:headerLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:view attribute:NSLayoutAttributeLeftMargin multiplier:1.0 constant:0];
+    [view addConstraint:headerLabelLeft];
+    
+    
     view.backgroundColor = [UIColor DonorsChooseOrange];
     
     if (([self.datastore.loggedInTeacherCompletedProposals count] ==0) && section==1) {
@@ -241,7 +258,6 @@
         tabBarController.selectedProposal=self.datastore.loggedInTeacherCompletedProposals[indexPath.row];
     }
     
-
 //    NSLog(@"just before deselect code");
 
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -285,11 +301,16 @@
     return newImage;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+-(void) segueToCompletionFlow
+{
+    UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
+    UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
+    [self.navigationController presentViewController:containerVC animated:YES completion:nil];
+}
 
 @end

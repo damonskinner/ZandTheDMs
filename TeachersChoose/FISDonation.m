@@ -27,7 +27,6 @@
     return donation;
 }
 
-
 - (instancetype)initWithName: (NSString *) donorName Location: (NSString *) donorLocation Date: (NSDate *) donationDate DonorMessage: (NSString *) donorMessage ResponseMessage: (NSString *) responseMessage DonationAmount: (NSString *) donationAmount
 {
     self = [super init];
@@ -46,7 +45,6 @@
     }
     return self;
 }
-
 
 -(BOOL) hasResponded {
     if ([_responseMessage length]>0) {

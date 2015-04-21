@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
-    
     [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
     [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];
 }

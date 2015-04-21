@@ -18,5 +18,7 @@
 +(void)getTeacherProfileWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 +(void)getHistoricalSearchResultsWithTeacherId:(NSString *) teacherId andCompletionBlock:(void (^)(NSArray *))completionBlock;
 +(void)getTeacherIdForProposalId:(NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++(void)getProposalObjectForProposalId:(NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
 
 @end

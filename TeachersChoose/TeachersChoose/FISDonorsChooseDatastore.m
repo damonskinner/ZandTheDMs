@@ -233,11 +233,8 @@
     
     
     NSMutableArray *donationsArray = [@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9,donation10,donation11,donation12,donation13,donation14,donation15,donation16,donation17,donation18,donation19,donation20,donation21,donation22] mutableCopy];
-    NSInteger randomNumberOfDonations = arc4random_uniform([donationsArray count]);
-    if (randomNumberOfDonations<3) {
-        randomNumberOfDonations=3;
-    }
-    for (NSInteger i=0; i<randomNumberOfDonations; i++) {
+    
+    for (NSInteger i=0; i<[proposal.numDonors integerValue]; i++) {
         NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
         [proposal.donations addObject:donationsArray[randomDonationIndex]];
         [donationsArray removeObjectAtIndex:randomDonationIndex];

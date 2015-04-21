@@ -47,7 +47,7 @@
     
     NSRange range = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:[currentCalendar dateFromComponents:comps]];
     
-    [comps setDay:arc4random_uniform(range.length)];
+    [comps setDay:arc4random_uniform((int)range.length)];
     
     // Normalise the time portion
     [comps setHour:0];

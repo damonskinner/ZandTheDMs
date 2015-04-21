@@ -50,6 +50,34 @@
     // Initialization code
     
     self.raisedLabel.hidden=YES;
+    self.completionButton = [[UIButton alloc]init];
+    
+    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:20];
+    
+    [self.completionButton setTitleColor:[UIColor DonorsChooseOrange] forState:UIControlStateNormal];
+    
+    self.completionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    [self.completionButton setTitle:@" Complete Project " forState:UIControlStateNormal];
+    
+    [self.completionButton addTarget:self action:@selector(completionButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.completionButton setTitleColor:[UIColor DonorsChooseGreyLight] forState:UIControlStateSelected];
+    
+    [self.completionButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+    [self.completionButton setTintColor:[UIColor DonorsChooseGreyVeryLight]];
+    
+    self.completionButton.layer.cornerRadius=10;
+    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:15];
+    self.completionButton.layer.borderWidth=1.0f;
+    self.completionButton.layer.borderColor=[UIColor DonorsChooseGreyVeryLight].CGColor;
+    self.completionButton.layer.shadowColor=[UIColor DonorsChooseGrey].CGColor;
+    self.completionButton.layer.shadowOpacity=0.3;
+    self.completionButton.layer.shadowRadius=7;
+    self.completionButton.layer.shadowOffset=CGSizeMake(2, 2);
+    
+    
+    [self.contentView addSubview:self.completionButton];
     
     self.backgroundColor=[UIColor DonorsChooseBlueLight];
     self.proposalTableViewProgressView.trackTintColor = [UIColor grayColor];
@@ -174,7 +202,7 @@
                                     toItem:self.expirationDateLabel
                                  attribute:NSLayoutAttributeCenterY
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:-10];
     
     [self.contentView addConstraint:completionButtonCenterY];
     
@@ -452,9 +480,9 @@
     self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
     self.numDonorsLabel.backgroundColor = [UIColor clearColor];
     
-    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:20];
-    self.completionButton.titleLabel.textColor = [UIColor DonorsChooseOrange];
     
+    
+    [self layoutIfNeeded];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

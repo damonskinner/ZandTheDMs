@@ -25,11 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountRaisedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *percentFundedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *donorsLabel;
-
-@property (weak, nonatomic) IBOutlet UIButton *completionButton;
 @property (weak, nonatomic) IBOutlet UILabel *donorsAwaitingReplyLabel;
-
-- (IBAction)completionButton:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *completionButton;
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 
