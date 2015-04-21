@@ -81,7 +81,7 @@
     self.myTextView.scrollEnabled = NO;
     self.myTextView.backgroundColor=[UIColor DonorsChooseGreyLight];
     self.myTextView.textAlignment = NSTextAlignmentCenter;
-    self.myTextView.font = [UIFont fontWithName:DonorsChooseCSSFont size:40];
+    self.myTextView.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:17];
     self.myTextView.textColor = [UIColor DonorsChooseOrange];
 }
 
