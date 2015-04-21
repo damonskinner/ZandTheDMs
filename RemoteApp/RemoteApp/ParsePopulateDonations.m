@@ -48,11 +48,29 @@
     NSMutableArray *newDonationArray= [[NSMutableArray alloc]init];
     
     [FISDonorsChooseAPI getProposalObjectForProposalId:proposalId andCompletionBlock:^(NSDictionary *proposalDict) {
+        NSInteger currentTotalDonated = [proposalDict[@"totalPrice"] integerValue] - [proposalDict[@"costToComplete"] integerValue];
+        
+
+        
         NSInteger numberOfDonors = [proposalDict[@"numDonors"] integerValue];
         for (NSInteger i=0; i<numberOfDonors; i++) {
             NSInteger randomDonationIndex = arc4random_uniform([donationsArray count]-1);
             [newDonationArray addObject:donationsArray[randomDonationIndex]];
-            [donationsArray removeObjectAtIndex:randomDonationIndex];
+            if ([donationsArray count] >2) {
+                [donationsArray removeObjectAtIndex:randomDonationIndex];
+            }
+        }
+        
+        for (FISDonation *eachDonation in newDonationArray) {
+            if ([eachDonation isEqual:newDonationArray.lastObject]) {
+                eachDonation.donationAmount = [NSString stringWithFormat:@"%ld",currentTotalDonated];
+            } else {
+                eachDonation.donationAmount =[NSString stringWithFormat:@"%u",arc4random_uniform(.5*currentTotalDonated)];
+                if ([eachDonation.donationAmount integerValue]<1) {
+                    eachDonation.donationAmount=[NSString stringWithFormat:@"1"];
+                }
+                currentTotalDonated -= [eachDonation.donationAmount integerValue];
+            }
         }
         
         for (FISDonation *eachDonation in newDonationArray) {
