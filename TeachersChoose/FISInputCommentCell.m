@@ -143,6 +143,8 @@
     [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
+    NSLog(@"%f",inputAccessoryView.frame.size.height);
+    
     return inputAccessoryView;
 }
 

@@ -71,7 +71,7 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     self.navigationController.navigationBarHidden=YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
     
-    self.topOfKeyboard = self.view.frame.size.height - (305); // change 305 to hieght of kb plus save/cancel button view.
+    self.topOfKeyboard = self.view.frame.size.height - (298); // change 258 + 40 to hieght of kb plus save/cancel button view.
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -608,14 +608,16 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
 -(void)textFieldWasTappedWithIndexPath:(NSIndexPath *)indexPath {
     
     FISInputCommentCell *choosenCell = (FISInputCommentCell *)[self.myTableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%f,%f",self.myTableView.contentOffset.x,self.myTableView.contentOffset.y);
     
     if (choosenCell.frame.origin.y > self.topOfKeyboard) {
         CGFloat cellY = choosenCell.frame.origin.y;
         CGFloat cellHeight = choosenCell.frame.size.height;
         CGPoint point = self.myTableView.contentOffset;
-        point .y -= (cellY + cellHeight) - self.topOfKeyboard;
+        point.y += (cellY + cellHeight) - self.topOfKeyboard;
         
-        self.myTableView.contentOffset = point;
+//        self.myTableView.contentOffset = point;
+        [self.myTableView setContentOffset:point animated:YES];
     }
 //    NSLog(@"Was Tapped !");
 //    
