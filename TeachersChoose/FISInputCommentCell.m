@@ -129,11 +129,6 @@
     [self handleSaveButton];
 }
 
-//-(void) textViewDidEndEditing:(UITextView *)textView
-//{
-//    [s];
-//}
-
 #pragma mark - InputAccessoryView
 
 -(FISCommentInputAccessoryView *)createInputAccessoryView
@@ -148,9 +143,31 @@
     return inputAccessoryView;
 }
 
+- (void) keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    NSLog(@"Keyboard Height: %f Width: %f", kbSize.height, kbSize.width);
+    
+    // move the view up by 30 pts
+    CGRect frame = self.parentTableView.frame;
+    frame.origin.y = -30;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.parentTableView.frame = frame;
+    }];
+}
+
 -(void)keyboardDidHide:(NSNotification *)notification
 {
-    [self.parentTableView setFrame:CGRectMake(0,0,320,460)];
+    // move the view back to the origin
+    CGRect frame = self.parentTableView.frame;
+    frame.origin.y = 0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.parentTableView.frame = frame;
+    }];
+    //[self.parentTableView setFrame:CGRectMake(0,0,320,460)];
 }
 
 
@@ -187,14 +204,6 @@
     [self.myTextView resignFirstResponder];
     self.myTextView.editable = NO;
     self.myTextView.selectable = NO;
-    
-    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
-    //
-    //    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    //    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
-    //
-    //    [alertController addAction:cancelAction];
-    //    [alertController addAction:submitAction];
 }
 
 //- (void) restoreViewAfterdismissingKeyboard {
