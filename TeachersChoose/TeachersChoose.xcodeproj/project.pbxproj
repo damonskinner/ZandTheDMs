@@ -20,7 +20,6 @@
 		3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF031ACC376E0078F4E3 /* Images.xcassets */; };
 		3617DF071ACC376E0078F4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3617DF051ACC376E0078F4E3 /* LaunchScreen.xib */; };
 		3617DF131ACC376E0078F4E3 /* TeachersChooseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3617DF121ACC376E0078F4E3 /* TeachersChooseTests.m */; };
-		361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36793A331ADC69CD00F5777E /* CommentsViewController.m */; };
 		369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */; };
 		369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */ = {isa = PBXBuildFile; fileRef = 369388401ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m */; };
 		3693884F1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3693884E1ACC788F00E7A2E6 /* FISDonorsChooseTeacher.m */; };
@@ -58,6 +57,7 @@
 		36E866BB1ADEFE6900DF1B54 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E866A91ADEFE6900DF1B54 /* Icon@2x.png */; };
 		36E866BC1ADEFE6900DF1B54 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36E866AA1ADEFE6900DF1B54 /* iTunesArtwork@2x.png */; };
 		3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */; };
+		3C8912161AE7E43100AB5CB0 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8912151AE7E43100AB5CB0 /* CommentsViewController.m */; };
 		3DAB19BF1ACD8DF800623967 /* FISConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB19BE1ACD8DF800623967 /* FISConstants.m */; };
 		3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F71ACCA70500114853 /* LogInViewController.m */; };
 		3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360394F91ACCA70500114853 /* SignUpViewController.m */; };
@@ -122,7 +122,6 @@
 		3617DF111ACC376E0078F4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3617DF121ACC376E0078F4E3 /* TeachersChooseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeachersChooseTests.m; sourceTree = "<group>"; };
 		36793A321ADC69CD00F5777E /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
-		36793A331ADC69CD00F5777E /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		3693883D1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseAPI.h; path = TeachersChoose/FISDonorsChooseAPI.h; sourceTree = "<group>"; };
 		3693883E1ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISDonorsChooseAPI.m; path = TeachersChoose/FISDonorsChooseAPI.m; sourceTree = "<group>"; };
 		3693883F1ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISDonorsChooseProposal.h; path = TeachersChoose/FISDonorsChooseProposal.h; sourceTree = "<group>"; };
@@ -176,6 +175,7 @@
 		36E866AA1ADEFE6900DF1B54 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "Images/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		3C6B1CC91AD6B66F0075531E /* CustomItemUIActivityItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomItemUIActivityItemProvider.h; sourceTree = "<group>"; };
 		3C6B1CCA1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomItemUIActivityItemProvider.m; sourceTree = "<group>"; };
+		3C8912151AE7E43100AB5CB0 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		3DAB19BD1ACD8DF800623967 /* FISConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FISConstants.h; path = TeachersChoose/FISConstants.h; sourceTree = "<group>"; };
 		3DAB19BE1ACD8DF800623967 /* FISConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISConstants.m; path = TeachersChoose/FISConstants.m; sourceTree = "<group>"; };
 		6E3A6D663C527B52F55FDB09 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -482,7 +482,7 @@
 				E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */,
 				E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */,
 				36793A321ADC69CD00F5777E /* CommentsViewController.h */,
-				36793A331ADC69CD00F5777E /* CommentsViewController.m */,
+				3C8912151AE7E43100AB5CB0 /* CommentsViewController.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -757,7 +757,6 @@
 			files = (
 				3DC89F701AE1C0F9009F743A /* SignUpViewController.m in Sources */,
 				3DC89F6F1AE1C0F4009F743A /* LogInViewController.m in Sources */,
-				361A97A01AE16606003635E7 /* CommentsViewController.m in Sources */,
 				3DD567B11AD5971F0052DD95 /* FISDonation.m in Sources */,
 				E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */,
 				E2245F471AE443A50074C74B /* ReviewInformationViewController.m in Sources */,
@@ -789,6 +788,7 @@
 				E26AD5EC1AD4733300BACAE8 /* InitialConfirmationViewController.m in Sources */,
 				E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */,
 				36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */,
+				3C8912161AE7E43100AB5CB0 /* CommentsViewController.m in Sources */,
 				E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
