@@ -18,6 +18,7 @@
 #import <FAKIonIcons.h>
 #import "ImagesAPI.h"
 #import "FISParseAPI.h"
+#import "ContainerViewController.h"
 
 @interface HomePageTableViewController () <UIScrollViewDelegate>
 
@@ -160,7 +161,7 @@
     
     if(cell.completionButton)
     {
-        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow) forControlEvents:UIControlEventTouchUpInside];
+        [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return cell;
@@ -310,10 +311,16 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) segueToCompletionFlow
+-(void) segueToCompletionFlow: (id) sender
 {
+    FISDonorsChooseProposal *selectedProposal=((ProposalTableViewCell *)((UITableViewCell *)((UIButton *)sender).superview).superview).proposal;
+    
+    [FISParseAPI saveThankYouPackageForProposalObjectId:selectedProposal.parseObjectId withCompletionDictionary: andCompletionBlock:selectedProposal.]
     UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
-    UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
+    ContainerViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
+    
+    containerVC.proposal =selectedProposal;
+    
     [self.navigationController presentViewController:containerVC animated:YES completion:nil];
 }
 

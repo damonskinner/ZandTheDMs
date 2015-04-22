@@ -493,4 +493,32 @@
     }];
 }
 
+
++(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/Proposals/%@",proposalObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"fundingConfirmed":completionDictionary[@"fundingConfirmed"],
+                             @"dueDate":completionDictionary[@"dueDate"],
+                             @"shippingInstructions":completionDictionary[@"shippingInstructions"],
+                             @"thankYouNote":completionDictionary[@"thankYouNote"],
+                             @"photos":completionDictionary[@"photos"],
+                             @"impactLetter":completionDictionary[@"impactLetter"]};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Save Thank You Package Failed: %@",error.localizedDescription);
+
+    }];
+}
+
 @end

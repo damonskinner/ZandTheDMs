@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISDonorsChooseProposal.h"
 
 @interface ContainerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIProgressView *myProgressView;
+
+@property (nonatomic, strong) FISDonorsChooseProposal *proposal;
 @end
