@@ -35,6 +35,8 @@
         _loggedInTeacherProposals=[NSMutableArray new];
         _loggedInTeacherCompletedProposals=[NSMutableArray new];
         _loggedInTeacher=[FISDonorsChooseTeacher new];
+        _completionInfo = [NSMutableDictionary new];
+        _completionInfo[@"isConfirmed"] = @"NO";
     }
     return self;
 }
@@ -173,8 +175,6 @@
     }];
 }
 
-//TODO: Create sample donations function
-//FIXME:
 -(NSArray *) sampleDonations {
 
     
@@ -194,7 +194,7 @@
 
 
 -(void) createFakeFundedProposal {
-//    self.fakeFundedProposal = [((FISDonorsChooseProposal *)self.loggedInTeacherProposals[0]) copy];
+
     self.fakeFundedProposal = [[FISDonorsChooseProposal alloc]init];
     self.fakeFundedProposal.title = @"Almost there!";
     self.fakeFundedProposal.proposalId = @"9999999";

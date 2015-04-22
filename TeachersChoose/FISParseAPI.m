@@ -494,9 +494,9 @@
 }
 
 
-+(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
++(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock {
     
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/Proposals/%@",proposalObjectId];
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposalObjectId];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -504,7 +504,6 @@
                              @"dueDate":completionDictionary[@"dueDate"],
                              @"shippingInstructions":completionDictionary[@"shippingInstructions"],
                              @"thankYouNote":completionDictionary[@"thankYouNote"],
-                             @"photos":completionDictionary[@"photos"],
                              @"impactLetter":completionDictionary[@"impactLetter"]};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
@@ -512,9 +511,9 @@
     [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
     manager.securityPolicy.allowInvalidCertificates = YES;
     
-    [manager POST:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        completionBlock(responseObject);
+        completionBlock();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Save Thank You Package Failed: %@",error.localizedDescription);
 

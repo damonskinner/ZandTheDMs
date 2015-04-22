@@ -179,15 +179,6 @@
             
             [FISParseAPI addRandomTeacherId:randomTeacherId toNewUserWithObjectId:currentUser.objectId currentUserSessionToken:currentUser.sessionToken andCompletionBlock:^(void) {
             }];
-            //attach teacherId to installation
-            
-//            if ([self.datastore.decodedDeviceToken length]>0) {
-//                [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
-//                    [FISParseAPI attachTeacherId:randomTeacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
-//                        
-//                    }];
-//                }];
-//            }
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
@@ -226,8 +217,6 @@
 
 -(void) transitionToHomePage {
     UINavigationController *newNavController = [[UINavigationController alloc]init];
-//    veryFirstViewController *homePageVC = [self.storyboard instantiateViewControllerWithIdentifier:@"homePage"];
-//    [newNavController addChildViewController:homePageVC];
     
     HomePageTableViewController *newHomePageVC =[[HomePageTableViewController alloc] init];
     [newNavController addChildViewController:newHomePageVC];

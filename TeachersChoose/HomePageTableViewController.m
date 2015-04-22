@@ -45,13 +45,10 @@
         [self setHeaderImage:formattedTeacherImage];
         
     }];
-//    [self setHeaderImage:self.datastore.loggedInTeacher.image];
+
     [self setTitleText:self.datastore.loggedInTeacher.name];
     [self setSubtitleText:self.datastore.loggedInTeacher.schoolName];
-//    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
-    
-    //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
     [self.navigationController.navigationBar setTranslucent:NO];
     
@@ -83,11 +80,7 @@
             
         }];
     }
-    
 
-//    UIImage *gearIconImage = [[FAKIonIcons gearAIconWithSize:25] imageWithSize:CGSizeMake(25,25)] ;
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearIconImage style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logOutTapped)];
     
@@ -315,13 +308,31 @@
 {
     FISDonorsChooseProposal *selectedProposal=((ProposalTableViewCell *)((UITableViewCell *)((UIButton *)sender).superview).superview).proposal;
     
-    [FISParseAPI saveThankYouPackageForProposalObjectId:selectedProposal.parseObjectId withCompletionDictionary: andCompletionBlock:selectedProposal.]
+    NSMutableDictionary *completionDict = [@{@"fundingConfirmed":@"YES",
+                                             @"dueDate":@"8-29-2015",
+                                             @"shippingInstructions":@"Please do this:",
+                                             @"thankYouNote":@"Thanks so much!",
+                                             @"photos":@[],
+                                             @"impactLetter":@"Thank you so much for your help!"} mutableCopy];
+    
+    [FISParseAPI saveThankYouPackageForProposalObjectId:selectedProposal.parseObjectId withCompletionDictionary: completionDict andCompletionBlock:^() {
+    }];
+    
+    
     UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
+
     ContainerViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
-    
-    containerVC.proposal =selectedProposal;
-    
-    [self.navigationController presentViewController:containerVC animated:YES completion:nil];
+    if([self.datastore.completionInfo[@"isConfirmed"] isEqualToString: @"NO"])
+    {
+        [self.navigationController presentViewController:containerVC animated:YES completion:nil];
+    }
+    else
+    {
+        UIViewController *congratsVC = [completionFlowStoryboard instantiateViewControllerWithIdentifier:@"congratulationsNAV"];
+        [self.navigationController presentViewController:congratsVC animated:YES completion:nil];
+    }
+        
+
 }
 
 

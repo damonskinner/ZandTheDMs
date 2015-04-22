@@ -51,7 +51,7 @@
 
 +(void) updateTotalPrice:(NSString *) totalPrice andCurrentDonated: (NSString *) totalDonated forProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock;
 
 
 @end

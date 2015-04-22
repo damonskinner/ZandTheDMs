@@ -17,11 +17,6 @@
 @property (nonatomic, strong) NSDictionary *thankYouAssets;
 
 
-
-
-//@property (nonatomic, strong) NSMutableArray *donations;
-//@property (nonatomic, strong) NSString *parseObjectId;
-
 +(FISDonorsChooseCompletedProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 
 

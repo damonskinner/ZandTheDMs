@@ -14,37 +14,8 @@
 #import "FISDonorsChooseCompletedProposal.h"
 
 
-//needs more work on cell constraints, i.e., height
-
 @implementation ProposalTableViewCell
 
-//-(id)initWithCoder:(NSCoder *) aDecoder
-//{
-//    self=[super initWithCoder:aDecoder];
-//    if(!self) {
-//        return nil;
-//    }
-//    
-//    [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner: self options: nil];
-//    
-//    [self addSubview:self.contentView];
-//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    NSDictionary *views = @{@"self":self,
-//                            @"subView":self.contentView};
-//    
-//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[subView]|"
-//                                                                   options:0
-//                                                                   metrics:nil
-//                                                                     views:views];
-//    [self addConstraints:constraints];
-//    
-//    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subView]|" options:0 metrics:nil views:views];
-//    [self addConstraints:constraints];
-//    
-//    return self;
-//}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -102,8 +73,6 @@
     [self.completionButton removeConstraints:self.completionButton.constraints];
     [self.donorsAwaitingReplyLabel removeConstraints:self.donorsAwaitingReplyLabel.constraints];
     
-    
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -418,17 +387,6 @@
                                   constant:8];
     
     [self.contentView addConstraint:donorsAwaitingReplyLabelLeftConstraint];
-
-//    NSLayoutConstraint *proposalTableViewProgressViewHeightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.proposalTableViewProgressView
-//                                 attribute:NSLayoutAttributeHeight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.titleLabel
-//                                 attribute:NSLayoutAttributeBottom
-//                                multiplier:1.0
-//                                  constant:10];
-//    
-//    [self.contentView addConstraint:proposalTableViewProgressViewHeightConstraint];
     
     [self layoutIfNeeded];
 }
@@ -519,9 +477,6 @@
         
         self.percentFundedLabel.text=[NSString stringWithFormat:@"%ld%%",[self.proposal.percentFunded integerValue]];
         self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.parseNumDonors];
-        //    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
-        
-        //    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
         
         self.proposalTableViewProgressView.progress=  [self.proposal.parseCurrentDonated floatValue]/ [self.proposal.totalPrice floatValue];
         self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", [self.proposal.parseCurrentDonated integerValue],[self.proposal.totalPrice integerValue]];

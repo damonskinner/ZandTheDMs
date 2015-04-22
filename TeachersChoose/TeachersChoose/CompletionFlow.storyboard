@@ -1152,7 +1152,7 @@ carry out the project.</string>
         <!--Navigation Controller-->
         <scene sceneID="3Pj-Fp-skI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iY7-aa-gZq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="congratulationsNAV" automaticallyAdjustsScrollViewInsets="NO" id="iY7-aa-gZq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4fE-oO-58n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

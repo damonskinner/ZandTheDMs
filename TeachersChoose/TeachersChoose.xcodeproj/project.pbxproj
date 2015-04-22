@@ -264,7 +264,6 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
-				E294A6DE1AE68EA000D15029 /* ShippingLabel.png */,
 				36B124141AD18670009866EB /* FISDonation.h */,
 				36B124151AD18670009866EB /* FISDonation.m */,
 				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
@@ -412,6 +411,7 @@
 		36E866721ADEF62300DF1B54 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				E294A6DE1AE68EA000D15029 /* ShippingLabel.png */,
 				36E866991ADEFE6900DF1B54 /* Icon-60.png */,
 				36E8669A1ADEFE6900DF1B54 /* Icon-60@2x.png */,
 				36E8669B1ADEFE6900DF1B54 /* Icon-60@3x.png */,
