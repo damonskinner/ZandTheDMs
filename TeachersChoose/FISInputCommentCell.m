@@ -119,7 +119,7 @@
     textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
     
-    [self.delegate textFieldWasTappedWithIndexPath:[self.parentTableView indexPathForCell:self]];
+    [self.delegate textFieldWasTappedWithTextView:textView];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
@@ -168,6 +168,8 @@
         self.parentTableView.frame = frame;
     }];
     //[self.parentTableView setFrame:CGRectMake(0,0,320,460)];
+    
+    [self.parentTableView reloadData];
 }
 
 

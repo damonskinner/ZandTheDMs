@@ -14,7 +14,7 @@
 
 @protocol CommentCellDelegate <NSObject>
 
--(void) textFieldWasTappedWithIndexPath:(NSIndexPath *)indexPath;
+-(void) textFieldWasTappedWithTextView:(UITextView *)textView;
 -(void) saveDonationWithMessage: (NSString *) responseMessage andIndexPath: (NSIndexPath *) indexPath;
 
 @end
