@@ -80,6 +80,9 @@
 		E27C86581AE4887F00D9D738 /* CongratulationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E27C86571AE4887F00D9D738 /* CongratulationsViewController.m */; };
 		E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */; };
 		E27F0F0E1ADC029900E6AC5F /* FISCommentInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */; };
+		E294A6DF1AE68EA000D15029 /* ShippingLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = E294A6DE1AE68EA000D15029 /* ShippingLabel.png */; };
+		E294A6E21AE6928700D15029 /* MailingLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E294A6E11AE6928700D15029 /* MailingLabelViewController.m */; };
+		E294A6E51AE6929200D15029 /* ImpactLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E294A6E41AE6929200D15029 /* ImpactLetterViewController.m */; };
 		E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E2A5D44B1AE4919C00DF74E0 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */ = {isa = PBXBuildFile; fileRef = 36AE94611AD586A400F32AD5 /* ss-junior.woff */; };
@@ -209,6 +212,11 @@
 		E27F0F041ADB048800E6AC5F /* FISInputCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISInputCommentCell.m; sourceTree = "<group>"; };
 		E27F0F0C1ADC029900E6AC5F /* FISCommentInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCommentInputAccessoryView.h; sourceTree = "<group>"; };
 		E27F0F0D1ADC029900E6AC5F /* FISCommentInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCommentInputAccessoryView.m; sourceTree = "<group>"; };
+		E294A6DE1AE68EA000D15029 /* ShippingLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShippingLabel.png; sourceTree = "<group>"; };
+		E294A6E01AE6928700D15029 /* MailingLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailingLabelViewController.h; sourceTree = "<group>"; };
+		E294A6E11AE6928700D15029 /* MailingLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailingLabelViewController.m; sourceTree = "<group>"; };
+		E294A6E31AE6929200D15029 /* ImpactLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImpactLetterViewController.h; sourceTree = "<group>"; };
+		E294A6E41AE6929200D15029 /* ImpactLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImpactLetterViewController.m; sourceTree = "<group>"; };
 		ED51748089525FC2668399D6 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,6 +264,7 @@
 		3617DEEA1ACC376E0078F4E3 = {
 			isa = PBXGroup;
 			children = (
+				E294A6DE1AE68EA000D15029 /* ShippingLabel.png */,
 				36B124141AD18670009866EB /* FISDonation.h */,
 				36B124151AD18670009866EB /* FISDonation.m */,
 				36B124111ACDAF8E009866EB /* FISParseAPI.h */,
@@ -552,6 +561,24 @@
 			name = "Congratulations!";
 			sourceTree = "<group>";
 		};
+		E294A6E61AE6929600D15029 /* Impact Letter */ = {
+			isa = PBXGroup;
+			children = (
+				E294A6E31AE6929200D15029 /* ImpactLetterViewController.h */,
+				E294A6E41AE6929200D15029 /* ImpactLetterViewController.m */,
+			);
+			name = "Impact Letter";
+			sourceTree = "<group>";
+		};
+		E294A6E71AE6929E00D15029 /* Mailing Label */ = {
+			isa = PBXGroup;
+			children = (
+				E294A6E01AE6928700D15029 /* MailingLabelViewController.h */,
+				E294A6E11AE6928700D15029 /* MailingLabelViewController.m */,
+			);
+			name = "Mailing Label";
+			sourceTree = "<group>";
+		};
 		E2A5D44D1AE5512C00DF74E0 /* Part One (Confirmation) */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,7 +596,9 @@
 		E2A5D44E1AE5513600DF74E0 /* Part Two (ThankYouPackage) */ = {
 			isa = PBXGroup;
 			children = (
+				E294A6E61AE6929600D15029 /* Impact Letter */,
 				E25D84B21ACED9B700D98118 /* Picture Uploader */,
+				E294A6E71AE6929E00D15029 /* Mailing Label */,
 			);
 			name = "Part Two (ThankYouPackage)";
 			sourceTree = "<group>";
@@ -681,6 +710,7 @@
 				3617DF041ACC376E0078F4E3 /* Images.xcassets in Resources */,
 				E2A5D44A1AE4919C00DF74E0 /* (null) in Resources */,
 				E2A5D44C1AE4919C00DF74E0 /* ss-junior.woff in Resources */,
+				E294A6DF1AE68EA000D15029 /* ShippingLabel.png in Resources */,
 				36E866B41ADEFE6900DF1B54 /* Icon-Small-40@3x.png in Resources */,
 				36E866B81ADEFE6900DF1B54 /* Icon-Small@2x.png in Resources */,
 				36E866BB1ADEFE6900DF1B54 /* Icon@2x.png in Resources */,
@@ -766,6 +796,7 @@
 				E26AD5DB1AD33D6400BACAE8 /* AppDelegate.m in Sources */,
 				369388421ACC3DAC00E7A2E6 /* FISDonorsChooseProposal.m in Sources */,
 				3C6B1CCB1AD6B66F0075531E /* CustomItemUIActivityItemProvider.m in Sources */,
+				E294A6E51AE6929200D15029 /* ImpactLetterViewController.m in Sources */,
 				369388411ACC3DAC00E7A2E6 /* FISDonorsChooseAPI.m in Sources */,
 				E25D84C31ACEFFB700D98118 /* DonorsTableViewController.m in Sources */,
 				E25D84C71ACF013600D98118 /* StatDetailsViewController.m in Sources */,
@@ -790,6 +821,7 @@
 				36B124131ACDAF8E009866EB /* FISParseAPI.m in Sources */,
 				3C8912161AE7E43100AB5CB0 /* CommentsViewController.m in Sources */,
 				E27F0F051ADB048800E6AC5F /* FISInputCommentCell.m in Sources */,
+				E294A6E21AE6928700D15029 /* MailingLabelViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,12 +949,12 @@
 			baseConfigurationReference = C3CF127D1B9343EE2845CDD4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -931,12 +963,12 @@
 			baseConfigurationReference = ED51748089525FC2668399D6 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Damon Skinner (H8HJUP96Z7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a98d3741-5744-42da-b7c8-69d87597f28f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

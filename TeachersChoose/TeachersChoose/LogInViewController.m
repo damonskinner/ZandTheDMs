@@ -28,6 +28,7 @@
 
     // Set buttons appearance
     
+    self.logInView.dismissButton.hidden=YES;
     
     
     

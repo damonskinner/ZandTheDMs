@@ -49,5 +49,6 @@
 
 +(void) updateBadgeNumber:(NSNumber *) badgeNumber forInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock;
 
++(void) updateTotalPrice:(NSString *) totalPrice andCurrentDonated: (NSString *) totalDonated forProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
 @end

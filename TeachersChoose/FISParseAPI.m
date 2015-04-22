@@ -223,7 +223,11 @@
     
     [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        completionBlock(responseObject[@"results"][0][@"objectId"]);
+        if ([responseObject[@"results"] count]>0) {
+            completionBlock(responseObject[@"results"][0][@"objectId"]);
+        }else {
+            completionBlock(@"");
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Retrieve Installation ObjectId Failed: %@",error.localizedDescription);
     }];
@@ -248,7 +252,12 @@
     
     [manager GET:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        completionBlock(responseObject[@"results"][0][@"objectId"]);
+        if ([responseObject[@"results"] count]>0) {
+            completionBlock(responseObject[@"results"][0][@"objectId"]);
+        } else {
+            completionBlock(@"");
+        }
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Retrieve Installation ObjectId Failed: %@",error.localizedDescription);
     }];
@@ -325,6 +334,29 @@
         NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
     }];
 }
+
++(void) updateTotalPrice:(NSString *) totalPrice andCurrentDonated: (NSString *) totalDonated forProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock {
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposalObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSDictionary *params = @{@"totalDonated":totalDonated,@"totalPrice":totalPrice};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager PUT:donorsChooseURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Add CurrentDonations and TotalPrice Failed: %@",error.localizedDescription);
+    }];
+}
+
+
+
 
 +(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock {
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Donations/%@",donationObjectId];

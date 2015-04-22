@@ -1,17 +1,17 @@
 //
-//  GoodNewsViewController.m
+//  ImpactLetterViewController.m
 //  TeachersChoose
 //
-//  Created by Tom OMalley on 4/16/15.
+//  Created by Tom OMalley on 4/21/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "SpreadTheNewsViewController.h"
-#import <FAKIonIcons.h>
+#import "ImpactLetterViewController.h"
+#import "UIColor+DonorsChooseColors.h"
 
 static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
-@interface SpreadTheNewsViewController () <UITextViewDelegate>
+@interface ImpactLetterViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveMessageButton;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -27,17 +27,19 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
 @end
 
-@implementation SpreadTheNewsViewController
+@implementation ImpactLetterViewController
 
 #pragma mark - View LifeCycle
 
+- (IBAction)moreInfoTapped:(id)sender {
+    [self presentAlert];
+}
+
 - (void)viewDidLoad
 {
-   [super viewDidLoad];
-    
+    [super viewDidLoad];
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
-    [self setupHomeButton];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -49,9 +51,6 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 {
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-}
-- (IBAction)moreInfoTapped:(id)sender {
-    [self presentAlert];
 }
 
 #pragma mark - UITextViewDelegate
@@ -65,7 +64,7 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     NSString *trimmedText = [textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
+    
     if ([trimmedText isEqualToString:@""]) {
         textView.text = @"";
         [self.placeholderTextLabel setHidden:NO];
@@ -96,7 +95,7 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
 -(void) presentAlert
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Brief Thank You Message" message:@"This note will be publicly viewable on your project page and cannot be changed.\n\nFor safety purposes DO NOT include your name, school name, location, etc." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Impact Letter" message:@"Let your donors know how much funding this project has affected your students lives!\n\nFor safety purposes DO NOT include student names, school name, location, etc." preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     
@@ -120,13 +119,13 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 -(void) setupInputAccessoryView
 {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-
+    
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.textView action:@selector(resignFirstResponder)];
-
+    
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     toolbar.items = @[flexibleSpace, doneButton];
-
+    
     self.textView.inputAccessoryView = toolbar;
 }
 
@@ -163,28 +162,6 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
     //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
     //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
-}
-
-#pragma mark - Home Button
-
--(void) setupHomeButton
-{
-    UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
-}
-
--(void) homeButtonTapped
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

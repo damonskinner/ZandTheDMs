@@ -8,6 +8,7 @@
 
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
+#import "UIColor+DonorsChooseColors.h"
 #import <FAKIonIcons.h>
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSInteger selectedRow;
 @property (nonatomic) UIImage *cameraImage;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 
 -(void) setupCompletionPicturesArray;
 -(void) presentPhotoActionSheet;
@@ -32,12 +34,19 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    self.cameraImage = [[FAKIonIcons iosCameraIconWithSize:120] imageWithSize:CGSizeMake(120, 120)];
+    FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:100];
+    [cameraIcon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
     
+    self.cameraImage = [cameraIcon imageWithSize:CGSizeMake(100, 100)];
+    self.uploadButton.layer.cornerRadius = 10;
+    self.uploadButton.backgroundColor = [UIColor DonorsChooseGreen];
     [self setupCompletionPicturesArray];
 }
 
 #pragma mark - UICollectionView Delegate
+- (IBAction)uploadButtonTapped:(id)sender {
+    NSLog(@"uploadTapped");
+}
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -48,18 +57,21 @@
 {
     CompletionImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
     
-    // assign the corresponding picture
     cell.imageView.image = self.completionPictures[indexPath.row];
-    
-    // check whether to hide the label or not
-    if (cell.imageView.image == self.cameraImage)
-    {
-        cell.tapMeLabel.hidden = NO;
-    }
-    else
-    {
-        cell.tapMeLabel.hidden = YES;
-    }
+    cell.backgroundColor = [UIColor DonorsChooseOrange];
+    cell.layer.cornerRadius = 10;
+
+    //TODO: decide whether this is good or not
+//    if (cell.imageView.image == self.cameraImage)
+//    {
+//        cell.tapMeLabel.hidden = NO;
+//    }
+//    else
+//    {
+//        cell.tapMeLabel.hidden = YES;
+//    }
+
+    cell.tapMeLabel.hidden = YES;
     
     return cell;
 }
@@ -106,7 +118,7 @@
     picker.delegate = self;
     picker.allowsEditing = YES;
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add Photos" message:@"Select photos that you'd like to share on DonorsChoose.org upon completion of your project." preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
@@ -124,17 +136,20 @@
         [self presentViewController:picker animated:YES completion:nil];
     }];
     
-    UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
-    {
-        NSLog(@"remove photo chosen");
-        [self.completionPictures removeObjectAtIndex: self.selectedRow];
-        [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
-        [self.collectionView reloadData];
-    }];
-    
     [alertController addAction: takePhoto];
     [alertController addAction: choosePhoto];
-    [alertController addAction: removePhoto];
+    
+    if (self.completionPictures[self.selectedRow] != self.cameraImage){
+        UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
+        {
+            NSLog(@"remove photo chosen");
+            [self.completionPictures removeObjectAtIndex: self.selectedRow];
+            [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
+            [self.collectionView reloadData];
+        }];
+        [alertController addAction: removePhoto];
+    }
+
     [alertController addAction: cancel];
     
     [self presentViewController: alertController animated: YES completion:nil];

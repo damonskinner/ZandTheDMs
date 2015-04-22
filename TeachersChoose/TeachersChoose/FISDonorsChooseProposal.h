@@ -51,6 +51,11 @@
 @property (nonatomic, strong) NSMutableArray *donations;
 @property (nonatomic, strong) NSString *parseObjectId;
 @property (nonatomic) NSInteger numDonationsNeedResponse;
+@property (nonatomic) BOOL isFake;
+
+@property (nonatomic, strong) NSString *parseNumDonors;
+@property (nonatomic, strong) NSString *parseCurrentDonated;
+@property (nonatomic, strong) NSString *parseCostToComplete;
 
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 

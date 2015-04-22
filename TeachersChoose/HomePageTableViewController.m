@@ -50,8 +50,6 @@
 //    [self setLabelBackgroundGradientColor:[UIColor blackColor]];
 
     
-    
-    
     //need to change alpha of navBar, but won't work?
     self.navigationController.navigationBar.barTintColor=[UIColor DonorsChooseOrange];
     [self.navigationController.navigationBar setTranslucent:NO];
@@ -76,9 +74,12 @@
     
     if ([self.datastore.decodedDeviceToken length]>0) {
         [FISParseAPI getInstallationObjectIdForDeviceToken:self.datastore.decodedDeviceToken andCompletionBlock:^(NSString * installationObjectId) {
-            [FISParseAPI attachTeacherId:self.datastore.loggedInTeacher.teacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
-                
-            }];
+            if ([installationObjectId length]>0) {
+                [FISParseAPI attachTeacherId:self.datastore.loggedInTeacher.teacherId toInstallationWithObjectId:installationObjectId andCompletionBlock:^{
+                    
+                }];
+            }
+            
         }];
     }
     
@@ -105,11 +106,14 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber =self.datastore.totalUnRespondedDonations;
     if ([self.datastore.decodedDeviceToken length]>0) {
         [FISParseAPI getInstallationObjectIdForTeacherId:self.datastore.loggedInTeacher.teacherId andCompletionBlock:^(NSString *objectId) {
-            [FISParseAPI updateBadgeNumber:@(self.datastore.totalUnRespondedDonations) forInstallationWithObjectId:objectId andCompletionBlock:^{
-                
-            }];
+            if ([objectId length]>0) {
+                [FISParseAPI updateBadgeNumber:@(self.datastore.totalUnRespondedDonations) forInstallationWithObjectId:objectId andCompletionBlock:^{
+                    
+                }];
+            }
         }];
     }
+    [self.tableView reloadData];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
@@ -312,5 +316,9 @@
     UIViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
     [self.navigationController presentViewController:containerVC animated:YES completion:nil];
 }
+
+
+
+
 
 @end

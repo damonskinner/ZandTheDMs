@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UISegmentedControl *mySegmentedControl;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) NSInteger selectedDonation;
+@property (nonatomic, strong)   UILabel *segmentedControlPlaceholder;
 
 @property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
@@ -58,8 +59,7 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 	self.proposal = ((DetailsTabBarController *)self.tabBarController).selectedProposal;
 	self.datastore = [FISDonorsChooseDatastore sharedDataStore];
 	self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
-
-	[self setupSegmentedControl];
+    
 	[self setupLayout];
 	[self prepareTableViewForResizingCells];
 	self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -101,6 +101,7 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
         CGPoint point = self.myTableView.contentOffset;
         point.y -= (_bottomYofTextView) - _topYofKeyboard;
         [self.myTableView setContentOffset:point animated:YES];
+
     }
     _topYofKeyboard = 0.0f;
     _viewWasOffset = NO;
@@ -437,47 +438,91 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 #pragma mark - Initialization Helpers
 
-- (void)setupLayout {
-	self.titleLabel = [[UILabel alloc] init];
-	self.titleLabel.text = [NSString stringWithFormat:@"%@ (%@)", self.proposal.title, self.proposal.proposalId];
-	self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
-	self.titleLabel.textColor = [UIColor DonorsChooseBlack];
-	self.titleLabel.numberOfLines = 0;
-	self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-	self.titleLabel.textAlignment = NSTextAlignmentCenter;
-	self.myTableView = [[UITableView alloc]init];
-	[self.view addSubview:self.titleLabel];
-	[self.view addSubview:self.myTableView];
-	self.view.backgroundColor = [UIColor DonorsChooseWhite];
 
+-(void) setupLayout {
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.text=[NSString stringWithFormat:@"%@ (%@)",self.proposal.title ,self.proposal.proposalId];
+    self.titleLabel.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
+    self.titleLabel.textColor=[UIColor DonorsChooseBlack];
+    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    self.titleLabel.textAlignment=NSTextAlignmentCenter;
+    
+    
+    self.segmentedControlPlaceholder = [[UILabel alloc]init];
+    self.segmentedControlPlaceholder.text = @"Comments";
+    self.segmentedControlPlaceholder.font=[UIFont fontWithName:DonorsChooseTitleBoldFont size:20];
+    self.segmentedControlPlaceholder.textColor=[UIColor DonorsChooseGreyVeryLight];
+    self.segmentedControlPlaceholder.numberOfLines = 0;
+    self.segmentedControlPlaceholder.lineBreakMode = NSLineBreakByWordWrapping;
+    self.segmentedControlPlaceholder.textAlignment=NSTextAlignmentCenter;
+    self.segmentedControlPlaceholder.hidden=YES;
+    self.segmentedControlPlaceholder.backgroundColor=[UIColor DonorsChooseOrange];
+    [self setupSegmentedControl];
+    
 
-	[self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
-	[self.myTableView removeConstraints:self.myTableView.constraints];
-	[self.titleLabel removeConstraints:self.titleLabel.constraints];
-	[self.view removeConstraints:self.view.constraints];
+    
+    self.myTableView = [[UITableView alloc]init];
+    [self.view addSubview:self.titleLabel];
+    [self.view addSubview:self.segmentedControlPlaceholder];
+    [self.view addSubview:self.myTableView];
+    self.view.backgroundColor=[UIColor DonorsChooseWhite];
+    
 
-	[self.myTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[self.mySegmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.mySegmentedControl removeConstraints:self.mySegmentedControl.constraints];
+    [self.segmentedControlPlaceholder removeConstraints:self.segmentedControlPlaceholder.constraints];
+    [self.myTableView removeConstraints:self.myTableView.constraints];
+    [self.titleLabel removeConstraints:self.titleLabel.constraints];
+    [self.view removeConstraints:self.view.constraints];
+    
+    [self.segmentedControlPlaceholder setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.myTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.mySegmentedControl setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
 
 //    [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-
-	NSDictionary *views = @{ @"view":self.view, @"segmentedControl":self.mySegmentedControl, @"titleLabel":self.titleLabel, @"tableView":self.myTableView };
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel(view)]|" options:0 metrics:nil views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[segmentedControl(view)]|" options:0 metrics:nil views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-50-|" options:0 metrics:nil views:views]];
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
+    
+    
+    NSDictionary *views = @{@"view":self.view,@"segmentedControl":self.mySegmentedControl,@"titleLabel":self.titleLabel,@"tableView":self.myTableView};
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[titleLabel(view)]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[segmentedControl]-16-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[titleLabel(80)][segmentedControl(35)]-[tableView]-50-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[tableView]-|" options:0 metrics:nil views:views]];
+    
+    NSLayoutConstraint *segmentedControlPlaceholderCenterX = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderBottom = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderWidth = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0];
+    NSLayoutConstraint *segmentedControlPlaceholderHeight = [NSLayoutConstraint constraintWithItem:self.segmentedControlPlaceholder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mySegmentedControl attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    [self.view addConstraint:segmentedControlPlaceholderHeight];
+    [self.view addConstraint:segmentedControlPlaceholderWidth];
+    [self.view addConstraint:segmentedControlPlaceholderCenterX];
+    [self.view addConstraint:segmentedControlPlaceholderBottom];
+    
 }
 
-- (void)setupSegmentedControl {
-	self.mySegmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
-	self.mySegmentedControl.selectedSegmentIndex = 0;
-	[self.mySegmentedControl addTarget:self action:@selector(segmentedControlToggler) forControlEvents:UIControlEventValueChanged];
-	self.mySegmentedControl.layer.borderWidth = 1;
-	self.mySegmentedControl.layer.borderColor = [UIColor DonorsChooseOrange].CGColor;
-	self.mySegmentedControl.tintColor = [UIColor DonorsChooseOrange];
-	[self.view addSubview:self.mySegmentedControl];
+-(void) setupSegmentedControl
+{
+    
+    self.mySegmentedControl= [[UISegmentedControl alloc] initWithItems:@[@"Awaiting Reply", @"All"]];
+    if (self.proposal.numDonationsNeedResponse==0) {
+        self.mySegmentedControl.selectedSegmentIndex=1;
+        self.mySegmentedControl.hidden=YES;
+        self.segmentedControlPlaceholder.hidden=NO;
+
+        
+    } else {
+        self.segmentedControlPlaceholder.hidden = YES;
+        self.mySegmentedControl.selectedSegmentIndex = 0;
+        self.mySegmentedControl.hidden=NO;
+    
+    }
+    
+    [self.mySegmentedControl addTarget:self action:@selector(segmentedControlToggler) forControlEvents:UIControlEventValueChanged];
+    self.mySegmentedControl.layer.borderWidth=1;
+    self.mySegmentedControl.layer.borderColor =[UIColor DonorsChooseOrange].CGColor;
+    self.mySegmentedControl.tintColor=[UIColor DonorsChooseOrange];
+    [self.view addSubview:self.mySegmentedControl];
 }
 
 - (void)segmentedControlToggler {
@@ -524,47 +569,80 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 	}
 }
 
-- (void)reloadTable:(NSNotification *)notification {
-	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Notification Received"
-	                                                               message:@"You just received a new donation!"
-	                                                        preferredStyle:UIAlertControllerStyleAlert];
 
-	UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-	                                                      handler: ^(UIAlertAction *action) {
-	}];
-	[alert addAction:defaultAction];
-
-	[self presentViewController:alert animated:YES completion:nil];
-
-	[self.proposal.donations removeAllObjects];
-	[self.donationsWhichNeedResponse removeAllObjects];
-
-
-
-	if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
-		[self populateDonationsWithFakeRespondedDonations];
-	}
-	else {
-		[self.datastore getDonationsListForProposal:self.proposal andCompletion: ^(BOOL completed) {
-		    [self populateDonationsWhichNeedResponseArray];
-		    [self.myTableView reloadData];
-		}];
-	}
+- (void)reloadTable:(NSNotification *)notification
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Notification Received"
+                                                                   message:@"You just received a new donation!"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                          }];
+    [alert addAction:defaultAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+//    [self.proposal.donations removeAllObjects];
+//    [self.donationsWhichNeedResponse removeAllObjects];
+    
+    
+    
+    if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
+        [self populateDonationsWithFakeRespondedDonations];
+    } else {
+        [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
+            [self populateDonationsWhichNeedResponseArray];
+            if (self.proposal.numDonationsNeedResponse==0) {
+                self.mySegmentedControl.selectedSegmentIndex=1;
+                self.mySegmentedControl.hidden=YES;
+                self.segmentedControlPlaceholder.hidden=NO;
+                
+                
+            } else {
+                self.segmentedControlPlaceholder.hidden = YES;
+                self.mySegmentedControl.selectedSegmentIndex = 0;
+                self.mySegmentedControl.hidden=NO;
+                
+            }
+            [self.myTableView reloadData];
+        }];
+    }
 }
 
-- (void)populateDonationsWithFakeRespondedDonations {
-	FISDonation *donation0 = [[FISDonation alloc]initWithName:@"Johnny B. Gud" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"Thanks!" DonationAmount:@"35.00"];
-	FISDonation *donation1 = [[FISDonation alloc]initWithName:@"Sandra Kyles" Location:@"New York" Date:[NSDate date] DonorMessage:@"Nice job" ResponseMessage:@"You're the best!  Thank you!" DonationAmount:@"5.00"];
-	FISDonation *donation2 = [[FISDonation alloc]initWithName:@"Bartholomew Cubbins" Location:@"Idaho" Date:[NSDate date] DonorMessage:@"Wow, keep up the good work!" ResponseMessage:@"Wow, thanks!" DonationAmount:@"2.00"];
-	FISDonation *donation3 = [[FISDonation alloc]initWithName:@"Mimi Dieter" Location:@"Hawaii" Date:[NSDate date] DonorMessage:@"Yay learning!" ResponseMessage:@"Thank you so much!" DonationAmount:@"40.00"];
-	FISDonation *donation4 = [[FISDonation alloc]initWithName:@"Adam Jones" Location:@"Miami" Date:[NSDate date] DonorMessage:@"Neat" ResponseMessage:@"Incredible, thanks!" DonationAmount:@"6.00"];
-	FISDonation *donation5 = [[FISDonation alloc]initWithName:@"Clarissa Starling" Location:@"Texas" Date:[NSDate date] DonorMessage:@"Good job!  Hope they learn a lot." ResponseMessage:@"So generous, thank you!" DonationAmount:@"100.00"];
-	FISDonation *donation6 = [[FISDonation alloc]initWithName:@"Johnny English" Location:@"Ohio" Date:[NSDate date] DonorMessage:@"Super fun!" ResponseMessage:@"Thanks!" DonationAmount:@"80.00"];
-	FISDonation *donation7 = [[FISDonation alloc]initWithName:@"Chad Hemmingsworth" Location:@"Chicago" Date:[NSDate date] DonorMessage:@"What a cool project.  Those kids sure are lucky" ResponseMessage:@"Wow, thank you so much!" DonationAmount:@"20.00"];
-	FISDonation *donation8 = [[FISDonation alloc]initWithName:@"Jasmine Yee" Location:@"Illinois" Date:[NSDate date] DonorMessage:@"Cooooool!" ResponseMessage:@"Thank you." DonationAmount:@"10.00"];
-	FISDonation *donation9 = [[FISDonation alloc]initWithName:@"Charlotte Kelly" Location:@"Los Angeles" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Oh my word, thank you!!!" DonationAmount:@"400.00"];
+-(void) populateDonationsWithFakeRespondedDonations {
+    FISDonation *donation0=[[FISDonation alloc]initWithName:@"Johnny B. Gud" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"Thanks!" DonationAmount:@"35.00"];
+    FISDonation *donation1=[[FISDonation alloc]initWithName:@"Sandra Kyles" Location:@"New York" Date:[NSDate date] DonorMessage:@"Nice job" ResponseMessage:@"You're the best!  Thank you!" DonationAmount:@"5.00"];
+    FISDonation *donation2=[[FISDonation alloc]initWithName:@"Bartholomew Cubbins" Location:@"Idaho" Date:[NSDate date] DonorMessage:@"Wow, keep up the good work!" ResponseMessage:@"Wow, thanks!" DonationAmount:@"2.00"];
+    FISDonation *donation3=[[FISDonation alloc]initWithName:@"Mimi Dieter" Location:@"Hawaii" Date:[NSDate date] DonorMessage:@"Yay learning!" ResponseMessage:@"Thank you so much!" DonationAmount:@"40.00"];
+    FISDonation *donation4=[[FISDonation alloc]initWithName:@"Adam Jones" Location:@"Miami" Date:[NSDate date] DonorMessage:@"Neat" ResponseMessage:@"Incredible, thanks!" DonationAmount:@"6.00"];
+    FISDonation *donation5=[[FISDonation alloc]initWithName:@"Clarissa Starling" Location:@"Texas" Date:[NSDate date] DonorMessage:@"Good job!  Hope they learn a lot." ResponseMessage:@"So generous, thank you!" DonationAmount:@"100.00"];
+    FISDonation *donation6=[[FISDonation alloc]initWithName:@"Johnny English" Location:@"Ohio" Date:[NSDate date] DonorMessage:@"Super fun!" ResponseMessage:@"Thanks!" DonationAmount:@"80.00"];
+    FISDonation *donation7=[[FISDonation alloc]initWithName:@"Chad Hemmingsworth" Location:@"Chicago" Date:[NSDate date] DonorMessage:@"What a cool project.  Those kids sure are lucky" ResponseMessage:@"Wow, thank you so much!" DonationAmount:@"20.00"];
+    FISDonation *donation8=[[FISDonation alloc]initWithName:@"Jasmine Yee" Location:@"Illinois" Date:[NSDate date] DonorMessage:@"Cooooool!" ResponseMessage:@"Thank you." DonationAmount:@"10.00"];
+    FISDonation *donation9=[[FISDonation alloc]initWithName:@"Charlotte Kelly" Location:@"Los Angeles" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Oh my word, thank you!!!" DonationAmount:@"400.00"];
+    FISDonation *donation10=[[FISDonation alloc]initWithName:@"Justin Turnbull" Location:@"Los Angeles" Date:[NSDate date] DonorMessage:@"Hope the kids have fun!" ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"50.00"];
+    FISDonation *donation11=[[FISDonation alloc]initWithName:@"Haley Kittredge" Location:@"Maine" Date:[NSDate date] DonorMessage:@"Impressive" ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"30.00"];
+    FISDonation *donation12=[[FISDonation alloc]initWithName:@"Evan Halperstand" Location:@"Wisconsin" Date:[NSDate date] DonorMessage:@"Have fun!" ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"20.00"];
+    FISDonation *donation13=[[FISDonation alloc]initWithName:@"Ian More" Location:@"Fargo" Date:[NSDate date] DonorMessage:@"Cool idea." ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"5.00"];
+    FISDonation *donation14=[[FISDonation alloc]initWithName:@"Matthew Fredericks" Location:@"Oregon" Date:[NSDate date] DonorMessage:@"Looks cool." ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"5.00"];
+    FISDonation *donation15=[[FISDonation alloc]initWithName:@"Kelly Harris" Location:@"Fort Lauderdale" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Thanks so much for your donation!" DonationAmount:@"90.00"];
+    FISDonation *donation16=[[FISDonation alloc]initWithName:@"Christina Sands" Location:@"Houston" Date:[NSDate date] DonorMessage:@"Such a cool idea." ResponseMessage:@"Thank you so much!" DonationAmount:@"1000.00"];
+    FISDonation *donation17=[[FISDonation alloc]initWithName:@"Elliot Ness" Location:@"New York" Date:[NSDate date] DonorMessage:@"Hope your kids enjoy this project." ResponseMessage:@"Thank you!" DonationAmount:@"100.00"];
+    FISDonation *donation18=[[FISDonation alloc]initWithName:@"Eric Dendy" Location:@"Brooklyn" Date:[NSDate date] DonorMessage:@"Good luck!" ResponseMessage:@"Thank you very much!" DonationAmount:@"50.00"];
+    FISDonation *donation19=[[FISDonation alloc]initWithName:@"Aaron Wettle" Location:@"San Francisco" Date:[NSDate date] DonorMessage:@"Fantastic work you're doing.  Keep it up." ResponseMessage:@"You're amazing, thank you!" DonationAmount:@"20.00"];
+    FISDonation *donation20=[[FISDonation alloc]initWithName:@"Michael Murray" Location:@"Sacramento" Date:[NSDate date] DonorMessage:@"Genius." ResponseMessage:@"Thanks!" DonationAmount:@"80.00"];
+    FISDonation *donation21=[[FISDonation alloc]initWithName:@"Gary Oren" Location:@"New Jersey" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Wow, thanks!" DonationAmount:@"10.00"];
+    FISDonation *donation22=[[FISDonation alloc]initWithName:@"Andrea Hillen" Location:@"Pennsylvania" Date:[NSDate date] DonorMessage:@"" ResponseMessage:@"Thank you!" DonationAmount:@"10.00"];
+    
+    self.proposal.donations=[@[donation0,donation1,donation2,donation3,donation4,donation5,donation6,donation7,donation8,donation9,donation10,donation11,donation12,donation13,donation14,donation15,donation16,donation17,donation18,donation19,donation20,donation21,donation22] mutableCopy];
+    if ([self.proposal.numDonors integerValue]<=23) {
+        while ([self.proposal.donations count]>[self.proposal.numDonors integerValue]) {
+            [self.proposal.donations removeLastObject];
+        }
+    }
+    
 
-	self.proposal.donations = [@[donation0, donation1, donation2, donation3, donation4, donation5, donation6, donation7, donation8, donation9] mutableCopy];
 }
 
 - (NSString *)formatDateLabelStringWithDateString:(NSString *)dateString {

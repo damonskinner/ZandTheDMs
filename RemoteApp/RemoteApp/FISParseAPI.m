@@ -285,7 +285,7 @@
         
         completionBlock(responseObject[@"results"][0]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
+        NSLog(@"Get Proposal Failed: %@",error.localizedDescription);
     }];
 }
 
@@ -364,6 +364,33 @@
     }];
 }
 
+
++(void)sendFinishedPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion {
+    NSString *pushURLString = [NSString stringWithFormat:@"https://api.parse.com/1/push"];
+    
+    NSString *decodedProposalTitle= [proposalTitle stringByDecodingHTMLEntities];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *notificationMessage = [NSString stringWithFormat:@"Your project \"%@\" is now fully funded!",decodedProposalTitle];
+    
+    
+    NSDictionary *params = @{@"where": @{@"teacherId": teacherId},
+                             @"badge":@"Increment",
+                             @"data": @{@"alert": notificationMessage}};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    
+    [manager.requestSerializer setValue:@"2EvZdDTprhbwbQ1Saz6Lz7YZ54qAKuFqv2j57Ezj" forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:@"XScYXImf4BFkIRWGY5Xt61LfKQoC6JGSUWB5N3Un" forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    [manager.requestSerializer setValue:@"application/json"                         forHTTPHeaderField:@"Content-Type"];
+    
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager POST:pushURLString parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Fail: %@",error.localizedDescription);
+    }];
+}
 
 #pragma mark - Deleting Objects and Relationships
 
