@@ -8,6 +8,8 @@
 
 #import "DateConfirmationViewController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "FISDonorsChooseProposal.h"
+#import "ContainerViewController.h"
 #import <FAKIonIcons.h>
 
 
@@ -35,6 +37,25 @@
     [super viewDidAppear:animated];
 }
 
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ContainerViewController*containerVC = (ContainerViewController*)self.parentViewController.parentViewController;
+    
+    containerVC.proposal.completionInfo[@"dueDate"] = [self convertDateToString: self.datePicker.date];
+}
+
+#pragma mark - Helper
+
+-(NSString*) convertDateToString: (NSDate *) date
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle: NSDateFormatterShortStyle];
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 #pragma mark - DatePicker
 
 -(void) setupDatePicker
@@ -57,7 +78,16 @@
 
 -(void) presentAlert
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Due Date For \nThank You Package" message:@"This will be the date you deliver your 'Thank You Package' by. For more information, visit DonorsChoose.org." preferredStyle:UIAlertControllerStyleAlert];
+    NSDate *ninetyDaysLater = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:90 toDate:[NSDate date] options:0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString *dateString = [dateFormatter stringFromDate:ninetyDaysLater];
+    
+    NSString *alertMessage = [NSString stringWithFormat:@"This will be the date you deliver your 'Thank You Package' by. For more information, visit DonorsChoose.org.\n Must be before %@.", dateString];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Due Date For \nThank You Package" message: alertMessage preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     

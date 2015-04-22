@@ -125,6 +125,7 @@
     self = [super init];
     if (self) {
         _donations = [[NSMutableArray alloc] init];
+        _completionInfo = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

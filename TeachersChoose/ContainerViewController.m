@@ -29,6 +29,7 @@ static const float TOTAL_VIEW_CONTROLLERS = 4.0;
     self.view.backgroundColor = [UIColor DonorsChooseOrange];
     self.myProgressView.progressTintColor = [UIColor DonorsChooseGreen];
     self.myProgressView.trackTintColor = [UIColor DonorsChooseGreyLight];
+    NSLog(@"%@", self.proposal);
 }
 
 #pragma mark - Navigation

@@ -7,6 +7,8 @@
 //
 
 #import "SpreadTheNewsViewController.h"
+#import "ContainerViewController.h"
+#import "FISDonorsChooseProposal.h"
 #import <FAKIonIcons.h>
 
 static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
@@ -50,8 +52,13 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
-- (IBAction)moreInfoTapped:(id)sender {
-    [self presentAlert];
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ContainerViewController*containerVC = (ContainerViewController*) self.parentViewController.parentViewController;
+    containerVC.proposal.completionInfo[@"thankYouNote"] = self.textView.text;
 }
 
 #pragma mark - UITextViewDelegate
@@ -106,6 +113,10 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 }
 
 #pragma mark - Helpers
+
+- (IBAction)moreInfoTapped:(id)sender {
+    [self presentAlert];
+}
 
 -(void) setupTextViewAndKeyboard
 {

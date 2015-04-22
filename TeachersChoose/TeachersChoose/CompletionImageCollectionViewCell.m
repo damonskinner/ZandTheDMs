@@ -11,11 +11,5 @@
 
 @implementation CompletionImageCollectionViewCell
 
-/* 
-    nothing in here yet, BUT
-    i think we'll have to have the cell update parse
-    when it gets updated with a new image
-*/
-
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "InitialConfirmationViewController.h"
+#import "ContainerViewController.h"
 #import <FAKIonIcons.h>
 
 @interface InitialConfirmationViewController ()
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkbox2;
 @property (weak, nonatomic) IBOutlet UIButton *checkbox3;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UILabel *dateConfirmationLabel;
 
 -(void) setupCheckboxes;
 -(void) setupUIButtonCheckbox: (UIButton *) checkbox;
@@ -35,13 +37,28 @@
     self.nextButton.layer.cornerRadius = 10;
     [self setupCheckboxes];
     [self setupHomeButton];
+    [self setDateLabel];
+    //    ((ContainerViewController*)self.parentViewController.parentViewController).proposal
+}
+
+-(void) setDateLabel
+{
+    NSDate *ninetyDaysLater = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:90 toDate:[NSDate date] options:0];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString *dateString = [dateFormatter stringFromDate:ninetyDaysLater];
+    
+    NSString *labelText = [NSString stringWithFormat:@"I am able to deliver my Thankyou Package by %@.", dateString];
+    
+    self.dateConfirmationLabel.text = labelText;
 }
 
 #pragma mark - Navigation
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    
     if(![self evaluateCheckboxes])
         [self presentAlert];
     

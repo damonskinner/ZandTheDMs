@@ -7,6 +7,8 @@
 //
 
 #import "ReviewInformationViewController.h"
+#import "FISDonorsChooseDatastore.h"
+#import "FISDonorsChooseTeacher.h"
 #import "ContainerViewController.h"
 #import <FAKIonIcons.h>
 
@@ -20,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *schoolCityStateZipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thankyouDueDateLabel;
 
+@property (strong, nonatomic) FISDonorsChooseDatastore *dataStore;
+@property (strong, nonatomic) FISDonorsChooseTeacher *teacher;
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
+
 @end
 
 @implementation ReviewInformationViewController
@@ -28,13 +34,29 @@
     [super viewDidLoad];
     self.completeMyProjectButton.layer.cornerRadius = 10;
     [self setupHomeButton];
+    self.dataStore = [FISDonorsChooseDatastore sharedDataStore];
+    self.teacher = self.dataStore.loggedInTeacher;
+    self.proposal = ((ContainerViewController*)self.parentViewController.parentViewController).proposal;
 }
+
+-(void)setTeacher:(FISDonorsChooseTeacher *)teacher
+{
+    self.teacherNameLabel.text = teacher.name;
+    self.schoolNameLabel.text = teacher.schoolName;
+    self.schoolAddressLabel.text = @"2101 N Indiana Ave";
+    self.schoolCityStateZipLabel.text = @"Los Angeles, CA 90032";
+    self.specialInstructionsLabel =  self.proposal.completionInfo[@"specialInstructions"];
+}
+
 
 -(void) presentAreYouSureAlert
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are You Sure?" message:@"Once submitted, this information may not be edited." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        NSLog(@"readyToSubmit");
+
+        //TODO: add API call to save completionInfo
+        self.proposal.completionInfo[@"fundingConfirmed"] = @"YES";
+
         [self presentCongratulationsViewController];
     }];
     

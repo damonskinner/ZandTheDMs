@@ -7,29 +7,50 @@
 //
 
 #import "AddressConfirmationViewController.h"
+#import "FISDonorsChooseDatastore.h"
+#import "FISDonorsChooseTeacher.h"
+#import "ContainerViewController.h"
 #import <FAKIonIcons.h>
 
 @interface AddressConfirmationViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *editAddressButton;
-
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
+
+@property (strong, nonatomic) FISDonorsChooseDatastore *dataStore;
+@property (strong, nonatomic) FISDonorsChooseTeacher *teacher;
+
+@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *schoolNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityStateZipLabel;
 
 @end
 
 @implementation AddressConfirmationViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.dataStore = [FISDonorsChooseDatastore sharedDataStore];
+    self.teacher = self.dataStore.loggedInTeacher;
+
     self.inputTextField.delegate = self;
-    [self setupKeyboardDismissalOnTouch];
+    
     self.editAddressButton.layer.cornerRadius = 10;
     self.nextButton.layer.cornerRadius = 10;
+    
     [self setupHomeButton];
+    [self setupKeyboardDismissalOnTouch];
+}
+
+-(void)setTeacher:(FISDonorsChooseTeacher *)teacher
+{
+    self.teacherNameLabel.text = teacher.name;
+    self.schoolNameLabel.text = teacher.schoolName;
+    self.addressLabel.text = @"2101 N Indiana Ave";
+    self.cityStateZipLabel.text = [self makeCityStateZipLabel];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -43,28 +64,24 @@
 -(void) setupKeyboardDismissalOnTouch
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
+                                   initWithTarget:self.inputTextField
+                                   action:@selector(resignFirstResponder)];
     
     [self.view addGestureRecognizer:tap];
 }
 
--(void) dismissKeyboard
-{
-    [self.inputTextField resignFirstResponder];
-}
-
-
-
 #pragma mark - Edit Address Button
 
-- (IBAction)editAddressTapped:(id)sender {
-    [self presentAlert];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ContainerViewController*containerVC = (ContainerViewController*)self.parentViewController.parentViewController;
+    
+    containerVC.proposal.completionInfo[@"specialInstructions"] = self.inputTextField.text;
 }
 
 -(void) presentAlert
 {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Contact Us" message:@"Changing your address requires confirmation by a DonorsChoose employee. Please call us at 555-555-5555." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Contact Us" message:@"Changing your address requires confirmation by our data provider. Please contact us at DonorsChoose.org." preferredStyle: UIAlertControllerStyleAlert];
     
     UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     
@@ -93,6 +110,11 @@
     [alertController addAction:okAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(NSString *) makeCityStateZipLabel
+{
+    return [NSString stringWithFormat:@"%@, %@ %@", self.teacher.city, self.teacher.state, self.teacher.zip];
 }
 
 @end
