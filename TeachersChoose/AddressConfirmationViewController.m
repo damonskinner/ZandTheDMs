@@ -29,6 +29,7 @@
 @implementation AddressConfirmationViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     
 //    self.proposal = ((ContainerViewController *) self.parentViewController.parentViewController).proposal;
@@ -50,15 +51,16 @@
     self.schoolNameLabel.text = proposal.schoolName;
     self.addressLabel.text = @"2101 N Indiana Ave";
     self.cityStateZipLabel.text = [NSString stringWithFormat:@"%@, %@ %@", proposal.city, proposal.state, proposal.zip];
+
 }
 
 #pragma mark - UITextFieldDelegate
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
 }
+
 
 -(void) setupKeyboardDismissalOnTouch
 {
@@ -87,28 +89,27 @@
     [alertController addAction: okayAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 #pragma mark - Home Button
 
--(void) setupHomeButton
-{
-    UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+- (void)setupHomeButton {
+	UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
 }
 
--(void) homeButtonTapped
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+- (void)homeButtonTapped {
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+	    [self dismissViewControllerAnimated:YES completion:nil];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+	[alertController addAction:cancelAction];
+	[alertController addAction:okAction];
+
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 

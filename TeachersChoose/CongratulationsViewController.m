@@ -26,6 +26,7 @@
 @implementation CongratulationsViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     [self formatNavBar];
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -47,43 +48,37 @@
     [self.navigationController.navigationBar setTranslucent: NO];
     [self.navigationController.navigationBar setBarTintColor: [UIColor DonorsChooseOrange]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{                                                                    NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:20]}];
+
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
 }
 
--(void) setupThankYouPackageButtons
-{
-    FAKIonIcons *letterIcon = [FAKIonIcons iosEmailOutlineIconWithSize:62];
-    [self.impactLetterButton setAttributedTitle:[letterIcon attributedString] forState:UIControlStateNormal];
-    [self.impactLetterButton setBackgroundColor: [UIColor DonorsChooseOrange]];
-    self.impactLetterButton.layer.cornerRadius = 10;
+- (void)setupThankYouPackageButtons {
+	FAKIonIcons *letterIcon = [FAKIonIcons iosEmailOutlineIconWithSize:62];
+	[self.impactLetterButton setAttributedTitle:[letterIcon attributedString] forState:UIControlStateNormal];
+	[self.impactLetterButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+	self.impactLetterButton.layer.cornerRadius = 10;
 
-    FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:62];
-    [self.cameraAccessButton setAttributedTitle:[cameraIcon attributedString] forState:UIControlStateNormal];
-    [self.cameraAccessButton setBackgroundColor: [UIColor DonorsChooseOrange]];
-    self.cameraAccessButton.layer.cornerRadius = 10;
-    
-    FAKIonIcons *printIcon = [FAKIonIcons iosPrinterOutlineIconWithSize:62];
-    [self.printLabelButton setAttributedTitle:[printIcon attributedString] forState:UIControlStateNormal];
-    [self.printLabelButton setBackgroundColor: [UIColor DonorsChooseOrange]];
-    self.printLabelButton.layer.cornerRadius = 10;
+	FAKIonIcons *cameraIcon = [FAKIonIcons iosCameraOutlineIconWithSize:62];
+	[self.cameraAccessButton setAttributedTitle:[cameraIcon attributedString] forState:UIControlStateNormal];
+	[self.cameraAccessButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+	self.cameraAccessButton.layer.cornerRadius = 10;
+
+	FAKIonIcons *printIcon = [FAKIonIcons iosPrinterOutlineIconWithSize:62];
+	[self.printLabelButton setAttributedTitle:[printIcon attributedString] forState:UIControlStateNormal];
+	[self.printLabelButton setBackgroundColor:[UIColor DonorsChooseOrange]];
+	self.printLabelButton.layer.cornerRadius = 10;
 }
 
 #pragma mark - Home Button
 
--(void) setupHomeButton
-{
-    UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+- (void)setupHomeButton {
+	UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
 }
 
--(void) homeButtonTapped
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 
 #pragma mark - Navigation
@@ -101,6 +96,11 @@
     {
         ((PhotoManagerViewController*)vc).proposal = self.proposal;
     }
+}
+
+
+- (void)homeButtonTapped {
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

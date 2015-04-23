@@ -22,14 +22,15 @@
 @property (strong, nonatomic) FISDonorsChooseDatastore *dataStore;
 @property (strong, nonatomic) NSMutableArray *completionPictures;
 
--(void) setupCompletionPicturesArray;
--(void) presentPhotoActionSheet;
+- (void)setupCompletionPicturesArray;
+- (void)presentPhotoActionSheet;
 
 @end
 
 @implementation PhotoManagerViewController
 
 #pragma mark - View LifeCycle
+
 
 - (void)viewDidLoad
 {
@@ -47,22 +48,25 @@
     self.uploadButton.layer.cornerRadius = 10;
     self.uploadButton.backgroundColor = [UIColor DonorsChooseGreen];
     [self setupCompletionPicturesArray];
+
 }
 
 #pragma mark - UICollectionView Delegate
 - (IBAction)uploadButtonTapped:(id)sender {
+
     NSLog(@"uploadTapped");
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // SAVE IT TO THE DATASTORE HERE
     
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [self.completionPictures count];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return [self.completionPictures count];
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -75,84 +79,72 @@
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"selected item: %ld", indexPath.row);
-    self.selectedRow = indexPath.row;
-    [self presentPhotoActionSheet];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	self.selectedRow = indexPath.row;
+	[self presentPhotoActionSheet];
 }
 
 #pragma mark - UIImagePickerController Delegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    NSLog(@"image chosen, info: %@", info);
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.completionPictures[self.selectedRow] = chosenImage;
-    [picker dismissViewControllerAnimated:YES completion:^{
-        [self.collectionView reloadData];
-    }];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+	UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+	self.completionPictures[self.selectedRow] = chosenImage;
+	[picker dismissViewControllerAnimated:YES completion: ^{
+	    [self.collectionView reloadData];
+	}];
 }
 
 #pragma mark - Helpers
 
--(void) setupCompletionPicturesArray
-{
-    if (self.completionPictures == nil)
-    {
-        self.completionPictures = [[NSMutableArray alloc] init];
-    }
-    
-    // fill the collection view with any necessary placeholders
-    while ([self.completionPictures count] < 6)
-    {
-        [self.completionPictures addObject: self.cameraImage];
-    }
+- (void)setupCompletionPicturesArray {
+	if (self.completionPictures == nil) {
+		self.completionPictures = [[NSMutableArray alloc] init];
+	}
+
+	// fill the collection view with any necessary placeholders
+	while ([self.completionPictures count] < 6) {
+		[self.completionPictures addObject:self.cameraImage];
+	}
 }
 
--(void) presentPhotoActionSheet
-{
-    // setup picker first
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+- (void)presentPhotoActionSheet {
+	// setup picker first
+	UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+	picker.allowsEditing = YES;
 
-    UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-    {
-        NSLog(@"take photo chosen");
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:picker animated:YES completion:nil];
-    }];
-    
-    UIAlertAction *choosePhoto = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
-    {
-        NSLog(@"choose photo chosen");
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:picker animated:YES completion:nil];
-    }];
-    
-    [alertController addAction: takePhoto];
-    [alertController addAction: choosePhoto];
-    
-    if (self.completionPictures[self.selectedRow] != self.cameraImage){
-        UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action)
-        {
-            NSLog(@"remove photo chosen");
-            [self.completionPictures removeObjectAtIndex: self.selectedRow];
-            [self.completionPictures insertObject: self.cameraImage atIndex:self.selectedRow];
-            [self.collectionView reloadData];
-        }];
-        [alertController addAction: removePhoto];
-    }
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-    [alertController addAction: cancel];
-    
-    [self presentViewController: alertController animated: YES completion:nil];
+	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+	UIAlertAction *takePhoto = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action)
+	{
+	    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+	    [self presentViewController:picker animated:YES completion:nil];
+	}];
+
+	UIAlertAction *choosePhoto = [UIAlertAction actionWithTitle:@"Choose Photo" style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action)
+	{
+	    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+	    [self presentViewController:picker animated:YES completion:nil];
+	}];
+
+	[alertController addAction:takePhoto];
+	[alertController addAction:choosePhoto];
+
+	if (self.completionPictures[self.selectedRow] != self.cameraImage) {
+		UIAlertAction *removePhoto = [UIAlertAction actionWithTitle:@"Remove Photo" style:UIAlertActionStyleDestructive handler: ^(UIAlertAction *action)
+		{
+		    [self.completionPictures removeObjectAtIndex:self.selectedRow];
+		    [self.completionPictures insertObject:self.cameraImage atIndex:self.selectedRow];
+		    [self.collectionView reloadData];
+		}];
+		[alertController addAction:removePhoto];
+	}
+
+	[alertController addAction:cancel];
+
+	[self presentViewController:alertController animated:YES completion:nil];
 }
-
 
 @end

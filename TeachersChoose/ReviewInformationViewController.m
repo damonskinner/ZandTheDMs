@@ -32,6 +32,7 @@
 @implementation ReviewInformationViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     self.completeMyProjectButton.layer.cornerRadius = 10;
     [self setupHomeButton];
@@ -78,38 +79,35 @@
 }
 
 - (IBAction)completeMyProjectTapped:(id)sender {
-    [self presentAreYouSureAlert];
+	[self presentAreYouSureAlert];
 }
 
--(void) presentCongratulationsViewController
-{
-    UIViewController *nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congratulationsVC"];
-    [UIView animateWithDuration:0.5 animations:^{
-        [((ContainerViewController*) self.navigationController.parentViewController).myProgressView setAlpha:0];
-    }];
-    [self.navigationController showViewController:nextVC sender:nil];
+- (void)presentCongratulationsViewController {
+	UIViewController *nextVC = [self.storyboard instantiateViewControllerWithIdentifier:@"congratulationsVC"];
+	[UIView animateWithDuration:0.5 animations: ^{
+	    [((ContainerViewController *)self.navigationController.parentViewController).myProgressView setAlpha:0];
+	}];
+	[self.navigationController showViewController:nextVC sender:nil];
 }
 
 #pragma mark - Home Button
 
--(void) setupHomeButton
-{
-    UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
+- (void)setupHomeButton {
+	UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
 }
 
--(void) homeButtonTapped
-{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
-    [alertController addAction:cancelAction];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+- (void)homeButtonTapped {
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
+	    [self dismissViewControllerAnimated:YES completion:nil];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+	[alertController addAction:cancelAction];
+	[alertController addAction:okAction];
+
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

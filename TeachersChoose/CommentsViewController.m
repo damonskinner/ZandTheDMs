@@ -20,403 +20,424 @@
 #import "NSDate+InternetDateTime.h"
 #import "CustomItemUIActivityItemProvider.h"
 
-
 @interface CommentsViewController () <UIActivityItemSource>
 
 @property (nonatomic, strong) FISDonorsChooseProposal *proposal;
-//@property (strong, nonatomic) NSMutableDictionary *commentsDictionary;
-@property (strong, nonatomic) NSMutableArray *orderedListOfDonors;
+@property (nonatomic, strong) NSMutableArray *orderedListOfDonors;
 @property (nonatomic, strong) UITableView *myTableView;
 @property (nonatomic, strong) UISegmentedControl *mySegmentedControl;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) NSInteger selectedDonation;
 @property (nonatomic, strong)   UILabel *segmentedControlPlaceholder;
 
-@property (nonatomic, strong) FISDonorsChooseDatastore   *datastore;
+@property (nonatomic, strong) FISDonorsChooseDatastore *datastore;
 @property (nonatomic, strong) NSMutableArray *donationsWhichNeedResponse;
 
-
--(void) setupSegmentedControl;
--(void) prepareTableViewForResizingCells;
--(void) populateDonationsWhichNeedResponseArray;
-//-(void) populateCommentsDictionary;
+- (void)setupSegmentedControl;
+- (void)prepareTableViewForResizingCells;
+- (void)populateDonationsWhichNeedResponseArray;
 
 @end
 
 
-NSString * const INPUT_CELL_IDENTIFIER = @"inputCell";
-NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
+NSString *const INPUT_CELL_IDENTIFIER = @"inputCell";
+NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 
-@implementation CommentsViewController
+@implementation CommentsViewController {
+    CGFloat _topYofKeyboard;
+    CGFloat _bottomYofTextView;
+    CGFloat _tabBarHeight;
+    BOOL _viewWasOffset;
+}
 
 #pragma mark - View LifeCycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [((UINavigationController*)self.parentViewController.parentViewController).navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareTapped)]];
-    
-    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
-    self.datastore=[FISDonorsChooseDatastore sharedDataStore];
-    self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
-//    [self populateDonationsWhichNeedResponseArray];
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	[((UINavigationController *)self.parentViewController.parentViewController).navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Share" style:UIBarButtonItemStylePlain target:self action:@selector(shareTapped)]];
 
-//    [self setupSegmentedControl];
-    [self setupLayout];
-    //    [self populateCommentsDictionary];
-    [self prepareTableViewForResizingCells];
-    self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.myTableView.delegate=self;
-    self.myTableView.dataSource=self;
-    self.navigationController.navigationBarHidden=YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+	self.proposal = ((DetailsTabBarController *)self.tabBarController).selectedProposal;
+	self.datastore = [FISDonorsChooseDatastore sharedDataStore];
+	self.donationsWhichNeedResponse = [[NSMutableArray alloc]init];
     
+	[self setupLayout];
+	[self prepareTableViewForResizingCells];
+	self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.myTableView.delegate = self;
+	self.myTableView.dataSource = self;
+	self.navigationController.navigationBarHidden = YES;
+    
+    _viewWasOffset = NO;
+    _topYofKeyboard = 0.0f;
+    _bottomYofTextView = 0.0f;
+    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self
+	                                         selector:@selector(keyboardWillShow:)
+	                                             name:UIKeyboardWillShowNotification
+	                                           object:nil];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self
+	                                         selector:@selector(keyboardWillHide:)
+	                                             name:UIKeyboardWillHideNotification
+	                                           object:nil];
 }
 
--(void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
     
-    [self.proposal.donations removeAllObjects];
-    [self.donationsWhichNeedResponse removeAllObjects];
-    
-    if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
-        [self populateDonationsWithFakeRespondedDonations];
-        [self.myTableView reloadData];
-    } else {
-        [self.datastore getDonationsListForProposal:self.proposal andCompletion:^(BOOL completed) {
-            [self populateDonationsWhichNeedResponseArray];
-            [self.myTableView reloadData];
-        }];
+
+	NSDictionary *info = [notification userInfo];
+	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    if (_viewWasOffset) {
+        CGPoint point = self.myTableView.contentOffset;
+        point.y -= (_bottomYofTextView) - _topYofKeyboard;
+        [self.myTableView setContentOffset:point animated:YES];
+
     }
+    _topYofKeyboard = 0.0f;
+    _viewWasOffset = NO;
+}
+
+- (void)textFieldWasTappedWithTextView:(UITextView *)textView {
+    CGRect frameRelativeToViewControllerView = [textView convertRect:textView.bounds toView:self.view];
+    CGFloat textViewY = frameRelativeToViewControllerView.origin.y;
+    CGFloat textViewHeight = frameRelativeToViewControllerView.size.height;
+    _bottomYofTextView = textViewY + textViewHeight;
     
-    
+    if (_bottomYofTextView > _topYofKeyboard) {
+        _viewWasOffset = YES;
+        CGPoint point = self.myTableView.contentOffset;
+        point.y += (_bottomYofTextView) - _topYofKeyboard;
+        [self.myTableView setContentOffset:point animated:YES];
+    }
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+
+	[self.proposal.donations removeAllObjects];
+	[self.donationsWhichNeedResponse removeAllObjects];
+
+	if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+		[self populateDonationsWithFakeRespondedDonations];
+	}
+	else {
+		[self.datastore getDonationsListForProposal:self.proposal andCompletion: ^(BOOL completed) {
+		    [self populateDonationsWhichNeedResponseArray];
+		    [self.myTableView reloadData];
+		}];
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-
+	[super viewWillAppear:animated];
 }
 
--(void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    NSLog(@"MEMORY WARNING");
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.mySegmentedControl.selectedSegmentIndex==0) {
-        return [self.donationsWhichNeedResponse count];
-    } else {
-        return [self.proposal.donations count];
-    }
-    
+	if (self.mySegmentedControl.selectedSegmentIndex == 0) {
+		return [self.donationsWhichNeedResponse count];
+	}
+	else {
+		return [self.proposal.donations count];
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 2;
+	return 2;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.mySegmentedControl.selectedSegmentIndex == 0) {
+		if (indexPath.row == 1) {
+			FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
+			if (!cell) {
+				cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
+			}
+			cell.delegate = self;
+			//        cell.parentTableView = tableView;
+			cell.placeholder = INPUT_CELL_PLACEHOLDER;
+			return cell;
+		}
+		else {
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BASIC_CELL_IDENTIFIER];
+			if (!cell) {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
+			}
 
-    if(self.mySegmentedControl.selectedSegmentIndex==0) {
-        if (indexPath.row==1) {
+			if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length] > 0) {
+				[self formatCell:cell forBasicDisplaywithMessage:((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
 
 
+				return cell;
+			}
+			else {
+				[self formatCell:cell forBasicDisplaywithMessage:[NSString stringWithFormat:@"%@ from %@ donated.", ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorName, ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorLocation] andIndexPath:indexPath];
 
-            FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
-            if (!cell) {
-                cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
-            }
-            cell.CommentsViewController=self;
-            //        cell.parentTableView = tableView;
-            cell.placeholder = INPUT_CELL_PLACEHOLDER;
-            return cell;
-            
-        } else {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: BASIC_CELL_IDENTIFIER];
-            if (!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
-            }
+				return cell;
+			}
+		}
+	}
+	else {
+		if (indexPath.row == 1) {
+			if ([((FISDonation *)self.proposal.donations[indexPath.section]).responseMessage length] < 1) {
+				FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
+				if (!cell) {
+					cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
+				}
+				cell.delegate = self;
+				//        cell.parentTableView = tableView;
+				cell.placeholder = INPUT_CELL_PLACEHOLDER;
+				return cell;
+			}
+			else {
+				UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BASIC_CELL_IDENTIFIER];
+				if (!cell) {
+					cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
+				}
+				[self formatCell:cell forBasicDisplaywithMessage:((FISDonation *)self.proposal.donations[indexPath.section]).responseMessage andIndexPath:indexPath];
+				return cell;
+			}
+		}
+		else {
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:BASIC_CELL_IDENTIFIER];
+			if (!cell) {
+				cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
+			}
+			if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length] > 0) {
+				[self formatCell:cell forBasicDisplaywithMessage:((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
 
-            if ([((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage length]>0) {
-                [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorMessage andIndexPath:indexPath];
-               
-
-                return cell;
-                
-            } else {
-                [self formatCell: cell forBasicDisplaywithMessage: [NSString stringWithFormat:@"%@ from %@ donated.",((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorName,((FISDonation *)self.donationsWhichNeedResponse[indexPath.section]).donorLocation] andIndexPath:indexPath];
-
-                return cell;
-            }
-        }
-    } else {
-        if (indexPath.row==1) {
-            if ([((FISDonation *)self.proposal.donations[indexPath.section]).responseMessage length]<1) {
-                FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
-                if (!cell) {
-                    cell = [[FISInputCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:INPUT_CELL_IDENTIFIER];
-                }
-                cell.CommentsViewController=self;
-                //        cell.parentTableView = tableView;
-                cell.placeholder = INPUT_CELL_PLACEHOLDER;
-                return cell;
-                
-            } else {
-                
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: BASIC_CELL_IDENTIFIER];
-                if (!cell){
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
-                }
-                [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).responseMessage andIndexPath:indexPath];
-                return cell;
-                
-            }
-            
-        } else {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: BASIC_CELL_IDENTIFIER];
-            if (!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:BASIC_CELL_IDENTIFIER];
-            }
-            if ([((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage length]>0) {
-                [self formatCell: cell forBasicDisplaywithMessage: ((FISDonation *)self.proposal.donations[indexPath.section]).donorMessage andIndexPath:indexPath];
-
-                return cell;
-                
-            } else {
-                [self formatCell: cell forBasicDisplaywithMessage: [NSString stringWithFormat:@"%@ from %@ donated.",((FISDonation *)self.proposal.donations[indexPath.section]).donorName,((FISDonation *)self.proposal.donations[indexPath.section]).donorLocation] andIndexPath:indexPath];
-                return cell;
-            }
-        }
-    }
-    
-    
-    
-    
+				return cell;
+			}
+			else {
+				[self formatCell:cell forBasicDisplaywithMessage:[NSString stringWithFormat:@"%@ from %@ donated.", ((FISDonation *)self.proposal.donations[indexPath.section]).donorName, ((FISDonation *)self.proposal.donations[indexPath.section]).donorLocation] andIndexPath:indexPath];
+				return cell;
+			}
+		}
+	}
 }
 
 #pragma mark - UITableViewDelegate
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
-    
-    
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
 
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
 
-    [nameLabel setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:17]];
-    NSString *titleString;
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
-    
-    [dateLabel setFont:[UIFont fontWithName:DonorsChooseTitleLightFont size:15]];
-    NSString *dateLabelString;
 
-    if(self.mySegmentedControl.selectedSegmentIndex==0) {
-        titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.donationsWhichNeedResponse[section]).donorName];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
-        NSString *dateString = [NSString stringWithFormat:@"%@",((FISDonation *) self.donationsWhichNeedResponse[section]).donationDate];
-        dateLabelString = [self formatDateLabelStringWithDateString:dateString];
-        
-        
-    } else {
-        titleString= [NSString stringWithFormat:@"%@", ((FISDonation *) self.proposal.donations[section]).donorName];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
-        NSString *dateString = [NSString stringWithFormat:@"%@",((FISDonation *) self.proposal.donations[section]).donationDate];
-        dateLabelString = [self formatDateLabelStringWithDateString:dateString];
-       
-    }
-    
-    [nameLabel setText:titleString];
-    [dateLabel setText:dateLabelString];
-    
-    
-    [view addSubview:nameLabel];
-    [view addSubview:dateLabel];
-    
-    
-    [dateLabel removeConstraints:dateLabel.constraints];
-    [view removeConstraints:view.constraints];
-    [nameLabel removeConstraints:nameLabel.constraints];
-    
-    dateLabel.translatesAutoresizingMaskIntoConstraints=NO;
-    nameLabel.translatesAutoresizingMaskIntoConstraints=NO;
-    
-    NSLayoutConstraint *dateLabelRight =
-    [NSLayoutConstraint constraintWithItem:dateLabel
-                                 attribute:NSLayoutAttributeRight
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:view
-                                 attribute:NSLayoutAttributeRightMargin
-                                multiplier:1.0
-                                  constant:0];
-    
-    [view addConstraint:dateLabelRight];
-    
-    NSLayoutConstraint *nameLabelLeft =
-    [NSLayoutConstraint constraintWithItem:nameLabel
-                                 attribute:NSLayoutAttributeLeft
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:view
-                                 attribute:NSLayoutAttributeLeftMargin
-                                multiplier:1.0
-                                  constant:0];
-    
-    [view addConstraint:nameLabelLeft];
-    
-    
-    NSLayoutConstraint *dateLabelY =
-    [NSLayoutConstraint constraintWithItem:dateLabel
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:view
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0];
-    
-    [view addConstraint:dateLabelY];
-    NSLayoutConstraint *nameLabelY =
-    [NSLayoutConstraint constraintWithItem:nameLabel
-                                 attribute:NSLayoutAttributeCenterY
-                                 relatedBy:NSLayoutRelationEqual
-                                    toItem:view
-                                 attribute:NSLayoutAttributeCenterY
-                                multiplier:1.0
-                                  constant:0];
-    
-    [view addConstraint:nameLabelY];
-    
-    
-    view.backgroundColor = [UIColor DonorsChooseGreyLight];
-    return view;
+	UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
+
+	[nameLabel setFont:[UIFont fontWithName:DonorsChooseTitleBoldFont size:17]];
+	NSString *titleString;
+	UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 30)];
+
+	[dateLabel setFont:[UIFont fontWithName:DonorsChooseTitleLightFont size:15]];
+	NSString *dateLabelString;
+
+	if (self.mySegmentedControl.selectedSegmentIndex == 0) {
+		titleString = [NSString stringWithFormat:@"%@", ((FISDonation *)self.donationsWhichNeedResponse[section]).donorName];
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+		NSString *dateString = [NSString stringWithFormat:@"%@", ((FISDonation *)self.donationsWhichNeedResponse[section]).donationDate];
+		dateLabelString = [self formatDateLabelStringWithDateString:dateString];
+	}
+	else {
+		titleString = [NSString stringWithFormat:@"%@", ((FISDonation *)self.proposal.donations[section]).donorName];
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm"];
+		NSString *dateString = [NSString stringWithFormat:@"%@", ((FISDonation *)self.proposal.donations[section]).donationDate];
+		dateLabelString = [self formatDateLabelStringWithDateString:dateString];
+	}
+
+	[nameLabel setText:titleString];
+	[dateLabel setText:dateLabelString];
+
+
+	[view addSubview:nameLabel];
+	[view addSubview:dateLabel];
+
+
+	[dateLabel removeConstraints:dateLabel.constraints];
+	[view removeConstraints:view.constraints];
+	[nameLabel removeConstraints:nameLabel.constraints];
+
+	dateLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	nameLabel.translatesAutoresizingMaskIntoConstraints = NO;
+
+	NSLayoutConstraint *dateLabelRight =
+	    [NSLayoutConstraint constraintWithItem:dateLabel
+	                                 attribute:NSLayoutAttributeRight
+	                                 relatedBy:NSLayoutRelationEqual
+	                                    toItem:view
+	                                 attribute:NSLayoutAttributeRightMargin
+	                                multiplier:1.0
+	                                  constant:0];
+
+	[view addConstraint:dateLabelRight];
+
+	NSLayoutConstraint *nameLabelLeft =
+	    [NSLayoutConstraint constraintWithItem:nameLabel
+	                                 attribute:NSLayoutAttributeLeft
+	                                 relatedBy:NSLayoutRelationEqual
+	                                    toItem:view
+	                                 attribute:NSLayoutAttributeLeftMargin
+	                                multiplier:1.0
+	                                  constant:0];
+
+	[view addConstraint:nameLabelLeft];
+
+
+	NSLayoutConstraint *dateLabelY =
+	    [NSLayoutConstraint constraintWithItem:dateLabel
+	                                 attribute:NSLayoutAttributeCenterY
+	                                 relatedBy:NSLayoutRelationEqual
+	                                    toItem:view
+	                                 attribute:NSLayoutAttributeCenterY
+	                                multiplier:1.0
+	                                  constant:0];
+
+	[view addConstraint:dateLabelY];
+	NSLayoutConstraint *nameLabelY =
+	    [NSLayoutConstraint constraintWithItem:nameLabel
+	                                 attribute:NSLayoutAttributeCenterY
+	                                 relatedBy:NSLayoutRelationEqual
+	                                    toItem:view
+	                                 attribute:NSLayoutAttributeCenterY
+	                                multiplier:1.0
+	                                  constant:0];
+
+	[view addConstraint:nameLabelY];
+
+
+	view.backgroundColor = [UIColor DonorsChooseGreyLight];
+	return view;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30; // just seemed like a magical number
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 30; // just seemed like a magical number
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    // height-less because we implement tableView:heightForFooterInSection:
-    UIView *view = [[UIView alloc] initWithFrame: CGRectMake(0,0, tableView.frame.size.width, 30)];
-    view.backgroundColor = [UIColor DonorsChooseWhite];
-    return view;
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	// height-less because we implement tableView:heightForFooterInSection:
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+	view.backgroundColor = [UIColor DonorsChooseWhite];
+	return view;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 10; // just seemed like a magical number
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	return 10; // just seemed like a magical number
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(tintColor)]) {
+		if (tableView == self.myTableView) {
+			CGFloat cornerRadius = 8.f;
+			cell.backgroundColor = [UIColor DonorsChooseGreyLight];
+
+			CAShapeLayer *layer = [[CAShapeLayer alloc] init];
+			CGMutablePathRef pathRef = CGPathCreateMutable();
+			CGRect bounds = (CGRectInset(cell.bounds, 10, 3));
+			if (indexPath.row == 0) {
+				layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
+				CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds) - 5);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds) - 5, CGRectGetMaxY(bounds) + 3);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds) + 10, CGRectGetMaxY(bounds));
 
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([cell respondsToSelector:@selector(tintColor)]) {
-        if (tableView == self.myTableView) {
-            CGFloat cornerRadius = 8.f;
-            cell.backgroundColor = [UIColor DonorsChooseGreyLight];
-            
-            CAShapeLayer *layer = [[CAShapeLayer alloc] init];
-            CGMutablePathRef pathRef = CGPathCreateMutable();
-            CGRect bounds = (CGRectInset(cell.bounds, 10, 3));
-            if (indexPath.row==0) {
-                layer.fillColor = [UIColor DonorsChooseOrange].CGColor;
-                CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
-                
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-5);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)-5, CGRectGetMaxY(bounds)+3);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+10, CGRectGetMaxY(bounds));
-                
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+			}
+			else {
+				layer.fillColor = [UIColor DonorsChooseGreyVeryLight].CGColor;
+				layer.strokeColor = [UIColor DonorsChooseOrange].CGColor;
 
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
-            } else {
-                layer.fillColor = [UIColor DonorsChooseGreyVeryLight].CGColor;
-                layer.strokeColor=[UIColor DonorsChooseOrange].CGColor;
 
-                
-                CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-5);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)+5, CGRectGetMaxY(bounds)+3);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)-10, CGRectGetMaxY(bounds));
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
-                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
-                CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
-                
-            }
+				CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds) - 5);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds) + 5, CGRectGetMaxY(bounds) + 3);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds) - 10, CGRectGetMaxY(bounds));
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+				CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+				CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+			}
 
-            
-            layer.path = pathRef;
-            CFRelease(pathRef);
-            
 
-            
-            UIView *testView = [[UIView alloc] initWithFrame:bounds];
-            [testView.layer insertSublayer:layer atIndex:0];
-            testView.backgroundColor = UIColor.clearColor;
-            cell.backgroundView = testView;
-        }
-    }
+			layer.path = pathRef;
+			CFRelease(pathRef);
+
+
+
+			UIView *testView = [[UIView alloc] initWithFrame:bounds];
+			[testView.layer insertSublayer:layer atIndex:0];
+			testView.backgroundColor = UIColor.clearColor;
+			cell.backgroundView = testView;
+		}
+	}
 }
+
 #pragma mark - Formatting Helpers
 
 
 
 
--(void) prepareTableViewForResizingCells
-{
-    self.myTableView.rowHeight = UITableViewAutomaticDimension;
-    self.myTableView.estimatedRowHeight = 50.0;
+- (void)prepareTableViewForResizingCells {
+	self.myTableView.rowHeight = UITableViewAutomaticDimension;
+	self.myTableView.estimatedRowHeight = 50.0;
 }
 
+- (void)formatCell:(UITableViewCell *)cell forBasicDisplaywithMessage:(NSString *)comment andIndexPath:(NSIndexPath *)indexPath {
+	cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+	cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	cell.textLabel.numberOfLines = 0;
+	cell.textLabel.text = comment;
 
--(void) formatCell:(UITableViewCell*) cell forBasicDisplaywithMessage: (NSString*) comment andIndexPath: (NSIndexPath *) indexPath
-{
-    cell.textLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.text = comment;
 
-    
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [self formatCell: cell byCommentTypeWithMessage:comment andIndexPath: indexPath];
+	cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+	[self formatCell:cell byCommentTypeWithMessage:comment andIndexPath:indexPath];
 }
 
--(void) formatCell: (UITableViewCell*) cell byCommentTypeWithMessage: (NSString *) comment andIndexPath: (NSIndexPath *) indexPath
-{
-    // !!! need to have counter-acting actions in each since cells are reusable
-    if (indexPath.row==0)
-    {
-        cell.backgroundColor = [UIColor DonorsChooseGreyLight];
-        cell.textLabel.textColor=[UIColor DonorsChooseGreyVeryLight];
-        cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:17];
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.indentationLevel = 0;
-    }
-    else
-    {
-        cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
-        cell.textLabel.textColor=[UIColor DonorsChooseOrange];
-        cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:17];
-        cell.textLabel.textAlignment = NSTextAlignmentRight;
-        cell.indentationLevel = 3;
-    }
+- (void)formatCell:(UITableViewCell *)cell byCommentTypeWithMessage:(NSString *)comment andIndexPath:(NSIndexPath *)indexPath {
+	// !!! need to have counter-acting actions in each since cells are reusable
+	if (indexPath.row == 0) {
+		cell.backgroundColor = [UIColor DonorsChooseGreyLight];
+		cell.textLabel.textColor = [UIColor DonorsChooseGreyVeryLight];
+		cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:17];
+		cell.textLabel.textAlignment = NSTextAlignmentLeft;
+		cell.indentationLevel = 0;
+	}
+	else {
+		cell.backgroundColor = [UIColor DonorsChooseGreyVeryLight];
+		cell.textLabel.textColor = [UIColor DonorsChooseOrange];
+		cell.textLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:17];
+		cell.textLabel.textAlignment = NSTextAlignmentRight;
+		cell.indentationLevel = 3;
+	}
 }
 
 #pragma mark - Initialization Helpers
+
 
 -(void) setupLayout {
     self.titleLabel = [[UILabel alloc] init];
@@ -504,72 +525,49 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [self.view addSubview:self.mySegmentedControl];
 }
 
--(void) segmentedControlToggler {
-    [self.donationsWhichNeedResponse removeAllObjects];
-    [self populateDonationsWhichNeedResponseArray];
-    [self.myTableView reloadData];
-    [self prepareTableViewForResizingCells];
+- (void)segmentedControlToggler {
+	[self.donationsWhichNeedResponse removeAllObjects];
+	[self populateDonationsWhichNeedResponseArray];
+	[self.myTableView reloadData];
+	[self prepareTableViewForResizingCells];
 }
 
+- (void)saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
 
--(void) saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@ for donation: %ld",responseMessage, indexPath.section);
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
+	                                                               message:@"Are you really really sure you want to send this message?"
+	                                                        preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler: ^(UIAlertAction *action) {
+	}];
 
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
-                                                                   message:@"Are you sure you want to send this message?"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-
-    }];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              if (self.mySegmentedControl.selectedSegmentIndex==0) {
-                                                                  [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
-                                                                      
-                                                                      
-                                                                  }];
-                                                              } else {
-                                                                  [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion:^(BOOL completion) {
-                                                                  }];
-                                                                  
-                                                              }
-                                                              [self.donationsWhichNeedResponse removeAllObjects];
-                                                              [self populateDonationsWhichNeedResponseArray];
-                                                              
-                                                              if (self.proposal.numDonationsNeedResponse==0) {
-                                                                  self.mySegmentedControl.selectedSegmentIndex=1;
-                                                                  self.mySegmentedControl.hidden=YES;
-                                                                  self.segmentedControlPlaceholder.hidden=NO;
-                                                                  
-                                                                  
-                                                              } else {
-                                                                  self.segmentedControlPlaceholder.hidden = YES;
-                                                                  self.mySegmentedControl.selectedSegmentIndex = 0;
-                                                                  self.mySegmentedControl.hidden=NO;
-                                                                  
-                                                              }
-                                                              [self.myTableView reloadData];
-                                                              [self prepareTableViewForResizingCells];
-                                                              
-                                                          }];
-    [alert addAction:defaultAction];
-    [alert addAction:cancelAction];
-    [self presentViewController:alert animated:YES  completion:nil];
-    
+	UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+	                                                      handler: ^(UIAlertAction *action) {
+	    if (self.mySegmentedControl.selectedSegmentIndex == 0) {
+	        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.donationsWhichNeedResponse[indexPath.section] forProposal:self.proposal andCompletion: ^(BOOL completion) {
+			}];
+		}
+	    else {
+	        [self.datastore addNewDonationResponseMessage:responseMessage forDonation:self.proposal.donations[indexPath.section] forProposal:self.proposal andCompletion: ^(BOOL completion) {
+			}];
+		}
+	    [self.donationsWhichNeedResponse removeAllObjects];
+	    [self populateDonationsWhichNeedResponseArray];
+	    [self.myTableView reloadData];
+	    [self prepareTableViewForResizingCells];
+	}];
+	[alert addAction:defaultAction];
+	[alert addAction:cancelAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
-
--(void) populateDonationsWhichNeedResponseArray {
-    for (FISDonation *eachDonation in self.proposal.donations) {
-        if (!(eachDonation.hasResponded)) {
-            [self.donationsWhichNeedResponse addObject:eachDonation];
-
-        }
-        
-    }
-    
+- (void)populateDonationsWhichNeedResponseArray {
+	for (FISDonation *eachDonation in self.proposal.donations) {
+		if (!(eachDonation.hasResponded)) {
+			[self.donationsWhichNeedResponse addObject:eachDonation];
+		}
+	}
 }
+
 
 - (void)reloadTable:(NSNotification *)notification
 {
@@ -583,11 +581,6 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
     [alert addAction:defaultAction];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-//    [self.proposal.donations removeAllObjects];
-//    [self.donationsWhichNeedResponse removeAllObjects];
-    
-    
     
     if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
         [self populateDonationsWithFakeRespondedDonations];
@@ -642,52 +635,62 @@ NSString * const BASIC_CELL_IDENTIFIER = @"basicCell";
             [self.proposal.donations removeLastObject];
         }
     }
-    
 }
 
+- (NSString *)formatDateLabelStringWithDateString:(NSString *)dateString {
+	NSString *formattedString;
 
--(NSString *) formatDateLabelStringWithDateString: (NSString *) dateString {
-    NSString *formattedString;
-    
-    NSString *monthString = [dateString substringWithRange:NSMakeRange(5, 2)];
-    NSString *yearString = [dateString substringWithRange:NSMakeRange(0, 4)];
-    NSString *dayString = [dateString substringWithRange:NSMakeRange(8, 2)];
-    
-    if ([monthString isEqualToString: @"01"]) {
-        formattedString=@"January";
-    } else if ([monthString isEqualToString:@"02"]){
-        formattedString=@"February";
-    } else if ([monthString isEqualToString:@"03"]){
-        formattedString=@"March";
-    } else if ([monthString isEqualToString:@"04"]){
-        formattedString=@"April";
-    } else if ([monthString isEqualToString:@"05"]){
-        formattedString=@"May";
-    } else if ([monthString isEqualToString:@"06"]){
-        formattedString=@"June";
-    } else if ([monthString isEqualToString:@"07"]){
-        formattedString=@"July";
-    } else if ([monthString isEqualToString:@"08"]){
-        formattedString=@"August";
-    } else if ([monthString isEqualToString:@"09"]){
-        formattedString=@"September";
-    } else if ([monthString isEqualToString:@"10"]){
-        formattedString=@"October";
-    } else if ([monthString isEqualToString:@"11"]){
-        formattedString=@"November";
-    } else if ([monthString isEqualToString:@"12"]){
-        formattedString=@"December";
-    }
-    
-    formattedString = [formattedString stringByAppendingString:[NSString stringWithFormat:@" %@, %@",dayString,yearString]];
-    
-    return formattedString;
+	NSString *monthString = [dateString substringWithRange:NSMakeRange(5, 2)];
+	NSString *yearString = [dateString substringWithRange:NSMakeRange(0, 4)];
+	NSString *dayString = [dateString substringWithRange:NSMakeRange(8, 2)];
+
+	if ([monthString isEqualToString:@"01"]) {
+		formattedString = @"January";
+	}
+	else if ([monthString isEqualToString:@"02"]) {
+		formattedString = @"February";
+	}
+	else if ([monthString isEqualToString:@"03"]) {
+		formattedString = @"March";
+	}
+	else if ([monthString isEqualToString:@"04"]) {
+		formattedString = @"April";
+	}
+	else if ([monthString isEqualToString:@"05"]) {
+		formattedString = @"May";
+	}
+	else if ([monthString isEqualToString:@"06"]) {
+		formattedString = @"June";
+	}
+	else if ([monthString isEqualToString:@"07"]) {
+		formattedString = @"July";
+	}
+	else if ([monthString isEqualToString:@"08"]) {
+		formattedString = @"August";
+	}
+	else if ([monthString isEqualToString:@"09"]) {
+		formattedString = @"September";
+	}
+	else if ([monthString isEqualToString:@"10"]) {
+		formattedString = @"October";
+	}
+	else if ([monthString isEqualToString:@"11"]) {
+		formattedString = @"November";
+	}
+	else if ([monthString isEqualToString:@"12"]) {
+		formattedString = @"December";
+	}
+
+	formattedString = [formattedString stringByAppendingString:[NSString stringWithFormat:@" %@, %@", dayString, yearString]];
+
+	return formattedString;
 }
 
 - (void)shareTapped {
-    CustomItemUIActivityItemProvider *customItem = [[CustomItemUIActivityItemProvider alloc] initWithProposal:self.proposal andPlaceholder:@""];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[customItem] applicationActivities:nil];
-    [self presentViewController:activityVC animated:YES completion:nil];
+	CustomItemUIActivityItemProvider *customItem = [[CustomItemUIActivityItemProvider alloc] initWithProposal:self.proposal andPlaceholder:@""];
+	UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:@[customItem] applicationActivities:nil];
+	[self presentViewController:activityVC animated:YES completion:nil];
 }
+
 
 @end

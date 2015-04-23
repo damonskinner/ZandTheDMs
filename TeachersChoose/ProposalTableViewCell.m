@@ -17,6 +17,7 @@
 @implementation ProposalTableViewCell
 
 
+
 - (void)awakeFromNib {
     // Initialization code
     
@@ -391,63 +392,62 @@
     [self layoutIfNeeded];
 }
 
--(void) settingFontAttributes {
-    
-    self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:19];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    
-    self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
-    self.expirationDateLabel.backgroundColor = [UIColor clearColor];
-    
-    self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-    self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
-    
-    self.percentFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-    self.percentFundedLabel.backgroundColor = [UIColor clearColor];
-    
-    self.amountRaisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
-    self.amountRaisedLabel.backgroundColor = [UIColor clearColor];
-    
-    self.toGoLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-    self.toGoLabel.backgroundColor = [UIColor clearColor];
-    self.toGoLabel.text = @"to go";
-    
-    
-    self.raisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-    self.raisedLabel.backgroundColor = [UIColor clearColor];
-    self.raisedLabel.text = @"raised";
-    
-    self.fundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-    self.fundedLabel.backgroundColor = [UIColor clearColor];
-    self.fundedLabel.text = @"funded";
-    
-    self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
-    self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
-    self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
-    
-    self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-    self.donorsLabel.backgroundColor = [UIColor clearColor];
-    if ([self.proposal.numDonors isEqual:@"1"]) {
-        self.donorsLabel.text=@"donor";
-    } else {
-        self.donorsLabel.text = @"donors";
-    }
-    
-    
-    self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
-    self.numDonorsLabel.backgroundColor = [UIColor clearColor];
-    
-    
-    
-    [self layoutIfNeeded];
+- (void)settingFontAttributes {
+	self.titleLabel.font = [UIFont fontWithName:DonorsChooseTitleBoldFont size:19];
+	self.titleLabel.backgroundColor = [UIColor clearColor];
+	self.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+	self.expirationDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:17];
+	self.expirationDateLabel.backgroundColor = [UIColor clearColor];
+
+	self.costToCompleteLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+	self.costToCompleteLabel.backgroundColor = [UIColor clearColor];
+
+	self.percentFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+	self.percentFundedLabel.backgroundColor = [UIColor clearColor];
+
+	self.amountRaisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:18];
+	self.amountRaisedLabel.backgroundColor = [UIColor clearColor];
+
+	self.toGoLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+	self.toGoLabel.backgroundColor = [UIColor clearColor];
+	self.toGoLabel.text = @"to go";
+
+
+	self.raisedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+	self.raisedLabel.backgroundColor = [UIColor clearColor];
+	self.raisedLabel.text = @"raised";
+
+	self.fundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+	self.fundedLabel.backgroundColor = [UIColor clearColor];
+	self.fundedLabel.text = @"funded";
+
+	self.donorsAwaitingReplyLabel.font = [UIFont fontWithName:DonorsChooseBodyItalicFont size:14];
+	self.donorsAwaitingReplyLabel.backgroundColor = [UIColor clearColor];
+	self.donorsAwaitingReplyLabel.textColor = [UIColor grayColor];
+
+	self.donorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+	self.donorsLabel.backgroundColor = [UIColor clearColor];
+	if ([self.proposal.numDonors isEqual:@"1"]) {
+		self.donorsLabel.text = @"donor";
+	}
+	else {
+		self.donorsLabel.text = @"donors";
+	}
+
+
+	self.numDonorsLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
+	self.numDonorsLabel.backgroundColor = [UIColor clearColor];
+
+
+
+	[self layoutIfNeeded];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+	[super setSelected:selected animated:animated];
 }
+
 
 -(void)setProposal:(FISDonorsChooseProposal *)proposal {
     
@@ -530,9 +530,10 @@
     
     [self layoutIfNeeded];
     [self settingFontAttributes];
+
 }
 
 - (IBAction)completionButton:(id)sender {
-    NSLog(@"button clicked");
 }
+
 @end

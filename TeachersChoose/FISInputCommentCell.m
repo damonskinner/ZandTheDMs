@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) UITableView *parentTableView;
 
-
 -(void) formatCellWithPlaceholder:(NSString *)placeholder;
 
 -(void) constrainTextView:(UITextView *) textView;
@@ -27,8 +26,6 @@
 -(void) handleSaveButton;
 
 @end
-
-
 
 @implementation FISInputCommentCell
 
@@ -111,8 +108,6 @@
 {
     [textView setInputAccessoryView: self.textViewInputAccessoryView];
     
-    
-    
     return YES;
 }
 
@@ -123,6 +118,8 @@
     textView.textAlignment = NSTextAlignmentCenter;
     textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
+    
+    [self.delegate textFieldWasTappedWithTextView:textView];
 }
 
 -(void)textViewDidChange:(UITextView *)textView
@@ -144,6 +141,31 @@
     return inputAccessoryView;
 }
 
+- (void) keyboardWillShow:(NSNotification *)note {
+    NSDictionary *userInfo = [note userInfo];
+    CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // move the view up by 30 pts
+    CGRect frame = self.parentTableView.frame;
+    frame.origin.y = -30;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.parentTableView.frame = frame;
+    }];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    // move the view back to the origin
+    CGRect frame = self.parentTableView.frame;
+    frame.origin.y = 0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.parentTableView.frame = frame;
+    }];
+    
+    [self.parentTableView reloadData];
+}
 
 
 #pragma mark - IAV Helpers
@@ -153,40 +175,26 @@
     if (self.myTextView.text.length > 0) {
         [self.textViewInputAccessoryView.saveButton setEnabled: YES];
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor DonorsChooseOrange];
-    }
-    else{
+    } else{
         [self.textViewInputAccessoryView.saveButton setEnabled: NO];
         self.textViewInputAccessoryView.saveButton.backgroundColor = [UIColor lightGrayColor];
     }
 }
 
-
 -(void) cancelButtonTapped
 {
-    NSLog(@"Cancel tapped");
     [self.myTextView resignFirstResponder];
     
     [self formatCellWithPlaceholder: INPUT_CELL_PLACEHOLDER];
-
 }
 
 -(void) saveButtonTapped
 {
-    NSLog(@"save tapped");
-    
-    [self.CommentsViewController saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
+    [self.delegate saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
 
     [self.myTextView resignFirstResponder];
     self.myTextView.editable = NO;
     self.myTextView.selectable = NO;
-    
-    //    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Comment" message:@"Are you sure you're ready to save your message?" preferredStyle:UIAlertControllerStyleAlert];
-    //
-    //    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    //    UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDefault handler:nil];
-    //
-    //    [alertController addAction:cancelAction];
-    //    [alertController addAction:submitAction];
 }
 
 @end

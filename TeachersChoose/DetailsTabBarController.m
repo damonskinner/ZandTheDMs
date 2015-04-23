@@ -17,8 +17,8 @@
 #import "UIFont+DonorsChooseFonts.h"
 
 @interface DetailsTabBarController ()
--(UINavigationController*) makeCommentsTVCwithNavController;
--(DonorsTableViewController*) makeDonorsTVC;
+- (UINavigationController *)makeCommentsTVCwithNavController;
+- (DonorsTableViewController *)makeDonorsTVC;
 @end
 
 @implementation DetailsTabBarController
@@ -26,41 +26,39 @@
 #pragma mark - View LifeCycle
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
-    UINavigationController *commentsNav = [self makeCommentsTVCwithNavController];
-    DonorsTableViewController *donorsTVC = [self makeDonorsTVC];
-    self.viewControllers = @[commentsNav, donorsTVC];
-    self.tabBar.tintColor = [UIColor DonorsChooseOrange];
+	UINavigationController *commentsNav = [self makeCommentsTVCwithNavController];
+	DonorsTableViewController *donorsTVC = [self makeDonorsTVC];
+	self.viewControllers = @[commentsNav, donorsTVC];
+	self.tabBar.tintColor = [UIColor DonorsChooseOrange];
 }
 
 #pragma mark - VC Creation Helpers
 
--(UINavigationController*) makeCommentsTVCwithNavController
-{
-    CommentsViewController *commentsTVC   = [[CommentsViewController alloc] init];
-    
-    UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    commentsTVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
-    
-    // make nav controller just for comments to have a header
-    UINavigationController *commentsNav = [[UINavigationController alloc] init];
-    [commentsNav addChildViewController: commentsTVC];
-    
-    return commentsNav;
+- (UINavigationController *)makeCommentsTVCwithNavController {
+	CommentsViewController *commentsTVC   = [[CommentsViewController alloc] init];
+
+	UIImage *commentsImage = [[FAKIonIcons chatboxesIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+	commentsTVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Comments" image:commentsImage tag:1];
+
+	// make nav controller just for comments to have a header
+	UINavigationController *commentsNav = [[UINavigationController alloc] init];
+	[commentsNav addChildViewController:commentsTVC];
+
+	return commentsNav;
 }
 
--(DonorsTableViewController*) makeDonorsTVC
-{
-    DonorsTableViewController *donorsTVC = [[DonorsTableViewController alloc] init];
-    
-    UIImage *donorsImage = [[FAKIonIcons cashIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    
-    donorsTVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Donors" image:donorsImage  tag:0];
-    
-    [donorsTVC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor DonorsChooseOrange]} forState:UIControlStateSelected];
+- (DonorsTableViewController *)makeDonorsTVC {
+	DonorsTableViewController *donorsTVC = [[DonorsTableViewController alloc] init];
 
-    return donorsTVC;
+	UIImage *donorsImage = [[FAKIonIcons cashIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+
+	donorsTVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Donors" image:donorsImage tag:0];
+
+	[donorsTVC.tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor DonorsChooseOrange] } forState:UIControlStateSelected];
+
+	return donorsTVC;
 }
 
 @end
