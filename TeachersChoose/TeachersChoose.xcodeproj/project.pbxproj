@@ -922,7 +922,7 @@
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "83b5dcd7-562d-4207-8f6a-22c6ca08b70a";
 			};
 			name = Debug;
 		};
@@ -936,7 +936,7 @@
 				INFOPLIST_FILE = TeachersChoose/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "83b5dcd7-562d-4207-8f6a-22c6ca08b70a";
 			};
 			name = Release;
 		};
