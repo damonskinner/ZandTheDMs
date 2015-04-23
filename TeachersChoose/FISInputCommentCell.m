@@ -119,7 +119,7 @@
     textView.textColor = [UIColor DonorsChooseBlack];
     [self handleSaveButton];
     
-    [self.delegate textFieldWasTappedWithTextView:textView];
+//    [self.delegate textFieldWasTappedWithTextView:textView];
 }
 
 -(void)textViewDidChange:(UITextView *)textView

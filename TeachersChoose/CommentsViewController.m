@@ -44,10 +44,10 @@ NSString *const INPUT_CELL_IDENTIFIER = @"inputCell";
 NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 @implementation CommentsViewController {
-    CGFloat _topYofKeyboard;
-    CGFloat _bottomYofTextView;
-    CGFloat _tabBarHeight;
-    BOOL _viewWasOffset;
+//    CGFloat _topYofKeyboard;
+//    CGFloat _bottomYofTextView;
+//    CGFloat _tabBarHeight;
+//    BOOL _viewWasOffset;
 }
 
 #pragma mark - View LifeCycle
@@ -67,60 +67,60 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 	self.myTableView.dataSource = self;
 	self.navigationController.navigationBarHidden = YES;
     
-    _viewWasOffset = NO;
-    _topYofKeyboard = 0.0f;
-    _bottomYofTextView = 0.0f;
-    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+//    _viewWasOffset = NO;
+//    _topYofKeyboard = 0.0f;
+//    _bottomYofTextView = 0.0f;
+//    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self
-	                                         selector:@selector(keyboardWillShow:)
-	                                             name:UIKeyboardWillShowNotification
-	                                           object:nil];
-
-	[[NSNotificationCenter defaultCenter] addObserver:self
-	                                         selector:@selector(keyboardWillHide:)
-	                                             name:UIKeyboardWillHideNotification
-	                                           object:nil];
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//	                                         selector:@selector(keyboardWillShow:)
+//	                                             name:UIKeyboardWillShowNotification
+//	                                           object:nil];
+//
+//	[[NSNotificationCenter defaultCenter] addObserver:self
+//	                                         selector:@selector(keyboardWillHide:)
+//	                                             name:UIKeyboardWillHideNotification
+//	                                           object:nil];
 }
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification {
-    
-
-	NSDictionary *info = [notification userInfo];
-	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification {
-    if (_viewWasOffset) {
-        CGPoint point = self.myTableView.contentOffset;
-        point.y -= (_bottomYofTextView) - _topYofKeyboard;
-        [self.myTableView setContentOffset:point animated:YES];
-
-    }
-    _topYofKeyboard = 0.0f;
-    _viewWasOffset = NO;
-}
-
-- (void)textFieldWasTappedWithTextView:(UITextView *)textView {
-    CGRect frameRelativeToViewControllerView = [textView convertRect:textView.bounds toView:self.view];
-    CGFloat textViewY = frameRelativeToViewControllerView.origin.y;
-    CGFloat textViewHeight = frameRelativeToViewControllerView.size.height;
-    _bottomYofTextView = textViewY + textViewHeight;
-    
-    if (_bottomYofTextView > _topYofKeyboard) {
-        _viewWasOffset = YES;
-        CGPoint point = self.myTableView.contentOffset;
-        point.y += (_bottomYofTextView) - _topYofKeyboard;
-        [self.myTableView setContentOffset:point animated:YES];
-    }
-}
+//- (void)keyboardWillShow:(NSNotification *)notification {
+//    
+//
+//	NSDictionary *info = [notification userInfo];
+//	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+//	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
+//}
+//
+//- (void)keyboardWillHide:(NSNotification *)notification {
+//    if (_viewWasOffset) {
+//        CGPoint point = self.myTableView.contentOffset;
+//        point.y -= (_bottomYofTextView) - _topYofKeyboard;
+//        [self.myTableView setContentOffset:point animated:YES];
+//
+//    }
+//    _topYofKeyboard = 0.0f;
+//    _viewWasOffset = NO;
+//}
+//
+//- (void)textFieldWasTappedWithTextView:(UITextView *)textView {
+//    CGRect frameRelativeToViewControllerView = [textView convertRect:textView.bounds toView:self.view];
+//    CGFloat textViewY = frameRelativeToViewControllerView.origin.y;
+//    CGFloat textViewHeight = frameRelativeToViewControllerView.size.height;
+//    _bottomYofTextView = textViewY + textViewHeight;
+//    
+//    if (_bottomYofTextView > _topYofKeyboard) {
+//        _viewWasOffset = YES;
+//        CGPoint point = self.myTableView.contentOffset;
+//        point.y += (_bottomYofTextView) - _topYofKeyboard;
+//        [self.myTableView setContentOffset:point animated:YES];
+//    }
+//}
 
 
 - (void)viewDidAppear:(BOOL)animated {
