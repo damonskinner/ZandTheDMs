@@ -181,6 +181,7 @@
             }];
             
             for (FISDonorsChooseProposal *eachProposal in self.datastore.loggedInTeacherProposals){
+                eachProposal.teacherId=randomTeacherId;
                 [self createNewParseProposalForProposal:eachProposal andCurrentUser:user];
             }
             [self.datastore getTeacherProfileWithTeacherId:randomTeacherId andCompletion:^(BOOL completion) {
@@ -193,7 +194,7 @@
 }
 
 -(void) createNewParseProposalForProposal:(FISDonorsChooseProposal *) proposal andCurrentUser:(PFUser *) user {
-    [FISParseAPI createProposalWithId:proposal.proposalId proposalTitle:proposal.title withTeacherObjectId:user.objectId andCompletionBlock:^(NSDictionary *responseObject){
+    [FISParseAPI createProposalWithId:proposal.proposalId proposalTitle:proposal.title withTeacherObjectId:user.objectId teacherId:proposal.teacherId andCompletionBlock:^(NSDictionary *responseObject){
         
         proposal.parseObjectId=responseObject[@"objectId"];
         

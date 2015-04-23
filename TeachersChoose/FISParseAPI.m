@@ -125,7 +125,7 @@
 
 
 
-+(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
++(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId teacherId:(NSString *)teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
     
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/"];
     
@@ -133,6 +133,7 @@
     
     NSDictionary *params = @{@"proposalId":proposalId,
                              @"title":proposalTitle,
+                             @"DCTeacherId":teacherId,
                              @"teacherId": @{@"__type":@"Pointer",
                                              @"className":@"_User",
                                              @"objectId": teacherObjectId}};

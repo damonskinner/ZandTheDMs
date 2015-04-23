@@ -19,7 +19,7 @@
 +(void)addProposalObjectId:(NSString *) proposalObjectId toNewUserWithObjectId:(NSString *) currentUserObjectId currentUserSessionToken: (NSString *) currentUserSessionToken  andCompletionBlock:(void (^)(void))completionBlock;
 
 
-+(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId teacherId:(NSString *)teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
 +(void) getDonationsListForProposalWithId: (NSString *) proposalId andCompletionBlock:(void (^)(NSArray *))completionBlock;
 

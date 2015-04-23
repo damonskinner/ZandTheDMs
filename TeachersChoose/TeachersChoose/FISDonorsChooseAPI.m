@@ -70,8 +70,12 @@
         
         NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         
+        if ([rawResults[@"proposals"] count]>0){
+            completionBlock(rawResults[@"proposals"][0]);
+        } else {
+            
+        }
         
-        completionBlock(rawResults[@"proposals"][0]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
     }];
