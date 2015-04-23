@@ -133,7 +133,7 @@
 	[self getSearchResultsWithTeacherId:currentTeacherId andCompletion: ^(BOOL completed) {
 	    //May need to insert more API stuff here to update any new proposals on parse
 	    if (completed) {
-	        [self createFakeFundedProposal];
+//	        [self createFakeFundedProposal];
 
 	        [self getTeacherProfileWithTeacherId:currentTeacherId andCompletion: ^(BOOL completionCheck) {
 	            if (completionCheck) {
