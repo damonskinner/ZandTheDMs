@@ -41,5 +41,6 @@
 +(void)sendPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion;
 +(void) getProposalObjectProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 +(void)sendFinishedPushNotificationToTeacherId: (NSString *)teacherId withProposalTitle:(NSString *) proposalTitle andCompletionBlock:(void (^)(void))completion;
++(void) getTeacherIdForProposalObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(NSString *))completionBlock;
 
 @end

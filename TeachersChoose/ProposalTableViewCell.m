@@ -14,37 +14,9 @@
 #import "FISDonorsChooseCompletedProposal.h"
 
 
-//needs more work on cell constraints, i.e., height
-
 @implementation ProposalTableViewCell
 
-//-(id)initWithCoder:(NSCoder *) aDecoder
-//{
-//    self=[super initWithCoder:aDecoder];
-//    if(!self) {
-//        return nil;
-//    }
-//    
-//    [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner: self options: nil];
-//    
-//    [self addSubview:self.contentView];
-//    self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    NSDictionary *views = @{@"self":self,
-//                            @"subView":self.contentView};
-//    
-//    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[subView]|"
-//                                                                   options:0
-//                                                                   metrics:nil
-//                                                                     views:views];
-//    [self addConstraints:constraints];
-//    
-//    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[subView]|" options:0 metrics:nil views:views];
-//    [self addConstraints:constraints];
-//    
-//    return self;
-//}
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -52,13 +24,13 @@
     self.raisedLabel.hidden=YES;
     self.completionButton = [[UIButton alloc]init];
     
-    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:20];
+    self.completionButton.titleLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:17];
     
     [self.completionButton setTitleColor:[UIColor DonorsChooseOrange] forState:UIControlStateNormal];
     
     self.completionButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
-    [self.completionButton setTitle:@" Confirm Funding " forState:UIControlStateNormal];
+    [self.completionButton setTitle:@"   Confirm Funding   " forState:UIControlStateNormal];
     
     [self.completionButton addTarget:self action:@selector(completionButton:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -101,10 +73,12 @@
     [self.donorsLabel removeConstraints:self.donorsLabel.constraints];
     [self.completionButton removeConstraints:self.completionButton.constraints];
     [self.donorsAwaitingReplyLabel removeConstraints:self.donorsAwaitingReplyLabel.constraints];
+
+
     [self.dateFundedLabel removeConstraints:self.dateFundedLabel.constraints];
     [self.fullyFundedDateLabel removeConstraints:self.fullyFundedDateLabel.constraints];
-    
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.separatorCushionImageView removeConstraints:self.separatorCushionImageView.constraints];
+
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.expirationDateLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.costToCompleteLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -120,6 +94,9 @@
     self.donorsAwaitingReplyLabel.translatesAutoresizingMaskIntoConstraints=NO;
     self.dateFundedLabel.translatesAutoresizingMaskIntoConstraints=NO;
     self.fullyFundedDateLabel.translatesAutoresizingMaskIntoConstraints=NO;
+
+    self.separatorCushionImageView.translatesAutoresizingMaskIntoConstraints=NO;
+
     
     NSLayoutConstraint *titleLabelWidthConstraint =
     [NSLayoutConstraint constraintWithItem:self.titleLabel
@@ -330,7 +307,7 @@
                                   constant:5];
     
     [self.contentView addConstraint:numDonorsLabelBottomConstraint];
-    
+
     NSLayoutConstraint *numDonorsLabelCenterXConstraint =
     [NSLayoutConstraint constraintWithItem:self.numDonorsLabel
                                  attribute:NSLayoutAttributeCenterX
@@ -406,7 +383,7 @@
                                     toItem:self.contentView
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
-                                  constant:0];
+                                  constant:-4];
     
     [self.contentView addConstraint:donorsAwaitingReplyLabelBottomConstraint];
     
@@ -426,29 +403,35 @@
     [NSLayoutConstraint constraintWithItem:self.dateFundedLabel
                                  attribute:NSLayoutAttributeBottom
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
+
+                                    toItem:self.donorsLabel
+
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
                                   constant:0];
     
     [self.contentView addConstraint:dateFundedLabelBottomConstraint];
     
-    NSLayoutConstraint *dateFundedLabelRightConstraint =
+
+    NSLayoutConstraint *dateFundedLabelCenterConstraint =
     [NSLayoutConstraint constraintWithItem:self.dateFundedLabel
-                                 attribute:NSLayoutAttributeRight
+                                 attribute:NSLayoutAttributeCenterX
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
-                                 attribute:NSLayoutAttributeRight
+                                    toItem:self.fullyFundedDateLabel
+                                 attribute:NSLayoutAttributeCenterX
                                 multiplier:1.0
-                                  constant:-250];
+                                  constant:0];
     
-    [self.contentView addConstraint:dateFundedLabelRightConstraint];
+    [self.contentView addConstraint:dateFundedLabelCenterConstraint];
+
     
     NSLayoutConstraint *fullyFundedDateLabelBottomConstraint =
     [NSLayoutConstraint constraintWithItem:self.fullyFundedDateLabel
                                  attribute:NSLayoutAttributeBottom
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.contentView
+
+                                    toItem:self.numDonorsLabel
+
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0
                                   constant:0];
@@ -457,25 +440,75 @@
     
     NSLayoutConstraint *fullyFundedDateLabelRightConstraint =
     [NSLayoutConstraint constraintWithItem:self.fullyFundedDateLabel
-                                 attribute:NSLayoutAttributeLeft
+
+                                 attribute:NSLayoutAttributeRight
                                  relatedBy:NSLayoutRelationEqual
-                                    toItem:self.dateFundedLabel
+                                    toItem:self.contentView
                                  attribute:NSLayoutAttributeRight
                                 multiplier:1.0
-                                  constant:-0];
+                                  constant:-16];
     
     [self.contentView addConstraint:fullyFundedDateLabelRightConstraint];
 
-//    NSLayoutConstraint *proposalTableViewProgressViewHeightConstraint =
-//    [NSLayoutConstraint constraintWithItem:self.proposalTableViewProgressView
-//                                 attribute:NSLayoutAttributeHeight
-//                                 relatedBy:NSLayoutRelationEqual
-//                                    toItem:self.titleLabel
-//                                 attribute:NSLayoutAttributeBottom
-//                                multiplier:1.0
-//                                  constant:10];
-//    
-//    [self.contentView addConstraint:proposalTableViewProgressViewHeightConstraint];
+    
+    NSLayoutConstraint *separatorCushionImageViewBottomConstraint =
+    [NSLayoutConstraint constraintWithItem:self.separatorCushionImageView
+                                 attribute:NSLayoutAttributeBottom
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeBottom
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:separatorCushionImageViewBottomConstraint];
+    
+    NSLayoutConstraint *separatorCushionImageViewRightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.separatorCushionImageView
+                                 attribute:NSLayoutAttributeRight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeRight
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:separatorCushionImageViewRightConstraint];
+    
+    NSLayoutConstraint *separatorCushionImageViewLeftConstraint =
+    [NSLayoutConstraint constraintWithItem:self.separatorCushionImageView
+                                 attribute:NSLayoutAttributeLeft
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeLeft
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:separatorCushionImageViewLeftConstraint];
+    
+    NSLayoutConstraint *separatorCushionImageViewWidthConstraint =
+    [NSLayoutConstraint constraintWithItem:self.separatorCushionImageView
+                                 attribute:NSLayoutAttributeWidth
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeWidth
+                                multiplier:1.0
+                                  constant:0];
+    
+    [self.contentView addConstraint:separatorCushionImageViewWidthConstraint];
+    
+    NSLayoutConstraint *separatorCushionImageViewHeightConstraint =
+    [NSLayoutConstraint constraintWithItem:self.separatorCushionImageView
+                                 attribute:NSLayoutAttributeHeight
+                                 relatedBy:NSLayoutRelationEqual
+                                    toItem:self.contentView
+                                 attribute:NSLayoutAttributeHeight
+                                multiplier:.02
+                                  constant:0];
+    
+    [self.contentView addConstraint:separatorCushionImageViewHeightConstraint];
+    
+    [self.separatorCushionImageView setBackgroundColor:[UIColor DonorsChooseOrange]];
+
+
     
     [self layoutIfNeeded];
 }
@@ -529,8 +562,19 @@
     
     self.dateFundedLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
     self.dateFundedLabel.backgroundColor = [UIColor clearColor];
-    self.dateFundedLabel.text = @"Funded:";
+
+    self.dateFundedLabel.text = @"funded on";
     
+
+    
+    if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+        self.fullyFundedDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBoldFont size:22];
+        self.fullyFundedDateLabel.backgroundColor = [UIColor clearColor];
+        self.fullyFundedDateLabel.text = [((FISDonorsChooseCompletedProposal *)self.proposal) updatingFullyFundedDate];
+
+    }
+    
+
     
     if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
         self.fullyFundedDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
@@ -541,15 +585,15 @@
     }
     
     [self layoutIfNeeded];
+
 }
 
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+	[super setSelected:selected animated:animated];
 }
+
 
 -(void)setProposal:(FISDonorsChooseProposal *)proposal {
     
@@ -579,9 +623,6 @@
         
         self.percentFundedLabel.text=[NSString stringWithFormat:@"%ld%%",[self.proposal.percentFunded integerValue]];
         self.numDonorsLabel.text=[NSString stringWithFormat:@"%@", self.proposal.parseNumDonors];
-        //    NSInteger amountRaised = [self.proposal.totalPrice integerValue] - [self.proposal.costToComplete integerValue];
-        
-        //    CGFloat raisedAsFloat = [self.proposal.totalPrice floatValue] - [self.proposal.costToComplete floatValue];
         
         self.proposalTableViewProgressView.progress=  [self.proposal.parseCurrentDonated floatValue]/ [self.proposal.totalPrice floatValue];
         self.amountRaisedLabel.text= [NSString stringWithFormat:@"$%ld / $%ld", [self.proposal.parseCurrentDonated integerValue],[self.proposal.totalPrice integerValue]];
@@ -591,7 +632,7 @@
     
     
     
-    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%d donors awaiting reply)",self.proposal.numDonationsNeedResponse];
+    self.donorsAwaitingReplyLabel.text=[NSString stringWithFormat:@"(%ld donors awaiting reply)",(long)self.proposal.numDonationsNeedResponse];
     if ([self.donorsAwaitingReplyLabel.text isEqualToString:@"(0 donors awaiting reply)"]) {
         self.donorsAwaitingReplyLabel.hidden=YES;
     } else {
@@ -640,9 +681,10 @@
     
     [self layoutIfNeeded];
     [self settingFontAttributes];
+
 }
 
 - (IBAction)completionButton:(id)sender {
-    NSLog(@"button clicked");
 }
+
 @end

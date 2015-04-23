@@ -17,12 +17,11 @@
 @property (nonatomic, strong) NSDictionary *thankYouAssets;
 
 
-
-
-//@property (nonatomic, strong) NSMutableArray *donations;
-//@property (nonatomic, strong) NSString *parseObjectId;
-
 +(FISDonorsChooseCompletedProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
+
+
+-(NSString *)updatingFullyFundedDate;
+    
 
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSDate *)dateFromString:(NSString *)fullyFundedDate;

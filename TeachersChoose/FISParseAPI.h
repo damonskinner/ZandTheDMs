@@ -14,41 +14,50 @@
 
 @interface FISParseAPI : NSObject
 
-+(void)addRandomTeacherId:(NSString *) randomTeacherId toNewUserWithObjectId:(NSString *) currentUserObjectId currentUserSessionToken: (NSString *) currentUserSessionToken  andCompletionBlock:(void (^)(void))completionBlock;
++ (void)addRandomTeacherId:(NSString *)randomTeacherId toNewUserWithObjectId:(NSString *)currentUserObjectId currentUserSessionToken:(NSString *)currentUserSessionToken andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void)addProposalObjectId:(NSString *) proposalObjectId toNewUserWithObjectId:(NSString *) currentUserObjectId currentUserSessionToken: (NSString *) currentUserSessionToken  andCompletionBlock:(void (^)(void))completionBlock;
++ (void)addProposalObjectId:(NSString *)proposalObjectId toNewUserWithObjectId:(NSString *)currentUserObjectId currentUserSessionToken:(NSString *)currentUserSessionToken andCompletionBlock:(void (^)(void))completionBlock;
 
 
-+(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+(void) getDonationsListForProposalWithId: (NSString *) proposalId andCompletionBlock:(void (^)(NSArray *))completionBlock;
++(void)createProposalWithId:(NSString *) proposalId proposalTitle: (NSString *) proposalTitle withTeacherObjectId: (NSString *)teacherObjectId teacherId:(NSString *)teacherId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+(void) getProposalObjectIdForProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSString *))completionBlock;
 
-+(void) getDonationforDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++ (void)getDonationsListForProposalWithId:(NSString *)proposalId andCompletionBlock:(void (^)(NSArray *))completionBlock;
 
-+(void) getTeacherIdForObjectId: (NSString *) teacherObjectId andCompletionBlock:(void (^)(NSString *))completionBlock;
++ (void)getProposalObjectIdForProposalId:(NSString *)proposalId andCompletionBlock:(void (^)(NSString *))completionBlock;
+
++ (void)getDonationforDonationWithObjectId:(NSString *)donationObjectId andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
++ (void)getTeacherIdForObjectId:(NSString *)teacherObjectId andCompletionBlock:(void (^)(NSString *))completionBlock;
+
+
++(void) getTeacherObjectIdForProposal: (FISDonorsChooseProposal *) proposal andCompletionBlock:(void (^)(NSString *))completionBlock;
 
 +(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
 
-+(void)createDonationForProposalObjectId:(NSString *)proposalObjectId withName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+(void)addDonationObjectId:(NSString *) donationObjectId toProposalWithObjectId:(NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
++ (void)createDonationForProposalObjectId:(NSString *)proposalObjectId withName:(NSString *)donorName withDonorLocation:(NSString *)donorLocation donorMessage:(NSString *)donorMessage responseMessage:(NSString *)responseMessage donationAmount:(NSString *)donationAmount andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
+
++ (void)addDonationObjectId:(NSString *)donationObjectId toProposalWithObjectId:(NSString *)proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
 
-+(void)createDonationWithName:(NSString *) donorName withDonorLocation: (NSString *)donorLocation donorMessage: (NSString *) donorMessage responseMessage: (NSString *) responseMessage donationAmount: (NSString *) donationAmount donationDate: (NSDate *)donationDate andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
++ (void)createDonationWithName:(NSString *)donorName withDonorLocation:(NSString *)donorLocation donorMessage:(NSString *)donorMessage responseMessage:(NSString *)responseMessage donationAmount:(NSString *)donationAmount donationDate:(NSDate *)donationDate andCompletionBlock:(void (^)(NSDictionary *))completionBlock;
 
-+(void) getInstallationObjectIdForDeviceToken: (NSString *) deviceToken andCompletionBlock:(void (^)(NSString *))completionBlock;
++ (void)getInstallationObjectIdForDeviceToken:(NSString *)deviceToken andCompletionBlock:(void (^)(NSString *))completionBlock;
 
-+(void) attachTeacherId:(NSString *) teacherId toInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock;
++ (void)attachTeacherId:(NSString *)teacherId toInstallationWithObjectId:(NSString *)installObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void) getBadgeNumberForTeacherId:(NSString *)teacherId  andCompletionBlock:(void (^)(NSNumber *))completionBlock;
++ (void)getBadgeNumberForTeacherId:(NSString *)teacherId andCompletionBlock:(void (^)(NSNumber *))completionBlock;
 
-+(void) getInstallationObjectIdForTeacherId: (NSString *) teacherId andCompletionBlock:(void (^)(NSString *))completionBlock;
++ (void)getInstallationObjectIdForTeacherId:(NSString *)teacherId andCompletionBlock:(void (^)(NSString *))completionBlock;
 
-+(void) updateBadgeNumber:(NSNumber *) badgeNumber forInstallationWithObjectId: (NSString *) installObjectId  andCompletionBlock:(void (^)(void))completionBlock;
++ (void)updateBadgeNumber:(NSNumber *)badgeNumber forInstallationWithObjectId:(NSString *)installObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void) updateTotalPrice:(NSString *) totalPrice andCurrentDonated: (NSString *) totalDonated forProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
++ (void)updateTotalPrice:(NSString *)totalPrice andCurrentDonated:(NSString *)totalDonated forProposalWithObjectId:(NSString *)proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
+
++(void)saveThankYouPackageForProposal:(FISDonorsChooseProposal *)proposal withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock;
+
 
 @end

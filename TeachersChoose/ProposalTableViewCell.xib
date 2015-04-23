@@ -82,6 +82,11 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTi-BY-bMY">
+                        <rect key="frame" x="0.0" y="132" width="479" height="20"/>
+                    </imageView>
+
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -95,10 +100,11 @@
                 <outlet property="numDonorsLabel" destination="WVB-Ph-ayg" id="PLW-tr-1Cn"/>
                 <outlet property="proposalTableViewProgressView" destination="Fpd-Bj-bfx" id="NsW-5b-JzN"/>
                 <outlet property="raisedLabel" destination="EF4-Bx-dRF" id="dT8-MV-u0t"/>
+                <outlet property="separatorCushionImageView" destination="NTi-BY-bMY" id="cgU-0r-zab"/>
                 <outlet property="titleLabel" destination="aFX-bK-OjV" id="S6J-sQ-aUS"/>
                 <outlet property="toGoLabel" destination="dGb-jW-h9k" id="djY-KV-AHs"/>
             </connections>
-            <point key="canvasLocation" x="644.5" y="405"/>
+            <point key="canvasLocation" x="644.5" y="402"/>
         </tableViewCell>
     </objects>
 </document>

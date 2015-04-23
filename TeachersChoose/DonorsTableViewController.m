@@ -19,55 +19,55 @@
 @implementation DonorsTableViewController
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
     
     self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
     [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
     [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];
+    
+//    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+
 }
 
 #pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [self.proposal.donations count];
+	return [self.proposal.donations count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"basicCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
+	NSString *cellIdentifier = @"basicCell";
 
-    FISDonation *thisDonation= self.proposal.donations[indexPath.row];
-    
-    // set standard properties
-    cell.textLabel.text = thisDonation.donorName;
-    cell.detailTextLabel.text = thisDonation.donorLocation;
-    cell.detailTextLabel.textColor = [UIColor grayColor];
-    
-    // make a new label, format it and set it as accessory view
-    UILabel *amountDonatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.frame.size.height)];
-    amountDonatedLabel.text = [NSString stringWithFormat:@"$%@", thisDonation.donationAmount];
-    amountDonatedLabel.textAlignment = NSTextAlignmentRight;
-    [cell setAccessoryView: amountDonatedLabel];
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-    return cell;
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+	}
+
+	FISDonation *thisDonation = self.proposal.donations[indexPath.row];
+
+	// set standard properties
+	cell.textLabel.text = thisDonation.donorName;
+	cell.detailTextLabel.text = thisDonation.donorLocation;
+	cell.detailTextLabel.textColor = [UIColor grayColor];
+
+	// make a new label, format it and set it as accessory view
+	UILabel *amountDonatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, cell.frame.size.height)];
+	amountDonatedLabel.text = [NSString stringWithFormat:@"$%@", thisDonation.donationAmount];
+	amountDonatedLabel.textAlignment = NSTextAlignmentRight;
+	[cell setAccessoryView:amountDonatedLabel];
+
+	return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 50;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 50;
 }
 
--(BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return NO;
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+	return NO;
 }
-
 
 @end

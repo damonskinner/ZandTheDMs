@@ -47,6 +47,12 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField  {
+    
+    
+}
+
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     NSInteger projectIdLength = 7;
     if ((self.projectId.text.length == projectIdLength) && (self.name.text.length > 0) && (self.message.text.length > 0) && (self.location.text.length > 0) && (self.amount.text.length > 0)) {
@@ -82,19 +88,36 @@
     [FISParseAPI getProposalObjectProposalId:self.projectId.text andCompletionBlock:^(NSDictionary *parseProposalDict) {
         [FISParseAPI createDonationForProposalObjectId:parseProposalDict[@"objectId"] withName:self.name.text withDonorLocation:self.location.text donorMessage:self.message.text responseMessage:@"" donationAmount:self.amount.text andCompletionBlock:^(NSDictionary *responseObject) {
             [FISParseAPI addDonationObjectId:responseObject[@"objectId"] toProposalWithObjectId:parseProposalDict[@"objectId"] andCompletionBlock:^{
-                [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSDictionary * proposalDict) {
-                    NSInteger newTotal = [parseProposalDict[@"totalDonated"] integerValue] + [self.amount.text integerValue];
-                    
-                    if (newTotal >= [parseProposalDict[@"totalPrice"] integerValue]) {
-                        [FISParseAPI sendFinishedPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }];
-                    } else {
-                        [FISParseAPI sendPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }];
-                    }
-                }];
+                
+                if ([self.projectId.text isEqualToString: @"9999999"]) {
+                    [FISParseAPI getTeacherIdForProposalObjectId:parseProposalDict[@"objectId"] andCompletionBlock:^(NSString * teacherId) {
+                        NSInteger newTotal = [parseProposalDict[@"totalDonated"] integerValue] + [self.amount.text integerValue];
+                        if (newTotal >= [parseProposalDict[@"totalPrice"] integerValue]) {
+                            
+                            [FISParseAPI sendFinishedPushNotificationToTeacherId:teacherId withProposalTitle:@"Almost There!" andCompletionBlock:^{
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }];
+                        } else {
+                            [FISParseAPI sendPushNotificationToTeacherId: teacherId withProposalTitle:@"Almost There!" andCompletionBlock:^{
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }];
+                        }
+                    }];
+                } else {
+                    [FISDonorsChooseAPI getTeacherIdForProposalId:self.projectId.text andCompletionBlock:^(NSDictionary * proposalDict) {
+                        NSInteger newTotal = [parseProposalDict[@"totalDonated"] integerValue] + [self.amount.text integerValue];
+                        if (newTotal >= [parseProposalDict[@"totalPrice"] integerValue]) {
+                            
+                            [FISParseAPI sendFinishedPushNotificationToTeacherId:proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }];
+                        } else {
+                            [FISParseAPI sendPushNotificationToTeacherId: proposalDict[@"teacherId"] withProposalTitle:proposalDict[@"title"] andCompletionBlock:^{
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }];
+                        }
+                    }];
+                }
             }];
         }];
         

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISDonorsChooseProposal;
 @interface AddressConfirmationViewController : UIViewController
+
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
 
 @end

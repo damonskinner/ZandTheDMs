@@ -1,50 +1,51 @@
 //
-//  GoodNewsViewController.m
+//  ImpactLetterViewController.m
 //  TeachersChoose
 //
-//  Created by Tom OMalley on 4/16/15.
+//  Created by Tom OMalley on 4/21/15.
 //  Copyright (c) 2015 ZandTheDMs. All rights reserved.
 //
 
-#import "SpreadTheNewsViewController.h"
-#import "ContainerViewController.h"
-#import "FISDonorsChooseProposal.h"
-#import <FAKIonIcons.h>
+#import "ImpactLetterViewController.h"
+#import "UIColor+DonorsChooseColors.h"
+#import "FISParseAPI.h"
 
 static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
-@interface SpreadTheNewsViewController () <UITextViewDelegate>
+@interface ImpactLetterViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveMessageButton;
-@property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
-@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
 @property (nonatomic) float pointsToResizeTextView;
+@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 
-
-
--(void) presentAlert;
--(void) setupTextViewAndKeyboard;
--(void) setupInputAccessoryView;
--(void) setupKeyboardDismissalOnTouch;
--(void) receivedKeyboardNotification:(NSNotification*) notification;
-
+- (void)presentAlert;
+- (void)setupTextViewAndKeyboard;
+- (void)setupInputAccessoryView;
+- (void)setupKeyboardDismissalOnTouch;
+- (void)receivedKeyboardNotification:(NSNotification *)notification;
 
 @end
 
-@implementation SpreadTheNewsViewController
+@implementation ImpactLetterViewController
 
 #pragma mark - View LifeCycle
+
+- (IBAction)moreInfoTapped:(id)sender {
+	[self presentAlert];
+}
 
 
 - (void)viewDidLoad
 {
-   [super viewDidLoad];
-    self.teacherNameLabel.text = ((ContainerViewController*)self.parentViewController.parentViewController).proposal.teacherName;
+    [super viewDidLoad];
+    self.teacherNameLabel.text = self.proposal.teacherName;
+    
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
-    [self setupHomeButton];
+    [self.saveMessageButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -55,16 +56,6 @@ static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-}
-
-
-#pragma mark - Navigation
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    ContainerViewController*containerVC = (ContainerViewController*) self.parentViewController.parentViewController;
-    containerVC.proposal.completionInfo[@"thankYouNote"] = self.textView.text;
-
 }
 
 #pragma mark - UITextViewDelegate
@@ -83,6 +74,7 @@ static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 	}
 
 	[UIView animateWithDuration:0.5 animations: ^{
+	    // pointsToResizeTextView setup in receivedKeyboardNotification:
 	    self.textViewHeightConstraint.constant += self.pointsToResizeTextView;
 	    [self.view layoutIfNeeded];
 	}];
@@ -104,7 +96,7 @@ static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 #pragma mark - Alert Controller
 
 - (void)presentAlert {
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Brief Thank You Message" message:@"This note will be publicly viewable on your project page and cannot be changed.\n\nFor safety purposes DO NOT include your name, school name, location, etc." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Impact Letter" message:@"Let your donors know how much funding this project has affected your students lives!\n\nFor safety purposes DO NOT include student names, school name, location, etc." preferredStyle:UIAlertControllerStyleAlert];
 
 	UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
 
@@ -115,20 +107,13 @@ static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
 #pragma mark - Helpers
 
+- (void)setupTextViewAndKeyboard {
+	self.textView.delegate = self;
+	self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
 
-- (IBAction)moreInfoTapped:(id)sender {
-    [self presentAlert];
-}
-
--(void) setupTextViewAndKeyboard
-{
-    self.textView.delegate = self;
-    self.textView.autocorrectionType = UITextAutocorrectionTypeNo;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
-    [self setupKeyboardDismissalOnTouch];
-    [self setupInputAccessoryView];
-
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedKeyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
+	[self setupKeyboardDismissalOnTouch];
+	[self setupInputAccessoryView];
 }
 
 - (void)setupInputAccessoryView {
@@ -167,24 +152,19 @@ static NSString *const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 	}];
 }
 
-#pragma mark - Home Button
 
-- (void)setupHomeButton {
-	UIImage *homeIcon = [[FAKIonIcons iosHomeIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-	[self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithImage:homeIcon style:UIBarButtonItemStylePlain target:self action:@selector(homeButtonTapped)]];
-}
+-(void) saveTapped: (id) sender {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Upload Confirmed" message: @"Congatulations!  Your impact letter has been successfully uploaded!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addAction: okayAction];
+    
 
-- (void)homeButtonTapped {
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Return To Dashboard" message:@"Your progress from this page will not be saved." preferredStyle:UIAlertControllerStyleAlert];
-	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler: ^(UIAlertAction *action) {
-	    [self dismissViewControllerAnimated:YES completion:nil];
-	}];
-	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-
-	[alertController addAction:cancelAction];
-	[alertController addAction:okAction];
-
-	[self presentViewController:alertController animated:YES completion:nil];
+    [FISParseAPI saveThankYouPackageForProposal:self.proposal withCompletionDictionary:self.proposal.completionInfo andCompletionBlock:^{
+        [self presentViewController:alertController animated:YES completion:nil];
+    }];
 }
 
 @end

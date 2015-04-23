@@ -267,6 +267,27 @@
     }];
 }
 
++(void) getTeacherIdForProposalObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(NSString *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposalObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject[@"DCTeacherId"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Get Proposal Failed: %@",error.localizedDescription);
+    }];
+}
+
+
 +(void) getProposalObjectProposalId: (NSString *) proposalId andCompletionBlock:(void (^)(NSDictionary *))completionBlock {
     
     NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/"];
