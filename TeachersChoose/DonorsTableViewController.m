@@ -19,11 +19,16 @@
 @implementation DonorsTableViewController
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
 
-	self.proposal = ((DetailsTabBarController *)self.tabBarController).selectedProposal;
-	[self.tableView setBackgroundColor:[UIColor DonorsChooseBlueLight]];
-	[self.tableView setSeparatorColor:[UIColor DonorsChooseBlueBorder]];
+    [super viewDidLoad];
+    
+    self.proposal=((DetailsTabBarController*)self.tabBarController).selectedProposal;
+    [self.tableView setBackgroundColor: [UIColor DonorsChooseBlueLight]];
+    [self.tableView setSeparatorColor: [UIColor DonorsChooseBlueBorder]];
+    
+//    _tabBarHeight = self.tabBarController.tabBar.frame.size.height;
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+
 }
 
 #pragma mark - TableViewDataSource

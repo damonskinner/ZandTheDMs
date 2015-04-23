@@ -62,11 +62,9 @@
                                                                       NSForegroundColorAttributeName : [UIColor DonorsChooseGreyVeryLight],NSFontAttributeName:[UIFont fontWithName:DonorsChooseTitleBoldFont size:25]}];
     self.navigationController.navigationItem.backBarButtonItem.tintColor=[UIColor DonorsChooseGreyVeryLight];
     
-    
-    
     [self.tableView setSeparatorColor:[UIColor DonorsChooseOrange]];
-
-
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+//    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     
     [self.view removeConstraints:self.view.constraints];
     self.tableView.delegate = self;
@@ -155,8 +153,15 @@
         [cell.completionButton addTarget:self action:@selector(segueToCompletionFlow:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    return cell;
+    if(indexPath.row == [self.tableView numberOfRowsInSection:indexPath.section] - 1) {
+        cell.separatorCushionImageView.hidden=YES;
+    }
+    else
+    {
+        cell.separatorCushionImageView.hidden = NO;
+    }
     
+    return cell;
 }
 
 
@@ -259,6 +264,8 @@
 
 
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -287,9 +294,25 @@
         congratsVC.proposal = selectedProposal;
         
 
+
         [navController addChildViewController:congratsVC];
         
         [self.navigationController presentViewController:navController animated:YES completion:nil];
+    }
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+
     }
 }
 
