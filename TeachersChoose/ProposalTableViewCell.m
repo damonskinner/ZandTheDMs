@@ -575,14 +575,14 @@
     }
     
 
-    
-    if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
-        self.fullyFundedDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
-        self.fullyFundedDateLabel.backgroundColor = [UIColor clearColor];
-//        self.fullyFundedDateLabel.text = ((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate;
-        NSDate *dateFromString = [FISDonorsChooseCompletedProposal dateFromString:((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate];
-        self.fullyFundedDateLabel.text = [FISDonorsChooseCompletedProposal stringFromDate:dateFromString];
-    }
+//    
+//    if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
+//        self.fullyFundedDateLabel.font = [UIFont fontWithName:DonorsChooseBodyBasicFont size:18];
+//        self.fullyFundedDateLabel.backgroundColor = [UIColor clearColor];
+////        self.fullyFundedDateLabel.text = ((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate;
+//        NSDate *dateFromString = [FISDonorsChooseCompletedProposal dateFromString:((FISDonorsChooseCompletedProposal *)self.proposal).fullyFundedDate];
+//        self.fullyFundedDateLabel.text = [FISDonorsChooseCompletedProposal stringFromDate:dateFromString];
+//    }
     
     [self layoutIfNeeded];
 
@@ -644,8 +644,13 @@
     if ([self.proposal.fundingStatus isEqualToString:@"needs funding"]) {
         self.toGoLabel.hidden=NO;
         self.completionButton.hidden=YES;
-//        self.raisedLabel.hidden=NO;
+        self.raisedLabel.hidden=NO;
+        self.amountRaisedLabel.hidden=NO;
         self.fundedLabel.hidden=NO;
+        self.dateFundedLabel.hidden=YES;
+        self.proposalTableViewProgressView.hidden=NO;
+        
+        self.fullyFundedDateLabel.hidden=YES;
         self.expirationDateLabel.textColor=[UIColor DonorsChooseRedErrorColor];
         self.expirationDateLabel.text =[NSString stringWithFormat:@"%ld Days Left",daysLeft];
         if ([self.expirationDateLabel.text integerValue]<=30) {
@@ -655,8 +660,9 @@
         }
     } else {
         self.toGoLabel.hidden=YES;
-        self.raisedLabel.hidden=YES;
+        
         self.fundedLabel.hidden=YES;
+
 
         if ([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]) {
             self.expirationDateLabel.hidden=YES;
@@ -664,12 +670,15 @@
             self.proposalTableViewProgressView.hidden=YES;
             self.amountRaisedLabel.hidden=YES;
             self.dateFundedLabel.hidden=NO;
+            self.raisedLabel.hidden=YES;
+            self.amountRaisedLabel.hidden=YES;
             self.fullyFundedDateLabel.hidden=NO;
         } else {
              self.expirationDateLabel.hidden=YES;
             self.completionButton.hidden=NO;
             self.proposalTableViewProgressView.hidden=NO;
             self.amountRaisedLabel.hidden=NO;
+            self.raisedLabel.hidden=NO;
             self.dateFundedLabel.hidden=YES;
             self.fullyFundedDateLabel.hidden=YES;
         }
