@@ -90,10 +90,12 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
+    
+
 	NSDictionary *info = [notification userInfo];
 	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     NSLog(@"%f",self.view.frame.size.height);
-	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 40);
+	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
