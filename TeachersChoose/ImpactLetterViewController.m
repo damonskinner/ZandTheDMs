@@ -19,6 +19,7 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
 @property (nonatomic) float pointsToResizeTextView;
+@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 
 -(void) presentAlert;
 -(void) setupTextViewAndKeyboard;
@@ -39,9 +40,10 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.teacherNameLabel.text = self.proposal.teacherName;
+    
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
-
     [self.saveMessageButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 

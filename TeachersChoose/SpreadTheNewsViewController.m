@@ -16,10 +16,12 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 @interface SpreadTheNewsViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *saveMessageButton;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
+@property (weak, nonatomic) IBOutlet UILabel *teacherNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *placeholderTextLabel;
 @property (nonatomic) float pointsToResizeTextView;
+
 
 -(void) presentAlert;
 -(void) setupTextViewAndKeyboard;
@@ -36,7 +38,7 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 - (void)viewDidLoad
 {
    [super viewDidLoad];
-    
+    self.teacherNameLabel.text = ((ContainerViewController*)self.parentViewController.parentViewController).proposal.teacherName;
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
     [self setupHomeButton];

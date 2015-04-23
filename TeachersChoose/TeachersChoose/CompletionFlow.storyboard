@@ -545,6 +545,7 @@ carry out the project.</string>
                     <connections>
                         <outlet property="placeholderTextLabel" destination="9LE-b8-ZXx" id="lLe-uA-MCm"/>
                         <outlet property="saveMessageButton" destination="hSQ-KH-wsP" id="rgo-9c-81w"/>
+                        <outlet property="teacherNameLabel" destination="Pa1-rJ-EmK" id="C1l-5q-xPu"/>
                         <outlet property="textView" destination="so9-vq-Vpj" id="Hla-g6-bun"/>
                         <outlet property="textViewHeightConstraint" destination="XZg-s4-Enq" id="FUr-r6-o9S"/>
                     </connections>
@@ -1042,12 +1043,6 @@ carry out the project.</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Gratitude," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-DF-Dlk">
-                                <rect key="frame" x="424" y="400" width="116" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dear Donors," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKZ-cJ-UwM">
                                 <rect key="frame" x="60" y="61" width="102" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1102,6 +1097,12 @@ carry out the project.</string>
                                     <action selector="moreInfoTapped:" destination="68P-fl-fdY" eventType="touchUpInside" id="1Qc-Ta-99e"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Gratitude," lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9f-DF-Dlk">
+                                <rect key="frame" x="424" y="400" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1134,6 +1135,7 @@ carry out the project.</string>
                     <connections>
                         <outlet property="placeholderTextLabel" destination="0cG-Ti-wDV" id="qJM-Vn-Yqc"/>
                         <outlet property="saveMessageButton" destination="TJ0-Jy-umu" id="mQm-bc-Q1X"/>
+                        <outlet property="teacherNameLabel" destination="wGx-Aj-cVc" id="ntL-36-EWs"/>
                         <outlet property="textView" destination="6Oy-Kw-BGC" id="KPF-4F-geN"/>
                         <outlet property="textViewHeightConstraint" destination="J21-rH-pLG" id="gQR-TE-bdj"/>
                     </connections>
