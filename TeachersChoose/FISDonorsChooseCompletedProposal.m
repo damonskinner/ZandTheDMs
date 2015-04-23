@@ -64,6 +64,7 @@
     return proposal;
 }
 
+
 -(NSString *)updatingFullyFundedDate {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMMM dd, YYYY HH:mm:ss a zzz"];
@@ -71,8 +72,15 @@
     [dateFormatter setDateFormat:@"M/d/yyyy"];
     NSString *updatedfullyFundedDate = [dateFormatter stringFromDate:myDate];
     return updatedfullyFundedDate;
+
 }
 
++ (NSString *)stringFromDate:(NSDate *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"M/MM/d/y/yyyy"];
+    NSString *updatedfullyFundedDate = [dateFormatter stringFromDate:date];
+    return updatedfullyFundedDate;
+}
 
 //+ (NSString *)stringFromDate:(NSDate *)date {
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

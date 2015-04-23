@@ -82,9 +82,12 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+<<<<<<< HEAD
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTi-BY-bMY">
                         <rect key="frame" x="0.0" y="132" width="479" height="20"/>
                     </imageView>
+=======
+>>>>>>> f72c8824fdcee93b3153ef7d4f38c518d3dc5c28
                 </subviews>
             </tableViewCellContentView>
             <connections>

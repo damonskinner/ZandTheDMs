@@ -19,8 +19,10 @@
 
 +(FISDonorsChooseCompletedProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 
+
 -(NSString *)updatingFullyFundedDate;
     
+
 + (NSString *)stringFromDate:(NSDate *)date;
 + (NSDate *)dateFromString:(NSString *)fullyFundedDate;
 
