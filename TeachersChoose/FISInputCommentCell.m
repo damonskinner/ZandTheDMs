@@ -124,8 +124,10 @@
 
 -(void)textViewDidChange:(UITextView *)textView
 {
+//    [UIView setAnimationsEnabled:NO];
     [self.parentTableView beginUpdates];
     [self.parentTableView endUpdates];
+//     [UIView setAnimationsEnabled:YES];
     [self handleSaveButton];
 }
 

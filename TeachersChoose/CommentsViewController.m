@@ -90,14 +90,13 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    
-
 	NSDictionary *info = [notification userInfo];
 	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
 	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
+
     if (_viewWasOffset) {
         CGPoint point = self.myTableView.contentOffset;
         point.y -= (_bottomYofTextView) - _topYofKeyboard;
@@ -164,6 +163,8 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
 	if (self.mySegmentedControl.selectedSegmentIndex == 0) {
 		if (indexPath.row == 1) {
 			FISInputCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:INPUT_CELL_IDENTIFIER];
@@ -173,6 +174,7 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 			cell.delegate = self;
 			//        cell.parentTableView = tableView;
 			cell.placeholder = INPUT_CELL_PLACEHOLDER;
+            cell.myTextView.autocorrectionType = UITextAutocorrectionTypeNo;
 			return cell;
 		}
 		else {
