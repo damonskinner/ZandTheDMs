@@ -310,7 +310,27 @@
     }];
 }
 
-
++(void) getTeacherObjectIdForProposal: (FISDonorsChooseProposal *) proposal andCompletionBlock:(void (^)(NSString *))completionBlock {
+    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposal.parseObjectId];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    
+//    NSDictionary *params = @{@"include":@"teacherId"};
+    
+    manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
+    [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];
+    [manager.requestSerializer setValue:ParseRestAPIKey forHTTPHeaderField:@"X-Parse-REST-API-Key"];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    [manager GET:donorsChooseURLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        completionBlock(responseObject[@"teacherId"][@"objectId"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Create New Proposal Failed: %@",error.localizedDescription);
+    }];
+}
 
 +(void) getTeacherIdForObjectId: (NSString *) teacherObjectId andCompletionBlock:(void (^)(NSString *))completionBlock {
     
@@ -494,17 +514,17 @@
 }
 
 
-+(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock {
++(void)saveThankYouPackageForProposal:(FISDonorsChooseProposal *)proposal withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock {
     
-    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposalObjectId];
-    
+    NSString *donorsChooseURLString = [NSString stringWithFormat:@"https://api.parse.com/1/classes/Proposals/%@",proposal.parseObjectId];
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     NSDictionary *params = @{@"fundingConfirmed":completionDictionary[@"fundingConfirmed"],
-                             @"dueDate":completionDictionary[@"dueDate"],
-                             @"shippingInstructions":completionDictionary[@"shippingInstructions"],
-                             @"thankYouNote":completionDictionary[@"thankYouNote"],
-                             @"impactLetter":completionDictionary[@"impactLetter"]};
+                                        @"dueDate":completionDictionary[@"dueDate"],
+                                        @"shippingInstructions":completionDictionary[@"shippingInstructions"],
+                                        @"thankYouNote":completionDictionary[@"thankYouNote"],
+                                        @"impactLetter":completionDictionary[@"impactLetter"]};
     
     manager.requestSerializer=[[AFJSONRequestSerializer alloc] init];
     [manager.requestSerializer setValue:ParseApplicationId forHTTPHeaderField:@"X-Parse-Application-Id"];

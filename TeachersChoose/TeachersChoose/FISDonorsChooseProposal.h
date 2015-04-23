@@ -57,6 +57,8 @@
 @property (nonatomic, strong) NSString *parseCurrentDonated;
 @property (nonatomic, strong) NSString *parseCostToComplete;
 
+@property (nonatomic, strong) NSMutableDictionary *completionInfo;
+
 +(FISDonorsChooseProposal *)proposalFromDictionary:(NSDictionary *)proposalDictionary;
 
 -(id) copyWithZone:(NSZone *)zone;

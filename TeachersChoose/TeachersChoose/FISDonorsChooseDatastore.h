@@ -23,8 +23,6 @@
 @property (nonatomic, strong) NSString *decodedDeviceToken;
 @property (nonatomic) NSInteger totalUnRespondedDonations;
 
-@property (nonatomic, strong) NSMutableDictionary *completionInfo;
-
 + (instancetype)sharedDataStore;
 
 -(void)getSearchResultsWithKeyword: (NSString *) keyword andCompletion:(void (^)(BOOL))completionBlock;

@@ -29,6 +29,8 @@
 
 +(void) getTeacherIdForObjectId: (NSString *) teacherObjectId andCompletionBlock:(void (^)(NSString *))completionBlock;
 
++(void) getTeacherObjectIdForProposal: (FISDonorsChooseProposal *) proposal andCompletionBlock:(void (^)(NSString *))completionBlock;
+
 +(void) addDonationResponseMessage:(NSString *) responseMessage forDonationWithObjectId: (NSString *) donationObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
 
@@ -51,7 +53,7 @@
 
 +(void) updateTotalPrice:(NSString *) totalPrice andCurrentDonated: (NSString *) totalDonated forProposalWithObjectId: (NSString *) proposalObjectId andCompletionBlock:(void (^)(void))completionBlock;
 
-+(void)saveThankYouPackageForProposalObjectId:(NSString *)proposalObjectId withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock;
++(void)saveThankYouPackageForProposal:(FISDonorsChooseProposal *)proposal withCompletionDictionary:(NSMutableDictionary *) completionDictionary andCompletionBlock:(void (^)(void))completionBlock;
 
 
 @end

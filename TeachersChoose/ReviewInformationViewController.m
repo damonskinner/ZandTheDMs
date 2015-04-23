@@ -7,6 +7,8 @@
 //
 
 #import "ReviewInformationViewController.h"
+#import "FISDonorsChooseDatastore.h"
+#import "FISDonorsChooseTeacher.h"
 #import "ContainerViewController.h"
 #import <FAKIonIcons.h>
 #import "FISParseAPI.h"
@@ -21,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *schoolCityStateZipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thankyouDueDateLabel;
 
+@property (strong, nonatomic) FISDonorsChooseDatastore *dataStore;
+@property (strong, nonatomic) FISDonorsChooseTeacher *teacher;
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
+
 @end
 
 @implementation ReviewInformationViewController
@@ -29,15 +35,36 @@
     [super viewDidLoad];
     self.completeMyProjectButton.layer.cornerRadius = 10;
     [self setupHomeButton];
+    self.dataStore = [FISDonorsChooseDatastore sharedDataStore];
+    self.teacher = self.dataStore.loggedInTeacher;
+    self.proposal = ((ContainerViewController*)self.parentViewController.parentViewController).proposal;
+    
+}
+
+-(void)setProposal:(FISDonorsChooseProposal *)proposal
+{
+    _proposal=proposal;
+    self.teacherNameLabel.text = proposal.teacherName;
+    self.schoolNameLabel.text = proposal.schoolName;
+    self.schoolAddressLabel.text = @"2101 N Indiana Ave";
+    self.schoolCityStateZipLabel.text = [NSString stringWithFormat:@"%@, %@ %@", proposal.city, proposal.state, proposal.zip];
+    self.specialInstructionsLabel =  self.proposal.completionInfo[@"specialInstructions"];
 }
 
 -(void) presentAreYouSureAlert
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are You Sure?" message:@"Once submitted, this information may not be edited." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *submitAction = [UIAlertAction actionWithTitle:@"Submit" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        NSLog(@"readyToSubmit");
-//        [FISParseAPI saveThankYouPackageForProposalObjectId: withCompletionDictionary:<#(NSMutableDictionary *)#> andCompletionBlock:<#^(NSDictionary *)completionBlock#>]
-        [self presentCongratulationsViewController];
+
+
+        //TODO: add API call to save completionInfo
+        self.proposal.completionInfo[@"fundingConfirmed"] = @"YES";
+        
+        [FISParseAPI saveThankYouPackageForProposal:self.proposal withCompletionDictionary:self.proposal.completionInfo andCompletionBlock:^{
+            [self presentCongratulationsViewController];
+        }];
+
+        
     }];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {

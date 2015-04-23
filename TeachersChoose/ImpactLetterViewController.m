@@ -8,6 +8,7 @@
 
 #import "ImpactLetterViewController.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "FISParseAPI.h"
 
 static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
 
@@ -40,6 +41,8 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     [super viewDidLoad];
     [self setupTextViewAndKeyboard];
     self.saveMessageButton.layer.cornerRadius = 10;
+
+    [self.saveMessageButton addTarget:self action:@selector(saveTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -162,6 +165,21 @@ static NSString* const TEXTVIEW_PLACEHOLDER = @"Tap here to begin your message";
     //    NSLog(@"supervw : %@", NSStringFromCGRect(self.textView.superview.frame));
     //    NSLog(@"textview: %@", NSStringFromCGRect(self.textView.frame));
     //    NSLog(@"IAV     : %@", NSStringFromCGRect(self.textView.inputAccessoryView.frame));
+}
+
+
+-(void) saveTapped: (id) sender {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Upload Confirmed" message: @"Congatulations!  Your impact letter has been successfully uploaded!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addAction: okayAction];
+    
+
+    [FISParseAPI saveThankYouPackageForProposal:self.proposal withCompletionDictionary:self.proposal.completionInfo andCompletionBlock:^{
+        [self presentViewController:alertController animated:YES completion:nil];
+    }];
 }
 
 @end

@@ -22,8 +22,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFg-Yi-adt" userLabel="container">
                                 <rect key="frame" x="0.0" y="44" width="600" height="435"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BVL-aV-wEN" userLabel="CHECKBOXES">
-                                        <rect key="frame" x="0.0" y="1" width="150" height="435"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BVL-aV-wEN" userLabel="CHECKBOXES">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="435"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7Q-as-Wv1" userLabel="Checkbox 1">
                                                 <rect key="frame" x="37" y="72" width="75" height="75"/>
@@ -35,8 +35,8 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-zh-9be" userLabel="checkbox 2">
-                                                <rect key="frame" x="37" y="181" width="75" height="75"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-zh-9be" userLabel="checkbox 2">
+                                                <rect key="frame" x="37" y="180" width="75" height="75"/>
                                                 <color key="tintColor" red="0.1070272614" green="0.76179766410000005" blue="0.10345257200000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,8 +74,8 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-vI-CZr" userLabel="QUESTIONS">
-                                        <rect key="frame" x="150" y="1" width="450" height="435"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-vI-CZr" userLabel="QUESTIONS">
+                                        <rect key="frame" x="150" y="0.0" width="450" height="435"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am still in need of the requested materials." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oN-Qq-F2W" userLabel="question one">
                                                 <rect key="frame" x="23" y="99" width="405" height="21"/>
@@ -83,11 +83,11 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnB-m2-W8s" userLabel="question two">
-                                                <rect key="frame" x="23" y="188" width="405" height="61"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DnB-m2-W8s" userLabel="question two">
+                                                <rect key="frame" x="23" y="187" width="405" height="61"/>
                                                 <string key="text">I am able to deliver 
 my Thankyou Package 
-by MM/DD/YYYY.</string>
+by 07/20/2015.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -175,6 +175,7 @@ carry out the project.</string>
                         <outlet property="checkbox1" destination="X7Q-as-Wv1" id="snW-t7-lru"/>
                         <outlet property="checkbox2" destination="sBi-zh-9be" id="uMe-I7-zsE"/>
                         <outlet property="checkbox3" destination="Au8-Y9-yen" id="ebR-7S-iEm"/>
+                        <outlet property="dateConfirmationLabel" destination="DnB-m2-W8s" id="jI7-tm-Rad"/>
                         <outlet property="nextButton" destination="O6j-NT-wJy" id="MmE-Pn-N1I"/>
                     </connections>
                 </viewController>
@@ -214,42 +215,39 @@ carry out the project.</string>
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="editAddressTapped:" destination="Ek8-I7-ueb" eventType="touchUpInside" id="2Sd-aF-Wbo"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dff-A8-LOE" userLabel="text container">
                                 <rect key="frame" x="30" y="167" width="540" height="145"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(eg: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
-                                        <rect key="frame" x="54" y="28" width="432" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbr-pj-5iZ" userLabel="TEACHER NAME">
                                         <rect key="frame" x="221" y="0.0" width="99" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
-                                        <rect key="frame" x="219" y="95" width="102" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nrc-6G-8Xz" userLabel="ADDRESS LINE 1">
+                                        <rect key="frame" x="219" y="96" width="102" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="180" y="123" width="181" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbL-BP-7uy" userLabel="CITY STATE ZIP">
+                                        <rect key="frame" x="180" y="125" width="181" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="147" y="66" width="246" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhw-cl-Ogy" userLabel="SCHOOL TITLE">
+                                        <rect key="frame" x="147" y="67" width="246" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(eg: classroom 212)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-VN-jm6" userLabel="textfield">
+                                        <rect key="frame" x="54" y="29" width="432" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nhw-cl-Ogy" firstAttribute="top" secondItem="aXr-VN-jm6" secondAttribute="bottom" constant="8" id="1Cr-Kg-F9k"/>
@@ -292,9 +290,13 @@ carry out the project.</string>
                         <barButtonItem key="backBarButtonItem" title="Back" id="seK-KL-4le"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressLabel" destination="Nrc-6G-8Xz" id="wR9-Ad-7mV"/>
+                        <outlet property="cityStateZipLabel" destination="nbL-BP-7uy" id="1rs-xQ-ffH"/>
                         <outlet property="editAddressButton" destination="5rp-QN-e03" id="TIZ-wX-jl9"/>
                         <outlet property="inputTextField" destination="aXr-VN-jm6" id="qHt-Bz-wNi"/>
                         <outlet property="nextButton" destination="tgr-sZ-ddi" id="QBv-4k-xKe"/>
+                        <outlet property="schoolNameLabel" destination="nhw-cl-Ogy" id="Ybb-oo-JBV"/>
+                        <outlet property="teacherNameLabel" destination="zbr-pj-5iZ" id="FiK-4S-gbY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x8o-g5-GPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -325,8 +327,8 @@ carry out the project.</string>
                                     <segue destination="6v5-he-q34" kind="show" id="ZwX-0j-OQx"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5Y-DJ-u38" userLabel="backgroundView">
-                                <rect key="frame" x="36" y="291" width="528" height="174"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5Y-DJ-u38" userLabel="backgroundView">
+                                <rect key="frame" x="36" y="261" width="528" height="174"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ntK-a5-G5a">
@@ -347,32 +349,32 @@ carry out the project.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tYR-SI-Bjq">
                                 <rect key="frame" x="0.0" y="44" width="600" height="145"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Avoid Setting a Date on or Near:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-f0-Pdp">
-                                        <rect key="frame" x="175" y="8" width="248" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avoid Setting a Date on or Near:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1By-f0-Pdp">
+                                        <rect key="frame" x="174" y="8" width="248" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• School vacations and holidays" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-nd-qbn">
-                                        <rect key="frame" x="183" y="37" width="245" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• School vacations and holidays" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-nd-qbn">
+                                        <rect key="frame" x="182" y="37" width="245" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• School or State Testing Days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-k8-92I">
-                                        <rect key="frame" x="183" y="65" width="232" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• School or State Testing Days" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-k8-92I">
+                                        <rect key="frame" x="182" y="66" width="232" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• End of the School Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9p-bq-oRQ">
-                                        <rect key="frame" x="183" y="93" width="186" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• End of the School Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9p-bq-oRQ">
+                                        <rect key="frame" x="182" y="94" width="186" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="• Any Special Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0J-Qu-DmB">
-                                        <rect key="frame" x="183" y="121" width="158" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• Any Special Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0J-Qu-DmB">
+                                        <rect key="frame" x="182" y="123" width="158" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -392,8 +394,8 @@ carry out the project.</string>
                                     <constraint firstItem="A0J-Qu-DmB" firstAttribute="top" secondItem="F9p-bq-oRQ" secondAttribute="bottom" constant="8" id="nY6-ye-VMH"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4c-pY-KrX">
-                                <rect key="frame" x="534" y="549" width="66" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4c-pY-KrX">
+                                <rect key="frame" x="534" y="550" width="66" height="30"/>
                                 <state key="normal" title="More Info">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -460,8 +462,8 @@ carry out the project.</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mrs. Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa1-rJ-EmK">
-                                <rect key="frame" x="455" y="415" width="85" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mrs. Quinones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa1-rJ-EmK">
+                                <rect key="frame" x="428" y="416" width="112" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -481,8 +483,8 @@ carry out the project.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t6X-R6-lAW">
                                 <rect key="frame" x="0.0" y="87" width="600" height="290"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap Here to Begin Your Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-b8-ZXx">
-                                        <rect key="frame" x="175" y="107" width="251" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Here to Begin Your Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LE-b8-ZXx">
+                                        <rect key="frame" x="175" y="135" width="251" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -564,50 +566,50 @@ carry out the project.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-NH-o3W" userLabel="text container">
-                                <rect key="frame" x="0.0" y="109" width="600" height="145"/>
+                                <rect key="frame" x="60" y="109" width="480" height="145"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Susan Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8W-fC-3hR" userLabel="TEACHER NAME">
-                                        <rect key="frame" x="251" y="8" width="99" height="21"/>
+                                        <rect key="frame" x="20" y="8" width="99" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OS-Bo-lOo" userLabel="SCHOOL TITLE">
-                                        <rect key="frame" x="177" y="65" width="246" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville Elementary School" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OS-Bo-lOo" userLabel="SCHOOL TITLE">
+                                        <rect key="frame" x="20" y="66" width="246" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CY-y4-9l7" userLabel="ADDRESS LINE 1">
-                                        <rect key="frame" x="249" y="93" width="102" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1010 Main St" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CY-y4-9l7" userLabel="ADDRESS LINE 1">
+                                        <rect key="frame" x="20" y="95" width="102" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-Bv-aBy" userLabel="CITY STATE ZIP">
-                                        <rect key="frame" x="210" y="122" width="181" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surgoinsville, TN 37873" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfs-Bv-aBy" userLabel="CITY STATE ZIP">
+                                        <rect key="frame" x="20" y="124" width="181" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Special Instructions Added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-Y4-DRS">
-                                        <rect key="frame" x="188" y="36" width="234" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Special Instructions Added" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkW-Y4-DRS">
+                                        <rect key="frame" x="20" y="37" width="234" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="5OS-Bo-lOo" secondAttribute="centerX" id="3De-iT-JAY"/>
                                     <constraint firstItem="7CY-y4-9l7" firstAttribute="top" secondItem="5OS-Bo-lOo" secondAttribute="bottom" constant="8" id="BO1-fw-Vtf"/>
                                     <constraint firstItem="D8W-fC-3hR" firstAttribute="top" secondItem="ZtX-NH-o3W" secondAttribute="top" constant="8" id="Eeb-ic-UBg"/>
-                                    <constraint firstItem="cfs-Bv-aBy" firstAttribute="centerX" secondItem="ZtX-NH-o3W" secondAttribute="centerX" id="Pu5-lG-Iru"/>
-                                    <constraint firstAttribute="centerX" secondItem="D8W-fC-3hR" secondAttribute="centerX" constant="-0.5" id="T5S-lG-P1w"/>
+                                    <constraint firstItem="5OS-Bo-lOo" firstAttribute="leading" secondItem="ZtX-NH-o3W" secondAttribute="leading" constant="20" symbolic="YES" id="KO8-3W-95P"/>
+                                    <constraint firstItem="7CY-y4-9l7" firstAttribute="leading" secondItem="ZtX-NH-o3W" secondAttribute="leading" constant="20" symbolic="YES" id="O6E-EV-swC"/>
+                                    <constraint firstItem="KkW-Y4-DRS" firstAttribute="leading" secondItem="ZtX-NH-o3W" secondAttribute="leading" constant="20" symbolic="YES" id="QDI-qE-nkf"/>
                                     <constraint firstItem="KkW-Y4-DRS" firstAttribute="top" secondItem="D8W-fC-3hR" secondAttribute="bottom" constant="8" id="TC3-CN-pP2"/>
                                     <constraint firstItem="cfs-Bv-aBy" firstAttribute="top" secondItem="7CY-y4-9l7" secondAttribute="bottom" constant="8" id="TmD-8d-frw"/>
-                                    <constraint firstAttribute="centerX" secondItem="KkW-Y4-DRS" secondAttribute="centerX" constant="-5" id="dYe-fo-pf0"/>
+                                    <constraint firstItem="D8W-fC-3hR" firstAttribute="leading" secondItem="ZtX-NH-o3W" secondAttribute="leading" constant="20" symbolic="YES" id="dAd-yz-djg"/>
+                                    <constraint firstItem="cfs-Bv-aBy" firstAttribute="leading" secondItem="ZtX-NH-o3W" secondAttribute="leading" constant="20" symbolic="YES" id="ey5-8N-f4x"/>
                                     <constraint firstItem="5OS-Bo-lOo" firstAttribute="top" secondItem="KkW-Y4-DRS" secondAttribute="bottom" constant="8" id="sqF-JY-Mds"/>
-                                    <constraint firstItem="7CY-y4-9l7" firstAttribute="centerX" secondItem="ZtX-NH-o3W" secondAttribute="centerX" id="uGr-7f-sB1"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank You Package Due Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56G-4h-WCT">
@@ -616,8 +618,8 @@ carry out the project.</string>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM/DD/YYYY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-Kv-pI6">
-                                <rect key="frame" x="245" y="352" width="110" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07/20/2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi2-Kv-pI6">
+                                <rect key="frame" x="256" y="352" width="88" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -641,7 +643,7 @@ carry out the project.</string>
                             <constraint firstItem="xSR-Qi-Uqc" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="8oh-5z-4P8"/>
                             <constraint firstItem="ZtX-NH-o3W" firstAttribute="height" secondItem="XI1-OS-XHi" secondAttribute="height" multiplier="0.25" id="Bo2-lC-9cE"/>
                             <constraint firstItem="hi2-Kv-pI6" firstAttribute="top" secondItem="56G-4h-WCT" secondAttribute="bottom" constant="8" id="LsF-el-laP"/>
-                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="width" secondItem="XI1-OS-XHi" secondAttribute="width" id="Ner-F1-8CG"/>
+                            <constraint firstItem="ZtX-NH-o3W" firstAttribute="width" secondItem="XI1-OS-XHi" secondAttribute="width" multiplier="0.8" id="Ner-F1-8CG"/>
                             <constraint firstItem="hi2-Kv-pI6" firstAttribute="centerX" secondItem="XI1-OS-XHi" secondAttribute="centerX" id="W7p-XW-YGo"/>
                             <constraint firstItem="xSR-Qi-Uqc" firstAttribute="centerY" secondItem="XI1-OS-XHi" secondAttribute="centerY" multiplier="1.75" id="izP-Kw-3Wu"/>
                             <constraint firstItem="hi2-Kv-pI6" firstAttribute="centerY" secondItem="XI1-OS-XHi" secondAttribute="centerY" multiplier="1.25" id="od8-hL-iY1"/>
@@ -845,12 +847,6 @@ carry out the project.</string>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FOv-NH-0JW">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="twz-VG-UlE" userLabel="tap me">
-                                                    <rect key="frame" x="32" y="95" width="57" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -858,14 +854,11 @@ carry out the project.</string>
                                         <constraints>
                                             <constraint firstItem="FOv-NH-0JW" firstAttribute="top" secondItem="wDK-Pu-bDK" secondAttribute="topMargin" constant="-8" id="AEO-rq-S2e"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="FOv-NH-0JW" secondAttribute="bottom" constant="-8" id="PmG-R4-J0F"/>
-                                            <constraint firstItem="twz-VG-UlE" firstAttribute="centerY" secondItem="wDK-Pu-bDK" secondAttribute="centerY" multiplier="1.75" id="dha-6K-ieb"/>
                                             <constraint firstItem="FOv-NH-0JW" firstAttribute="leading" secondItem="wDK-Pu-bDK" secondAttribute="leadingMargin" constant="-8" id="iX2-aH-MRv"/>
-                                            <constraint firstItem="twz-VG-UlE" firstAttribute="centerX" secondItem="wDK-Pu-bDK" secondAttribute="centerX" id="pnT-KK-qqE"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="FOv-NH-0JW" secondAttribute="trailing" constant="-8" id="rt1-Tb-cHN"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="FOv-NH-0JW" id="ygC-PQ-l2m"/>
-                                            <outlet property="tapMeLabel" destination="twz-VG-UlE" id="FSp-PT-Ged"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

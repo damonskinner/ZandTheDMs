@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISDonorsChooseProposal;
 @interface PhotoManagerViewController : UIViewController
 
-@property (strong, nonatomic) NSMutableArray *completionPictures;
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
 
 @end

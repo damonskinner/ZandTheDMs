@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISDonorsChooseProposal;
 @interface ImpactLetterViewController : UIViewController
+
+@property (strong, nonatomic) FISDonorsChooseProposal *proposal;
 
 @end

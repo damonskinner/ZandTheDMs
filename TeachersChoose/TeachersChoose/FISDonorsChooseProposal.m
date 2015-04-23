@@ -125,6 +125,7 @@
     self = [super init];
     if (self) {
         _donations = [[NSMutableArray alloc] init];
+        _completionInfo = [[NSMutableDictionary alloc] initWithObjects:@[@"",@"",@"",@"",@""] forKeys:@[@"fundingConfirmed",@"dueDate",@"shippingInstructions",@"thankYouNote",@"impactLetter"]];
     }
     return self;
 }

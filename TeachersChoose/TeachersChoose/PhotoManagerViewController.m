@@ -9,7 +9,9 @@
 #import "PhotoManagerViewController.h"
 #import "CompletionImageCollectionViewCell.h"
 #import "UIColor+DonorsChooseColors.h"
+#import "FISDonorsChooseDatastore.h"
 #import <FAKIonIcons.h>
+#import <MBProgressHUD.h>
 
 @interface PhotoManagerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -17,6 +19,8 @@
 @property (nonatomic) NSInteger selectedRow;
 @property (nonatomic) UIImage *cameraImage;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (strong, nonatomic) FISDonorsChooseDatastore *dataStore;
+@property (strong, nonatomic) NSMutableArray *completionPictures;
 
 -(void) setupCompletionPicturesArray;
 -(void) presentPhotoActionSheet;
@@ -31,6 +35,8 @@
 {
     [super viewDidLoad];
 
+    self.dataStore = [FISDonorsChooseDatastore sharedDataStore];
+    
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
@@ -46,6 +52,11 @@
 #pragma mark - UICollectionView Delegate
 - (IBAction)uploadButtonTapped:(id)sender {
     NSLog(@"uploadTapped");
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // SAVE IT TO THE DATASTORE HERE
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -60,18 +71,6 @@
     cell.imageView.image = self.completionPictures[indexPath.row];
     cell.backgroundColor = [UIColor DonorsChooseOrange];
     cell.layer.cornerRadius = 10;
-
-    //TODO: decide whether this is good or not
-//    if (cell.imageView.image == self.cameraImage)
-//    {
-//        cell.tapMeLabel.hidden = NO;
-//    }
-//    else
-//    {
-//        cell.tapMeLabel.hidden = YES;
-//    }
-
-    cell.tapMeLabel.hidden = YES;
     
     return cell;
 }

@@ -14,6 +14,8 @@
 #import "DetailsTabBarController.h"
 #import "UIColor+DonorsChooseColors.h"
 #import "UIFont+DonorsChooseFonts.h"
+#import "ContainerViewController.h"
+#import "CongratulationsViewController.h"
 #import <Parse.h>
 #import <FAKIonIcons.h>
 #import "ImagesAPI.h"
@@ -299,6 +301,7 @@
     return newImage;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -306,33 +309,31 @@
 
 -(void) segueToCompletionFlow: (id) sender
 {
-    FISDonorsChooseProposal *selectedProposal=((ProposalTableViewCell *)((UITableViewCell *)((UIButton *)sender).superview).superview).proposal;
-    
-    NSMutableDictionary *completionDict = [@{@"fundingConfirmed":@"YES",
-                                             @"dueDate":@"8-29-2015",
-                                             @"shippingInstructions":@"Please do this:",
-                                             @"thankYouNote":@"Thanks so much!",
-                                             @"photos":@[],
-                                             @"impactLetter":@"Thank you so much for your help!"} mutableCopy];
-    
-    [FISParseAPI saveThankYouPackageForProposalObjectId:selectedProposal.parseObjectId withCompletionDictionary: completionDict andCompletionBlock:^() {
-    }];
-    
-    
-    UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
+    UIButton *theButton = (UIButton*) sender;
+    UIView *contentView = [theButton superview];
+    ProposalTableViewCell *theCell = (ProposalTableViewCell*)[contentView superview];
+    FISDonorsChooseProposal *selectedProposal = theCell.proposal;
 
-    ContainerViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
-    if([self.datastore.completionInfo[@"isConfirmed"] isEqualToString: @"NO"])
+    UIStoryboard *completionFlowStoryboard = [UIStoryboard storyboardWithName:@"CompletionFlow" bundle:nil];
+    
+    if(![selectedProposal.completionInfo[@"fundingConfirmed"] isEqualToString: @"YES"])
     {
+        ContainerViewController *containerVC = [completionFlowStoryboard instantiateInitialViewController];
+        containerVC.proposal = selectedProposal;
         [self.navigationController presentViewController:containerVC animated:YES completion:nil];
     }
     else
     {
-        UIViewController *congratsVC = [completionFlowStoryboard instantiateViewControllerWithIdentifier:@"congratulationsNAV"];
-        [self.navigationController presentViewController:congratsVC animated:YES completion:nil];
-    }
+        UINavigationController *navController = [[UINavigationController alloc]init];
+        
+        CongratulationsViewController *congratsVC = [completionFlowStoryboard instantiateViewControllerWithIdentifier:@"congratulationsVC"];
+        congratsVC.proposal = selectedProposal;
         
 
+        [navController addChildViewController:congratsVC];
+        
+        [self.navigationController presentViewController:navController animated:YES completion:nil];
+    }
 }
 
 

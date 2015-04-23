@@ -11,6 +11,9 @@
 #import "UIFont+DonorsChooseFonts.h"
 #import <FAKIonIcons.h>
 #import "FISDonorsChooseDatastore.h"
+#import "ContainerViewController.h"
+#import "PhotoManagerViewController.h"
+#import "ImpactLetterViewController.h"
 
 @interface CongratulationsViewController ()
 
@@ -24,12 +27,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FISDonorsChooseDatastore *dataStore = [FISDonorsChooseDatastore sharedDataStore];
-    dataStore.completionInfo[@"isConfirmed"] = @"YES";
     [self formatNavBar];
     [self.navigationItem setHidesBackButton:YES animated:YES];
     [self setupThankYouPackageButtons];
     [self setupHomeButton];
+    
+}
+
+-(FISDonorsChooseProposal *)proposal{
+    if (!_proposal)
+    {
+        return ((ContainerViewController*)self.parentViewController.parentViewController).proposal;
+    }
+    return _proposal;
 }
 
 -(void) formatNavBar
@@ -75,14 +85,23 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    UIViewController *vc = [segue destinationViewController];
+    
+    if ([vc isKindOfClass:[ImpactLetterViewController class]])
+    {
+        ((ImpactLetterViewController*)vc).proposal = self.proposal;
+    }
+    else if([vc isKindOfClass:[PhotoManagerViewController class]])
+    {
+        ((PhotoManagerViewController*)vc).proposal = self.proposal;
+    }
 }
-*/
+
 
 @end
