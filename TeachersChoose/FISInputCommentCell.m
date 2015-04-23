@@ -138,16 +138,12 @@
     [inputAccessoryView.cancelButton addTarget:self action:@selector(cancelButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [inputAccessoryView.saveButton addTarget:self action:@selector(saveButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    NSLog(@"%f",inputAccessoryView.frame.size.height);
-    
     return inputAccessoryView;
 }
 
 - (void) keyboardWillShow:(NSNotification *)note {
     NSDictionary *userInfo = [note userInfo];
     CGSize kbSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    NSLog(@"Keyboard Height: %f Width: %f", kbSize.height, kbSize.width);
     
     // move the view up by 30 pts
     CGRect frame = self.parentTableView.frame;
@@ -167,7 +163,6 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.parentTableView.frame = frame;
     }];
-    //[self.parentTableView setFrame:CGRectMake(0,0,320,460)];
     
     [self.parentTableView reloadData];
 }
@@ -188,43 +183,18 @@
 
 -(void) cancelButtonTapped
 {
-    NSLog(@"Cancel tapped");
     [self.myTextView resignFirstResponder];
     
     [self formatCellWithPlaceholder: INPUT_CELL_PLACEHOLDER];
-    
-    
-//    [self restoreViewAfterdismissingKeyboard];
 }
 
 -(void) saveButtonTapped
 {
-    NSLog(@"save tapped");
-    
     [self.delegate saveDonationWithMessage:self.myTextView.text andIndexPath:[self.parentTableView indexPathForCell:self]];
 
     [self.myTextView resignFirstResponder];
     self.myTextView.editable = NO;
     self.myTextView.selectable = NO;
 }
-
-//- (void) restoreViewAfterdismissingKeyboard {
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.25f];
-//    CGRect frame = self.parentTableView.frame;   //self.parentTableView.superview.frame;
-//    frame.origin.y = frame.origin.y - 204;
-//    [self.parentTableView setFrame:frame];
-//    [UIView commitAnimations];
-//}
-//
-//- (void) hideKeyboard {
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.25f];
-//    CGRect frame = self.parentTableView.frame;
-//    frame.origin.y = frame.origin.y + 204;
-//    [self.parentTableView setFrame:frame];
-//    [UIView commitAnimations];
-//}
-
 
 @end

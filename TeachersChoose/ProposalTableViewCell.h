@@ -10,8 +10,6 @@
 
 #import "FISDonorsChooseProposal.h"
 
-
-
 @interface ProposalTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *costToCompleteLabel;

@@ -11,8 +11,6 @@
 
 @implementation ImagesAPI
 
-
-
 +(void) getImageWithURLString:(NSString *)URLString andCompletion:(void (^)(UIImage *))completionBlock {
     
     NSString *randomPugImageURL = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

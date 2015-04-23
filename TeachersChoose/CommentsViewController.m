@@ -94,7 +94,6 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 	NSDictionary *info = [notification userInfo];
 	CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    NSLog(@"%f",self.view.frame.size.height);
 	_topYofKeyboard = (self.view.frame.size.height + _tabBarHeight) - (kbSize.height + 50);
 }
 
@@ -147,7 +146,6 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
-	NSLog(@"MEMORY WARNING");
 }
 
 #pragma mark - UITableViewDataSource
@@ -535,7 +533,6 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
 }
 
 - (void)saveDonationWithMessage:(NSString *)responseMessage andIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"%@ for donation: %ld", responseMessage, indexPath.section);
 
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Send Confirmation"
 	                                                               message:@"Are you really really sure you want to send this message?"
@@ -584,11 +581,6 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
     [alert addAction:defaultAction];
     
     [self presentViewController:alert animated:YES completion:nil];
-    
-//    [self.proposal.donations removeAllObjects];
-//    [self.donationsWhichNeedResponse removeAllObjects];
-    
-    
     
     if([self.proposal isKindOfClass:[FISDonorsChooseCompletedProposal class]]){
         [self populateDonationsWithFakeRespondedDonations];
@@ -643,8 +635,6 @@ NSString *const BASIC_CELL_IDENTIFIER = @"basicCell";
             [self.proposal.donations removeLastObject];
         }
     }
-    
-
 }
 
 - (NSString *)formatDateLabelStringWithDateString:(NSString *)dateString {
